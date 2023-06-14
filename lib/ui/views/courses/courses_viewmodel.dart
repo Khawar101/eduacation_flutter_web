@@ -3,7 +3,7 @@ import 'package:stacked/stacked.dart';
 
 class CoursesViewModel extends BaseViewModel {
   // final _navigationService = locator<NavigationService>();
-  var pageNo = 0;
+  var pageNo = 1;
   nextPage() {
     log("=>");
     pageNo += 1;
