@@ -134,17 +134,14 @@ class UploadCoursesViewModel extends BaseViewModel {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
+        
         title: const Text(
-          'Upload Lecture',
+          'Video',
         ),
         content: const SizedBox(
-          height: 250,
+          height: 200,
           width: 300,
-          child: Column(
-            children: [
-           videoPlayer(url:'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',)
-            ],
-          ),
+          child: videoPlayer(url:'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',),
         ),
         actions: <Widget>[
           TextButton(
