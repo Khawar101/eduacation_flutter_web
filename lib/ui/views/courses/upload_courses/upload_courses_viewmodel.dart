@@ -7,6 +7,7 @@ import 'upload_view_2.dart';
 import 'upload_view_3.dart';
 import 'upload_view_4.dart';
 import 'upload_view_5.dart';
+import 'upload_view_6.dart';
 
 class UploadCoursesViewModel extends BaseViewModel {
   var screenNo = 3;
@@ -16,6 +17,7 @@ class UploadCoursesViewModel extends BaseViewModel {
     const UploadView_3(),
     const UploadView_4(),
     const UploadView_5(),
+    const UploadView_6(),
   ];
   final TextEditingController questionCtrl = TextEditingController();
   final TextEditingController answerCtrl = TextEditingController();
