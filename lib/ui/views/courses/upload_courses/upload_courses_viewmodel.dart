@@ -6,7 +6,7 @@ import 'upload_view_4.dart';
 import 'upload_view_5.dart';
 
 class UploadCoursesViewModel extends BaseViewModel {
-  var screenNo = 0;
+  var screenNo = 1;
   var screens = [
     const UploadView_1(),
     const UploadView_2(),
