@@ -77,4 +77,56 @@ class UploadCoursesViewModel extends BaseViewModel {
       ),
     );
   }
+
+  addLectureAlert(context) async {
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text(
+          'Upload Lecture',
+        ),
+        content: SizedBox(
+          height: 250,
+          child: Column(
+            children: [
+              IconTextField(
+                titleText: "Title",
+                controller: questionCtrl,
+                hintText: 'e.g: Free Programming Courses',
+              ),
+              IconTextField(
+                titleText: "Description",
+                controller: questionCtrl,
+                hintText: 'e.g: Free Programming Courses',
+              ),
+              const Card(
+                child: Icon(
+                  Icons.add,
+                  size: 20,
+                ),
+              )
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(
+              context,
+              'Cancel',
+            ),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(
+              context,
+              'Add Question',
+            ),
+            child: const Text(
+              'OK',
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

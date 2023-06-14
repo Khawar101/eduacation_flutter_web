@@ -20,5 +20,6 @@ class DrawerViewModel extends BaseViewModel {
   updatePage(value) {
     pageNo = value;
     notifyListeners();
+    rebuildUi();
   }
 }
