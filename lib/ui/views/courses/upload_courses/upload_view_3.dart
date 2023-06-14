@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types
 
+import 'package:education_flutter_web/ui/common/ui_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../../../widgets/common/icon_text_field/icon_text_field.dart';
@@ -21,11 +22,11 @@ class UploadView_3 extends StackedView<UploadCoursesViewModel> {
         
         const SizedBox(height: 30),
    
-        Row(
+        Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconTextField(
-              titleText: "CATEGORY",
+               titleText: "Price",
               icon: Icons.category,
               prefix: Icon(
                 Icons.category,
@@ -34,8 +35,9 @@ class UploadView_3 extends StackedView<UploadCoursesViewModel> {
               width: width / 2.5,
               hintText: 'e.g: Free Programming Courses',
             ),
+            verticalSpaceSmall,
             IconTextField(
-              titleText: "Price",
+             titleText: "Duration",
               width: width / 2.5,
               prefix: Icon(
                 Icons.price_change,
