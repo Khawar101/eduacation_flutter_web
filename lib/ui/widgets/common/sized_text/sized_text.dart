@@ -139,3 +139,44 @@ class CustomText extends StatelessWidget {
 final kToday = DateTime.now();
 final kFirstDay = DateTime(kToday.year, kToday.month - 3, kToday.day);
 final kLastDay = DateTime(kToday.year, kToday.month + 3, kToday.day);
+
+class StarText extends StatelessWidget {
+  final String text;
+  const StarText({
+    super.key,
+    required this.text,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(
+                Icons.star,
+                size: 12,
+                color: Colors.yellow,
+              ),
+              const Icon(
+                Icons.star,
+                size: 17,
+                color: Colors.yellow,
+              ),
+              ButtonText(text: text, color: Colors.black),
+              const Icon(
+                Icons.star,
+                size: 17,
+                color: Colors.yellow,
+              ),
+              const Icon(
+                Icons.star,
+                size: 12,
+                color: Colors.yellow,
+              ),
+            ],
+          );
+  }
+
+
+  
+}
