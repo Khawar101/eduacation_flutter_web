@@ -1,3 +1,4 @@
+import 'package:education_flutter_web/ui/common/app_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -25,13 +26,14 @@ class DrawerView extends StackedView<DrawerViewModel> {
                 child: ListView(
                   padding: EdgeInsets.zero,
                   children: <Widget>[
-                    Container(
+                    SizedBox(
                       height: 80,
                       child: DrawerHeader(
                         margin: EdgeInsets.zero,
+                        padding: const EdgeInsets.fromLTRB(0, 16, 4, 0),
                         child: ListTile(
                           leading: Image.asset(
-                            'icons/education.png',
+                            logo,
                             width: 40,
                           ),
                           title: const CustomText(
