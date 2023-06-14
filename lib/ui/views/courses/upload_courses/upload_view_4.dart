@@ -24,21 +24,37 @@ class UploadView_4 extends StackedView<UploadCoursesViewModel> {
         const SizedBox(height: 30),
       GridView.builder(
         shrinkWrap: true,
-            gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: 
+            
+             SliverGridDelegateWithFixedCrossAxisCount(
          
-             crossAxisCount: 3,
+             crossAxisCount:    (() {
+                              if (MediaQuery.of(context).size.width < 600) {
+                                return 1;
+                              } else if (MediaQuery.of(context).size.width <
+                                  1000) {
+                                return 2;
+                              } else {
+                                return 3;
+                              }
+                            }()),
          mainAxisExtent: 202,
-         childAspectRatio: 1/4,
+        //  childAspectRatio: 1/4,
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20),
             itemCount:4,
             itemBuilder: (BuildContext context, index) {
-              return Container(
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                   color: Colors.white,
-                    borderRadius: BorderRadius.circular(15)),
-                child:Card_Page(context),
+              return GestureDetector(
+                onTap:() {
+                  viewModel.watchvideo(context);
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                     color: Colors.white,
+                      borderRadius: BorderRadius.circular(15)),
+                  child:Card_Page(context),
+                ),
               );
             }),
         // 
