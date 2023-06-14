@@ -68,13 +68,7 @@ class UploadView_6 extends StackedView<UploadCoursesViewModel> {
           StarText(text: 'Lectures',),
           UploadView_4(),
           verticalSpaceSmall,
-          
-              StarText(text: 'Videos',),
-              verticalSpaceSmall,
-              videoPlayer(url: 'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4' ),
-                verticalSpaceSmall,
-          
-              StarText(text: 'Feedback',),
+         
            
         ],
       ),
