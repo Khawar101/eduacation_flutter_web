@@ -22,15 +22,7 @@ class UploadView_3 extends StackedView<UploadCoursesViewModel> {
       children: [
         
         const SizedBox(height: 30),
-        Text("Courses Title",
-            style: GoogleFonts.ibmPlexSans(
-                color: Colors.grey, fontWeight: FontWeight.bold)),
-        const SizedBox(height: 6),
-        CustomTextField(
-          hintText: 'e.g: Free Programming Courses',
-          maxLines: 1,
-        ),
-        const SizedBox(height: 30),
+   
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -55,15 +47,7 @@ class UploadView_3 extends StackedView<UploadCoursesViewModel> {
             ),
           ],
         ),
-        const SizedBox(height: 30),
-        Text("Description",
-            style: GoogleFonts.ibmPlexSans(
-                color: Colors.grey, fontWeight: FontWeight.bold)),
-        const SizedBox(height: 6),
-        CustomTextField(
-          hintText: 'e.g: Free Programming Courses',
-          maxLines: 4,
-        ),
+       
       ],
     );
   }
