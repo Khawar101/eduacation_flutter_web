@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
@@ -44,7 +46,7 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
               hintText: 'e.g: Free Programming Courses',
             ),
             IconTextField(
-              titleText: "Price",
+              titleText: "Chapter",
               width: width / 2.5,
               prefix: Icon(
                 Icons.price_change,
