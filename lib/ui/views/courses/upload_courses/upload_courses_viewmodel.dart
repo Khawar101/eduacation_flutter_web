@@ -1,3 +1,4 @@
+import 'package:education_flutter_web/ui/widgets/common/video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../../../widgets/common/icon_text_field/icon_text_field.dart';
@@ -129,4 +130,45 @@ class UploadCoursesViewModel extends BaseViewModel {
       ),
     );
   }
+  watchvideo(context) async {
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text(
+          'Upload Lecture',
+        ),
+        content: const SizedBox(
+          height: 250,
+          width: 300,
+          child: Column(
+            children: [
+           videoPlayer(url:'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',)
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(
+              context,
+              'Cancel',
+            ),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(
+              context,
+              'Add Question',
+            ),
+            child: const Text(
+              'OK',
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+
 }
+
+

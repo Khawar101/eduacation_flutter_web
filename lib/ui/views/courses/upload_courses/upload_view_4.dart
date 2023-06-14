@@ -21,12 +21,24 @@ class UploadView_4 extends StackedView<UploadCoursesViewModel> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 30),
-        GridView.builder(
-            shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                mainAxisExtent: 202,
-                childAspectRatio: 1 / 4,
+      GridView.builder(
+        shrinkWrap: true,
+            gridDelegate: 
+            
+             SliverGridDelegateWithFixedCrossAxisCount(
+         
+             crossAxisCount:    (() {
+                              if (MediaQuery.of(context).size.width < 600) {
+                                return 1;
+                              } else if (MediaQuery.of(context).size.width <
+                                  1000) {
+                                return 2;
+                              } else {
+                                return 3;
+                              }
+                            }()),
+         mainAxisExtent: 202,
+        //  childAspectRatio: 1/4,
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20),
             itemCount: 4 + 1,
