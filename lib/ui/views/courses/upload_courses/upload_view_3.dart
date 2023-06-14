@@ -1,9 +1,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
-import '../../../widgets/common/custom_text_field/custom_text_field.dart';
 import '../../../widgets/common/icon_text_field/icon_text_field.dart';
 import 'upload_courses_viewmodel.dart';
 
