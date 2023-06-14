@@ -68,7 +68,8 @@ class UploadCoursesView extends StackedView<UploadCoursesViewModel> {
                   "Courses",
                   'FAQ',
                   'Pricing',
-                  'Purchase',
+                  'Lecture',
+                  'Assignment',
                   'Publish'
                 ],
                 width: width * 0.5,
