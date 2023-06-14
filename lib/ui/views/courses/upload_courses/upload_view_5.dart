@@ -2,11 +2,7 @@
 
 import 'package:education_flutter_web/ui/views/courses/upload_courses/widgets/card.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
-
-import '../../../widgets/common/custom_text_field/custom_text_field.dart';
-import '../../../widgets/common/icon_text_field/icon_text_field.dart';
 import 'upload_courses_viewmodel.dart';
 
 class UploadView_5 extends StackedView<UploadCoursesViewModel> {
@@ -18,7 +14,7 @@ class UploadView_5 extends StackedView<UploadCoursesViewModel> {
     UploadCoursesViewModel viewModel,
     Widget? child,
   ) {
-    var width = MediaQuery.of(context).size.width;
+    // var width = MediaQuery.of(context).size.width;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
