@@ -14,7 +14,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
     DrawerViewModel viewModel,
     Widget? child,
   ) {
-      return Scaffold(
+    return Scaffold(
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -53,7 +53,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
                       title: const Text('Home'),
                       minLeadingWidth: 0.009,
                       onTap: () {
-                         viewModel.       updatePage(0);
+                        viewModel.updatePage(0);
                       },
                     ),
                     ListTile(
@@ -64,7 +64,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
                       title: const Text('Account'),
                       minLeadingWidth: 0.009,
                       onTap: () {
-                         viewModel.       updatePage(1);
+                        viewModel.updatePage(1);
                       },
                     ),
                     ListTile(
@@ -75,7 +75,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
                       title: const Text('Contacts'),
                       minLeadingWidth: 0.009,
                       onTap: () {
-                         viewModel.       updatePage(2);
+                        viewModel.updatePage(2);
                       },
                     ),
                     ListTile(
@@ -86,7 +86,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
                       title: const Text('Teachers'),
                       minLeadingWidth: 0.009,
                       onTap: () {
-                         viewModel.       updatePage(3);
+                        viewModel.updatePage(3);
                       },
                     ),
                     ListTile(
@@ -97,7 +97,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
                       title: const Text('Courses'),
                       minLeadingWidth: 0.009,
                       onTap: () {
-                         viewModel.       updatePage(4);
+                        viewModel.updatePage(4);
                       },
                     ),
                     ListTile(
@@ -108,7 +108,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
                       title: const Text('E-Book'),
                       minLeadingWidth: 0.009,
                       onTap: () {
-                 viewModel.           updatePage(5);
+                        viewModel.updatePage(5);
                       },
                     ),
                     ListTile(
@@ -119,7 +119,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
                       title: const Text('E-Learning'),
                       minLeadingWidth: 0.009,
                       onTap: () {
-                         viewModel.       updatePage(6);
+                        viewModel.updatePage(6);
                       },
                     ),
                     ListTile(
@@ -130,7 +130,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
                       title: const Text('Settings'),
                       minLeadingWidth: 0.009,
                       onTap: () {
-                         viewModel.       updatePage(7);
+                        viewModel.updatePage(7);
                       },
                     ),
                     ListTile(
@@ -154,9 +154,8 @@ class DrawerView extends StackedView<DrawerViewModel> {
             Expanded(
                 flex: 5,
                 child: Container(
-
                     color: Colors.red.withOpacity(0.2),
-                    child: Center(child:viewModel. pages[viewModel.pageNo])))
+                    child: Center(child: viewModel.pages[viewModel.pageNo])))
           ],
         ),
       ),

@@ -132,18 +132,21 @@ class UploadCoursesViewModel extends BaseViewModel {
       ),
     );
   }
+
   watchvideo(context) async {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        
         title: const Text(
           'Video',
         ),
         content: const SizedBox(
           height: 200,
           width: 300,
-          child: videoPlayer(url:'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',),
+          child: videoPlayer(
+            url:
+                'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+          ),
         ),
         actions: <Widget>[
           TextButton(
@@ -166,8 +169,4 @@ class UploadCoursesViewModel extends BaseViewModel {
       ),
     );
   }
-
-
 }
-
-

@@ -63,7 +63,7 @@ class UploadCoursesView extends StackedView<UploadCoursesViewModel> {
               ),
               const SizedBox(height: 30),
               StepProgressView(
-                curStep:viewModel.screenNo+ 1,
+                curStep: viewModel.screenNo + 1,
                 titles: const [
                   "Courses",
                   'FAQ',

@@ -19,14 +19,12 @@ class UploadView_3 extends StackedView<UploadCoursesViewModel> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        
         const SizedBox(height: 30),
-   
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconTextField(
-               titleText: "Price",
+              titleText: "Price",
               icon: Icons.category,
               prefix: Icon(
                 Icons.category,
@@ -37,7 +35,7 @@ class UploadView_3 extends StackedView<UploadCoursesViewModel> {
             ),
             verticalSpaceSmall,
             IconTextField(
-             titleText: "Duration",
+              titleText: "Duration",
               width: width / 2.5,
               prefix: Icon(
                 Icons.price_change,
@@ -47,7 +45,6 @@ class UploadView_3 extends StackedView<UploadCoursesViewModel> {
             ),
           ],
         ),
-       
       ],
     );
   }

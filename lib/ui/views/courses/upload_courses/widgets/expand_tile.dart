@@ -6,7 +6,6 @@ Widget expend_tile(title, subtitle) {
     title: ButtonText(text: title, color: Colors.black),
     children: <Widget>[
       ListTile(
-      
         title: BigSubText(text: subtitle),
       ),
     ],

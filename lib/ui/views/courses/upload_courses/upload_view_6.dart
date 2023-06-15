@@ -17,7 +17,7 @@ class UploadView_6 extends StackedView<UploadCoursesViewModel> {
     Widget? child,
   ) {
     // var width = MediaQuery.of(context).size.width;
-    return  const SingleChildScrollView(
+    return const SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -63,11 +63,11 @@ class UploadView_6 extends StackedView<UploadCoursesViewModel> {
                 "We reserve the right to require credit card or alternate non-promotional payment method information for verification purposes, even if the Gift Card or Gift Certificate fully covers the transaction order total. We do not allow the purchase of a Gift Card with another Gift Card, Gift Certificate, Savings Pass, Appreciation Award, Award Card, or Rewards Pass. One gift card per order online, please call the specific phone lines listed aWe reserve the right to require credit card or alternate non-promotional payment method information for verification purposes, even if the Gift Card or Gift Certificate fully covers the transaction order total. We do not allow the purchase of a Gift Card with another Gift Card, Gift Certificate, Savings Pass, Appreciation Award, Award Card, or Rewards Pass. One gift card per order online, please call the specific phone lines listed aWe reserve the right to require credit card or alternate non-promotional payment method information for verification purposes, even if the Gift Card or Gift Certificate fully covers the transaction order total. We do not allow the purchase of a Gift Card with another Gift Card, Gift Certificate, Savings Pass, Appreciation Award, Award Card, or Rewards Pass. One gift card per order online, please call the specific phone lines listed a",
           ),
           verticalSpaceSmall,
-          StarText(text: 'Lectures',),
+          StarText(
+            text: 'Lectures',
+          ),
           UploadView_4(),
           verticalSpaceSmall,
-         
-           
         ],
       ),
     );

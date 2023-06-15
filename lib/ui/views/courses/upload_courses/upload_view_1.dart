@@ -21,7 +21,6 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        
         const SizedBox(height: 30),
         Text("Courses Title",
             style: GoogleFonts.ibmPlexSans(

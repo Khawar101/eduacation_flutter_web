@@ -150,33 +150,30 @@ class StarText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.star,
-                size: 12,
-                color: Colors.yellow,
-              ),
-              const Icon(
-                Icons.star,
-                size: 17,
-                color: Colors.yellow,
-              ),
-              ButtonText(text: text, color: Colors.black),
-              const Icon(
-                Icons.star,
-                size: 17,
-                color: Colors.yellow,
-              ),
-              const Icon(
-                Icons.star,
-                size: 12,
-                color: Colors.yellow,
-              ),
-            ],
-          );
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Icon(
+          Icons.star,
+          size: 12,
+          color: Colors.yellow,
+        ),
+        const Icon(
+          Icons.star,
+          size: 17,
+          color: Colors.yellow,
+        ),
+        ButtonText(text: text, color: Colors.black),
+        const Icon(
+          Icons.star,
+          size: 17,
+          color: Colors.yellow,
+        ),
+        const Icon(
+          Icons.star,
+          size: 12,
+          color: Colors.yellow,
+        ),
+      ],
+    );
   }
-
-
-  
 }

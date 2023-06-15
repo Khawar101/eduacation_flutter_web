@@ -28,7 +28,7 @@ Widget Card_Page(context) {
               )),
         ),
         horizontalSpaceSmall,
-         Expanded(
+        Expanded(
           flex: 2,
           //     MediaQuery.of(context).size.width*0.12,
           child: Padding(
@@ -40,8 +40,11 @@ Widget Card_Page(context) {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const ButtonText(text: "API Intedration", color: Colors.black),
-                    IconButton(onPressed: (){}, icon: const Icon(Icons.remove_circle_outline))
+                    const ButtonText(
+                        text: "API Intedration", color: Colors.black),
+                    IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.remove_circle_outline))
                   ],
                 ),
                 verticalSpaceSmall,

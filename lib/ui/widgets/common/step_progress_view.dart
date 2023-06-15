@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class StepProgressView extends StatelessWidget {
@@ -55,10 +54,10 @@ class StepProgressView extends StatelessWidget {
           width: 20.0,
           height: 20.0,
           padding: const EdgeInsets.all(0),
-          decoration:  BoxDecoration(
+          decoration: BoxDecoration(
             /* color: circleColor,*/
-            borderRadius:  const BorderRadius.all( Radius.circular(22.0)),
-            border:  Border.all(
+            borderRadius: const BorderRadius.all(Radius.circular(22.0)),
+            border: Border.all(
               color: circleColor,
               width: 2.0,
             ),
@@ -87,7 +86,8 @@ class StepProgressView extends StatelessWidget {
   List<Widget> _titleViews() {
     var list = <Widget>[];
     _titles.asMap().forEach((i, text) {
-      list.add(Text(text, style:  TextStyle(color:const Color(0xff4873a6).withOpacity(0.7))));
+      list.add(Text(text,
+          style: TextStyle(color: const Color(0xff4873a6).withOpacity(0.7))));
     });
     return list;
   }
