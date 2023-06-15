@@ -8,8 +8,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 Widget Card_Page(context) {
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
     child: Row(
+      mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
@@ -31,7 +32,7 @@ Widget Card_Page(context) {
           flex: 2,
           //     MediaQuery.of(context).size.width*0.12,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +41,7 @@ Widget Card_Page(context) {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const ButtonText(text: "API Intedration", color: Colors.black),
-                    IconButton(onPressed: (){}, icon: Icon(Icons.remove_circle_outline))
+                    IconButton(onPressed: (){}, icon: const Icon(Icons.remove_circle_outline))
                   ],
                 ),
                 verticalSpaceSmall,

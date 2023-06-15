@@ -2,9 +2,7 @@
 
 import 'package:education_flutter_web/ui/common/ui_helpers.dart';
 import 'package:education_flutter_web/ui/views/courses/upload_courses/upload_view_4.dart';
-import 'package:education_flutter_web/ui/views/courses/upload_courses/widgets/card.dart';
 import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.dart';
-import 'package:education_flutter_web/ui/widgets/common/video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'upload_courses_viewmodel.dart';
