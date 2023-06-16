@@ -177,19 +177,22 @@ class SignupView extends StackedView<SignupViewModel> {
                       verticalSpaceSmall,
                       Align(
                         alignment: Alignment.center,
-                        child: RichText(
-                            text: TextSpan(children: [
-                          TextSpan(
-                              text: "Already have an account? ",
-                              style: GoogleFonts.ibmPlexSans(
-                                  color: Colors.black54, fontSize: 12)),
-                          TextSpan(
-                              text: " Sign in",
-                              style: GoogleFonts.ibmPlexSans(
-                                  color: Colors.lightBlue,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500))
-                        ])),
+                        child: GestureDetector(
+                          onTap: viewModel.navigateLogin,
+                          child: RichText(
+                              text: TextSpan(children: [
+                            TextSpan(
+                                text: "Already have an account? ",
+                                style: GoogleFonts.ibmPlexSans(
+                                    color: Colors.black54, fontSize: 12)),
+                            TextSpan(
+                                text: " Sign in",
+                                style: GoogleFonts.ibmPlexSans(
+                                    color: Colors.lightBlue,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500))
+                          ])),
+                        ),
                       )
                     ],
                   ),

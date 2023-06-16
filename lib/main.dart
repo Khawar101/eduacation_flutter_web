@@ -1,12 +1,17 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:education_flutter_web/app/app.locator.dart';
 import 'package:education_flutter_web/app/app.router.dart';
 import 'package:education_flutter_web/ui/common/app_colors.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+Future<void> main() async {
   setupLocator();
 
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 

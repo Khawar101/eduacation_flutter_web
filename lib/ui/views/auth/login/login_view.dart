@@ -21,15 +21,17 @@ class LoginView extends StackedView<LoginViewModel> {
         backgroundColor: Theme.of(context).colorScheme.background,
         body: SingleChildScrollView(
           child: Container(
-            // height: MediaQuery.of(context).size.height * 1,
+            height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width * 0.5,
             color: Colors.white,
             child: Padding(
               padding: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.of(context).size.width * 0.09,
-                  vertical: MediaQuery.of(context).size.height * 0.2),
+                horizontal: MediaQuery.of(context).size.width * 0.09,
+                // vertical: MediaQuery.of(context).size.height * 0.2,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const CustomText(
                       text: 'Wellcome back!',
@@ -173,19 +175,22 @@ class LoginView extends StackedView<LoginViewModel> {
                   verticalSpaceSmall,
                   Align(
                     alignment: Alignment.center,
-                    child: RichText(
-                        text: TextSpan(children: [
-                      TextSpan(
-                          text: "Don't have an account? ",
-                          style: GoogleFonts.ibmPlexSans(
-                              color: Colors.black54, fontSize: 12)),
-                      TextSpan(
-                          text: " Sign up",
-                          style: GoogleFonts.ibmPlexSans(
-                              color: Colors.lightBlue,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500))
-                    ])),
+                    child: GestureDetector(
+                      onTap: viewModel.navigateSignup,
+                      child: RichText(
+                          text: TextSpan(children: [
+                        TextSpan(
+                            text: "Don't have an account? ",
+                            style: GoogleFonts.ibmPlexSans(
+                                color: Colors.black54, fontSize: 12)),
+                        TextSpan(
+                            text: " Sign up",
+                            style: GoogleFonts.ibmPlexSans(
+                                color: Colors.lightBlue,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500))
+                      ])),
+                    ),
                   )
                 ],
               ),

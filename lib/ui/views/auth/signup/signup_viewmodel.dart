@@ -3,6 +3,7 @@
 import 'dart:developer';
 
 import 'package:education_flutter_web/app/app.locator.dart';
+import 'package:education_flutter_web/app/app.router.dart';
 import 'package:flutter/material.dart';
 
 import 'package:stacked/stacked.dart';
@@ -26,8 +27,8 @@ class SignupViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  navigateVerify() {
-    // _navigationService.navigateToVerifyView();
+  navigateLogin() {
+    _navigationService.navigateToLoginView();
   }
 
   TextEditingController nameCTRL = TextEditingController(text: "xyz");
