@@ -47,6 +47,7 @@ class LoginView extends StackedView<LoginViewModel> {
                   const SizedBox(height: 24),
                   CustomTextField(
                     hintText: 'you@example.com',
+                    controller: viewModel.emailCTRL,
                     prefix: const Icon(Icons.email),
                     validator: (value) {
                       // adminEmail= value!;
@@ -55,6 +56,7 @@ class LoginView extends StackedView<LoginViewModel> {
                   ),
                   const SizedBox(height: 18),
                   CustomTextField(
+                    controller: viewModel.passwordCTRL,
                     hintText: 'At least 8 characters',
                     validator: (value) {
                       return null;
@@ -78,7 +80,7 @@ class LoginView extends StackedView<LoginViewModel> {
                   verticalSpaceSmall,
                   GestureDetector(
                     onTap: () {
-                      // allowAdminToLogin();
+                      viewModel.logIN(context);
                     },
                     child: Container(
                       height: 50,

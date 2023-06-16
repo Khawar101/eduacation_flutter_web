@@ -13,7 +13,7 @@ import '../../../../services/signup_service.dart';
 
 class SignupViewModel extends BaseViewModel {
   bool visibleCheck = true;
-  String userType = "Student";
+  String userType = "Teacher";
   var profile;
   final _navigationService = locator<NavigationService>();
   final _signupService = locator<SignupService>();
