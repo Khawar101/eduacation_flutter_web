@@ -25,6 +25,7 @@ class UploadView_3 extends StackedView<UploadCoursesViewModel> {
           children: [
             IconTextField(
               titleText: "Price",
+              controller: viewModel.priceCtrl,
               icon: Icons.category,
               prefix: Icon(
                 Icons.category,
@@ -36,6 +37,7 @@ class UploadView_3 extends StackedView<UploadCoursesViewModel> {
             verticalSpaceSmall,
             IconTextField(
               titleText: "Duration",
+              controller: viewModel.durationCtrl,
               width: width / 2.5,
               prefix: Icon(
                 Icons.price_change,
