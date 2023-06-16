@@ -19,8 +19,24 @@ class UploadCoursesViewModel extends BaseViewModel {
     const UploadView_5(),
     const UploadView_6(),
   ];
+  final TextEditingController titleCtrl = TextEditingController();
+  final TextEditingController categoryCtrl = TextEditingController();
+  final TextEditingController chapterCtrl = TextEditingController();
+  final TextEditingController descriptionCtrl = TextEditingController();
   final TextEditingController questionCtrl = TextEditingController();
   final TextEditingController answerCtrl = TextEditingController();
+  var faq = [];
+  final TextEditingController priceCtrl = TextEditingController();
+  final TextEditingController durationCtrl = TextEditingController();
+  final TextEditingController videoTitleCtrl = TextEditingController();
+  final TextEditingController videoDescriptionCtrl = TextEditingController();
+  late String videoThubnailUrl;
+  late String videoUrl;
+  final TextEditingController assigmentTitleCtrl = TextEditingController();
+  final TextEditingController assigmentDescriptCtrl = TextEditingController();
+  late String assigmentThubnailUrl;
+  late String assigmentUrl;
+
   backPage() {
     if (screenNo != 0) {
       screenNo -= 1;
@@ -53,7 +69,7 @@ class UploadCoursesViewModel extends BaseViewModel {
               ),
               IconTextField(
                 titleText: "Answer",
-                controller: questionCtrl,
+                controller: answerCtrl,
                 hintText: 'e.g: Free Programming Courses',
               ),
             ],
@@ -61,19 +77,20 @@ class UploadCoursesViewModel extends BaseViewModel {
         ),
         actions: <Widget>[
           TextButton(
-            onPressed: () => Navigator.pop(
-              context,
-              'Cancel',
-            ),
+            onPressed: () => Navigator.pop(context),
             child: const Text('Cancel'),
           ),
           TextButton(
-            onPressed: () => Navigator.pop(
-              context,
-              'Add Question',
-            ),
+            onPressed: () {
+              faq.add(
+                  {"question": questionCtrl.text, "answer": answerCtrl.text});
+              notifyListeners();
+              questionCtrl.clear();
+              answerCtrl.clear();
+              Navigator.pop(context);
+            },
             child: const Text(
-              'OK',
+              'Add Question',
             ),
           ),
         ],

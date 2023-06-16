@@ -49,7 +49,13 @@ class UploadView_2 extends StackedView<UploadCoursesViewModel> {
           const Divider(
             color: Colors.grey,
           ),
-          expend_tile('title', 'subtitle')
+          ListView.builder(
+              shrinkWrap: true,
+              itemCount: viewModel.faq.length,
+              itemBuilder: (BuildContext context, int index) {
+                return expend_tile(viewModel.faq[index]["question"],
+                    viewModel.faq[index]["answer"]);
+              }),
         ],
       ),
     );

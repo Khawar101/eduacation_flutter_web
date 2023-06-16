@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 Widget expend_tile(title, subtitle) {
   return ExpansionTile(
     title: ButtonText(text: title, color: Colors.black),
+    
     children: <Widget>[
-      ListTile(
-        title: BigSubText(text: subtitle),
-      ),
+      BigSubText(text: subtitle),
     ],
   );
 }
