@@ -51,7 +51,7 @@ class UploadCoursesView extends StackedView<UploadCoursesViewModel> {
                     'Assignment',
                     'Publish'
                   ],
-                  width: width * 0.5,
+                  width: width * 0.6,
                 ),
                 viewModel.screens[viewModel.screenNo],
                 const SizedBox(height: 30),

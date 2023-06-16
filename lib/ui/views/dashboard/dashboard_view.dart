@@ -12,10 +12,13 @@ class DashboardView extends StackedView<DashboardViewModel> {
     DashboardViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      body: Container(
-        padding: const EdgeInsets.only(left: 25.0, right: 25.0),
+    return SizedBox(
+      height: MediaQuery.of(context).size.height-50,
+      child: Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.background,
+        body: Container(
+          padding: const EdgeInsets.only(left: 25.0, right: 25.0),
+        ),
       ),
     );
   }
