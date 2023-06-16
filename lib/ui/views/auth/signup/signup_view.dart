@@ -30,8 +30,8 @@ class SignupView extends StackedView<SignupViewModel> {
                 color: Colors.white,
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                      horizontal: MediaQuery.of(context).size.width * 0.09,
-                      ),
+                    horizontal: MediaQuery.of(context).size.width * 0.09,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -196,7 +196,7 @@ class SignupView extends StackedView<SignupViewModel> {
                 ),
               ),
               Container(
-                 width: MediaQuery.of(context).size.width * 0.5,
+                width: MediaQuery.of(context).size.width * 0.5,
                 color: Colors.black,
               )
             ],

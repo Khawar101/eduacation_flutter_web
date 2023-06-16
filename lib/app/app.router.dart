@@ -9,6 +9,8 @@ import 'package:education_flutter_web/ui/views/auth/login/login_view.dart'
     as _i8;
 import 'package:education_flutter_web/ui/views/auth/signup/signup_view.dart'
     as _i9;
+import 'package:education_flutter_web/ui/views/auth/verify/verify_view.dart'
+    as _i10;
 import 'package:education_flutter_web/ui/views/courses/courses_view.dart'
     as _i2;
 import 'package:education_flutter_web/ui/views/courses/upload_courses/upload_courses_view.dart'
@@ -20,7 +22,6 @@ import 'package:education_flutter_web/ui/views/settings/settings_view.dart'
     as _i5;
 import 'package:education_flutter_web/ui/views/teachers/teachers_view.dart'
     as _i4;
-import 'package:education_flutter_web/ui/views/auth/verify/verify_view.dart' as _i10;
 import 'package:flutter/material.dart' as _i11;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;

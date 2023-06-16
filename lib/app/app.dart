@@ -9,6 +9,8 @@ import 'package:education_flutter_web/ui/views/drawer/drawer_view.dart';
 import 'package:education_flutter_web/ui/views/auth/login/login_view.dart';
 import 'package:education_flutter_web/ui/views/auth/signup/signup_view.dart';
 import 'package:education_flutter_web/ui/views/auth/verify/verify_view.dart';
+import 'package:education_flutter_web/services/signup_service.dart';
+import 'package:education_flutter_web/services/login_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -26,7 +28,9 @@ import 'package:education_flutter_web/ui/views/auth/verify/verify_view.dart';
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),
-    // @stacked-service
+    LazySingleton(classType: SignupService),
+    LazySingleton(classType: LoginService),
+// @stacked-service
   ],
 )
 class App {}
