@@ -25,9 +25,9 @@ class UploadView_4 extends StackedView<UploadCoursesViewModel> {
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: (() {
-                  if (MediaQuery.of(context).size.width < 650) {
+                  if (width < 650) {
                     return 1;
-                  } else if (MediaQuery.of(context).size.width < 1000) {
+                  } else if (width < 1000) {
                     return 2;
                   } else {
                     return 3;

@@ -1,6 +1,8 @@
 import 'package:education_flutter_web/ui/widgets/common/video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import '../../../../app/app.locator.dart';
+import '../../../../services/courses_service.dart';
 import '../../../widgets/common/icon_text_field/icon_text_field.dart';
 import 'upload_view_1.dart';
 import 'upload_view_2.dart';
@@ -8,9 +10,12 @@ import 'upload_view_3.dart';
 import 'upload_view_4.dart';
 import 'upload_view_5.dart';
 import 'upload_view_6.dart';
+import 'widgets/dropAddBtn.dart';
 
 class UploadCoursesViewModel extends BaseViewModel {
-  var screenNo = 5;
+  final _coursesService = locator<CoursesService>();
+
+  var screenNo = 3;
   var screens = [
     const UploadView_1(),
     const UploadView_2(),
@@ -111,19 +116,23 @@ class UploadCoursesViewModel extends BaseViewModel {
             children: [
               IconTextField(
                 titleText: "Title",
-                controller: questionCtrl,
+                controller: videoTitleCtrl,
                 hintText: 'e.g: Free Programming Courses',
               ),
               IconTextField(
                 titleText: "Description",
-                controller: questionCtrl,
+                controller: videoDescriptionCtrl,
                 hintText: 'e.g: Free Programming Courses',
               ),
-              const Card(
-                child: Icon(
-                  Icons.add,
-                  size: 20,
-                ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  dropAddBtn("image", _coursesService.pickImage),
+                  // dropAddBtn(),
+                ],
               )
             ],
           ),

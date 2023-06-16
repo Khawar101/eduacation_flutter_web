@@ -160,11 +160,11 @@ class DrawerView extends StackedView<DrawerViewModel> {
                             //   size: 15,
                             // ),
                             Padding(
-                              padding: EdgeInsets.only(top:8.0,right: 30, bottom: 8.0),
+                              padding: EdgeInsets.only(
+                                  top: 8.0, right: 30, bottom: 8.0),
                               child: Row(
                                 children: [
-                                  Icon(Icons.notifications_outlined,
-                                      size: 18),
+                                  Icon(Icons.notifications_outlined, size: 18),
                                   SizedBox(width: 8),
                                   CircleAvatar(
                                     radius: 15,

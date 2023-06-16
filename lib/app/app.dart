@@ -11,6 +11,7 @@ import 'package:education_flutter_web/ui/views/auth/signup/signup_view.dart';
 import 'package:education_flutter_web/ui/views/auth/verify/verify_view.dart';
 import 'package:education_flutter_web/services/signup_service.dart';
 import 'package:education_flutter_web/services/login_service.dart';
+import 'package:education_flutter_web/services/courses_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -30,6 +31,7 @@ import 'package:education_flutter_web/services/login_service.dart';
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: SignupService),
     LazySingleton(classType: LoginService),
+    LazySingleton(classType: CoursesService),
 // @stacked-service
   ],
 )
