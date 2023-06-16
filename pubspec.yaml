@@ -18,11 +18,11 @@ dependencies:
   
   stacked: ^3.2.7
   stacked_services: ^1.0.0
-  google_fonts: ^5.0.0
+  google_fonts: ^4.0.3
   side_navigation: ^1.0.4
   video_player: ^2.6.1
   firebase_core: ^2.14.0
-  email_auth: ^0.0.1+2
+  email_auth: ^1.0.0
   firebase_auth: ^4.6.2
   cloud_firestore: ^4.8.0
   email_otp: ^2.0.1
