@@ -1,4 +1,5 @@
 import 'package:education_flutter_web/app/app.router.dart';
+import 'package:education_flutter_web/services/login_service.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -9,6 +10,7 @@ import '../dashboard/dashboard_view.dart';
 
 class DrawerViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
+  final loginService = locator<LoginService>();
   var pages = [
     const DashboardView(),
     const Text("2 page"),

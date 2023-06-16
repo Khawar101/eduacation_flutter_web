@@ -34,6 +34,8 @@
 // }
 
 
+// ignore_for_file: file_names
+
 class CoursesModel {
   String? title;
   String? category;
@@ -87,7 +89,7 @@ class CoursesModel {
       });
     }
     publisherData = json['publisherData'] != null
-        ? new PublisherData.fromJson(json['publisherData'])
+        ? PublisherData.fromJson(json['publisherData'])
         : null;
   }
 

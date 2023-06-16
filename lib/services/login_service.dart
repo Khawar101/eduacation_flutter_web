@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -73,39 +75,39 @@ class LoginService {
   }
 
   profileComplete() {
-    var profile_complete = 0;
+    var profileComplete = 0;
 
     if (UserData.username != null) {
-      profile_complete += 10;
+      profileComplete += 10;
     }
     if (UserData.firstName != null) {
-      profile_complete += 10;
+      profileComplete += 10;
     }
     if (UserData.lastName != null) {
-      profile_complete += 10;
+      profileComplete += 10;
     }
     if (UserData.email != null) {
-      profile_complete += 10;
+      profileComplete += 10;
     }
     if (UserData.phoneNo != null) {
-      profile_complete += 10;
+      profileComplete += 10;
     }
     if (UserData.clas != null) {
-      profile_complete += 10;
+      profileComplete += 10;
     }
     if (UserData.userType != null) {
-      profile_complete += 10;
+      profileComplete += 10;
     }
     if (UserData.profile != null) {
-      profile_complete += 10;
+      profileComplete += 10;
     }
     if (UserData.address != null) {
-      profile_complete += 10;
+      profileComplete += 10;
     }
     if (UserData.socialLinks != null) {
-      profile_complete += 10;
+      profileComplete += 10;
     }
 
-    return profile_complete;
+    return profileComplete;
   }
 }

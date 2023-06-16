@@ -19,7 +19,6 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
   ) {
     var width = MediaQuery.of(context).size.width;
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 30),
         Text("Courses Title",
