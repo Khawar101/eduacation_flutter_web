@@ -81,10 +81,10 @@ class CoursesService {
   }
 
   Future uploadVideoToStorage(title, type, notifyListeners, newSetState) async {
-    final dateTime = DateTime.now();
+    // final dateTime = DateTime.now();
     uploadVideo(
       onSelected: (file) {
-        final path = '${dateTime}${file.name}}';
+        // final path = '${dateTime}${file.name}}';
         FirebaseStorage storage = FirebaseStorage.instance;
         Reference ref = storage.ref().child(
             "courses/$title/$type/${DateTime.now().microsecondsSinceEpoch}");

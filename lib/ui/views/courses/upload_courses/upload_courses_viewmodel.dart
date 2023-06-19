@@ -1,3 +1,4 @@
+import 'package:education_flutter_web/ui/dialogs/addLecture.dart';
 import 'package:education_flutter_web/ui/dialogs/addQuestion.dart';
 import 'package:education_flutter_web/ui/widgets/common/video_player.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +44,7 @@ class UploadCoursesViewModel extends BaseViewModel {
   final TextEditingController assigmentDescriptCtrl = TextEditingController();
   late String assigmentThubnailUrl;
   late String assigmentUrl;
-  late String url;
+  var assigments = [];
 
   backPage() {
     if (screenNo != 0) {
@@ -73,7 +74,12 @@ class UploadCoursesViewModel extends BaseViewModel {
         titleCtrl.text, "Video", notifyListeners, newSetState);
   }
 
-  addLectureAlert(context) async {
+  addLecture(context) {
+    addLectureAlert(context, videoTitleCtrl, videoDescriptionCtrl,
+        _coursesService, notifyListeners, lectures, addThumbnail, addVideo);
+  }
+
+  addAssigmentAlert(context) async {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(

@@ -35,14 +35,24 @@ class UploadView_5 extends StackedView<UploadCoursesViewModel> {
                 //  childAspectRatio: 1/4,
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20),
-            itemCount: 4,
+            itemCount: viewModel.assigments.length+1,
             itemBuilder: (BuildContext context, index) {
-              return Container(
+                return Container(
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15)),
-                child: Card_Page(context,[]),
+                child: index == viewModel.lectures.length 
+                    ? IconButton(
+                        onPressed: () {
+                          viewModel.addLecture(context);
+                        },
+                        icon: const Icon(
+                          Icons.add_circle_outline,
+                          size: 50,
+                        ),
+                      )
+                    : Card_Page(context, viewModel.lectures[index]),
               );
             }),
         //
