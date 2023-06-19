@@ -17,7 +17,7 @@ import 'widgets/dropAddBtn.dart';
 
 class UploadCoursesViewModel extends BaseViewModel {
   final _coursesService = locator<CoursesService>();
- get coursesService =>_coursesService;
+  get coursesService => _coursesService;
   var screenNo = 3;
   var screens = [
     const UploadView_1(),
@@ -65,7 +65,9 @@ class UploadCoursesViewModel extends BaseViewModel {
   }
 
   addThumbnail(newSetState) async {
-    await _coursesService.uploadToStorage("Thumbnail",notifyListeners,newSetState).then((value) {
+    await _coursesService
+        .uploadToStorage("Thumbnail", notifyListeners, newSetState)
+        .then((value) {
       log("======<<${_coursesService.url} ${value.toString()}}");
     });
   }
@@ -77,40 +79,38 @@ class UploadCoursesViewModel extends BaseViewModel {
         title: const Text(
           'Upload Lecture',
         ),
-        content: StatefulBuilder(
-          builder: (context, newSetState) {
-            return SizedBox(
-              height: 250,
-              child: Column(
-                children: [
-                  IconTextField(
-                    titleText: "Title",
-                    controller: videoTitleCtrl,
-                    hintText: 'e.g: Free Programming Courses',
-                  ),
-                  IconTextField(
-                    titleText: "Description",
-                    controller: videoDescriptionCtrl,
-                    hintText: 'e.g: Free Programming Courses',
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(_coursesService.progressshow.toString()),
-                      addBtn("Thumbnail", () {
-                        addThumbnail(newSetState);
-                      }),
-                      // dropAddBtn(),
-                    ],
-                  )
-                ],
-              ),
-            );
-          }
-        ),
+        content: StatefulBuilder(builder: (context, newSetState) {
+          return SizedBox(
+            height: 250,
+            child: Column(
+              children: [
+                IconTextField(
+                  titleText: "Title",
+                  controller: videoTitleCtrl,
+                  hintText: 'e.g: Free Programming Courses',
+                ),
+                IconTextField(
+                  titleText: "Description",
+                  controller: videoDescriptionCtrl,
+                  hintText: 'e.g: Free Programming Courses',
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    addBtn("Thumbnail", _coursesService.progressshow,
+                        _coursesService.url, () {
+                      addThumbnail(newSetState);
+                    }),
+                    // dropAddBtn(),
+                  ],
+                )
+              ],
+            ),
+          );
+        }),
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.pop(

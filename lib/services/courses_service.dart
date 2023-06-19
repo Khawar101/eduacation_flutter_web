@@ -8,7 +8,7 @@ import 'package:image_picker/image_picker.dart';
 
 class CoursesService {
   var url;
-  var progressshow;
+  var progressshow= 0;
   var imageLooding = false;
   late final XFile? image;
 
