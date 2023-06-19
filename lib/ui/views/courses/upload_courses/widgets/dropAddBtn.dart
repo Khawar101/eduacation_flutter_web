@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:education_flutter_web/ui/widgets/common/video_player.dart';
 import 'package:flutter/material.dart';
 
 Widget addBtn(type, progress, url, fun) {
@@ -16,8 +17,8 @@ Widget addBtn(type, progress, url, fun) {
             width: 1,
           )),
       height: 90,
-      width: 90,
-      child: url == null
+      width: type =="Video"?190: 90,
+      child: url == ""
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -37,7 +38,7 @@ Widget addBtn(type, progress, url, fun) {
                       ),
               ],
             )
-          : null,
+          : type =="Video"?videoPlayer(url: url): null,
     ),
   );
 }

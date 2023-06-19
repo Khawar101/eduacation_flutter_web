@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:education_flutter_web/ui/dialogs/addQuestion.dart';
 import 'package:education_flutter_web/ui/widgets/common/video_player.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +38,7 @@ class UploadCoursesViewModel extends BaseViewModel {
   final TextEditingController videoDescriptionCtrl = TextEditingController();
   late String videoThubnailUrl;
   late String videoUrl;
+  var lectures = [];
   final TextEditingController assigmentTitleCtrl = TextEditingController();
   final TextEditingController assigmentDescriptCtrl = TextEditingController();
   late String assigmentThubnailUrl;
@@ -65,11 +64,13 @@ class UploadCoursesViewModel extends BaseViewModel {
   }
 
   addThumbnail(newSetState) async {
-    await _coursesService
-        .uploadToStorage("Thumbnail", notifyListeners, newSetState)
-        .then((value) {
-      log("======<<${_coursesService.url} ${value.toString()}}");
-    });
+    await _coursesService.uploadToStorage(
+        titleCtrl.text, "Thumbnail", notifyListeners, newSetState);
+  }
+
+  addVideo(newSetState) async {
+    await _coursesService.uploadVideoToStorage(
+        titleCtrl.text, "Video", notifyListeners, newSetState);
   }
 
   addLectureAlert(context) async {
@@ -101,8 +102,13 @@ class UploadCoursesViewModel extends BaseViewModel {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     addBtn("Thumbnail", _coursesService.progressshow,
-                        _coursesService.url, () {
+                        _coursesService.videoThubnailUrl, () {
                       addThumbnail(newSetState);
+                    }),
+                    const SizedBox(width: 20),
+                    addBtn("Video", _coursesService.videoProgress,
+                        _coursesService.videoUrl, () {
+                      addVideo(newSetState);
                     }),
                     // dropAddBtn(),
                   ],
@@ -120,12 +126,20 @@ class UploadCoursesViewModel extends BaseViewModel {
             child: const Text('Cancel'),
           ),
           TextButton(
-            onPressed: () => Navigator.pop(
-              context,
-              'Add Question',
-            ),
+            onPressed: () {
+              lectures.add({
+                "title": videoTitleCtrl.text,
+                "description": videoDescriptionCtrl.text,
+                "thumbnale": _coursesService.videoThubnailUrl,
+                "video": _coursesService.videoUrl,
+              });
+              notifyListeners();
+              questionCtrl.clear();
+              answerCtrl.clear();
+              Navigator.pop(context);
+            },
             child: const Text(
-              'OK',
+              'Add Question',
             ),
           ),
         ],

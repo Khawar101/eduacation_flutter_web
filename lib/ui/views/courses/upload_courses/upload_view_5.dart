@@ -42,7 +42,7 @@ class UploadView_5 extends StackedView<UploadCoursesViewModel> {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15)),
-                child: Card_Page(context),
+                child: Card_Page(context,[]),
               );
             }),
         //
