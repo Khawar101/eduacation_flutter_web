@@ -1,3 +1,4 @@
+import 'package:education_flutter_web/ui/dialogs/addQuestion.dart';
 import 'package:education_flutter_web/ui/widgets/common/video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -56,51 +57,8 @@ class UploadCoursesViewModel extends BaseViewModel {
     }
   }
 
-  addQuestionAlert(context) async {
-    return showDialog<String>(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: const Text(
-          'EQA question & answer',
-        ),
-        content: SizedBox(
-          height: 150,
-          child: Column(
-            children: [
-              IconTextField(
-                titleText: "Question",
-                controller: questionCtrl,
-                hintText: 'e.g: Free Programming Courses',
-              ),
-              IconTextField(
-                titleText: "Answer",
-                controller: answerCtrl,
-                hintText: 'e.g: Free Programming Courses',
-              ),
-            ],
-          ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () {
-              faq.add(
-                  {"question": questionCtrl.text, "answer": answerCtrl.text});
-              notifyListeners();
-              questionCtrl.clear();
-              answerCtrl.clear();
-              Navigator.pop(context);
-            },
-            child: const Text(
-              'Add Question',
-            ),
-          ),
-        ],
-      ),
-    );
+  addQuestion(context) {
+    addQuestionAlert(context, questionCtrl, answerCtrl, faq, notifyListeners);
   }
 
   addLectureAlert(context) async {
