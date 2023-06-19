@@ -6,7 +6,7 @@ import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.da
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget Card_Page(context) {
+Widget Card_Page(context, lectureData) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
     child: Row(
@@ -21,8 +21,8 @@ Widget Card_Page(context) {
           //   width:MediaQuery.of(context).size.width * 0.1,
           child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                lectureimage,
+              child: Image.network(
+                lectureData["thumbnale"],
                 height: MediaQuery.of(context).size.height * 0.24,
                 fit: BoxFit.cover,
               )),
@@ -40,17 +40,16 @@ Widget Card_Page(context) {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const ButtonText(
-                        text: "API Intedration", color: Colors.black),
+                    ButtonText(text: lectureData["title"], color: Colors.black),
                     IconButton(
                         onPressed: () {},
                         icon: const Icon(Icons.remove_circle_outline))
                   ],
                 ),
                 verticalSpaceSmall,
-                const Text(
-                  "We reserve the right to require credit card or alternate non-promotional payment method information for verification purposes, even if the Gift Card or Gift Certificate fully covers the transaction order total. We do not allow the purchase of a Gift Card with another Gift Card, Gift Certificate, Savings Pass, Appreciation Award, Award Card, or Rewards Pass. One gift card per order online, please call the specific phone lines listed at www.freshgift.com.",
-                  style: TextStyle(
+                Text(
+                  lectureData["description"],
+                  style: const TextStyle(
                       color: Color(0xff969799),
                       fontSize: 15,
                       overflow: TextOverflow.ellipsis,

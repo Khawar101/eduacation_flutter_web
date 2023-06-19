@@ -1,3 +1,4 @@
+import 'package:education_flutter_web/ui/dialogs/addQuestion.dart';
 import 'package:education_flutter_web/ui/widgets/common/video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -14,7 +15,7 @@ import 'widgets/dropAddBtn.dart';
 
 class UploadCoursesViewModel extends BaseViewModel {
   final _coursesService = locator<CoursesService>();
-
+  get coursesService => _coursesService;
   var screenNo = 3;
   var screens = [
     const UploadView_1(),
@@ -37,10 +38,12 @@ class UploadCoursesViewModel extends BaseViewModel {
   final TextEditingController videoDescriptionCtrl = TextEditingController();
   late String videoThubnailUrl;
   late String videoUrl;
+  var lectures = [];
   final TextEditingController assigmentTitleCtrl = TextEditingController();
   final TextEditingController assigmentDescriptCtrl = TextEditingController();
   late String assigmentThubnailUrl;
   late String assigmentUrl;
+  late String url;
 
   backPage() {
     if (screenNo != 0) {
@@ -56,51 +59,18 @@ class UploadCoursesViewModel extends BaseViewModel {
     }
   }
 
-  addQuestionAlert(context) async {
-    return showDialog<String>(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: const Text(
-          'EQA question & answer',
-        ),
-        content: SizedBox(
-          height: 150,
-          child: Column(
-            children: [
-              IconTextField(
-                titleText: "Question",
-                controller: questionCtrl,
-                hintText: 'e.g: Free Programming Courses',
-              ),
-              IconTextField(
-                titleText: "Answer",
-                controller: answerCtrl,
-                hintText: 'e.g: Free Programming Courses',
-              ),
-            ],
-          ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () {
-              faq.add(
-                  {"question": questionCtrl.text, "answer": answerCtrl.text});
-              notifyListeners();
-              questionCtrl.clear();
-              answerCtrl.clear();
-              Navigator.pop(context);
-            },
-            child: const Text(
-              'Add Question',
-            ),
-          ),
-        ],
-      ),
-    );
+  addQuestion(context) {
+    addQuestionAlert(context, questionCtrl, answerCtrl, faq, notifyListeners);
+  }
+
+  addThumbnail(newSetState) async {
+    await _coursesService.uploadToStorage(
+        titleCtrl.text, "Thumbnail", notifyListeners, newSetState);
+  }
+
+  addVideo(newSetState) async {
+    await _coursesService.uploadVideoToStorage(
+        titleCtrl.text, "Video", notifyListeners, newSetState);
   }
 
   addLectureAlert(context) async {
@@ -110,33 +80,43 @@ class UploadCoursesViewModel extends BaseViewModel {
         title: const Text(
           'Upload Lecture',
         ),
-        content: SizedBox(
-          height: 250,
-          child: Column(
-            children: [
-              IconTextField(
-                titleText: "Title",
-                controller: videoTitleCtrl,
-                hintText: 'e.g: Free Programming Courses',
-              ),
-              IconTextField(
-                titleText: "Description",
-                controller: videoDescriptionCtrl,
-                hintText: 'e.g: Free Programming Courses',
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  dropAddBtn("image", _coursesService.pickImage),
-                  // dropAddBtn(),
-                ],
-              )
-            ],
-          ),
-        ),
+        content: StatefulBuilder(builder: (context, newSetState) {
+          return SizedBox(
+            height: 250,
+            child: Column(
+              children: [
+                IconTextField(
+                  titleText: "Title",
+                  controller: videoTitleCtrl,
+                  hintText: 'e.g: Free Programming Courses',
+                ),
+                IconTextField(
+                  titleText: "Description",
+                  controller: videoDescriptionCtrl,
+                  hintText: 'e.g: Free Programming Courses',
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    addBtn("Thumbnail", _coursesService.progressshow,
+                        _coursesService.videoThubnailUrl, () {
+                      addThumbnail(newSetState);
+                    }),
+                    const SizedBox(width: 20),
+                    addBtn("Video", _coursesService.videoProgress,
+                        _coursesService.videoUrl, () {
+                      addVideo(newSetState);
+                    }),
+                    // dropAddBtn(),
+                  ],
+                )
+              ],
+            ),
+          );
+        }),
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.pop(
@@ -146,12 +126,20 @@ class UploadCoursesViewModel extends BaseViewModel {
             child: const Text('Cancel'),
           ),
           TextButton(
-            onPressed: () => Navigator.pop(
-              context,
-              'Add Question',
-            ),
+            onPressed: () {
+              lectures.add({
+                "title": videoTitleCtrl.text,
+                "description": videoDescriptionCtrl.text,
+                "thumbnale": _coursesService.videoThubnailUrl,
+                "video": _coursesService.videoUrl,
+              });
+              notifyListeners();
+              questionCtrl.clear();
+              answerCtrl.clear();
+              Navigator.pop(context);
+            },
             child: const Text(
-              'OK',
+              'Add Question',
             ),
           ),
         ],

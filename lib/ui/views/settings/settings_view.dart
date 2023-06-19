@@ -28,7 +28,6 @@ class SettingsView extends StackedView<SettingsViewModel> {
             BigText(text: "Account Settings", color: Colors.black),
             SizedBox(height: 20),
             tabSection(context),
-        
           ],
         ),
       ),

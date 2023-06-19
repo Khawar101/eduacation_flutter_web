@@ -127,7 +127,10 @@ class SignupView extends StackedView<SignupViewModel> {
                             height: 50,
                             width: MediaQuery.of(context).size.width * 0.15,
                             decoration: BoxDecoration(
-                                border: Border.all( color: const Color(0xff4873a6).withOpacity(0.7),),
+                                border: Border.all(
+                                  color:
+                                      const Color(0xff4873a6).withOpacity(0.7),
+                                ),
                                 borderRadius: BorderRadius.circular(10)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -152,7 +155,10 @@ class SignupView extends StackedView<SignupViewModel> {
                             height: 50,
                             width: MediaQuery.of(context).size.width * 0.15,
                             decoration: BoxDecoration(
-                                border: Border.all( color: const Color(0xff4873a6).withOpacity(0.7),),
+                                border: Border.all(
+                                  color:
+                                      const Color(0xff4873a6).withOpacity(0.7),
+                                ),
                                 borderRadius: BorderRadius.circular(10)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -189,7 +195,8 @@ class SignupView extends StackedView<SignupViewModel> {
                             TextSpan(
                                 text: " Sign in",
                                 style: GoogleFonts.ibmPlexSans(
-                                   color: const Color(0xff4873a6).withOpacity(0.7),
+                                    color: const Color(0xff4873a6)
+                                        .withOpacity(0.7),
                                     fontSize: 12,
                                     fontWeight: FontWeight.w500))
                           ])),
