@@ -62,25 +62,34 @@ class LoginView extends StackedView<LoginViewModel> {
                       return null;
                     },
                     isObscureText: viewModel.visibleCheck,
-                    prefix: GestureDetector(
-                      onTap: viewModel.visible_check,
-                      child: Icon(
-                        viewModel.visibleCheck == true
-                            ? Icons.visibility_off_outlined
-                            : Icons.visibility_outlined,
-                        color: Colors.black,
+                    prefix: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: viewModel.visible_check,
+                        child: Icon(
+                          viewModel.visibleCheck == true
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility_outlined,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                   ),
                   verticalSpaceSmall,
-                   Align(
+                  Align(
                       alignment: Alignment.centerRight,
-                      child: SmallText(
-                          text: "Forgot password",  color: const Color(0xff4873a6).withOpacity(0.7),)),
+                      child: MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: SmallText(
+                          text: "Forgot password",
+                          color: const Color(0xff4873a6).withOpacity(0.7),
+                        ),
+                      )),
                   verticalSpaceSmall,
-                  GestureDetector(
-                    onTap: () {
-                      viewModel.logIN(context);
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    onEnter: (event) {
+                        viewModel.logIN(context);
                     },
                     child: Container(
                       height: 50,
