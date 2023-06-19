@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget dropAddBtn(type, fun) {
+Widget aleartAddBtn(type, fun) {
   return InkWell(
     onTap: fun,
     child: Container(

@@ -130,7 +130,7 @@ class UploadCoursesViewModel extends BaseViewModel {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  dropAddBtn("image", _coursesService.pickImage),
+                  aleartAddBtn("image", _coursesService.pickImage),
                   // dropAddBtn(),
                 ],
               )

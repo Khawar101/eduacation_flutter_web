@@ -89,7 +89,7 @@ class LoginView extends StackedView<LoginViewModel> {
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     onEnter: (event) {
-                        viewModel.logIN(context);
+                      viewModel.logIN(context);
                     },
                     child: Container(
                       height: 50,

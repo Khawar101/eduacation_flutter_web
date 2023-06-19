@@ -49,9 +49,12 @@ class UploadView_4 extends StackedView<UploadCoursesViewModel> {
                         onPressed: () {
                           viewModel.addLectureAlert(context);
                         },
-                        icon: const Icon(
-                          Icons.add_circle_outline,
-                          size: 50,
+                        icon: const Padding(
+                          padding: EdgeInsets.all(28.0),
+                          child: Icon(
+                            Icons.add_circle_outline,
+                            size: 50,
+                          ),
                         ))
                     : Card_Page(context),
               );

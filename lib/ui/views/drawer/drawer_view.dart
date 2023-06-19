@@ -25,7 +25,6 @@ class DrawerView extends StackedView<DrawerViewModel> {
             Expanded(
               flex: 1,
               child: Drawer(
-                
                 child: ListView(
                   padding: EdgeInsets.zero,
                   children: <Widget>[

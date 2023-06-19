@@ -800,4 +800,38 @@ class MockLoginService extends _i1.Mock implements _i11.LoginService {
 /// A class which mocks [CoursesService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCoursesService extends _i1.Mock implements _i12.CoursesService {}
+class MockCoursesService extends _i1.Mock implements _i12.CoursesService {
+  @override
+  set url(dynamic _url) => super.noSuchMethod(
+        Invocation.setter(
+          #url,
+          _url,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  set progressshow(dynamic _progressshow) => super.noSuchMethod(
+        Invocation.setter(
+          #progressshow,
+          _progressshow,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  set image(_i10.XFile? _image) => super.noSuchMethod(
+        Invocation.setter(
+          #image,
+          _image,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  _i7.Future<dynamic> pickImage() => (super.noSuchMethod(
+        Invocation.method(
+          #pickImage,
+          [],
+        ),
+        returnValue: _i7.Future<dynamic>.value(),
+        returnValueForMissingStub: _i7.Future<dynamic>.value(),
+      ) as _i7.Future<dynamic>);
+}
