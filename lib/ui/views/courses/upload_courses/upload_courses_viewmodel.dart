@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:education_flutter_web/ui/dialogs/addQuestion.dart';
 import 'package:education_flutter_web/ui/widgets/common/video_player.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +17,7 @@ import 'widgets/dropAddBtn.dart';
 
 class UploadCoursesViewModel extends BaseViewModel {
   final _coursesService = locator<CoursesService>();
-
+ get coursesService =>_coursesService;
   var screenNo = 3;
   var screens = [
     const UploadView_1(),
@@ -42,6 +44,7 @@ class UploadCoursesViewModel extends BaseViewModel {
   final TextEditingController assigmentDescriptCtrl = TextEditingController();
   late String assigmentThubnailUrl;
   late String assigmentUrl;
+  late String url;
 
   backPage() {
     if (screenNo != 0) {
@@ -61,6 +64,12 @@ class UploadCoursesViewModel extends BaseViewModel {
     addQuestionAlert(context, questionCtrl, answerCtrl, faq, notifyListeners);
   }
 
+  addThumbnail(newSetState) async {
+    await _coursesService.uploadToStorage("Thumbnail",notifyListeners,newSetState).then((value) {
+      log("======<<${_coursesService.url} ${value.toString()}}");
+    });
+  }
+
   addLectureAlert(context) async {
     return showDialog<String>(
       context: context,
@@ -68,32 +77,39 @@ class UploadCoursesViewModel extends BaseViewModel {
         title: const Text(
           'Upload Lecture',
         ),
-        content: SizedBox(
-          height: 250,
-          child: Column(
-            children: [
-              IconTextField(
-                titleText: "Title",
-                controller: videoTitleCtrl,
-                hintText: 'e.g: Free Programming Courses',
-              ),
-              IconTextField(
-                titleText: "Description",
-                controller: videoDescriptionCtrl,
-                hintText: 'e.g: Free Programming Courses',
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        content: StatefulBuilder(
+          builder: (context, newSetState) {
+            return SizedBox(
+              height: 250,
+              child: Column(
                 children: [
-                  aleartAddBtn("image", _coursesService.pickImage),
-                  // dropAddBtn(),
+                  IconTextField(
+                    titleText: "Title",
+                    controller: videoTitleCtrl,
+                    hintText: 'e.g: Free Programming Courses',
+                  ),
+                  IconTextField(
+                    titleText: "Description",
+                    controller: videoDescriptionCtrl,
+                    hintText: 'e.g: Free Programming Courses',
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(_coursesService.progressshow.toString()),
+                      addBtn("Thumbnail", () {
+                        addThumbnail(newSetState);
+                      }),
+                      // dropAddBtn(),
+                    ],
+                  )
                 ],
-              )
-            ],
-          ),
+              ),
+            );
+          }
         ),
         actions: <Widget>[
           TextButton(

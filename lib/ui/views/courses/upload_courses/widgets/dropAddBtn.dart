@@ -1,6 +1,8 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
-Widget aleartAddBtn(type, fun) {
+Widget addBtn(type, fun) {
   return InkWell(
     onTap: fun,
     child: Container(
@@ -12,9 +14,16 @@ Widget aleartAddBtn(type, fun) {
           )),
       height: 90,
       width: 90,
-      child: Icon(
-        Icons.add,
-        size: 20,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(
+            Icons.add,
+            size: 30,
+          ),
+          Text(type)
+        ],
       ),
     ),
   );
