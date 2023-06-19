@@ -1,4 +1,5 @@
 import 'package:education_flutter_web/ui/common/app_assets.dart';
+// import 'package:education_flutter_web/ui/common/ui_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -14,6 +15,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
     DrawerViewModel viewModel,
     Widget? child,
   ) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -23,24 +25,28 @@ class DrawerView extends StackedView<DrawerViewModel> {
             Expanded(
               flex: 1,
               child: Drawer(
+                
                 child: ListView(
                   padding: EdgeInsets.zero,
                   children: <Widget>[
                     SizedBox(
-                      height: 80,
+                      height: 46,
                       child: DrawerHeader(
                         margin: EdgeInsets.zero,
-                        padding: const EdgeInsets.fromLTRB(0, 16, 4, 0),
+                        padding: const EdgeInsets.fromLTRB(0, 2, 4, 0),
                         child: ListTile(
                           leading: Image.asset(
                             logo,
-                            width: 40,
+                            width: 30,
                           ),
-                          title: const CustomText(
-                            text: "Education App",
-                            color: Colors.black,
-                            fontWeight: FontWeight.w600,
-                            size: 16,
+                          title: Visibility(
+                            visible: screenWidth >= 900,
+                            child: const CustomText(
+                              text: "Education App",
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600,
+                              size: 14,
+                            ),
                           ),
                         ),
                       ),
@@ -50,7 +56,9 @@ class DrawerView extends StackedView<DrawerViewModel> {
                         Icons.home_outlined,
                         color: const Color(0xff4873a6).withOpacity(0.7),
                       ),
-                      title: const Text('Home'),
+                      title: Visibility(
+                          visible: screenWidth >= 900,
+                          child: const Text('Home')),
                       minLeadingWidth: 0.009,
                       onTap: () {
                         viewModel.updatePage(0);
@@ -61,7 +69,9 @@ class DrawerView extends StackedView<DrawerViewModel> {
                         Icons.account_box,
                         color: const Color(0xff4873a6).withOpacity(0.7),
                       ),
-                      title: const Text('Account'),
+                      title: Visibility(
+                          visible: screenWidth >= 900,
+                          child: const Text('Account')),
                       minLeadingWidth: 0.009,
                       onTap: () {
                         viewModel.updatePage(1);
@@ -72,7 +82,9 @@ class DrawerView extends StackedView<DrawerViewModel> {
                         Icons.contacts_outlined,
                         color: const Color(0xff4873a6).withOpacity(0.7),
                       ),
-                      title: const Text('Contacts'),
+                      title: Visibility(
+                          visible: screenWidth >= 900,
+                          child: const Text('Contacts')),
                       minLeadingWidth: 0.009,
                       onTap: () {
                         viewModel.updatePage(2);
@@ -83,7 +95,9 @@ class DrawerView extends StackedView<DrawerViewModel> {
                         Icons.groups_2_outlined,
                         color: const Color(0xff4873a6).withOpacity(0.7),
                       ),
-                      title: const Text('Teachers'),
+                      title: Visibility(
+                          visible: screenWidth >= 900,
+                          child: const Text('Teachers')),
                       minLeadingWidth: 0.009,
                       onTap: () {
                         viewModel.updatePage(3);
@@ -94,7 +108,9 @@ class DrawerView extends StackedView<DrawerViewModel> {
                         Icons.book_outlined,
                         color: const Color(0xff4873a6).withOpacity(0.7),
                       ),
-                      title: const Text('Courses'),
+                      title: Visibility(
+                          visible: screenWidth >= 900,
+                          child: const Text('Courses')),
                       minLeadingWidth: 0.009,
                       onTap: () {
                         viewModel.updatePage(4);
@@ -105,7 +121,9 @@ class DrawerView extends StackedView<DrawerViewModel> {
                         Icons.menu_book,
                         color: const Color(0xff4873a6).withOpacity(0.7),
                       ),
-                      title: const Text('E-Book'),
+                      title: Visibility(
+                          visible: screenWidth >= 900,
+                          child: const Text('E-Book')),
                       minLeadingWidth: 0.009,
                       onTap: () {
                         viewModel.updatePage(5);
@@ -116,7 +134,9 @@ class DrawerView extends StackedView<DrawerViewModel> {
                         Icons.keyboard_command_key_rounded,
                         color: const Color(0xff4873a6).withOpacity(0.7),
                       ),
-                      title: const Text('E-Learning'),
+                      title: Visibility(
+                          visible: screenWidth >= 900,
+                          child: const Text('E-Learning')),
                       minLeadingWidth: 0.009,
                       onTap: () {
                         viewModel.updatePage(6);
@@ -127,7 +147,9 @@ class DrawerView extends StackedView<DrawerViewModel> {
                         Icons.settings_outlined,
                         color: const Color(0xff4873a6).withOpacity(0.7),
                       ),
-                      title: const Text('Settings'),
+                      title: Visibility(
+                          visible: screenWidth >= 900,
+                          child: const Text('Settings')),
                       minLeadingWidth: 0.009,
                       onTap: () {
                         viewModel.updatePage(7);
@@ -138,7 +160,9 @@ class DrawerView extends StackedView<DrawerViewModel> {
                         Icons.logout,
                         color: const Color(0xff4873a6).withOpacity(0.7),
                       ),
-                      title: const Text('Logout'),
+                      title: Visibility(
+                          visible: screenWidth >= 900,
+                          child: const Text('Logout')),
                       minLeadingWidth: 0.009,
                       onTap: viewModel.navigateLogin,
                     ),
@@ -152,17 +176,21 @@ class DrawerView extends StackedView<DrawerViewModel> {
                     color: Colors.red.withOpacity(0.2),
                     child: Column(
                       children: [
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            // Icon(
-                            //   Icons.vertical_distribute,
-                            //   size: 15,
-                            // ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  top: 8.0, right: 30, bottom: 8.0),
-                              child: Row(
+                        const Padding(
+                          padding: EdgeInsets.only(
+                              left: 30, top: 8.0, right: 30, bottom: 8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.vertical_distribute,
+                                    size: 15,
+                                  ),
+                                ],
+                              ),
+                              Row(
                                 children: [
                                   Icon(Icons.notifications_outlined, size: 18),
                                   SizedBox(width: 8),
@@ -183,9 +211,9 @@ class DrawerView extends StackedView<DrawerViewModel> {
                                   SizedBox(width: 8),
                                   Icon(Icons.arrow_drop_down)
                                 ],
-                              ),
-                            )
-                          ],
+                              )
+                            ],
+                          ),
                         ),
                         Center(child: viewModel.pages[viewModel.pageNo]),
                       ],
