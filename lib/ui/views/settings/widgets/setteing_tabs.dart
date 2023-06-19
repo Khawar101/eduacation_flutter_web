@@ -37,27 +37,15 @@ Widget tabSection(context) {
         ]),
          SizedBox(
           height: MediaQuery.of(context).size.height*1,
-           child: TabBarView(children: [
+           child: const TabBarView(children: [
             
-              const MyProfile(),
-              Container(
-                child: const Text("Articles Body"),
-              ),
-              Container(
-                child: const Text("User Body"),
-              ),
-                Container(
-                child: const Text("Home Body"),
-              ),
-              Container(
-                child: const Text("Articles Body"),
-              ),
-              Container(
-                child: const Text("User Body"),
-              ),
-               Container(
-                child: const Text("User Body"),
-              ),
+               MyProfile(),
+               Text("Articles Body"),
+               Text("User Body"),
+               Text("Home Body"),
+               Text("Articles Body"),
+               Text("User Body"),
+                Text("User Body"),
             ]),
          ),
         

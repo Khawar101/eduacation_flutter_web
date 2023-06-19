@@ -80,7 +80,8 @@ class SignupView extends StackedView<SignupViewModel> {
                       const SizedBox(height: 30),
                       GestureDetector(
                         onTap: () {
-                          // allowAdminToLogin();
+                       viewModel.sendOtp();
+                       
                         },
                         child: Container(
                           height: 50,

@@ -86,23 +86,25 @@ class LoginView extends StackedView<LoginViewModel> {
                         ),
                       )),
                   verticalSpaceSmall,
-                  MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    onEnter: (event) {
-                        viewModel.logIN(context);
-                    },
-                    child: Container(
-                      height: 50,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: const Color(0xff4873a6).withOpacity(0.7),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: const Center(
-                          child: CustomText(
-                              text: 'Signin',
-                              size: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white)),
+                 MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () {
+                          viewModel.logIN(context);
+                      },
+                      child: Container(
+                        height: 50,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            color: const Color(0xff4873a6).withOpacity(0.7),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: const Center(
+                            child: CustomText(
+                                text: 'Signin',
+                                size: 14,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white)),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 30),
