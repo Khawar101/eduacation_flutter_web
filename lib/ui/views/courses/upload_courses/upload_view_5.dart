@@ -45,7 +45,7 @@ class UploadView_5 extends StackedView<UploadCoursesViewModel> {
                 child: index == viewModel.lectures.length
                     ? IconButton(
                         onPressed: () {
-                          viewModel.addAssigmentAlert(context);
+                          viewModel.addAssigment(context);
                         },
                         icon: const Icon(
                           Icons.add_circle_outline,

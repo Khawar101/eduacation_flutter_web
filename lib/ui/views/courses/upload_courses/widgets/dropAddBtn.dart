@@ -9,7 +9,7 @@ Widget addBtn(type, progress, url, fun) {
     child: Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          image: url != null
+          image: url != ""
               ? DecorationImage(image: NetworkImage(url), fit: BoxFit.cover)
               : null,
           border: Border.all(
