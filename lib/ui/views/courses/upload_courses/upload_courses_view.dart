@@ -112,10 +112,10 @@ class UploadCoursesView extends StackedView<UploadCoursesViewModel> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          ButtonText(text: "Next", color: Colors.black),
+                          const ButtonText(text: "Next", color: Colors.black),
                           SizedBox(
                               width: MediaQuery.of(context).size.width * 0.01),
-                          Icon(Icons.arrow_forward_ios, size: 14),
+                          const Icon(Icons.arrow_forward_ios, size: 14),
                         ],
                       ),
                     ),
