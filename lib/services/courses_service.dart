@@ -179,4 +179,6 @@ class CoursesService {
       // message = e.toString();
     }
   }
+    final Stream<QuerySnapshot> coursesStream = FirebaseFirestore.instance.collection('courses').snapshots();
+
 }
