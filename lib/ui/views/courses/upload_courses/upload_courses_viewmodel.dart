@@ -7,21 +7,19 @@ import 'package:stacked/stacked.dart';
 import '../../../../app/app.locator.dart';
 import '../../../../services/courses_service.dart';
 import '../../../dialogs/addAssigment.dart';
-import '../../../widgets/common/icon_text_field/icon_text_field.dart';
 import 'upload_view_1.dart';
 import 'upload_view_2.dart';
 import 'upload_view_3.dart';
 import 'upload_view_4.dart';
 import 'upload_view_5.dart';
 import 'upload_view_6.dart';
-import 'widgets/dropAddBtn.dart';
 
 class UploadCoursesViewModel extends BaseViewModel {
   final _coursesService = locator<CoursesService>();
   get coursesService => _coursesService;
   CoursesModel get courseData => _coursesService.courseData;
 
-  var screenNo = 3;
+  var screenNo = 4;
   var screens = [
     const UploadView_1(),
     const UploadView_2(),

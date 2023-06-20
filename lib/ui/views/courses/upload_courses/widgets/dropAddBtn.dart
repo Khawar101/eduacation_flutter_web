@@ -1,7 +1,8 @@
 // ignore_for_file: file_names
 
-import 'package:education_flutter_web/ui/widgets/common/video_player.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../common/app_assets.dart';
 
 Widget addBtn(type, progress, url, fun) {
   return InkWell(
@@ -10,14 +11,16 @@ Widget addBtn(type, progress, url, fun) {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           image: url != ""
-              ? DecorationImage(image: NetworkImage(url), fit: BoxFit.cover)
+              ? type != "Thumbnail"
+                  ? const DecorationImage(image: AssetImage(logo), fit: BoxFit.cover)
+                  : DecorationImage(image: NetworkImage(url), fit: BoxFit.cover)
               : null,
           border: Border.all(
             color: Colors.grey,
             width: 1,
           )),
       height: 90,
-      width: type == "Video" ? 190 : 90,
+      width: 90,
       child: url == ""
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -38,9 +41,7 @@ Widget addBtn(type, progress, url, fun) {
                       ),
               ],
             )
-          : type == "Video"
-              ? videoPlayer(url: url)
-              : null,
+          : null,
     ),
   );
 }

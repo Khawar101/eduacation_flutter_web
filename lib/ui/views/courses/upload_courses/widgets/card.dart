@@ -8,7 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../services/Model/CoursesModel.dart';
 
-Widget Card_Page(context,Lecture lectureData) {
+Widget Card_Page(context, lectureData) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
     child: Row(

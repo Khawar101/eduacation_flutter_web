@@ -42,7 +42,7 @@ class UploadView_5 extends StackedView<UploadCoursesViewModel> {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15)),
-                child: index == viewModel.lectures.length
+                child: index == viewModel.assigments.length
                     ? IconButton(
                         onPressed: () {
                           viewModel.addAssigment(context);
@@ -52,7 +52,7 @@ class UploadView_5 extends StackedView<UploadCoursesViewModel> {
                           size: 50,
                         ),
                       )
-                    : Card_Page(context, viewModel.lectures[index]),
+                    : Card_Page(context, viewModel.assigments[index]),
               );
             }),
         //
