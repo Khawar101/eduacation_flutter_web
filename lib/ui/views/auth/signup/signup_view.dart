@@ -1,12 +1,10 @@
 // ignore_for_file: unused_import
-
 import 'package:education_flutter_web/ui/common/ui_helpers.dart';
 import 'package:education_flutter_web/ui/widgets/common/custom_text_field/custom_text_field.dart';
 import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
-
 import 'signup_viewmodel.dart';
 
 class SignupView extends StackedView<SignupViewModel> {
