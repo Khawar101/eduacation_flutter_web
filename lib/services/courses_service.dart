@@ -10,9 +10,9 @@ import 'Model/CoursesModel.dart';
 
 class CoursesService {
   late CoursesModel courseData = CoursesModel();
-  late String videoThubnailUrl = "";
-  late String assigmentThubnailUrl = "";
+  late String thubnailUrl = "";
   late String videoUrl = "";
+  late String assigmentUrl = "";
   var progressshow = 0;
   var videoProgress = 0;
   var assigmentProgress = 0;
@@ -52,9 +52,7 @@ class CoursesService {
           newSetState(() {});
         });
         uploadTask.whenComplete(() async {
-          type == ""
-              ? videoThubnailUrl = await ref.getDownloadURL()
-              : videoThubnailUrl = await ref.getDownloadURL();
+          thubnailUrl = await ref.getDownloadURL();
           newSetState(() {});
           notifyListeners();
           // print("=====>$url=====>${file.type.split("/")[0]}");
@@ -69,7 +67,7 @@ class CoursesService {
         });
       },
     );
-    return videoThubnailUrl;
+    return thubnailUrl;
   }
 
   void uploadVideo({required Function(File file) onSelected}) {
@@ -121,5 +119,52 @@ class CoursesService {
       },
     );
     return videoUrl;
+  }
+
+  void loadFile({required Function(File file) onSelected}) {
+    FileUploadInputElement uploadInput = FileUploadInputElement()
+      ..accept = "File/*";
+    uploadInput.click();
+
+    uploadInput.onChange.listen((event) {
+      final file = uploadInput.files!.first;
+      final reader = FileReader();
+      reader.readAsDataUrl(file);
+      reader.onLoadEnd.listen((event) {
+        onSelected(file);
+      });
+    });
+  }
+
+  Future uploadFile(title, type, notifyListeners, newSetState) async {
+    // final dateTime = DateTime.now();
+    loadFile(
+      onSelected: (file) {
+        // final path = '${dateTime}${file.name}}';
+        FirebaseStorage storage = FirebaseStorage.instance;
+        Reference ref = storage.ref().child(
+            "courses/$title/$type/${DateTime.now().microsecondsSinceEpoch}");
+        UploadTask uploadTask = ref.putBlob(file);
+        uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
+          double progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          imageLooding = true;
+          videoProgress = progress.round();
+          notifyListeners();
+          newSetState(() {});
+        });
+        uploadTask.whenComplete(() async {
+          assigmentUrl = await ref.getDownloadURL();
+          print("======>${file.type.split("/")[0]}");
+          newSetState(() {});
+          notifyListeners();
+          imageLooding = false;
+          log(assigmentUrl);
+        }).catchError((onError) {
+          log(onError);
+        });
+      },
+    );
+    return assigmentUrl;
   }
 }

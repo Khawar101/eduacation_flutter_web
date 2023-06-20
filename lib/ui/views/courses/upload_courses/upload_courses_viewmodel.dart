@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../app/app.locator.dart';
 import '../../../../services/courses_service.dart';
+import '../../../dialogs/addAssigment.dart';
 import '../../../widgets/common/icon_text_field/icon_text_field.dart';
 import 'upload_view_1.dart';
 import 'upload_view_2.dart';
@@ -20,7 +21,7 @@ class UploadCoursesViewModel extends BaseViewModel {
   get coursesService => _coursesService;
   CoursesModel get courseData => _coursesService.courseData;
 
-  var screenNo = 0;
+  var screenNo = 3;
   var screens = [
     const UploadView_1(),
     const UploadView_2(),
@@ -47,7 +48,7 @@ class UploadCoursesViewModel extends BaseViewModel {
   final TextEditingController assigmentDescriptCtrl = TextEditingController();
   late String assigmentThubnailUrl;
   late String assigmentUrl;
-  var assigments = [];
+   List<Assigment> assigments = [];
   backPage() {
     if (screenNo != 0) {
       screenNo -= 1;
@@ -113,79 +114,17 @@ class UploadCoursesViewModel extends BaseViewModel {
         addThumbnail,
         addVideo);
   }
-
-  addAssigmentAlert(context) async {
-    return showDialog<String>(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: const Text(
-          'Upload Assigment',
-        ),
-        content: StatefulBuilder(builder: (context, newSetState) {
-          return SizedBox(
-            height: 250,
-            child: Column(
-              children: [
-                IconTextField(
-                  titleText: "Title",
-                  controller: videoTitleCtrl,
-                  hintText: 'e.g: Free Programming Courses',
-                ),
-                IconTextField(
-                  titleText: "Description",
-                  controller: videoDescriptionCtrl,
-                  hintText: 'e.g: Free Programming Courses',
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    addBtn("Assigment Thumbnail", _coursesService.progressshow,
-                        _coursesService.videoThubnailUrl, () {
-                      addThumbnail(newSetState);
-                    }),
-                    const SizedBox(width: 20),
-                    addBtn("PDF", _coursesService.videoProgress,
-                        _coursesService.videoUrl, () {
-                      addVideo(newSetState);
-                    }),
-                    // dropAddBtn(),
-                  ],
-                )
-              ],
-            ),
-          );
-        }),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.pop(
-              context,
-              'Cancel',
-            ),
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () {
-              // lectures.add({
-              //   "title": videoTitleCtrl.text,
-              //   "description": videoDescriptionCtrl.text,
-              //   "thumbnale": _coursesService.videoThubnailUrl,
-              //   "video": _coursesService.videoUrl,
-              // });
-              notifyListeners();
-              questionCtrl.clear();
-              answerCtrl.clear();
-              Navigator.pop(context);
-            },
-            child: const Text(
-              'Add Question',
-            ),
-          ),
-        ],
-      ),
-    );
+  addAssigment(context) {
+    addAssigmentAlert(
+        context,
+        assigmentTitleCtrl,
+        assigmentDescriptCtrl,
+        _coursesService,
+        notifyListeners,
+        assigments,
+        courseData,
+        addThumbnail,
+        addAssigmentFile);
   }
 
   addAssigmentThumbnail(newSetState) async {
@@ -194,8 +133,8 @@ class UploadCoursesViewModel extends BaseViewModel {
   }
 
   addAssigmentFile(newSetState) async {
-    await _coursesService.uploadVideoToStorage(
-        titleCtrl.text, "Video", notifyListeners, newSetState);
+    await _coursesService.uploadFile(
+        titleCtrl.text, "Assigments", notifyListeners, newSetState);
   }
 
   watchvideo(context) async {
