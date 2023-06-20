@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:education_flutter_web/ui/common/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stacked/stacked.dart';
@@ -124,7 +125,7 @@ class IconTextField extends StackedView<IconTextFieldModel> {
         Text(
           titleText ?? "",
           style: GoogleFonts.ibmPlexSans(
-              color: Colors.grey, fontWeight: FontWeight.bold),
+               color: kcPrimaryColor, fontWeight: FontWeight.bold,fontStyle: FontStyle.italic),
         ),
         const SizedBox(height: 6),
         Container(
@@ -149,7 +150,12 @@ class IconTextField extends StackedView<IconTextFieldModel> {
             inputFormatters: inputFormaters,
             maxLines: maxLines ?? 1,
             decoration: _buildDecoration(),
-            validator: validator,
+            validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please enter some text';
+          }
+          return null;
+        },
           ),
         ),
       ],

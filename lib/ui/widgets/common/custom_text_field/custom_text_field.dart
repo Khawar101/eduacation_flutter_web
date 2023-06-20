@@ -132,7 +132,12 @@ class CustomTextField extends StackedView<CustomTextFieldModel> {
         inputFormatters: inputFormaters,
         maxLines: maxLines ?? 1,
         decoration: _buildDecoration(),
-        validator: validator,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please enter some text';
+          }
+          return null;
+        },
       ),
     );
   }
