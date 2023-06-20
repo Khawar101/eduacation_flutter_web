@@ -17,6 +17,7 @@ class SignupView extends StackedView<SignupViewModel> {
     Widget? child,
   ) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final _formKey = GlobalKey<FormState>();
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
         body: SingleChildScrollView(
@@ -47,19 +48,19 @@ class SignupView extends StackedView<SignupViewModel> {
                           color: Colors.black45),
                       const SizedBox(height: 24),
                       CustomTextField(
+                        controller: viewModel.nameCTRL,
                         hintText: 'Name',
                       ),
                       const SizedBox(height: 18),
                       CustomTextField(
+                        controller: viewModel.emailCTRL,
                         hintText: 'you@example.com',
                         prefix: const Icon(Icons.email),
-                        validator: (value) {
-                          // adminEmail= value!;
-                          return null;
-                        },
+                        
                       ),
                       const SizedBox(height: 18),
                       CustomTextField(
+                        controller: viewModel.passwordCTRL,
                         hintText: 'At least 8 characters',
                         validator: (value) {
                           return null;
@@ -93,7 +94,9 @@ class SignupView extends StackedView<SignupViewModel> {
                       const SizedBox(height: 15),
                       GestureDetector(
                         onTap: () {
-                          viewModel.sendOtp();
+                          if (_formKey.currentState!.validate()) {
+                            viewModel.sendOtp();
+                          }
                         },
                         child: Container(
                           height: 50,

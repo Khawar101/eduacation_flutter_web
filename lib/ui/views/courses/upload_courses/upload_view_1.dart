@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types
 
+import 'package:education_flutter_web/ui/common/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
@@ -33,10 +34,10 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
         const SizedBox(height: 30),
         Text("Courses Title",
             style: GoogleFonts.ibmPlexSans(
-                color: Colors.grey, fontWeight: FontWeight.bold)),
+                 color: kcPrimaryColor, fontWeight: FontWeight.bold,fontStyle: FontStyle.italic)),
         const SizedBox(height: 6),
         CustomTextField(
-          hintText: 'e.g: Free Programming Courses',
+          hintText: 'Enter your title...',
           maxLines: 1,
           controller: viewModel.titleCtrl,
           onChanged: (s) {
@@ -59,7 +60,7 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
                 color: const Color(0xff4873a6).withOpacity(0.7),
               ),
               width: width / 2.5,
-              hintText: 'e.g: Free Programming Courses',
+              hintText: 'Enter your category...',
             ),
             IconTextField(
               titleText: "Chapter",
@@ -72,7 +73,7 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
                 Icons.price_change,
                 color: const Color(0xff4873a6).withOpacity(0.7),
               ),
-              hintText: 'e.g: Free Programming Courses',
+              hintText: 'Enter your chapter...',
             ),
           ],
         ),
@@ -81,7 +82,7 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
           children: [
             Text("Description",
                 style: GoogleFonts.ibmPlexSans(
-                    color: Colors.grey, fontWeight: FontWeight.bold)),
+                     color: kcPrimaryColor, fontWeight: FontWeight.bold,fontStyle: FontStyle.italic)),
           ],
         ),
         const SizedBox(height: 6),
@@ -90,7 +91,7 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
           onChanged: (s) {
             viewModel.getDescriptionValue(s);
           },
-          hintText: 'e.g: Free Programming Courses',
+          hintText: 'Write a description...',
           maxLines: 4,
         ),
       ],

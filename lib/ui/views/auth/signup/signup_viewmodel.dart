@@ -1,6 +1,7 @@
 // ignore_for_file: unused_field, prefer_final_fields, non_constant_identifier_names
 
 import 'dart:developer';
+import 'dart:js';
 
 import 'package:education_flutter_web/app/app.locator.dart';
 import 'package:education_flutter_web/app/app.router.dart';
@@ -32,7 +33,7 @@ class SignupViewModel extends BaseViewModel {
   }
 
   navigateforgetpassword() {
-    _navigationService.navigateToForgetpasswordView();
+    _navigationService.navigateToLoginView();
   }
 
   TextEditingController nameCTRL = TextEditingController(text: "xyz");
