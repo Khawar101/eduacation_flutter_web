@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_typing_uninitialized_variables, body_might_complete_normally_catch_error
+// ignore_for_file: prefer_typing_uninitialized_variables, body_might_complete_normally_catch_error, avoid_web_libraries_in_flutter
 
 import 'dart:developer';
 import 'dart:html';
@@ -172,9 +172,8 @@ class CoursesService {
   PublishData() async {
     try {
       var key = DateTime.now().microsecondsSinceEpoch;
-      print(courseData.runtimeType);
-      // await FirebaseFirestore.instance.collection("users").doc(key.toString()).set(userdata);
-
+      print(courseData.toJson());
+      await FirebaseFirestore.instance.collection("courses").doc(key.toString()).set(courseData.toJson());
       // message = "Login Successfully";
     } catch (e) {
       // message = e.toString();

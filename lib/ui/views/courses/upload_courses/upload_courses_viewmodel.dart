@@ -19,7 +19,7 @@ class UploadCoursesViewModel extends BaseViewModel {
   get coursesService => _coursesService;
   CoursesModel get courseData => _coursesService.courseData;
 
-  var screenNo = 4;
+  var screenNo = 0;
   var screens = [
     const UploadView_1(),
     const UploadView_2(),

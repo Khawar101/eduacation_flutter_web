@@ -22,7 +22,7 @@ class DrawerViewModel extends BaseViewModel {
     const Text("page 7"),
     const SettingsView()
   ];
-  var pageNo = 4;
+  var pageNo = 0;
 
   updatePage(value) {
     pageNo = value;
