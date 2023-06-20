@@ -3,6 +3,7 @@
 import 'dart:developer';
 import 'dart:html';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -166,5 +167,17 @@ class CoursesService {
       },
     );
     return assigmentUrl;
+  }
+
+  PublishData() async {
+    try {
+      var key = DateTime.now().microsecondsSinceEpoch;
+      print(courseData.runtimeType);
+      // await FirebaseFirestore.instance.collection("users").doc(key.toString()).set(userdata);
+
+      // message = "Login Successfully";
+    } catch (e) {
+      // message = e.toString();
+    }
   }
 }
