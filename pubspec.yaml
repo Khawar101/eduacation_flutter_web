@@ -28,6 +28,9 @@ dependencies:
   email_otp: ^2.0.1
   image_picker: ^0.8.9
   firebase_storage: ^11.2.3
+  fl_chart: ^0.63.0
+  toggle_switch: ^2.1.0
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_test:
