@@ -96,8 +96,9 @@ class SignupView extends StackedView<SignupViewModel> {
                         const SizedBox(height: 15),
                         GestureDetector(
                           onTap: () {
+                             viewModel.sendOtp();
                             if (_formKey.currentState!.validate()) {
-                              viewModel.sendOtp();
+                             
                             }
                           },
                           child: Container(
