@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:education_flutter_web/services/Model/CoursesModel.dart';
 import 'package:education_flutter_web/ui/dialogs/addLecture.dart';
 import 'package:education_flutter_web/ui/dialogs/addQuestion.dart';
@@ -86,11 +84,11 @@ class UploadCoursesViewModel extends BaseViewModel {
       screenNo += 1;
       notifyListeners();
     }
-    log(faq[0].question ?? "null");
   }
 
   addQuestion(context) {
-    addQuestionAlert(context, questionCtrl, answerCtrl, faq, notifyListeners);
+    addQuestionAlert(
+        context, questionCtrl, answerCtrl, faq, courseData, notifyListeners);
   }
 
   addThumbnail(newSetState) async {

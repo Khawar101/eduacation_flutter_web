@@ -2,7 +2,8 @@ import 'package:education_flutter_web/services/Model/CoursesModel.dart';
 import 'package:flutter/material.dart';
 import '../widgets/common/icon_text_field/icon_text_field.dart';
 
-addQuestionAlert(context, questionCtrl, answerCtrl, faq, notifyListeners) {
+addQuestionAlert(context, questionCtrl, answerCtrl, faq,
+    CoursesModel courseData, notifyListeners) {
   return showDialog<String>(
     context: context,
     builder: (BuildContext context) => AlertDialog(
@@ -34,6 +35,7 @@ addQuestionAlert(context, questionCtrl, answerCtrl, faq, notifyListeners) {
         TextButton(
           onPressed: () {
             faq.add(FAQ(answer: questionCtrl.text, question: answerCtrl.text));
+            courseData.fAQ = faq;
             notifyListeners();
             questionCtrl.clear();
             answerCtrl.clear();
