@@ -6,7 +6,9 @@ import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.da
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget Card_Page(context, lectureData) {
+import '../../../../../services/Model/CoursesModel.dart';
+
+Widget Card_Page(context,Lecture lectureData) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
     child: Row(
@@ -22,7 +24,7 @@ Widget Card_Page(context, lectureData) {
           child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
-                lectureData["thumbnale"],
+                lectureData.thumbnail.toString(),
                 height: MediaQuery.of(context).size.height * 0.24,
                 fit: BoxFit.cover,
               )),
@@ -40,7 +42,7 @@ Widget Card_Page(context, lectureData) {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    ButtonText(text: lectureData["title"], color: Colors.black),
+                    ButtonText(text: lectureData.title.toString(), color: Colors.black),
                     IconButton(
                         onPressed: () {},
                         icon: const Icon(Icons.remove_circle_outline))
@@ -48,7 +50,7 @@ Widget Card_Page(context, lectureData) {
                 ),
                 verticalSpaceSmall,
                 Text(
-                  lectureData["description"],
+                  lectureData.description.toString(),
                   style: const TextStyle(
                       color: Color(0xff969799),
                       fontSize: 15,

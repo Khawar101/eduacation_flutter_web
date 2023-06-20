@@ -42,7 +42,7 @@ class UploadCoursesViewModel extends BaseViewModel {
   final TextEditingController videoDescriptionCtrl = TextEditingController();
   late String videoThubnailUrl;
   late String videoUrl;
-  var lectures = [];
+  List<Lecture> lectures = [];
   final TextEditingController assigmentTitleCtrl = TextEditingController();
   final TextEditingController assigmentDescriptCtrl = TextEditingController();
   late String assigmentThubnailUrl;
@@ -102,8 +102,16 @@ class UploadCoursesViewModel extends BaseViewModel {
   }
 
   addLecture(context) {
-    addLectureAlert(context, videoTitleCtrl, videoDescriptionCtrl,
-        _coursesService, notifyListeners, lectures, addThumbnail, addVideo);
+    addLectureAlert(
+        context,
+        videoTitleCtrl,
+        videoDescriptionCtrl,
+        _coursesService,
+        notifyListeners,
+        lectures,
+        courseData,
+        addThumbnail,
+        addVideo);
   }
 
   addAssigmentAlert(context) async {
@@ -160,12 +168,12 @@ class UploadCoursesViewModel extends BaseViewModel {
           ),
           TextButton(
             onPressed: () {
-              lectures.add({
-                "title": videoTitleCtrl.text,
-                "description": videoDescriptionCtrl.text,
-                "thumbnale": _coursesService.videoThubnailUrl,
-                "video": _coursesService.videoUrl,
-              });
+              // lectures.add({
+              //   "title": videoTitleCtrl.text,
+              //   "description": videoDescriptionCtrl.text,
+              //   "thumbnale": _coursesService.videoThubnailUrl,
+              //   "video": _coursesService.videoUrl,
+              // });
               notifyListeners();
               questionCtrl.clear();
               answerCtrl.clear();

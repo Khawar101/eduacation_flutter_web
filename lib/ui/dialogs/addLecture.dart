@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 
+import '../../services/Model/CoursesModel.dart';
 import '../views/courses/upload_courses/widgets/dropAddBtn.dart';
 import '../widgets/common/icon_text_field/icon_text_field.dart';
 
-addLectureAlert(context, videoTitleCtrl, videoDescriptionCtrl, _coursesService,
-    notifyListeners, lectures, addThumbnail, addVideo) async {
+addLectureAlert(
+    context,
+    videoTitleCtrl,
+    videoDescriptionCtrl,
+    _coursesService,
+    notifyListeners,
+    List<Lecture> lectures,
+    CoursesModel courseData,
+    addThumbnail,
+    addVideo) async {
   return showDialog<String>(
     context: context,
     builder: (BuildContext context) => AlertDialog(
@@ -58,15 +67,20 @@ addLectureAlert(context, videoTitleCtrl, videoDescriptionCtrl, _coursesService,
         ),
         TextButton(
           onPressed: () {
-            lectures.add({
-              "title": videoTitleCtrl.text,
-              "description": videoDescriptionCtrl.text,
-              "thumbnale": _coursesService.videoThubnailUrl,
-              "video": _coursesService.videoUrl,
-            });
+            lectures.add(Lecture(
+              title: videoTitleCtrl.text,
+              description: videoDescriptionCtrl.text,
+              thumbnail: _coursesService.videoThubnailUrl,
+              videoUrl: _coursesService.videoUrl,
+            ));
+            courseData.lecture = lectures;
             notifyListeners();
             videoTitleCtrl.clear();
             videoDescriptionCtrl.clear();
+            _coursesService.videoThubnailUrl = "";
+            _coursesService.videoUrl = "";
+            _coursesService.progressshow = 0;
+            _coursesService.videoProgress = 0;
             Navigator.pop(context);
           },
           child: const Text(

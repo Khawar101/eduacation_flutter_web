@@ -9,6 +9,11 @@ import 'upload_courses_viewmodel.dart';
 
 class UploadView_4 extends StackedView<UploadCoursesViewModel> {
   const UploadView_4({Key? key}) : super(key: key);
+  @override
+  void onViewModelReady(UploadCoursesViewModel viewModel) {
+    viewModel.lectures = viewModel.courseData.lecture??[];
+    super.onViewModelReady(viewModel);
+  }
 
   @override
   Widget builder(

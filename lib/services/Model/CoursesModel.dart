@@ -14,14 +14,14 @@
 //     "title": "",
 //         "duration": "",
 //             "description": "",
-//                 "thumnail": "",
+//                 "thumbnail": "",
 //     "videoUrl": ""
 //     }],
 //         "assigment": [{
 //     "title": "",
 //         "lastDate": "",
 //             "description": "",
-//                 "thumnail": "",
+//                 "thumbnail": "",
 //     "fileUrl": ""
 
 //     }],
@@ -139,21 +139,21 @@ class Lecture {
   String? title;
   String? duration;
   String? description;
-  String? thumnail;
+  String? thumbnail;
   String? videoUrl;
 
   Lecture(
       {this.title,
       this.duration,
       this.description,
-      this.thumnail,
+      this.thumbnail,
       this.videoUrl});
 
   Lecture.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     duration = json['duration'];
     description = json['description'];
-    thumnail = json['thumnail'];
+    thumbnail = json['thumbnail'];
     videoUrl = json['videoUrl'];
   }
 
@@ -162,7 +162,7 @@ class Lecture {
     data['title'] = this.title;
     data['duration'] = this.duration;
     data['description'] = this.description;
-    data['thumnail'] = this.thumnail;
+    data['thumbnail'] = this.thumbnail;
     data['videoUrl'] = this.videoUrl;
     return data;
   }
@@ -172,21 +172,21 @@ class Assigment {
   String? title;
   String? lastDate;
   String? description;
-  String? thumnail;
+  String? thumbnail;
   String? fileUrl;
 
   Assigment(
       {this.title,
       this.lastDate,
       this.description,
-      this.thumnail,
+      this.thumbnail,
       this.fileUrl});
 
   Assigment.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     lastDate = json['lastDate'];
     description = json['description'];
-    thumnail = json['thumnail'];
+    thumbnail = json['thumbnail'];
     fileUrl = json['fileUrl'];
   }
 
@@ -195,7 +195,7 @@ class Assigment {
     data['title'] = this.title;
     data['lastDate'] = this.lastDate;
     data['description'] = this.description;
-    data['thumnail'] = this.thumnail;
+    data['thumbnail'] = this.thumbnail;
     data['fileUrl'] = this.fileUrl;
     return data;
   }
