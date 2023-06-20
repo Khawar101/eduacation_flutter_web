@@ -9,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'Model/CoursesModel.dart';
 
 class CoursesService {
-  late CoursesModel course;
+  late CoursesModel courseData = CoursesModel();
   late String videoThubnailUrl = "";
   late String assigmentThubnailUrl = "";
   late String videoUrl = "";

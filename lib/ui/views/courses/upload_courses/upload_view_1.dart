@@ -13,13 +13,10 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
 
   @override
   void onViewModelReady(UploadCoursesViewModel viewModel) {
-    // viewModel.titleCtrl.text= viewModel.courseData.title!;
-    // viewModel.categoryCtrl.text= viewModel.courseData.category!;
-    // viewModel.chapterCtrl.text= viewModel.courseData.chapter!;
-    // viewModel.descriptionCtrl.text= viewModel.courseData.description!;
-    // print(viewModel.courseData.title.toString());
+    viewModel.categoryCtrl.text = viewModel.courseData.category??"";
     super.onViewModelReady(viewModel);
   }
+
   @override
   Widget builder(
     BuildContext context,
@@ -47,6 +44,9 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
               titleText: "CATEGORY",
               icon: Icons.category,
               controller: viewModel.categoryCtrl,
+              onChanged: (s) {
+                viewModel.getCategoryValue(s);
+              },
               prefix: Icon(
                 Icons.category,
                 color: const Color(0xff4873a6).withOpacity(0.7),
