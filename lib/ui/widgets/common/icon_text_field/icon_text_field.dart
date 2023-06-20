@@ -37,7 +37,8 @@ class IconTextField extends StackedView<IconTextFieldModel> {
       this.hintStyle,
       this.inputFormaters,
       this.textAlign,
-      this.onChanged,this.initValue});
+      this.onChanged,
+      this.initValue});
 
   TextAlign? textAlign;
   List<TextInputFormatter>? inputFormaters;

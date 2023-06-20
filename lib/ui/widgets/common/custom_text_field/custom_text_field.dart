@@ -46,7 +46,8 @@ class CustomTextField extends StackedView<CustomTextFieldModel> {
   BoxConstraints? suffixConstraints;
 
   FormFieldValidator<String>? validator;
-
+  void Function(String)? onChanged;
+  String? initValue;
   InputBorder? border;
   InputBorder? enabledBorder;
   InputBorder? focusedBorder;
@@ -59,35 +60,36 @@ class CustomTextField extends StackedView<CustomTextFieldModel> {
   GestureTapCallback? onTap;
 
   TextStyle? hintStyle;
-  CustomTextField({
-    super.key,
-    //   this.shape,
-    // this.padding,
-    // this.variant,
-    // this.fontStyle,
-    this.alignment,
-    this.width,
-    this.margin,
-    this.controller,
-    this.focusNode,
-    this.isObscureText = false,
-    this.textInputAction = TextInputAction.next,
-    this.textInputType = TextInputType.text,
-    this.maxLines,
-    this.hintText,
-    this.prefix,
-    this.prefixConstraints,
-    this.suffix,
-    this.suffixConstraints,
-    this.validator,
-    this.border,
-    this.enabledBorder,
-    this.focusedBorder,
-    this.disabledBorder,
-    this.hintStyle,
-    this.inputFormaters,
-    this.textAlign,
-  });
+  CustomTextField(
+      {super.key,
+      //   this.shape,
+      // this.padding,
+      // this.variant,
+      // this.fontStyle,
+      this.alignment,
+      this.width,
+      this.margin,
+      this.controller,
+      this.focusNode,
+      this.isObscureText = false,
+      this.textInputAction = TextInputAction.next,
+      this.textInputType = TextInputType.text,
+      this.maxLines,
+      this.hintText,
+      this.prefix,
+      this.prefixConstraints,
+      this.suffix,
+      this.suffixConstraints,
+      this.validator,
+      this.border,
+      this.enabledBorder,
+      this.focusedBorder,
+      this.disabledBorder,
+      this.hintStyle,
+      this.inputFormaters,
+      this.textAlign,
+      this.onChanged,
+      this.initValue});
 
   @override
   Widget builder(
@@ -118,6 +120,7 @@ class CustomTextField extends StackedView<CustomTextFieldModel> {
       margin: margin,
       child: TextFormField(
         onTap: onTap,
+        onChanged: onChanged,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         controller: controller,
         focusNode: focusNode,

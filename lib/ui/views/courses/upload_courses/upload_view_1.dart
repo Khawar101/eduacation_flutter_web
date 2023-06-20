@@ -13,13 +13,13 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
 
   @override
   void onViewModelReady(UploadCoursesViewModel viewModel) {
-    // viewModel.titleCtrl.text= viewModel.courseData.title!;
-    // viewModel.categoryCtrl.text= viewModel.courseData.category!;
-    // viewModel.chapterCtrl.text= viewModel.courseData.chapter!;
-    // viewModel.descriptionCtrl.text= viewModel.courseData.description!;
-    // print(viewModel.courseData.title.toString());
+    viewModel.titleCtrl.text = viewModel.courseData.title ?? "";
+    viewModel.categoryCtrl.text = viewModel.courseData.category ?? "";
+    viewModel.chapterCtrl.text = viewModel.courseData.chapter ?? "";
+    viewModel.descriptionCtrl.text = viewModel.courseData.description ?? "";
     super.onViewModelReady(viewModel);
   }
+
   @override
   Widget builder(
     BuildContext context,
@@ -28,6 +28,7 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
   ) {
     var width = MediaQuery.of(context).size.width;
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 30),
         Text("Courses Title",
@@ -38,6 +39,9 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
           hintText: 'e.g: Free Programming Courses',
           maxLines: 1,
           controller: viewModel.titleCtrl,
+          onChanged: (s) {
+            viewModel.getTitleValue(s);
+          },
         ),
         const SizedBox(height: 30),
         Row(
@@ -47,6 +51,9 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
               titleText: "CATEGORY",
               icon: Icons.category,
               controller: viewModel.categoryCtrl,
+              onChanged: (s) {
+                viewModel.getCategoryValue(s);
+              },
               prefix: Icon(
                 Icons.category,
                 color: const Color(0xff4873a6).withOpacity(0.7),
@@ -57,6 +64,9 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
             IconTextField(
               titleText: "Chapter",
               controller: viewModel.chapterCtrl,
+              onChanged: (s) {
+                viewModel.getChapterValue(s);
+              },
               width: width / 2.5,
               prefix: Icon(
                 Icons.price_change,
@@ -77,6 +87,9 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
         const SizedBox(height: 6),
         CustomTextField(
           controller: viewModel.descriptionCtrl,
+          onChanged: (s) {
+            viewModel.getDescriptionValue(s);
+          },
           hintText: 'e.g: Free Programming Courses',
           maxLines: 4,
         ),
