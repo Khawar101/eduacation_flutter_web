@@ -6,11 +6,16 @@ import 'dart:html';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'Model/CoursesModel.dart';
+
 class CoursesService {
+  late CoursesModel course;
   late String videoThubnailUrl = "";
+  late String assigmentThubnailUrl = "";
   late String videoUrl = "";
   var progressshow = 0;
   var videoProgress = 0;
+  var assigmentProgress = 0;
   var imageLooding = false;
   late final XFile? image;
 
@@ -30,10 +35,10 @@ class CoursesService {
   }
 
   Future uploadToStorage(title, type, notifyListeners, newSetState) async {
-    final dateTime = DateTime.now();
+    // final dateTime = DateTime.now();
     uploadImage(
       onSelected: (file) {
-        final path = '${dateTime}${file.name}}';
+        // final path = '${dateTime}${file.name}}';
         FirebaseStorage storage = FirebaseStorage.instance;
         Reference ref = storage.ref().child(
             "courses/$title/$type/${DateTime.now().microsecondsSinceEpoch}");
@@ -47,7 +52,9 @@ class CoursesService {
           newSetState(() {});
         });
         uploadTask.whenComplete(() async {
-          videoThubnailUrl = await ref.getDownloadURL();
+          type == ""
+              ? videoThubnailUrl = await ref.getDownloadURL()
+              : videoThubnailUrl = await ref.getDownloadURL();
           newSetState(() {});
           notifyListeners();
           // print("=====>$url=====>${file.type.split("/")[0]}");

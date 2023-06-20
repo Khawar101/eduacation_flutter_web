@@ -7,37 +7,37 @@ import 'package:google_fonts/google_fonts.dart';
 import 'icon_text_field_model.dart';
 
 class IconTextField extends StackedView<IconTextFieldModel> {
-  IconTextField({
-    super.key,
-    //   this.shape,
-    // this.padding,
-    // this.variant,
-    // this.fontStyle,
-    this.alignment,
-    this.width,
-    this.margin,
-    this.controller,
-    this.focusNode,
-    this.isObscureText = false,
-    this.textInputAction = TextInputAction.next,
-    this.textInputType = TextInputType.text,
-    this.maxLines,
-    this.hintText,
-    this.titleText,
-    this.icon,
-    this.prefix,
-    this.prefixConstraints,
-    this.suffix,
-    this.suffixConstraints,
-    this.validator,
-    this.border,
-    this.enabledBorder,
-    this.focusedBorder,
-    this.disabledBorder,
-    this.hintStyle,
-    this.inputFormaters,
-    this.textAlign,
-  });
+  IconTextField(
+      {super.key,
+      //   this.shape,
+      // this.padding,
+      // this.variant,
+      // this.fontStyle,
+      this.alignment,
+      this.width,
+      this.margin,
+      this.controller,
+      this.focusNode,
+      this.isObscureText = false,
+      this.textInputAction = TextInputAction.next,
+      this.textInputType = TextInputType.text,
+      this.maxLines,
+      this.hintText,
+      this.titleText,
+      this.icon,
+      this.prefix,
+      this.prefixConstraints,
+      this.suffix,
+      this.suffixConstraints,
+      this.validator,
+      this.border,
+      this.enabledBorder,
+      this.focusedBorder,
+      this.disabledBorder,
+      this.hintStyle,
+      this.inputFormaters,
+      this.textAlign,
+      this.onChanged,this.initValue});
 
   TextAlign? textAlign;
   List<TextInputFormatter>? inputFormaters;
@@ -81,6 +81,8 @@ class IconTextField extends StackedView<IconTextFieldModel> {
   BoxConstraints? suffixConstraints;
 
   FormFieldValidator<String>? validator;
+  void Function(String)? onChanged;
+  String? initValue;
 
   InputBorder? border;
   InputBorder? enabledBorder;
@@ -133,6 +135,8 @@ class IconTextField extends StackedView<IconTextFieldModel> {
           margin: margin,
           child: TextFormField(
             onTap: onTap,
+            onChanged: onChanged,
+            initialValue: initValue,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: controller,
             focusNode: focusNode,

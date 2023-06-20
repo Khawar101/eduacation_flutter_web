@@ -1,3 +1,4 @@
+import 'package:education_flutter_web/services/Model/CoursesModel.dart';
 import 'package:education_flutter_web/ui/dialogs/addLecture.dart';
 import 'package:education_flutter_web/ui/dialogs/addQuestion.dart';
 import 'package:education_flutter_web/ui/widgets/common/video_player.dart';
@@ -17,7 +18,9 @@ import 'widgets/dropAddBtn.dart';
 class UploadCoursesViewModel extends BaseViewModel {
   final _coursesService = locator<CoursesService>();
   get coursesService => _coursesService;
-  var screenNo = 3;
+  CoursesModel get courseData => _coursesService.course;
+
+  var screenNo = 0;
   var screens = [
     const UploadView_1(),
     const UploadView_2(),
@@ -54,10 +57,18 @@ class UploadCoursesViewModel extends BaseViewModel {
   }
 
   nextPage() {
+    if (screenNo == 0) {
+      courseData.title = titleCtrl.text;
+      courseData.category = categoryCtrl.text;
+      courseData.chapter = chapterCtrl.text;
+      courseData.description = descriptionCtrl.text;
+    }
     if (screenNo != screens.length - 1) {
       screenNo += 1;
       notifyListeners();
     }
+
+    print("====>${courseData.title.toString()}");
   }
 
   addQuestion(context) {
@@ -84,7 +95,7 @@ class UploadCoursesViewModel extends BaseViewModel {
       context: context,
       builder: (BuildContext context) => AlertDialog(
         title: const Text(
-          'Upload Lecture',
+          'Upload Assigment',
         ),
         content: StatefulBuilder(builder: (context, newSetState) {
           return SizedBox(
@@ -107,12 +118,12 @@ class UploadCoursesViewModel extends BaseViewModel {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    addBtn("Thumbnail", _coursesService.progressshow,
+                    addBtn("Assigment Thumbnail", _coursesService.progressshow,
                         _coursesService.videoThubnailUrl, () {
                       addThumbnail(newSetState);
                     }),
                     const SizedBox(width: 20),
-                    addBtn("Video", _coursesService.videoProgress,
+                    addBtn("PDF", _coursesService.videoProgress,
                         _coursesService.videoUrl, () {
                       addVideo(newSetState);
                     }),
@@ -151,6 +162,16 @@ class UploadCoursesViewModel extends BaseViewModel {
         ],
       ),
     );
+  }
+
+  addAssigmentThumbnail(newSetState) async {
+    await _coursesService.uploadToStorage(
+        titleCtrl.text, "Thumbnail", notifyListeners, newSetState);
+  }
+
+  addAssigmentFile(newSetState) async {
+    await _coursesService.uploadVideoToStorage(
+        titleCtrl.text, "Video", notifyListeners, newSetState);
   }
 
   watchvideo(context) async {

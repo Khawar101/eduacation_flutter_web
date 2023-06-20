@@ -12,6 +12,15 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
   const UploadView_1({Key? key}) : super(key: key);
 
   @override
+  void onViewModelReady(UploadCoursesViewModel viewModel) {
+    // viewModel.titleCtrl.text= viewModel.courseData.title!;
+    // viewModel.categoryCtrl.text= viewModel.courseData.category!;
+    // viewModel.chapterCtrl.text= viewModel.courseData.chapter!;
+    // viewModel.descriptionCtrl.text= viewModel.courseData.description!;
+    // print(viewModel.courseData.title.toString());
+    super.onViewModelReady(viewModel);
+  }
+  @override
   Widget builder(
     BuildContext context,
     UploadCoursesViewModel viewModel,
