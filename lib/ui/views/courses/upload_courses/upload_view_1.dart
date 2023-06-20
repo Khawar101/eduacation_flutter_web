@@ -13,7 +13,10 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
 
   @override
   void onViewModelReady(UploadCoursesViewModel viewModel) {
-    viewModel.categoryCtrl.text = viewModel.courseData.category??"";
+    viewModel.titleCtrl.text = viewModel.courseData.title ?? "";
+    viewModel.categoryCtrl.text = viewModel.courseData.category ?? "";
+    viewModel.chapterCtrl.text = viewModel.courseData.chapter ?? "";
+    viewModel.descriptionCtrl.text = viewModel.courseData.description ?? "";
     super.onViewModelReady(viewModel);
   }
 
@@ -35,6 +38,9 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
           hintText: 'e.g: Free Programming Courses',
           maxLines: 1,
           controller: viewModel.titleCtrl,
+          onChanged: (s) {
+            viewModel.getTitleValue(s);
+          },
         ),
         const SizedBox(height: 30),
         Row(
@@ -57,6 +63,9 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
             IconTextField(
               titleText: "Chapter",
               controller: viewModel.chapterCtrl,
+              onChanged: (s) {
+                viewModel.getChapterValue(s);
+              },
               width: width / 2.5,
               prefix: Icon(
                 Icons.price_change,
@@ -77,6 +86,9 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
         const SizedBox(height: 6),
         CustomTextField(
           controller: viewModel.descriptionCtrl,
+          onChanged: (s) {
+            viewModel.getDescriptionValue(s);
+          },
           hintText: 'e.g: Free Programming Courses',
           maxLines: 4,
         ),

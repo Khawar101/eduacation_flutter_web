@@ -48,7 +48,6 @@ class UploadCoursesViewModel extends BaseViewModel {
   late String assigmentThubnailUrl;
   late String assigmentUrl;
   var assigments = [];
-  var test = "fsdfgdsfg";
   backPage() {
     if (screenNo != 0) {
       screenNo -= 1;
@@ -56,8 +55,28 @@ class UploadCoursesViewModel extends BaseViewModel {
     }
   }
 
+  getTitleValue(value) {
+    _coursesService.courseData.title = value;
+  }
+
   getCategoryValue(value) {
-    _coursesService.courseData = CoursesModel(category: value);
+    _coursesService.courseData.category = value;
+  }
+
+  getChapterValue(value) {
+    _coursesService.courseData.chapter = value;
+  }
+
+  getDescriptionValue(value) {
+    _coursesService.courseData.description = value;
+  }
+
+  getPriceValue(value) {
+    _coursesService.courseData.price = value;
+  }
+
+  getDurationValue(value) {
+    _coursesService.courseData.duration = value;
   }
 
   nextPage() {
