@@ -17,7 +17,7 @@ class UploadView_6 extends StackedView<UploadCoursesViewModel> {
     Widget? child,
   ) {
     // var width = MediaQuery.of(context).size.width;
-    return const SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -25,8 +25,10 @@ class UploadView_6 extends StackedView<UploadCoursesViewModel> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              BigText(text: "Title:", color: Colors.black),
-              Padding(
+              BigText(
+                  text: viewModel.courseData.title.toString(),
+                  color: Colors.black),
+              const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 child: Row(
                   children: [

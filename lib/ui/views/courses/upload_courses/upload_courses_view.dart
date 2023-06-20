@@ -100,7 +100,7 @@ class UploadCoursesView extends StackedView<UploadCoursesViewModel> {
                   ),
                   const SizedBox(width: 20),
                   GestureDetector(
-                    onTap: viewModel.nextPage,
+                    onTap: viewModel.screenNo==5?viewModel.publish: viewModel.nextPage,
                     child: Container(
                       height: 50,
                       width: 100,
@@ -112,7 +112,7 @@ class UploadCoursesView extends StackedView<UploadCoursesViewModel> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const ButtonText(text: "Next", color: Colors.black),
+                           ButtonText(text:viewModel.screenNo==5? "Publish": "Next", color: Colors.black),
                           SizedBox(
                               width: MediaQuery.of(context).size.width * 0.01),
                           const Icon(Icons.arrow_forward_ios, size: 14),

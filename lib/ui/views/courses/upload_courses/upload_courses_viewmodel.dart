@@ -46,7 +46,7 @@ class UploadCoursesViewModel extends BaseViewModel {
   final TextEditingController assigmentDescriptCtrl = TextEditingController();
   late String assigmentThubnailUrl;
   late String assigmentUrl;
-   List<Assigment> assigments = [];
+  List<Assigment> assigments = [];
   backPage() {
     if (screenNo != 0) {
       screenNo -= 1;
@@ -112,6 +112,7 @@ class UploadCoursesViewModel extends BaseViewModel {
         addThumbnail,
         addVideo);
   }
+
   addAssigment(context) {
     addAssigmentAlert(
         context,
@@ -170,5 +171,9 @@ class UploadCoursesViewModel extends BaseViewModel {
         ],
       ),
     );
+  }
+
+  publish() {
+    _coursesService.PublishData();
   }
 }
