@@ -28,6 +28,7 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
     Widget? child,
   ) {
     var width = MediaQuery.of(context).size.width;
+      // final _formKey = GlobalKey<FormState>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -40,8 +41,12 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
           hintText: 'Enter your title...',
           maxLines: 1,
           controller: viewModel.titleCtrl,
+         
           onChanged: (s) {
             viewModel.getTitleValue(s);
+            //  if (_formKey.currentState!.validate()) {
+                            
+            //               }
           },
         ),
         const SizedBox(height: 30),

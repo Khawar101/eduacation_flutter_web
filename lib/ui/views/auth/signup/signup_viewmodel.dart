@@ -1,8 +1,6 @@
 // ignore_for_file: unused_field, prefer_final_fields, non_constant_identifier_names
 
 import 'dart:developer';
-import 'dart:js';
-
 import 'package:education_flutter_web/app/app.locator.dart';
 import 'package:education_flutter_web/app/app.router.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +36,7 @@ class SignupViewModel extends BaseViewModel {
 
   TextEditingController nameCTRL = TextEditingController(text: "xyz");
   TextEditingController emailCTRL =
-      TextEditingController(text: "khawarjutt101@gmail.com");
+      TextEditingController(text: "");
   TextEditingController passwordCTRL = TextEditingController(text: "qwerty");
   signUP() async {
     await _signupService.createAccount(
