@@ -1,5 +1,5 @@
+import 'package:education_flutter_web/services/Model/CoursesModel.dart';
 import 'package:flutter/material.dart';
-
 import '../widgets/common/icon_text_field/icon_text_field.dart';
 
 addQuestionAlert(context, questionCtrl, answerCtrl, faq, notifyListeners) {
@@ -33,7 +33,7 @@ addQuestionAlert(context, questionCtrl, answerCtrl, faq, notifyListeners) {
         ),
         TextButton(
           onPressed: () {
-            faq.add({"question": questionCtrl.text, "answer": answerCtrl.text});
+            faq.add(FAQ(answer: questionCtrl.text, question: answerCtrl.text));
             notifyListeners();
             questionCtrl.clear();
             answerCtrl.clear();

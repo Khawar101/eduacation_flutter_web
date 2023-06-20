@@ -18,7 +18,7 @@ import 'widgets/dropAddBtn.dart';
 class UploadCoursesViewModel extends BaseViewModel {
   final _coursesService = locator<CoursesService>();
   get coursesService => _coursesService;
-  CoursesModel get courseData => _coursesService.course;
+  CoursesModel get courseData => _coursesService.courseData;
 
   var screenNo = 0;
   var screens = [
@@ -29,13 +29,13 @@ class UploadCoursesViewModel extends BaseViewModel {
     const UploadView_5(),
     const UploadView_6(),
   ];
-  final TextEditingController titleCtrl = TextEditingController();
-  final TextEditingController categoryCtrl = TextEditingController();
-  final TextEditingController chapterCtrl = TextEditingController();
-  final TextEditingController descriptionCtrl = TextEditingController();
-  final TextEditingController questionCtrl = TextEditingController();
-  final TextEditingController answerCtrl = TextEditingController();
-  var faq = [];
+  TextEditingController titleCtrl = TextEditingController();
+  TextEditingController categoryCtrl = TextEditingController();
+  TextEditingController chapterCtrl = TextEditingController();
+  TextEditingController descriptionCtrl = TextEditingController();
+  TextEditingController questionCtrl = TextEditingController();
+  TextEditingController answerCtrl = TextEditingController();
+  List<FAQ> faq = [];
   final TextEditingController priceCtrl = TextEditingController();
   final TextEditingController durationCtrl = TextEditingController();
   final TextEditingController videoTitleCtrl = TextEditingController();
@@ -48,7 +48,7 @@ class UploadCoursesViewModel extends BaseViewModel {
   late String assigmentThubnailUrl;
   late String assigmentUrl;
   var assigments = [];
-
+  var test = "fsdfgdsfg";
   backPage() {
     if (screenNo != 0) {
       screenNo -= 1;
@@ -56,19 +56,15 @@ class UploadCoursesViewModel extends BaseViewModel {
     }
   }
 
+  getCategoryValue(value) {
+    _coursesService.courseData = CoursesModel(category: value);
+  }
+
   nextPage() {
-    if (screenNo == 0) {
-      courseData.title = titleCtrl.text;
-      courseData.category = categoryCtrl.text;
-      courseData.chapter = chapterCtrl.text;
-      courseData.description = descriptionCtrl.text;
-    }
     if (screenNo != screens.length - 1) {
       screenNo += 1;
       notifyListeners();
     }
-
-    print("====>${courseData.title.toString()}");
   }
 
   addQuestion(context) {

@@ -53,8 +53,8 @@ class UploadView_2 extends StackedView<UploadCoursesViewModel> {
               shrinkWrap: true,
               itemCount: viewModel.faq.length,
               itemBuilder: (BuildContext context, int index) {
-                return expend_tile(viewModel.faq[index]["question"],
-                    viewModel.faq[index]["answer"]);
+                return expend_tile(viewModel.faq[index].question,
+                    viewModel.faq[index].answer);
               }),
         ],
       ),
