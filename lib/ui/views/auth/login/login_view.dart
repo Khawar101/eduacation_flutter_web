@@ -86,11 +86,11 @@ class LoginView extends StackedView<LoginViewModel> {
                         ),
                       )),
                   verticalSpaceSmall,
-                 MouseRegion(
-                        cursor: SystemMouseCursors.click,
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
                     child: GestureDetector(
                       onTap: () {
-                          viewModel.logIN(context);
+                        viewModel.logIN(context);
                       },
                       child: Container(
                         height: 50,

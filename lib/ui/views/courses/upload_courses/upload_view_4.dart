@@ -44,7 +44,7 @@ class UploadView_4 extends StackedView<UploadCoursesViewModel> {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15)),
-                child: index == viewModel.lectures.length 
+                child: index == viewModel.lectures.length
                     ? IconButton(
                         onPressed: () {
                           viewModel.addLecture(context);
