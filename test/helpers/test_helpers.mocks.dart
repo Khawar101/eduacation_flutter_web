@@ -4,6 +4,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i7;
+import 'dart:html' as _i13;
 import 'dart:ui' as _i8;
 
 import 'package:cloud_firestore/cloud_firestore.dart' as _i2;
@@ -802,18 +803,72 @@ class MockLoginService extends _i1.Mock implements _i11.LoginService {
 /// See the documentation for Mockito's code generation for more information.
 class MockCoursesService extends _i1.Mock implements _i12.CoursesService {
   @override
-  set url(dynamic _url) => super.noSuchMethod(
+  String get videoThubnailUrl => (super.noSuchMethod(
+        Invocation.getter(#videoThubnailUrl),
+        returnValue: '',
+        returnValueForMissingStub: '',
+      ) as String);
+  @override
+  set videoThubnailUrl(String? _videoThubnailUrl) => super.noSuchMethod(
         Invocation.setter(
-          #url,
-          _url,
+          #videoThubnailUrl,
+          _videoThubnailUrl,
         ),
         returnValueForMissingStub: null,
       );
   @override
-  set progressshow(dynamic _progressshow) => super.noSuchMethod(
+  String get videoUrl => (super.noSuchMethod(
+        Invocation.getter(#videoUrl),
+        returnValue: '',
+        returnValueForMissingStub: '',
+      ) as String);
+  @override
+  set videoUrl(String? _videoUrl) => super.noSuchMethod(
+        Invocation.setter(
+          #videoUrl,
+          _videoUrl,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  int get progressshow => (super.noSuchMethod(
+        Invocation.getter(#progressshow),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+  @override
+  set progressshow(int? _progressshow) => super.noSuchMethod(
         Invocation.setter(
           #progressshow,
           _progressshow,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  int get videoProgress => (super.noSuchMethod(
+        Invocation.getter(#videoProgress),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+  @override
+  set videoProgress(int? _videoProgress) => super.noSuchMethod(
+        Invocation.setter(
+          #videoProgress,
+          _videoProgress,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  bool get imageLooding => (super.noSuchMethod(
+        Invocation.getter(#imageLooding),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+  @override
+  set imageLooding(bool? _imageLooding) => super.noSuchMethod(
+        Invocation.setter(
+          #imageLooding,
+          _imageLooding,
         ),
         returnValueForMissingStub: null,
       );
@@ -826,10 +881,61 @@ class MockCoursesService extends _i1.Mock implements _i12.CoursesService {
         returnValueForMissingStub: null,
       );
   @override
-  _i7.Future<dynamic> pickImage() => (super.noSuchMethod(
+  void uploadImage({required dynamic Function(_i13.File)? onSelected}) =>
+      super.noSuchMethod(
         Invocation.method(
-          #pickImage,
+          #uploadImage,
           [],
+          {#onSelected: onSelected},
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  _i7.Future<dynamic> uploadToStorage(
+    dynamic title,
+    dynamic type,
+    dynamic notifyListeners,
+    dynamic newSetState,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #uploadToStorage,
+          [
+            title,
+            type,
+            notifyListeners,
+            newSetState,
+          ],
+        ),
+        returnValue: _i7.Future<dynamic>.value(),
+        returnValueForMissingStub: _i7.Future<dynamic>.value(),
+      ) as _i7.Future<dynamic>);
+  @override
+  void uploadVideo({required dynamic Function(_i13.File)? onSelected}) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #uploadVideo,
+          [],
+          {#onSelected: onSelected},
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  _i7.Future<dynamic> uploadVideoToStorage(
+    dynamic title,
+    dynamic type,
+    dynamic notifyListeners,
+    dynamic newSetState,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #uploadVideoToStorage,
+          [
+            title,
+            type,
+            notifyListeners,
+            newSetState,
+          ],
         ),
         returnValue: _i7.Future<dynamic>.value(),
         returnValueForMissingStub: _i7.Future<dynamic>.value(),

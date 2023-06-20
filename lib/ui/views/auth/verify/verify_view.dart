@@ -14,7 +14,7 @@ class VerifyView extends StackedView<VerifyViewModel> {
     Widget? child,
   ) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: SingleChildScrollView(
           child: Container(
             height: MediaQuery.of(context).size.height,
@@ -42,40 +42,38 @@ class VerifyView extends StackedView<VerifyViewModel> {
                       color: Colors.black45),
                   const SizedBox(height: 24),
                   Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        for (var i = 0; i < viewModel.codes.length; i++)
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 0),
-                            child: Container(
-                              width: 50,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(
-                                    color: const Color(0xff4873a6)
-                                        .withOpacity(0.7),
-                                    width: 1),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              alignment: Alignment.center,
-                              child: Text(
-                                viewModel.codes[i],
-                                style: const TextStyle(fontSize: 24),
-                              ),
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      for (var i = 0; i < viewModel.codes.length; i++)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 0),
+                          child: Container(
+                            width: 50,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(
+                                  color:
+                                      const Color(0xff4873a6).withOpacity(0.7),
+                                  width: 1),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              viewModel.codes[i],
+                              style: const TextStyle(fontSize: 24),
                             ),
                           ),
-                      ],
-                    ),
+                        ),
+                    ],
+                  ),
                   const SizedBox(height: 18),
-                 
                   verticalSpaceSmall,
-                 
-                 MouseRegion(
-                        cursor: SystemMouseCursors.click,
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
                     child: GestureDetector(
                       onTap: () {
-                          // viewModel.logIN(context);
+                        // viewModel.logIN(context);
                       },
                       child: Container(
                         height: 50,
@@ -114,15 +112,12 @@ class VerifyView extends StackedView<VerifyViewModel> {
                       ),
                     ],
                   ),
-                 
                   verticalSpaceSmall,
-                 
                 ],
               ),
             ),
           ),
-        )
-   );
+        ));
   }
 
   @override

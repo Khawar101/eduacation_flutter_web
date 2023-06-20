@@ -31,6 +31,10 @@ class SignupViewModel extends BaseViewModel {
     _navigationService.navigateToLoginView();
   }
 
+  navigateforgetpassword() {
+    _navigationService.navigateToForgetpasswordView();
+  }
+
   TextEditingController nameCTRL = TextEditingController(text: "xyz");
   TextEditingController emailCTRL =
       TextEditingController(text: "khawarjutt101@gmail.com");
@@ -72,6 +76,6 @@ class SignupViewModel extends BaseViewModel {
       log("try again...");
     }
     log("=====>${_signupService.message}");
-     print("123456789");
+    print("123456789");
   }
 }

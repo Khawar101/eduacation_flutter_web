@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 class VerifyViewModel extends BaseViewModel {
-
   final List<String> _codes = ['', '', '', '', '', ''];
   List<String> get codes => _codes;
   onKeyboardTap(String value, context) {
@@ -50,6 +49,5 @@ class VerifyViewModel extends BaseViewModel {
 
   // navigateapplication() {
   //   _navigationService.navigateToButtomBarView();
- // }
-
+  // }
 }

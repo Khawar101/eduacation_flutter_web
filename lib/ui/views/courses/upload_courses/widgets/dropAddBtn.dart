@@ -17,7 +17,7 @@ Widget addBtn(type, progress, url, fun) {
             width: 1,
           )),
       height: 90,
-      width: type =="Video"?190: 90,
+      width: type == "Video" ? 190 : 90,
       child: url == ""
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -38,7 +38,9 @@ Widget addBtn(type, progress, url, fun) {
                       ),
               ],
             )
-          : type =="Video"?videoPlayer(url: url): null,
+          : type == "Video"
+              ? videoPlayer(url: url)
+              : null,
     ),
   );
 }

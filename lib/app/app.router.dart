@@ -18,14 +18,16 @@ import 'package:education_flutter_web/ui/views/courses/upload_courses/upload_cou
 import 'package:education_flutter_web/ui/views/dashboard/dashboard_view.dart'
     as _i3;
 import 'package:education_flutter_web/ui/views/drawer/drawer_view.dart' as _i7;
+import 'package:education_flutter_web/ui/views/auth/forgetpassword/forgetpassword_view.dart'
+    as _i11;
 import 'package:education_flutter_web/ui/views/settings/settings_view.dart'
     as _i5;
 import 'package:education_flutter_web/ui/views/teachers/teachers_view.dart'
     as _i4;
-import 'package:flutter/material.dart' as _i11;
+import 'package:flutter/material.dart' as _i12;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i12;
+import 'package:stacked_services/stacked_services.dart' as _i13;
 
 class Routes {
   static const coursesView = '/courses-view';
@@ -46,6 +48,8 @@ class Routes {
 
   static const verifyView = '/verify-view';
 
+  static const forgetpasswordView = '/forgetpassword-view';
+
   static const all = <String>{
     coursesView,
     dashboardView,
@@ -56,6 +60,7 @@ class Routes {
     loginView,
     signupView,
     verifyView,
+    forgetpasswordView,
   };
 }
 
@@ -97,60 +102,70 @@ class StackedRouter extends _i1.RouterBase {
       Routes.verifyView,
       page: _i10.VerifyView,
     ),
+    _i1.RouteDef(
+      Routes.forgetpasswordView,
+      page: _i11.ForgetpasswordView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.CoursesView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.CoursesView(),
         settings: data,
       );
     },
     _i3.DashboardView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.DashboardView(),
         settings: data,
       );
     },
     _i4.TeachersView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.TeachersView(),
         settings: data,
       );
     },
     _i5.SettingsView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.SettingsView(),
         settings: data,
       );
     },
     _i6.UploadCoursesView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i6.UploadCoursesView(),
         settings: data,
       );
     },
     _i7.DrawerView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i7.DrawerView(),
         settings: data,
       );
     },
     _i8.LoginView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i8.LoginView(),
         settings: data,
       );
     },
     _i9.SignupView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i9.SignupView(),
         settings: data,
       );
     },
     _i10.VerifyView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i10.VerifyView(),
+        settings: data,
+      );
+    },
+    _i11.ForgetpasswordView: (data) {
+      return _i12.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i11.ForgetpasswordView(),
         settings: data,
       );
     },
@@ -162,7 +177,7 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i12.NavigationService {
+extension NavigatorStateExtension on _i13.NavigationService {
   Future<dynamic> navigateToCoursesView([
     int? routerId,
     bool preventDuplicates = true,
@@ -289,6 +304,20 @@ extension NavigatorStateExtension on _i12.NavigationService {
         transition: transition);
   }
 
+  Future<dynamic> navigateToForgetpasswordView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.forgetpasswordView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> replaceWithCoursesView([
     int? routerId,
     bool preventDuplicates = true,
@@ -409,6 +438,20 @@ extension NavigatorStateExtension on _i12.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.verifyView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithForgetpasswordView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.forgetpasswordView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

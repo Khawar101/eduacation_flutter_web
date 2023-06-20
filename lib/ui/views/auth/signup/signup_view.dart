@@ -77,11 +77,25 @@ class SignupView extends StackedView<SignupViewModel> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: 15),
                       GestureDetector(
                         onTap: () {
-                       viewModel.sendOtp();
-                       
+                          viewModel.navigateforgetpassword();
+                        },
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: CustomText(
+                            text: "Forget Password",
+                            size: 14,
+                            fontWeight: FontWeight.w400,
+                            color: const Color(0xff4873a6).withOpacity(0.7),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      GestureDetector(
+                        onTap: () {
+                          viewModel.sendOtp();
                         },
                         child: Container(
                           height: 50,
