@@ -90,6 +90,11 @@ class UploadCoursesViewModel extends BaseViewModel {
         context, questionCtrl, answerCtrl, faq, courseData, notifyListeners);
   }
 
+  removeQuestion(index) {
+    courseData.fAQ!.removeAt(index);
+    notifyListeners();
+  }
+
   addThumbnail(newSetState) async {
     await _coursesService.uploadToStorage(
         titleCtrl.text, "Thumbnail", notifyListeners, newSetState);
@@ -113,6 +118,11 @@ class UploadCoursesViewModel extends BaseViewModel {
         addVideo);
   }
 
+  removeLecture(index) {
+    courseData.fAQ!.removeAt(index);
+    notifyListeners();
+  }
+
   addAssigment(context) {
     addAssigmentAlert(
         context,
@@ -124,6 +134,11 @@ class UploadCoursesViewModel extends BaseViewModel {
         courseData,
         addThumbnail,
         addAssigmentFile);
+  }
+
+  removeAssigment(index) {
+    courseData.fAQ!.removeAt(index);
+    notifyListeners();
   }
 
   addAssigmentThumbnail(newSetState) async {

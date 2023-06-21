@@ -2,8 +2,6 @@ import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/cha
 import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/enrolment.dart';
 import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/head_buttons.dart';
 import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/stats.dart';
-import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/user_data.dart';
-import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/user_head.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
