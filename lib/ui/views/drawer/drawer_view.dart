@@ -155,16 +155,15 @@ class DrawerView extends StackedView<DrawerViewModel> {
                       },
                     ),
                     ListTile(
-                      leading: Icon(
-                        Icons.logout,
-                        color: const Color(0xff4873a6).withOpacity(0.7),
-                      ),
-                      title: Visibility(
-                          visible: screenWidth >= 900,
-                          child: const Text('Logout')),
-                      minLeadingWidth: 0.009,
-                      onTap: viewModel.removeDataFromSpAndGoToLogin
-                    ),
+                        leading: Icon(
+                          Icons.logout,
+                          color: const Color(0xff4873a6).withOpacity(0.7),
+                        ),
+                        title: Visibility(
+                            visible: screenWidth >= 900,
+                            child: const Text('Logout')),
+                        minLeadingWidth: 0.009,
+                        onTap: viewModel.removeDataFromSpAndGoToLogin),
                   ],
                 ),
               ),
@@ -175,13 +174,13 @@ class DrawerView extends StackedView<DrawerViewModel> {
                     color: Colors.red.withOpacity(0.2),
                     child: Column(
                       children: [
-                         Padding(
+                        Padding(
                           padding: EdgeInsets.only(
                               left: 30, top: 8.0, right: 30, bottom: 8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Row(
+                              const Row(
                                 children: [
                                   Icon(
                                     Icons.vertical_distribute,
@@ -191,19 +190,20 @@ class DrawerView extends StackedView<DrawerViewModel> {
                               ),
                               Row(
                                 children: [
-                                  Icon(Icons.notifications_outlined, size: 18),
-                                  SizedBox(width: 8),
+                                  const Icon(Icons.notifications_outlined, size: 18),
+                                  const SizedBox(width: 8),
                                   CircleAvatar(
                                     radius: 15,
                                     backgroundColor: Colors.black,
-                                    // backgroundImage: NetworkImage(viewModel
-                                    //     .loginService.UserData.profile
-                                    //     .toString()),
+                                    backgroundImage: NetworkImage(viewModel
+                                        .loginService.UserData.profile
+                                        .toString()),
                                   ),
-                                  SizedBox(width: 4),
+                                  const SizedBox(width: 4),
                                   ButtonText(
-                                      text:
-                                      viewModel.loginService.UserData.username.toString(),
+                                      text: viewModel
+                                          .loginService.UserData.username
+                                          .toString(),
                                       color: Colors.black),
                                   SizedBox(width: 8),
                                   Icon(Icons.arrow_drop_down)
