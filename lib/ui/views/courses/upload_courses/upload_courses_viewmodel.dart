@@ -18,6 +18,7 @@ class UploadCoursesViewModel extends BaseViewModel {
   final _coursesService = locator<CoursesService>();
   get coursesService => _coursesService;
   CoursesModel get courseData => _coursesService.courseData;
+  var formKey = GlobalKey<FormState>();
 
   var screenNo = 0;
   var screens = [
@@ -78,31 +79,15 @@ class UploadCoursesViewModel extends BaseViewModel {
     _coursesService.courseData.duration = value;
   }
 
-  // validationCheck() {
-  //   if (screenNo == 0) {
-  //     if (titleCtrl.text != "" ||
-  //         courseData.title != null && categoryCtrl.text != "" ||
-  //         courseData.category != null && chapterCtrl.text != "" ||
-  //         courseData.chapter != null && descriptionCtrl.text != "" ||
-  //         courseData.description != null) {
-  //       nextPage();
-  //     } else {
-  //       log("object");
-  //     }
-  //   } else if (screenNo == 1) {
-  //     if (faq.isNotEmpty|| courseData.fAQ?.length != 0) {
-  //       nextPage();
-  //     } else {
-  //       log("object");
-  //     }
-  //   }
-  // }
-
   nextPage() {
-    if (screenNo != screens.length - 1) {
-      screenNo += 1;
-      notifyListeners();
+    final isValid = formKey.currentState?.validate();
+    if (isValid!) {
+      if (screenNo != screens.length - 1) {
+        screenNo += 1;
+        notifyListeners();
+      }
     }
+    formKey.currentState?.save();
   }
 
   addQuestion(context) {

@@ -125,7 +125,9 @@ class IconTextField extends StackedView<IconTextFieldModel> {
         Text(
           titleText ?? "",
           style: GoogleFonts.ibmPlexSans(
-               color: kcPrimaryColor, fontWeight: FontWeight.bold,fontStyle: FontStyle.italic),
+              color: kcPrimaryColor,
+              fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.italic),
         ),
         const SizedBox(height: 6),
         Container(
@@ -151,11 +153,11 @@ class IconTextField extends StackedView<IconTextFieldModel> {
             maxLines: maxLines ?? 1,
             decoration: _buildDecoration(),
             validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'Please enter some text';
-          }
-          return null;
-        },
+              if (value == null || value.isEmpty) {
+                return 'Please enter some text';
+              }
+              return null;
+            },
           ),
         ),
       ],

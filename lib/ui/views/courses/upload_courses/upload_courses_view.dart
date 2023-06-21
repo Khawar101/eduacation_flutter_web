@@ -24,38 +24,41 @@ class UploadCoursesView extends StackedView<UploadCoursesViewModel> {
             padding: EdgeInsets.symmetric(
               horizontal: MediaQuery.of(context).size.width * 0.009,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 10),
-                const Row(
-                  children: [
-                    ButtonText(text: "Bundle Courses", color: Colors.black),
-                    SizedBox(width: 20),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      size: 14,
-                    ),
-                    SizedBox(width: 10),
-                    ButtonText(text: "Create Bundle", color: Colors.black),
-                  ],
-                ),
-                const SizedBox(height: 30),
-                StepProgressView(
-                  curStep: viewModel.screenNo + 1,
-                  titles: const [
-                    "Courses",
-                    'FAQ',
-                    'Pricing',
-                    'Lecture',
-                    'Assignment',
-                    'Publish'
-                  ],
-                  width: width * 0.6,
-                ),
-                viewModel.screens[viewModel.screenNo],
-                const SizedBox(height: 30),
-              ],
+            child: Form(
+      key: viewModel.formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 10),
+                  const Row(
+                    children: [
+                      ButtonText(text: "Bundle Courses", color: Colors.black),
+                      SizedBox(width: 20),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 14,
+                      ),
+                      SizedBox(width: 10),
+                      ButtonText(text: "Create Bundle", color: Colors.black),
+                    ],
+                  ),
+                  const SizedBox(height: 30),
+                  StepProgressView(
+                    curStep: viewModel.screenNo + 1,
+                    titles: const [
+                      "Courses",
+                      'FAQ',
+                      'Pricing',
+                      'Lecture',
+                      'Assignment',
+                      'Publish'
+                    ],
+                    width: width * 0.6,
+                  ),
+                  viewModel.screens[viewModel.screenNo],
+                  const SizedBox(height: 30),
+                ],
+              ),
             ),
           ),
         ),
