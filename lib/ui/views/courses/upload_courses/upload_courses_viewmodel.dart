@@ -78,6 +78,26 @@ class UploadCoursesViewModel extends BaseViewModel {
     _coursesService.courseData.duration = value;
   }
 
+  // validationCheck() {
+  //   if (screenNo == 0) {
+  //     if (titleCtrl.text != "" ||
+  //         courseData.title != null && categoryCtrl.text != "" ||
+  //         courseData.category != null && chapterCtrl.text != "" ||
+  //         courseData.chapter != null && descriptionCtrl.text != "" ||
+  //         courseData.description != null) {
+  //       nextPage();
+  //     } else {
+  //       log("object");
+  //     }
+  //   } else if (screenNo == 1) {
+  //     if (faq.isNotEmpty|| courseData.fAQ?.length != 0) {
+  //       nextPage();
+  //     } else {
+  //       log("object");
+  //     }
+  //   }
+  // }
+
   nextPage() {
     if (screenNo != screens.length - 1) {
       screenNo += 1;
@@ -189,6 +209,6 @@ class UploadCoursesViewModel extends BaseViewModel {
   }
 
   publish() {
-    _coursesService.PublishData();
+    _coursesService.publishData();
   }
 }

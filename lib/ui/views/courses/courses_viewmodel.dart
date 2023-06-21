@@ -14,13 +14,11 @@ class CoursesViewModel extends BaseViewModel {
 
   var pageNo = 0;
   nextPage() {
-    log("=>");
     pageNo += 1;
     notifyListeners();
   }
 
   backPage() {
-    log("<=");
     pageNo -= 1;
     notifyListeners();
   }

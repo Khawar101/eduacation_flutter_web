@@ -4,13 +4,23 @@ import 'dart:developer';
 import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:education_flutter_web/services/login_service.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../app/app.locator.dart';
 import 'Model/CoursesModel.dart';
 
 class CoursesService {
-  late CoursesModel courseData = CoursesModel();
+  final _loginService = locator<LoginService>();
+
+  late CoursesModel courseData = CoursesModel(
+    uID: _loginService.UserData.uID??"UaRZTAS3CYOE79s79cYeSNoANPa2",
+      publisherData: PublisherData(
+    name: _loginService.UserData.username??"Mudassir",
+    email: _loginService.UserData.email??"xyz@gmail.com",
+    profile: _loginService.UserData.profile,
+  ));
   late String thubnailUrl = "";
   late String videoUrl = "";
   late String assigmentUrl = "";
@@ -169,29 +179,27 @@ class CoursesService {
     return assigmentUrl;
   }
 
-  PublishData() async {
+  publishData() async {
     try {
       var key = DateTime.now().microsecondsSinceEpoch;
-      print(courseData.toJson());
+      courseData.publishDate = key.toString();
+      print("${courseData.publishDate}===");
       await FirebaseFirestore.instance
           .collection("courses")
           .doc(key.toString())
           .set(courseData.toJson());
       // message = "Login Successfully";
+      log("upload successfully");
     } catch (e) {
       // message = e.toString();
+      log(e.toString());
     }
   }
 
-  // final Stream<QuerySnapshot> coursesStream =
-  //     FirebaseFirestore.instance.collection('courses').snapshots();
   Stream<List<CoursesModel>> coursesStream() {
     final stream = FirebaseFirestore.instance.collection("courses").snapshots();
     return stream.map((event) => event.docs.map((doc) {
           return CoursesModel.fromJson(doc.data());
         }).toList());
   }
-  //   Stream<List<CoursesModel>> listenToMessages() {
-  //   return coursesStream();
-  // }
 }
