@@ -163,7 +163,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
                           visible: screenWidth >= 900,
                           child: const Text('Logout')),
                       minLeadingWidth: 0.009,
-                      onTap: viewModel.navigateLogin,
+                      onTap: viewModel.removeDataFromSpAndGoToLogin
                     ),
                   ],
                 ),
@@ -175,7 +175,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
                     color: Colors.red.withOpacity(0.2),
                     child: Column(
                       children: [
-                        const Padding(
+                         Padding(
                           padding: EdgeInsets.only(
                               left: 30, top: 8.0, right: 30, bottom: 8.0),
                           child: Row(
@@ -202,10 +202,8 @@ class DrawerView extends StackedView<DrawerViewModel> {
                                   ),
                                   SizedBox(width: 4),
                                   ButtonText(
-                                      text: "Muhammad Mudassir",
-                                      // viewModel
-                                      //     .loginService.UserData.username
-                                      //     .toString(),
+                                      text:
+                                      viewModel.loginService.UserData.username.toString(),
                                       color: Colors.black),
                                   SizedBox(width: 8),
                                   Icon(Icons.arrow_drop_down)

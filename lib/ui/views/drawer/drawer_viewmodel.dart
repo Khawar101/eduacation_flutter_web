@@ -1,6 +1,7 @@
 import 'package:education_flutter_web/app/app.router.dart';
 import 'package:education_flutter_web/services/login_service.dart';
 import 'package:education_flutter_web/ui/views/settings/settings_view.dart';
+import 'package:education_flutter_web/utils/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -36,5 +37,9 @@ class DrawerViewModel extends BaseViewModel {
 
   navigateBack() {
     _navigationService.back();
+  }
+  removeDataFromSpAndGoToLogin()async{
+    await Store.removeValueAgainstKey('userId');
+    _navigationService.navigateToLoginView();
   }
 }

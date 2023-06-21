@@ -1,3 +1,6 @@
+import 'package:education_flutter_web/services/login_service.dart';
+import 'package:education_flutter_web/ui/views/auth/login/login_view.dart';
+import 'package:education_flutter_web/utils/shared_preferences.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:education_flutter_web/app/app.locator.dart';
@@ -15,8 +18,14 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +39,7 @@ class MyApp extends StatelessWidget {
               bodyColor: Colors.black,
             ),
       ),
-      initialRoute: Routes.loginView,
+      initialRoute: Routes.splashScreenView,
       onGenerateRoute: StackedRouter().onGenerateRoute,
       navigatorKey: StackedService.navigatorKey,
       navigatorObservers: [

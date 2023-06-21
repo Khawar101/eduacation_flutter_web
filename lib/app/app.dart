@@ -13,6 +13,8 @@ import 'package:education_flutter_web/services/signup_service.dart';
 import 'package:education_flutter_web/services/login_service.dart';
 import 'package:education_flutter_web/services/courses_service.dart';
 import 'package:education_flutter_web/ui/views/auth/forgetpassword/forgetpassword_view.dart';
+
+import '../ui/views/splash_screen/splash_screen_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -27,6 +29,7 @@ import 'package:education_flutter_web/ui/views/auth/forgetpassword/forgetpasswor
     MaterialRoute(page: SignupView),
     MaterialRoute(page: VerifyView),
     MaterialRoute(page: ForgetpasswordView),
+    MaterialRoute(page: SplashScreenView),
 // @stacked-route
   ],
   dependencies: [

@@ -46,6 +46,7 @@ class LoginService {
           socialLinks: data["socialLinks"],
         );
         message = "login successfully";
+        return UserData;
       } else {
         message = "Please fill all text field";
       }
@@ -54,10 +55,10 @@ class LoginService {
     }
   }
 
-  updateUserData() async {
+  updateUserData(id) async {
     final DocumentSnapshot snapshot = await FirebaseFirestore.instance
         .collection("users")
-        .doc(UserData.uID)
+        .doc(id)
         .get();
     Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
     UserData = userData(

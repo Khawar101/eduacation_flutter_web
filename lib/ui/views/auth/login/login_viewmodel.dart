@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../../../app/app.locator.dart';
+import '../../../../services/Model/userData.dart';
 import '../../../../services/login_service.dart';
+import '../../../../utils/shared_preferences.dart';
 
 class LoginViewModel extends BaseViewModel {
   bool visibleCheck = true;
@@ -42,9 +44,14 @@ class LoginViewModel extends BaseViewModel {
   bool _obscureText = true;
 
   logIN(context) async {
-    await _loginService.logins(emailCTRL, passwordCTRL);
+    userData userDetail = await _loginService.logins(emailCTRL, passwordCTRL);
+    print(userDetail.username);
     if (_loginService.message == 'login successfully') {
       // log("sign up now...");
+      if(userDetail.uID!.isNotEmpty && userDetail.uID != ""){
+        await Store.save('userId', userDetail.uID!);
+      }
+      log("navigateeeeee");
       _navigationService.navigateToDrawerView();
     } else {
       log("try again...");
