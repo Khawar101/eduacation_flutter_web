@@ -1,6 +1,8 @@
 // ignore_for_file: camel_case_types
 
+import 'package:education_flutter_web/ui/common/app_assets.dart';
 import 'package:education_flutter_web/ui/common/app_colors.dart';
+import 'package:education_flutter_web/ui/views/courses/upload_courses/widgets/dropAddBtn.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
@@ -53,20 +55,23 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconTextField(
-              titleText: "CATEGORY",
-              icon: Icons.category,
-              controller: viewModel.categoryCtrl,
-              onChanged: (s) {
-                viewModel.getCategoryValue(s);
-              },
-              prefix: Icon(
-                Icons.category,
-                color: const Color(0xff4873a6).withOpacity(0.7),
-              ),
-              width: width / 2.5,
-              hintText: 'Enter your category...',
-            ),
+            Column(
+              children: [
+                IconTextField(
+                  titleText: "CATEGORY",
+                  icon: Icons.category,
+                  controller: viewModel.categoryCtrl,
+                  onChanged: (s) {
+                    viewModel.getCategoryValue(s);
+                  },
+                  prefix: Icon(
+                    Icons.category,
+                    color: const Color(0xff4873a6).withOpacity(0.7),
+                  ),
+                  width: width / 2.5,
+                  hintText: 'Enter your category...',
+                ),
+               const SizedBox(height: 30),
             IconTextField(
               titleText: "Chapter",
               controller: viewModel.chapterCtrl,
@@ -80,6 +85,10 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
               ),
               hintText: 'Enter your chapter...',
             ),
+             ],
+            ),
+                          coverBtn( 0, "", (){},context),
+
           ],
         ),
         const SizedBox(height: 30),
@@ -108,4 +117,46 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
     BuildContext context,
   ) =>
       UploadCoursesViewModel();
+}
+
+
+Widget coverBtn( progress, url, fun,context) {
+  return InkWell(
+    onTap: fun,
+    child: Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          image: url != ""
+              ? 
+                   DecorationImage(image: NetworkImage(url), fit: BoxFit.cover)
+              : null,
+          border: Border.all(
+            color: Colors.grey,
+            width: 1,
+          )),
+      height: 160,
+    width: MediaQuery.of(context).size.width*0.15,
+      child: url == ""
+          ? Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                progress >= 3
+                    ? CircularProgressIndicator(
+                        value: progress / 100,
+                      )
+                    : Column(
+                        children: [
+                          const Icon(
+                            Icons.add,
+                            size: 30,
+                          ),
+                          Text("Cover Photo")
+                        ],
+                      ),
+              ],
+            )
+          : null,
+    ),
+  );
 }

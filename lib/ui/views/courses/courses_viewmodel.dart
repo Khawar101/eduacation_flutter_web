@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'dart:developer';
 import 'package:education_flutter_web/ui/views/courses/upload_courses/widgets/pop_up_menu.dart';
 import 'package:flutter/material.dart';
@@ -72,11 +74,11 @@ class CoursesViewModel extends BaseViewModel {
       builder:
           (BuildContext context, AsyncSnapshot<List<CoursesModel>> snapshot) {
         if (snapshot.hasError) {
-          return Text('Something went wrong');
+          return const Text('Something went wrong');
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
+          return const Text("Loading");
         }
         return GridView.builder(
           shrinkWrap: true,
@@ -89,52 +91,66 @@ class CoursesViewModel extends BaseViewModel {
           ),
           itemBuilder: (BuildContext context, int index) {
             var data = snapshot.data![index];
-            return Card(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Image.network(
-                      "https://img-b.udemycdn.com/course/480x270/548278_b005_9.jpg"),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 8.0,
-                              top: 8.0,
+            return GestureDetector(
+              
+              child: Card(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.network(
+                        "https://img-b.udemycdn.com/course/480x270/548278_b005_9.jpg"),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: 8.0,
+                                top: 8.0,
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    data.title.toString(),
+                                    style: const TextStyle(
+                                        overflow: TextOverflow.ellipsis,
+                                        fontWeight: FontWeight.bold),
+                                    maxLines: 2,
+                                  ),
+            
+                                  // reating(data["rating"], data["reated"]),
+                                  CustomText(
+                                      text: "\$${data.price.toString()}",
+                                      size: 17,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black),
+                                ],
+                              ),
                             ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  data.title.toString(),
-                                  style: const TextStyle(
-                                      overflow: TextOverflow.ellipsis,
-                                      fontWeight: FontWeight.bold),
-                                  maxLines: 2,
-                                ),
-
-                                // reating(data["rating"], data["reated"]),
-                                CustomText(
-                                    text: "\$${data.price.toString()}",
-                                    size: 17,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
-                              ],
-                            ),
+                            const PopupMenu(),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 4),
+                          child: Text(
+                            data.description.toString(),
+                            style: const TextStyle(color: Colors.black45,
+                                overflow: TextOverflow.ellipsis,
+                                fontWeight: FontWeight.bold),
+                            maxLines: 2,
                           ),
-                          PopupMenu()
-                        ],
-                      ),
-                    ],
-                  )
-                ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             );
           },

@@ -13,33 +13,30 @@ class _PopupMenuState extends State<PopupMenu> {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
-      width: 30,
-      child: PopupMenuButton<SampleItem>(
-        padding: const EdgeInsets.all(0),
-        iconSize: 15,position: PopupMenuPosition.over,
-        initialValue: selectedMenu,
-       
-        // Callback that sets the selected popup menu item.
-        onSelected: (SampleItem item) {
-          setState(() {
-            selectedMenu = item;
-          });
-        },
-        itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
-          const PopupMenuItem<SampleItem>(
-               padding: EdgeInsets.all(0),
-            value: SampleItem.itemOne,
-            child: SmallText(text: "remove", color: Colors.red)
-          ),
-          const PopupMenuItem<SampleItem>(
-            value: SampleItem.itemTwo,
-            padding: EdgeInsets.all(0),
-             child: SmallText(text: "add", color: Colors.black)
-          ),
-        
-        ],
-      ),
+    return  PopupMenuButton<SampleItem>(
+      // padding: const EdgeInsets.all(0),
+      iconSize: 15,position: PopupMenuPosition.over,
+      initialValue: selectedMenu,
+     
+      // Callback that sets the selected popup menu item.
+      onSelected: (SampleItem item) {
+        setState(() {
+          selectedMenu = item;
+        });
+      },
+      itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
+        const PopupMenuItem<SampleItem>(
+            //  padding: EdgeInsets.all(0),
+          value: SampleItem.itemOne,
+          child: SmallText(text: "remove", color: Colors.red)
+        ),
+        const PopupMenuItem<SampleItem>(
+          value: SampleItem.itemTwo,
+          // padding: EdgeInsets.all(0),
+           child: SmallText(text: "add", color: Colors.black)
+        ),
+      
+      ],
     );
   }
 }
