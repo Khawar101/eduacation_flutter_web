@@ -30,6 +30,7 @@ class UploadView_3 extends StackedView<UploadCoursesViewModel> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconTextField(
+              textInputType: TextInputType.number,
               titleText: "Price",
               controller: viewModel.priceCtrl,
               onChanged: (s) {
