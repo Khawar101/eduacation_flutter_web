@@ -44,11 +44,17 @@ Widget Card_Page(context, lectureData, remove) {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                      width: MediaQuery.of(context).size.width * 0.11,
-                      child: ButtonText(
-                        text: lectureData.title.toString(),
-                        color: Colors.black,
-                      )),
+                    width: MediaQuery.of(context).size.width * 0.11,
+                    child: Text(
+                      lectureData.title.toString(),
+                      style: const TextStyle(
+                          color: Color(0xff969799),
+                          fontSize: 15,
+                          overflow: TextOverflow.ellipsis,
+                          fontWeight: FontWeight.w700),
+                      maxLines: 2,
+                    ),
+                  ),
                   IconButton(
                       onPressed: () {
                         remove();

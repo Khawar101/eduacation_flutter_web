@@ -52,8 +52,9 @@ class CoursesService {
       onSelected: (file) {
         // final path = '${dateTime}${file.name}}';
         FirebaseStorage storage = FirebaseStorage.instance;
-        Reference ref = storage.ref().child(
-            "courses/$title/$type/${DateTime.now().microsecondsSinceEpoch}");
+        Reference ref = storage
+            .ref()
+            .child("courses/$type/${DateTime.now().microsecondsSinceEpoch}");
         UploadTask uploadTask = ref.putBlob(file);
         uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
           double progress =
@@ -65,6 +66,7 @@ class CoursesService {
         uploadTask.whenComplete(() async {
           if (type == "Cover") {
             courseData.coverPic = await ref.getDownloadURL();
+            progressshow = 0;
           } else {
             thubnailUrl = await ref.getDownloadURL();
             newSetState(() {});
@@ -106,8 +108,9 @@ class CoursesService {
       onSelected: (file) {
         // final path = '${dateTime}${file.name}}';
         FirebaseStorage storage = FirebaseStorage.instance;
-        Reference ref = storage.ref().child(
-            "courses/$title/$type/${DateTime.now().microsecondsSinceEpoch}");
+        Reference ref = storage
+            .ref()
+            .child("courses/$type/${DateTime.now().microsecondsSinceEpoch}");
         UploadTask uploadTask = ref.putBlob(file);
         uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
           double progress =
@@ -157,8 +160,9 @@ class CoursesService {
       onSelected: (file) {
         // final path = '${dateTime}${file.name}}';
         FirebaseStorage storage = FirebaseStorage.instance;
-        Reference ref = storage.ref().child(
-            "courses/$title/$type/${DateTime.now().microsecondsSinceEpoch}");
+        Reference ref = storage
+            .ref()
+            .child("courses/$type/${DateTime.now().microsecondsSinceEpoch}");
         UploadTask uploadTask = ref.putBlob(file);
         uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
           double progress =
@@ -170,7 +174,7 @@ class CoursesService {
         });
         uploadTask.whenComplete(() async {
           assigmentUrl = await ref.getDownloadURL();
-          print("======>${file.type.split("/")[0]}");
+          // print("======>${file.type.split("/")[0]}");
           newSetState(() {});
           notifyListeners();
           imageLooding = false;
