@@ -7,7 +7,7 @@ import 'Model/userData.dart';
 
 class LoginService {
   var message = "";
-  late userData UserData;
+  userData UserData = userData();
 
 // bool looding=true;
   // String number = numberCTRL.text.trim();
