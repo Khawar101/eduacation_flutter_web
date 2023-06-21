@@ -66,7 +66,7 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
                     Icons.category,
                     color: const Color(0xff4873a6).withOpacity(0.7),
                   ),
-                  width: width / 2.5,
+                  width: width / 1.8,
                   hintText: 'Enter your category...',
                 ),
                 const SizedBox(height: 30),
@@ -76,7 +76,7 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
                   onChanged: (s) {
                     viewModel.getChapterValue(s);
                   },
-                  width: width / 2.5,
+                  width: width / 1.8,
                   prefix: Icon(
                     Icons.price_change,
                     color: const Color(0xff4873a6).withOpacity(0.7),
@@ -85,7 +85,10 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
                 ),
               ],
             ),
-            coverBtn(0, "", () {}, context),
+            coverBtn(viewModel.coursesService.progressshow,
+                viewModel.coursesService.courseData.coverPic, () {
+              viewModel.addCoverPhoto();
+            }, context),
           ],
         ),
         const SizedBox(height: 30),
@@ -124,7 +127,7 @@ Widget coverBtn(progress, url, fun, context) {
     child: Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          image: url != ""
+          image: url != null
               ? DecorationImage(image: NetworkImage(url), fit: BoxFit.cover)
               : null,
           border: Border.all(
@@ -133,8 +136,9 @@ Widget coverBtn(progress, url, fun, context) {
           )),
       height: 160,
       width: MediaQuery.of(context).size.width * 0.18,
-      child: url == ""
-          ? Column(
+      child: url != null
+          ? null
+          : Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -152,8 +156,7 @@ Widget coverBtn(progress, url, fun, context) {
                         ],
                       ),
               ],
-            )
-          : null,
+            ),
     ),
   );
 }

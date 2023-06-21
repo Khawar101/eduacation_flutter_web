@@ -16,7 +16,7 @@ import 'upload_view_6.dart';
 
 class UploadCoursesViewModel extends BaseViewModel {
   final _coursesService = locator<CoursesService>();
-  get coursesService => _coursesService;
+  CoursesService get coursesService => _coursesService;
   CoursesModel get courseData => _coursesService.courseData;
   var formKey = GlobalKey<FormState>();
 
@@ -156,19 +156,23 @@ class UploadCoursesViewModel extends BaseViewModel {
         titleCtrl.text, "Assigments", notifyListeners, newSetState);
   }
 
-  watchvideo(context) async {
+  addCoverPhoto() async {
+    await _coursesService.uploadToStorage(
+        titleCtrl.text, "Cover", notifyListeners, null);
+  }
+
+  watchvideo(context, _url) async {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
         title: const Text(
           'Video',
         ),
-        content: const SizedBox(
+        content: SizedBox(
           height: 200,
           width: 300,
           child: videoPlayer(
-            url:
-                'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+            url: _url,
           ),
         ),
         actions: <Widget>[
