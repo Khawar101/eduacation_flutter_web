@@ -1,6 +1,8 @@
 import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.dart';
 import 'package:flutter/material.dart';
+
 enum SampleItem { itemOne, itemTwo }
+
 class PopupMenu extends StatefulWidget {
   const PopupMenu({super.key});
 
@@ -13,11 +15,11 @@ class _PopupMenuState extends State<PopupMenu> {
 
   @override
   Widget build(BuildContext context) {
-    return  PopupMenuButton<SampleItem>(
+    return PopupMenuButton<SampleItem>(
       // padding: const EdgeInsets.all(0),
-      iconSize: 15,position: PopupMenuPosition.over,
+      iconSize: 15, position: PopupMenuPosition.over,
       initialValue: selectedMenu,
-     
+
       // Callback that sets the selected popup menu item.
       onSelected: (SampleItem item) {
         setState(() {
@@ -27,15 +29,12 @@ class _PopupMenuState extends State<PopupMenu> {
       itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
         const PopupMenuItem<SampleItem>(
             //  padding: EdgeInsets.all(0),
-          value: SampleItem.itemOne,
-          child: SmallText(text: "remove", color: Colors.red)
-        ),
+            value: SampleItem.itemOne,
+            child: SmallText(text: "Delete", color: Colors.red)),
         const PopupMenuItem<SampleItem>(
-          value: SampleItem.itemTwo,
-          // padding: EdgeInsets.all(0),
-           child: SmallText(text: "add", color: Colors.black)
-        ),
-      
+            value: SampleItem.itemTwo,
+            // padding: EdgeInsets.all(0),
+            child: SmallText(text: "Edit", color: Colors.black)),
       ],
     );
   }

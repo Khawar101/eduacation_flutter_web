@@ -16,7 +16,6 @@ class CoursesViewModel extends BaseViewModel {
   // final _navigationService = locator<NavigationService>();
   final coursesService = locator<CoursesService>();
 
-
   var pageNo = 0;
   nextPage() {
     pageNo += 1;
@@ -36,9 +35,9 @@ class CoursesViewModel extends BaseViewModel {
         if (snapshot.hasError) {
           return const Text('Something went wrong');
         }
-    
+
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return  Loading();
+          return Loading();
         }
         return GridView.builder(
           shrinkWrap: true,
@@ -52,20 +51,21 @@ class CoursesViewModel extends BaseViewModel {
           itemBuilder: (BuildContext context, int index) {
             var data = snapshot.data![index];
             return GestureDetector(
-        
               child: Card(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Image.network(
-                        "https://img-b.udemycdn.com/course/480x270/548278_b005_9.jpg"),
+                      data.coverPic.toString(),
+                      fit: BoxFit.fitWidth,
+                      height: 130,
+                      width: 300,
+                    ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        Stack(
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(
@@ -83,7 +83,7 @@ class CoursesViewModel extends BaseViewModel {
                                         fontWeight: FontWeight.bold),
                                     maxLines: 2,
                                   ),
-            
+
                                   // reating(data["rating"], data["reated"]),
                                   CustomText(
                                       text: "\$${data.price.toString()}",
@@ -93,7 +93,11 @@ class CoursesViewModel extends BaseViewModel {
                                 ],
                               ),
                             ),
-                            const PopupMenu(),
+                            const Positioned(
+                              right: 5,
+                              top: 5,
+                              child: PopupMenu(),
+                            )
                           ],
                         ),
                         Padding(
@@ -101,7 +105,8 @@ class CoursesViewModel extends BaseViewModel {
                               horizontal: 8, vertical: 4),
                           child: Text(
                             data.description.toString(),
-                            style: const TextStyle(color: Colors.black45,
+                            style: const TextStyle(
+                                color: Colors.black45,
                                 overflow: TextOverflow.ellipsis,
                                 fontWeight: FontWeight.bold),
                             maxLines: 2,

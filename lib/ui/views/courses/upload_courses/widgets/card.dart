@@ -43,7 +43,7 @@ Widget Card_Page(context, lectureData, remove) {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width * 0.11,
                     child: Text(
                       lectureData.title.toString(),
