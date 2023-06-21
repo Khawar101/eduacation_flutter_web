@@ -1,12 +1,9 @@
 // ignore_for_file: camel_case_types
 
-import 'package:education_flutter_web/ui/common/app_assets.dart';
 import 'package:education_flutter_web/ui/common/app_colors.dart';
-import 'package:education_flutter_web/ui/views/courses/upload_courses/widgets/dropAddBtn.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
-
 import '../../../widgets/common/custom_text_field/custom_text_field.dart';
 import '../../../widgets/common/icon_text_field/icon_text_field.dart';
 import 'upload_courses_viewmodel.dart';
