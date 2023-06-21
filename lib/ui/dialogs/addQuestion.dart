@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:education_flutter_web/services/Model/CoursesModel.dart';
 import 'package:flutter/material.dart';
 import '../widgets/common/icon_text_field/icon_text_field.dart';
@@ -11,7 +13,8 @@ addQuestionAlert(context, questionCtrl, answerCtrl,List<FAQ> faq,
         'EQA question & answer',
       ),
       content: SizedBox(
-        height: 150,
+        height: 180,
+        width: 220,
         child: Column(
           children: [
             IconTextField(
