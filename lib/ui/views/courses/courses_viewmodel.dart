@@ -2,6 +2,7 @@
 
 import 'dart:developer';
 import 'package:education_flutter_web/ui/views/courses/upload_courses/widgets/pop_up_menu.dart';
+import 'package:education_flutter_web/utils/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -78,7 +79,7 @@ class CoursesViewModel extends BaseViewModel {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Text("Loading");
+          return  Loading();
         }
         return GridView.builder(
           shrinkWrap: true,
@@ -92,7 +93,7 @@ class CoursesViewModel extends BaseViewModel {
           itemBuilder: (BuildContext context, int index) {
             var data = snapshot.data![index];
             return GestureDetector(
-              
+
               child: Card(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
