@@ -81,7 +81,6 @@ addAssigmentAlert(
               fileUrl: _coursesService.assigmentUrl,
             ));
             courseData.assigment = assigments;
-            print(courseData.assigment!.length);
             notifyListeners();
             titleCtrl.clear();
             descriptionCtrl.clear();

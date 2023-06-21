@@ -4,27 +4,33 @@
 //     "chapter": "",
 //     "description": "",
 //     "publishDate": "",
-//     "FAQ": [{
-//         "question": "",
-//         "answer": ""
-//     }],
+//     "UID": "",
+//     "FAQ": [
+//         {
+//             "question": "",
+//             "answer": ""
+//         }
+//     ],
 //     "price": "",
 //     "duration": "",
-//     "lecture": [{
-//     "title": "",
-//         "duration": "",
+//     "lecture": [
+//         {
+//             "title": "",
+//             "duration": "",
 //             "description": "",
-//                 "thumbnail": "",
-//     "videoUrl": ""
-//     }],
-//         "assigment": [{
-//     "title": "",
-//         "lastDate": "",
+//             "thumbnail": "",
+//             "videoUrl": ""
+//         }
+//     ],
+//     "assigment": [
+//         {
+//             "title": "",
+//             "lastDate": "",
 //             "description": "",
-//                 "thumbnail": "",
-//     "fileUrl": ""
-
-//     }],
+//             "thumbnail": "",
+//             "fileUrl": ""
+//         }
+//     ],
 //     "publisherData": {
 //         "name": "",
 //         "email": "",
@@ -32,14 +38,13 @@
 //     }
 // }
 
-// ignore_for_file: file_names
-
 class CoursesModel {
   String? title;
   String? category;
   String? chapter;
   String? description;
   String? publishDate;
+  String? uID;
   List<FAQ>? fAQ;
   String? price;
   String? duration;
@@ -53,6 +58,7 @@ class CoursesModel {
       this.chapter,
       this.description,
       this.publishDate,
+      this.uID,
       this.fAQ,
       this.price,
       this.duration,
@@ -66,6 +72,7 @@ class CoursesModel {
     chapter = json['chapter'];
     description = json['description'];
     publishDate = json['publishDate'];
+    uID = json['UID'];
     if (json['FAQ'] != null) {
       fAQ = <FAQ>[];
       json['FAQ'].forEach((v) {
@@ -87,7 +94,7 @@ class CoursesModel {
       });
     }
     publisherData = json['publisherData'] != null
-        ? PublisherData.fromJson(json['publisherData'])
+        ? new PublisherData.fromJson(json['publisherData'])
         : null;
   }
 
@@ -98,6 +105,7 @@ class CoursesModel {
     data['chapter'] = this.chapter;
     data['description'] = this.description;
     data['publishDate'] = this.publishDate;
+    data['UID'] = this.uID;
     if (this.fAQ != null) {
       data['FAQ'] = this.fAQ!.map((v) => v.toJson()).toList();
     }
