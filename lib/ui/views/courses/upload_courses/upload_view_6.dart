@@ -1,7 +1,9 @@
 // ignore_for_file: camel_case_types
 
 import 'package:education_flutter_web/ui/common/ui_helpers.dart';
+import 'package:education_flutter_web/ui/views/courses/upload_courses/upload_view_2.dart';
 import 'package:education_flutter_web/ui/views/courses/upload_courses/upload_view_4.dart';
+import 'package:education_flutter_web/ui/views/courses/upload_courses/upload_view_5.dart';
 import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -21,54 +23,65 @@ class UploadView_6 extends StackedView<UploadCoursesViewModel> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               BigText(
                   text: viewModel.courseData.title.toString(),
                   color: Colors.black),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30),
+               Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Row(
                   children: [
-                    ButtonText(text: "Price:", color: Colors.black),
-                    SmallText(text: "29000\$", color: Colors.black),
+                    const ButtonText(text: "Price:", color: Colors.black),
+                    SmallText(text: " ${viewModel.courseData.price}\$ ", color: Colors.black),
                   ],
                 ),
               ),
             ],
           ),
           verticalSpaceSmall,
-          Row(
+           Row(
             children: [
               Column(
+                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ButtonText(text: "Catogery:", color: Colors.black),
-                  SmallText(text: "dsfsdffffffff", color: Colors.black),
+                  const ButtonText(text: "Catogery:", color: Colors.black),
+                  SmallText(text: viewModel.courseData.category.toString(), color: Colors.black),
                 ],
               ),
               horizontalSpaceLarge,
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ButtonText(text: "Duration:", color: Colors.black),
-                  SmallText(text: "23 hours", color: Colors.black),
+                  const ButtonText(text: "Duration:", color: Colors.black),
+                  SmallText(text: viewModel.courseData.duration.toString(), color: Colors.black),
                 ],
               ),
             ],
           ),
           verticalSpaceSmall,
-          ButtonText(text: "Description:", color: Colors.black),
-          SmallText(
+          const ButtonText(text: "Description:", color: Colors.black),
+           SmallText(
             color: Colors.black,
-            text:
-                "We reserve the right to require credit card or alternate non-promotional payment method information for verification purposes, even if the Gift Card or Gift Certificate fully covers the transaction order total. We do not allow the purchase of a Gift Card with another Gift Card, Gift Certificate, Savings Pass, Appreciation Award, Award Card, or Rewards Pass. One gift card per order online, please call the specific phone lines listed aWe reserve the right to require credit card or alternate non-promotional payment method information for verification purposes, even if the Gift Card or Gift Certificate fully covers the transaction order total. We do not allow the purchase of a Gift Card with another Gift Card, Gift Certificate, Savings Pass, Appreciation Award, Award Card, or Rewards Pass. One gift card per order online, please call the specific phone lines listed aWe reserve the right to require credit card or alternate non-promotional payment method information for verification purposes, even if the Gift Card or Gift Certificate fully covers the transaction order total. We do not allow the purchase of a Gift Card with another Gift Card, Gift Certificate, Savings Pass, Appreciation Award, Award Card, or Rewards Pass. One gift card per order online, please call the specific phone lines listed a",
+            text: viewModel.courseData.description.toString()  
           ),
           verticalSpaceSmall,
-          StarText(
+          const StarText(
             text: 'Lectures',
           ),
-          UploadView_4(),
+          const UploadView_4(),
+          verticalSpaceSmall,
+          const StarText(
+            text: 'Assignments',
+          ),
+          const UploadView_5(),
+          verticalSpaceSmall,
+          const StarText(
+            text: 'FAQ',
+          ),
+          const UploadView_2(),
           verticalSpaceSmall,
         ],
       ),

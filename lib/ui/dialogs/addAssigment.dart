@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import '../../services/Model/CoursesModel.dart';
 import '../../services/courses_service.dart';
@@ -17,12 +19,14 @@ addAssigmentAlert(
   return showDialog<String>(
     context: context,
     builder: (BuildContext context) => AlertDialog(
-      title: const Text(
-        'Upload Lecture',
+      title:const Center(
+        child:  Text(
+          'Upload Lecture',
+        ),
       ),
       content: StatefulBuilder(builder: (context, newSetState) {
         return SizedBox(
-          height: 250,
+          height: 290,
           child: Column(
             children: [
               IconTextField(
@@ -57,6 +61,7 @@ addAssigmentAlert(
           ),
         );
       }),
+      
       actions: <Widget>[
         TextButton(
           onPressed: () => Navigator.pop(

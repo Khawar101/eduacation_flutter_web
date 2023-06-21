@@ -38,7 +38,6 @@ class UploadView_5 extends StackedView<UploadCoursesViewModel> {
             itemCount: viewModel.assigments.length + 1,
             itemBuilder: (BuildContext context, index) {
               return Container(
-                alignment: Alignment.center,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15)),

@@ -23,7 +23,7 @@ addLectureAlert(
       ),
       content: StatefulBuilder(builder: (context, newSetState) {
         return SizedBox(
-          height: 250,
+        height: 290,
           child: Column(
             children: [
               IconTextField(
