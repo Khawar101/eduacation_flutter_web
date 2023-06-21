@@ -10,7 +10,7 @@ import '../../../../../services/Model/CoursesModel.dart';
 
 Widget Card_Page(context, lectureData) {
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,7 +29,7 @@ Widget Card_Page(context, lectureData) {
                 fit: BoxFit.cover,
               )),
         ),
-        horizontalSpaceSmall,
+        horizontalSpaceTiny,
         Expanded(
           flex: 2,
           //     MediaQuery.of(context).size.width*0.12,
@@ -40,9 +40,18 @@ Widget Card_Page(context, lectureData) {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    width:MediaQuery.of(context).size.width*0.11,
-                    child: ButtonText(text: lectureData.title.toString(), color: Colors.black,)),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.11,
+                    child: Text(
+                      lectureData.title.toString(),
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
+                          overflow: TextOverflow.ellipsis,
+                          fontWeight: FontWeight.w400),
+                      maxLines: 1,
+                    ),
+                  ),
                   IconButton(
                       onPressed: () {},
                       icon: const Icon(Icons.remove_circle_outline))
@@ -56,9 +65,8 @@ Widget Card_Page(context, lectureData) {
                     fontSize: 15,
                     overflow: TextOverflow.ellipsis,
                     fontWeight: FontWeight.w400),
-                maxLines: 6,
+                maxLines: 7,
               ),
-           
             ],
           ),
         )

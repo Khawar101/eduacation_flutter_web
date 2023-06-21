@@ -48,12 +48,12 @@ addAssigmentAlert(
                   addBtn("Thumbnail", _coursesService.progressshow,
                       _coursesService.thubnailUrl, () {
                     addThumbnail(newSetState);
-                  }),
+                  },context),
                   const SizedBox(width: 20),
                   addBtn("Assigment", _coursesService.videoProgress,
                       _coursesService.assigmentUrl, () {
                     addAssigmentFile(newSetState);
-                  }),
+                  },context),
                   // dropAddBtn(),
                 ],
               )

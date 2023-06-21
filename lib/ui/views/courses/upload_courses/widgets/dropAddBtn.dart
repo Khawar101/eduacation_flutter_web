@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../common/app_assets.dart';
 
-Widget addBtn(type, progress, url, fun) {
+Widget addBtn(type, progress, url, fun,context) {
   return InkWell(
     onTap: fun,
     child: Container(
@@ -20,7 +20,7 @@ Widget addBtn(type, progress, url, fun) {
             width: 1,
           )),
       height: 90,
-      width: 90,
+    width: MediaQuery.of(context).size.width*0.13,
       child: url == ""
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.center,

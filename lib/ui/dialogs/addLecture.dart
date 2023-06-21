@@ -18,15 +18,19 @@ addLectureAlert(
   return showDialog<String>(
     context: context,
     builder: (BuildContext context) => AlertDialog(
+   
       title: const Text(
         'Upload Lecture',
       ),
       content: StatefulBuilder(builder: (context, newSetState) {
-        return SizedBox(
+        return Container(
         height: 290,
+         width: MediaQuery.of(context).size.width*0.3,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconTextField(
+               
                 titleText: "Title",
                 controller: videoTitleCtrl,
                 hintText: 'e.g: Free Programming Courses',
@@ -45,12 +49,12 @@ addLectureAlert(
                   addBtn("Thumbnail", _coursesService.progressshow,
                       _coursesService.thubnailUrl, () {
                     addThumbnail(newSetState);
-                  }),
+                  },context),
                   const SizedBox(width: 20),
                   addBtn("Video", _coursesService.videoProgress,
                       _coursesService.videoUrl, () {
                     addVideo(newSetState);
-                  }),
+                  },context),
                   // dropAddBtn(),
                 ],
               )
