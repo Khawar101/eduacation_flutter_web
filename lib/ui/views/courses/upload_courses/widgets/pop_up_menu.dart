@@ -1,3 +1,4 @@
+import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.dart';
 import 'package:flutter/material.dart';
 enum SampleItem { itemOne, itemTwo }
 class PopupMenu extends StatefulWidget {
@@ -12,29 +13,32 @@ class _PopupMenuState extends State<PopupMenu> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('PopupMenuButton')),
-      body: Center(
-        child: PopupMenuButton<SampleItem>(
-          initialValue: selectedMenu,
-          // Callback that sets the selected popup menu item.
-          onSelected: (SampleItem item) {
-            setState(() {
-              selectedMenu = item;
-            });
-          },
-          itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
-            const PopupMenuItem<SampleItem>(
-              value: SampleItem.itemOne,
-              child: Text('remove'),
-            ),
-            const PopupMenuItem<SampleItem>(
-              value: SampleItem.itemTwo,
-              child: Text('edit'),
-            ),
-          
-          ],
-        ),
+    return  Container(
+      width: 30,
+      child: PopupMenuButton<SampleItem>(
+        padding: const EdgeInsets.all(0),
+        iconSize: 15,position: PopupMenuPosition.over,
+        initialValue: selectedMenu,
+       
+        // Callback that sets the selected popup menu item.
+        onSelected: (SampleItem item) {
+          setState(() {
+            selectedMenu = item;
+          });
+        },
+        itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
+          const PopupMenuItem<SampleItem>(
+               padding: EdgeInsets.all(0),
+            value: SampleItem.itemOne,
+            child: SmallText(text: "remove", color: Colors.red)
+          ),
+          const PopupMenuItem<SampleItem>(
+            value: SampleItem.itemTwo,
+            padding: EdgeInsets.all(0),
+             child: SmallText(text: "add", color: Colors.black)
+          ),
+        
+        ],
       ),
     );
   }

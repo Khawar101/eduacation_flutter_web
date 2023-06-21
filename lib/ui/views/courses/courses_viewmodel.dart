@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:education_flutter_web/ui/views/courses/upload_courses/widgets/pop_up_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -92,40 +93,54 @@ class CoursesViewModel extends BaseViewModel {
             var data = snapshot.data![index];
             return Card(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.network("https://img-b.udemycdn.com/course/480x270/548278_b005_9.jpg"),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 8.0,
-                      right: 8.0,
-                      top: 8.0,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text(
-                          data.title.toString(),
-                          style: const TextStyle(
-                              overflow: TextOverflow.ellipsis,
-                              fontWeight: FontWeight.bold),
-                          maxLines: 2,
-                        ),
-                        // reating(data["rating"], data["reated"]),
-                        CustomText(
-                            text: "\$${data.price.toString()}",
-                            size: 17,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black)
-                      ],
-                    ),
+                  Image.network(
+                      "https://img-b.udemycdn.com/course/480x270/548278_b005_9.jpg"),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: 8.0,
+                              top: 8.0,
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  data.title.toString(),
+                                  style: const TextStyle(
+                                      overflow: TextOverflow.ellipsis,
+                                      fontWeight: FontWeight.bold),
+                                  maxLines: 2,
+                                ),
+
+                                // reating(data["rating"], data["reated"]),
+                                CustomText(
+                                    text: "\$${data.price.toString()}",
+                                    size: 17,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ],
+                            ),
+                          ),
+                          PopupMenu()
+                        ],
+                      ),
+                    ],
                   )
                 ],
               ),
             );
           },
         );
-     
       },
     );
   }
