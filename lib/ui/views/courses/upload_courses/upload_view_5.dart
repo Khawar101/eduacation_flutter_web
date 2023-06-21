@@ -51,7 +51,9 @@ class UploadView_5 extends StackedView<UploadCoursesViewModel> {
                           size: 50,
                         ),
                       )
-                    : Card_Page(context, viewModel.assigments[index]),
+                    : Card_Page(context, viewModel.assigments[index], () {
+                        viewModel.removeAssigment(index);
+                      }),
               );
             }),
         //

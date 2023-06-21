@@ -26,8 +26,10 @@ addAssigmentAlert(
       ),
       content: StatefulBuilder(builder: (context, newSetState) {
         return SizedBox(
-          height: 290,
+        height: 290,
+         width: MediaQuery.of(context).size.width*0.3,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconTextField(
                 titleText: "Title",
@@ -54,7 +56,6 @@ addAssigmentAlert(
                       _coursesService.assigmentUrl, () {
                     addAssigmentFile(newSetState);
                   },context),
-                  // dropAddBtn(),
                 ],
               )
             ],

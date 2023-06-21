@@ -11,7 +11,7 @@ class UploadView_4 extends StackedView<UploadCoursesViewModel> {
   const UploadView_4({Key? key}) : super(key: key);
   @override
   void onViewModelReady(UploadCoursesViewModel viewModel) {
-    viewModel.lectures = viewModel.courseData.lecture??[];
+    viewModel.lectures = viewModel.courseData.lecture ?? [];
     super.onViewModelReady(viewModel);
   }
 
@@ -58,7 +58,9 @@ class UploadView_4 extends StackedView<UploadCoursesViewModel> {
                           size: 50,
                         ),
                       )
-                    : Card_Page(context, viewModel.lectures[index]),
+                    : Card_Page(context, viewModel.lectures[index], () {
+                        viewModel.removeLecture(index);
+                      }),
               );
             }),
         //
