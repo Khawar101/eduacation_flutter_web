@@ -173,12 +173,25 @@ class CoursesService {
     try {
       var key = DateTime.now().microsecondsSinceEpoch;
       print(courseData.toJson());
-      await FirebaseFirestore.instance.collection("courses").doc(key.toString()).set(courseData.toJson());
+      await FirebaseFirestore.instance
+          .collection("courses")
+          .doc(key.toString())
+          .set(courseData.toJson());
       // message = "Login Successfully";
     } catch (e) {
       // message = e.toString();
     }
   }
-    final Stream<QuerySnapshot> coursesStream = FirebaseFirestore.instance.collection('courses').snapshots();
 
+  // final Stream<QuerySnapshot> coursesStream =
+  //     FirebaseFirestore.instance.collection('courses').snapshots();
+  Stream<List<CoursesModel>> coursesStream() {
+    final stream = FirebaseFirestore.instance.collection("courses").snapshots();
+    return stream.map((event) => event.docs.map((doc) {
+          return CoursesModel.fromJson(doc.data());
+        }).toList());
+  }
+  //   Stream<List<CoursesModel>> listenToMessages() {
+  //   return coursesStream();
+  // }
 }

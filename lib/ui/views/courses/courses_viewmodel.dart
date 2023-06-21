@@ -1,15 +1,15 @@
 import 'dart:developer';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../app/app.locator.dart';
+import '../../../services/Model/CoursesModel.dart';
 import '../../../services/courses_service.dart';
 import '../../widgets/common/sized_text/sized_text.dart';
 
 class CoursesViewModel extends BaseViewModel {
   // final _navigationService = locator<NavigationService>();
-  final _coursesService = locator<CoursesService>();
+  final coursesService = locator<CoursesService>();
 
   var pageNo = 0;
   nextPage() {
@@ -68,9 +68,10 @@ class CoursesViewModel extends BaseViewModel {
   ];
 
   Widget coursesBuilder() {
-    return StreamBuilder<QuerySnapshot>(
-      stream: _coursesService.coursesStream,
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+    return StreamBuilder<List<CoursesModel>>(
+      stream: coursesService.coursesStream(),
+      builder:
+          (BuildContext context, AsyncSnapshot<List<CoursesModel>> snapshot) {
         if (snapshot.hasError) {
           return Text('Something went wrong');
         }
@@ -78,10 +79,9 @@ class CoursesViewModel extends BaseViewModel {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Text("Loading");
         }
-
         return GridView.builder(
           shrinkWrap: true,
-          itemCount: snapshot.data!.docs.length,
+          itemCount: snapshot.data!.length,
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent: 300,
             mainAxisExtent: 260,
@@ -89,7 +89,7 @@ class CoursesViewModel extends BaseViewModel {
             mainAxisSpacing: 8,
           ),
           itemBuilder: (BuildContext context, int index) {
-            var data = snapshot.data!.docs[index];
+            var data = snapshot.data![index];
             return Card(
               child: Column(
                 children: [
@@ -105,7 +105,7 @@ class CoursesViewModel extends BaseViewModel {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text(
-                          data["title"].toString(),
+                          data.title.toString(),
                           style: const TextStyle(
                               overflow: TextOverflow.ellipsis,
                               fontWeight: FontWeight.bold),
@@ -113,7 +113,7 @@ class CoursesViewModel extends BaseViewModel {
                         ),
                         // reating(data["rating"], data["reated"]),
                         CustomText(
-                            text: "\$${data["price"]}",
+                            text: "\$${data.price.toString()}",
                             size: 17,
                             fontWeight: FontWeight.bold,
                             color: Colors.black)
@@ -125,6 +125,7 @@ class CoursesViewModel extends BaseViewModel {
             );
           },
         );
+     
       },
     );
   }
