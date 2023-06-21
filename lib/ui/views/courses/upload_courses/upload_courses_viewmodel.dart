@@ -119,7 +119,7 @@ class UploadCoursesViewModel extends BaseViewModel {
   }
 
   removeLecture(index) {
-    courseData.fAQ!.removeAt(index);
+    courseData.lecture!.removeAt(index);
     notifyListeners();
   }
 
@@ -137,7 +137,7 @@ class UploadCoursesViewModel extends BaseViewModel {
   }
 
   removeAssigment(index) {
-    courseData.fAQ!.removeAt(index);
+    courseData.assigment!.removeAt(index);
     notifyListeners();
   }
 

@@ -12,7 +12,7 @@ Widget addBtn(type, progress, url, fun,context) {
           borderRadius: BorderRadius.circular(10),
           image: url != ""
               ? type != "Thumbnail"
-                  ? const DecorationImage(image: AssetImage(done), fit: BoxFit.cover)
+                  ? const DecorationImage(image: AssetImage(done), fit: BoxFit.contain)
                   : DecorationImage(image: NetworkImage(url), fit: BoxFit.cover)
               : null,
           border: Border.all(

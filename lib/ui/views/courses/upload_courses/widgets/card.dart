@@ -8,12 +8,12 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../services/Model/CoursesModel.dart';
 
-Widget Card_Page(context, lectureData) {
+Widget Card_Page(context, lectureData, remove) {
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+    padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Expanded(
           flex: 1,
@@ -21,15 +21,18 @@ Widget Card_Page(context, lectureData) {
           //  height: MediaQuery.of(context).size.height * 0.22,
 
           //   width:MediaQuery.of(context).size.width * 0.1,
-          child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.network(
-                lectureData.thumbnail.toString(),
-                height: MediaQuery.of(context).size.height * 0.3,
-                fit: BoxFit.cover,
-              )),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(
+                  lectureData.thumbnail.toString(),
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  fit: BoxFit.cover,
+                )),
+          ),
         ),
-        horizontalSpaceTiny,
+        horizontalSpaceSmall,
         Expanded(
           flex: 2,
           //     MediaQuery.of(context).size.width*0.12,
@@ -40,20 +43,16 @@ Widget Card_Page(context, lectureData) {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.11,
-                    child: Text(
-                      lectureData.title.toString(),
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                          overflow: TextOverflow.ellipsis,
-                          fontWeight: FontWeight.w400),
-                      maxLines: 1,
-                    ),
-                  ),
+                  Container(
+                      width: MediaQuery.of(context).size.width * 0.11,
+                      child: ButtonText(
+                        text: lectureData.title.toString(),
+                        color: Colors.black,
+                      )),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        remove();
+                      },
                       icon: const Icon(Icons.remove_circle_outline))
                 ],
               ),
@@ -65,7 +64,7 @@ Widget Card_Page(context, lectureData) {
                     fontSize: 15,
                     overflow: TextOverflow.ellipsis,
                     fontWeight: FontWeight.w400),
-                maxLines: 7,
+                maxLines: 6,
               ),
             ],
           ),
