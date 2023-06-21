@@ -28,7 +28,9 @@ class CoursesView extends StackedView<CoursesViewModel> {
           ),
           Padding(
               padding: const EdgeInsets.all(8.0),
-              child: viewModel.coursesBuilder()),
+              child: Container(
+                height: MediaQuery.of(context).size.height*0.8,
+                child: viewModel.coursesBuilder())),
         ],
       );
     } else {

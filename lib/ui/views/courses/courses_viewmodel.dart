@@ -36,7 +36,7 @@ class CoursesViewModel extends BaseViewModel {
         if (snapshot.hasError) {
           return const Text('Something went wrong');
         }
-
+    
         if (snapshot.connectionState == ConnectionState.waiting) {
           return  Loading();
         }
@@ -52,7 +52,7 @@ class CoursesViewModel extends BaseViewModel {
           itemBuilder: (BuildContext context, int index) {
             var data = snapshot.data![index];
             return GestureDetector(
-
+        
               child: Card(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
