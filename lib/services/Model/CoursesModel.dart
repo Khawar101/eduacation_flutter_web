@@ -2,6 +2,7 @@
 //     "title": "",
 //     "category": "",
 //     "chapter": "",
+//     "coverPic": "",
 //     "description": "",
 //     "publishDate": "",
 //     "UID": "",
@@ -37,11 +38,11 @@
 //         "profile": ""
 //     }
 // }
-
 class CoursesModel {
   String? title;
   String? category;
   String? chapter;
+  String? coverPic;
   String? description;
   String? publishDate;
   String? uID;
@@ -56,6 +57,7 @@ class CoursesModel {
       {this.title,
       this.category,
       this.chapter,
+      this.coverPic,
       this.description,
       this.publishDate,
       this.uID,
@@ -70,6 +72,7 @@ class CoursesModel {
     title = json['title'];
     category = json['category'];
     chapter = json['chapter'];
+    coverPic = json['coverPic'];
     description = json['description'];
     publishDate = json['publishDate'];
     uID = json['UID'];
@@ -103,6 +106,7 @@ class CoursesModel {
     data['title'] = this.title;
     data['category'] = this.category;
     data['chapter'] = this.chapter;
+    data['coverPic'] = this.coverPic;
     data['description'] = this.description;
     data['publishDate'] = this.publishDate;
     data['UID'] = this.uID;
