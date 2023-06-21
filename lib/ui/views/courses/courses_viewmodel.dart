@@ -72,11 +72,11 @@ class CoursesViewModel extends BaseViewModel {
       builder:
           (BuildContext context, AsyncSnapshot<List<CoursesModel>> snapshot) {
         if (snapshot.hasError) {
-          return Text('Something went wrong');
+          return const Text('Something went wrong');
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
+          return const Text("Loading");
         }
         return GridView.builder(
           shrinkWrap: true,
@@ -129,11 +129,22 @@ class CoursesViewModel extends BaseViewModel {
                               ],
                             ),
                           ),
-                          PopupMenu()
+                          const PopupMenu(),
                         ],
                       ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 4),
+                        child: const Text(
+                          "Descriptiodsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssn",
+                          // data.title.toString(),
+                          style: TextStyle(
+                              overflow: TextOverflow.ellipsis,
+                              fontWeight: FontWeight.bold),
+                          maxLines: 2,
+                        ),
+                      ),
                     ],
-                  )
+                  ),
                 ],
               ),
             );
