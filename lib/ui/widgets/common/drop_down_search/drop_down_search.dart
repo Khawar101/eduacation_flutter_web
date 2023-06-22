@@ -1,37 +1,13 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
-class DropDownField extends StatefulWidget {
-  const DropDownField({super.key});
+import '../../../views/courses/upload_courses/upload_courses_viewmodel.dart';
 
-  @override
-  State<DropDownField> createState() => _DropDownFieldState();
-}
+Widget dropDownSearch(context, UploadCoursesViewModel viewModel) {
+  final TextEditingController searchCtrl = TextEditingController();
 
-class _DropDownFieldState extends State<DropDownField> {
-  final List<String> items = [
-  'A_Item1',
-  'A_Item2',
-  'A_Item3',
-  'A_Item4',
-  'B_Item1',
-  'B_Item2',
-  'B_Item3',
-  'B_Item4',
-];
-
-String? selectedValue;
-final TextEditingController textEditingController = TextEditingController();
-
-@override
-void dispose() {
-  textEditingController.dispose();
-  super.dispose();
-}
-  @override
-  Widget build(BuildContext context) {
-      var width = MediaQuery.of(context).size.width;
-    return Scaffold(
+  var width = MediaQuery.of(context).size.width;
+  return Scaffold(
     body: Center(
       child: DropdownButtonHideUnderline(
         child: DropdownButton2<String>(
@@ -43,7 +19,7 @@ void dispose() {
               color: Colors.black,
             ),
           ),
-          items: items
+          items: viewModel.categoryList
               .map((item) => DropdownMenuItem(
                     value: item,
                     child: Text(
@@ -54,21 +30,22 @@ void dispose() {
                     ),
                   ))
               .toList(),
-          value: selectedValue,
+          value: viewModel.courseData.category,
           onChanged: (value) {
-            setState(() {
-              selectedValue = value;
-            });
+            viewModel.getCategoryValue(value);
           },
-          buttonStyleData:  ButtonStyleData(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            height: 40,
-            width: width / 1.8,
-            decoration: BoxDecoration(
-              border: Border.all(width: 1, color: const Color(0xff4873a6).withOpacity(0.7),),
-              color: Colors.white,borderRadius: BorderRadius.circular(10),
-            )
-          ),
+          buttonStyleData: ButtonStyleData(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              height: 40,
+              width: width / 1.8,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  width: 1,
+                  color: const Color(0xff4873a6).withOpacity(0.7),
+                ),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              )),
           dropdownStyleData: const DropdownStyleData(
             maxHeight: 200,
           ),
@@ -76,7 +53,7 @@ void dispose() {
             height: 40,
           ),
           dropdownSearchData: DropdownSearchData(
-            searchController: textEditingController,
+            searchController: searchCtrl,
             searchInnerWidgetHeight: 50,
             searchInnerWidget: Container(
               height: 50,
@@ -89,7 +66,7 @@ void dispose() {
               child: TextFormField(
                 expands: true,
                 maxLines: null,
-                controller: textEditingController,
+                controller: searchCtrl,
                 decoration: InputDecoration(
                   isDense: true,
                   contentPadding: const EdgeInsets.symmetric(
@@ -111,13 +88,11 @@ void dispose() {
           //This to clear the search value when you close the menu
           onMenuStateChange: (isOpen) {
             if (!isOpen) {
-              textEditingController.clear();
+              searchCtrl.clear();
             }
           },
         ),
       ),
     ),
   );
-  }
 }
-

@@ -90,8 +90,14 @@ class _UsersDataState extends State<UsersData> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(Icons.circle_sharp, color: Colors.green, size: 10,),
-                      const SizedBox(width: 5,),
+                      const Icon(
+                        Icons.circle_sharp,
+                        color: Colors.green,
+                        size: 10,
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
                       Text(
                         widget.status,
                         textAlign: TextAlign.center,

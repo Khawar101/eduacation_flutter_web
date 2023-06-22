@@ -47,7 +47,7 @@ class _EnrolmentState extends State<Enrolment> {
               dividerMargin: 0,
               borderColor: const [Colors.black26],
               dividerColor: Colors.black26,
-              minWidth: MediaQuery.of(context).size.width*0.06,
+              minWidth: MediaQuery.of(context).size.width * 0.06,
               minHeight: 40.0,
               fontSize: 12.0,
               initialLabelIndex: 1,
@@ -56,16 +56,25 @@ class _EnrolmentState extends State<Enrolment> {
               inactiveBgColor: Colors.white,
               inactiveFgColor: Colors.grey[900],
               totalSwitches: 4,
-              labels: const ['View all', 'Enrolled', 'Active now', 'Unenrolled'],
+              labels: const [
+                'View all',
+                'Enrolled',
+                'Active now',
+                'Unenrolled'
+              ],
               onToggle: (index) {
                 //print('switched to: $index');
               },
             ),
-            SizedBox( width: MediaQuery.of(context).size.width*0.2,
-            child: CustomTextField(
-              hintText: 'Search',
-              prefix: Icon(Icons.search,size: 16,),
-            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.2,
+              child: CustomTextField(
+                hintText: 'Search',
+                prefix: Icon(
+                  Icons.search,
+                  size: 16,
+                ),
+              ),
             ),
           ],
         ),

@@ -1,11 +1,11 @@
 // ignore_for_file: camel_case_types
 
 import 'package:education_flutter_web/ui/common/app_colors.dart';
-import 'package:education_flutter_web/ui/views/courses/upload_courses/widgets/dropdownbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 import '../../../widgets/common/custom_text_field/custom_text_field.dart';
+import '../../../widgets/common/drop_down_search/drop_down_search.dart';
 import '../../../widgets/common/icon_text_field/icon_text_field.dart';
 import 'upload_courses_viewmodel.dart';
 
@@ -15,7 +15,6 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
   @override
   void onViewModelReady(UploadCoursesViewModel viewModel) {
     viewModel.titleCtrl.text = viewModel.courseData.title ?? "";
-    viewModel.categoryCtrl.text = viewModel.courseData.category ?? "";
     viewModel.chapterCtrl.text = viewModel.courseData.chapter ?? "";
     viewModel.descriptionCtrl.text = viewModel.courseData.description ?? "";
     super.onViewModelReady(viewModel);
@@ -28,7 +27,6 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
     Widget? child,
   ) {
     var width = MediaQuery.of(context).size.width;
-    // final _formKey = GlobalKey<FormState>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -45,9 +43,6 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
           controller: viewModel.titleCtrl,
           onChanged: (s) {
             viewModel.getTitleValue(s);
-            //  if (_formKey.currentState!.validate()) {
-
-            //               }
           },
         ),
         const SizedBox(height: 30),
@@ -56,23 +51,10 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
           children: [
             Column(
               children: [
-                Container(
-                  height: 50,  width: width / 1.8,
-                  child: DropDownField()),
-                // IconTextField(
-                //   titleText: "CATEGORY",
-                //   icon: Icons.category,
-                //   controller: viewModel.categoryCtrl,
-                //   onChanged: (s) {
-                //     viewModel.getCategoryValue(s);
-                //   },
-                //   prefix: Icon(
-                //     Icons.category,
-                //     color: const Color(0xff4873a6).withOpacity(0.7),
-                //   ),
-                //   width: width / 1.8,
-                //   hintText: 'Enter your category...',
-                // ),
+                SizedBox(
+                    height: 50,
+                    width: width / 1.8,
+                    child: dropDownSearch(context, viewModel)),
                 const SizedBox(height: 30),
                 IconTextField(
                   titleText: "Chapter",

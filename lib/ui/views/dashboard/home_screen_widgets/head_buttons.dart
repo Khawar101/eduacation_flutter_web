@@ -39,22 +39,22 @@ class _HeadButtonsState extends State<HeadButtons> {
         Row(
           children: [
             ElevatedButton(
-              style:  ButtonStyle(
+              style: ButtonStyle(
                 backgroundColor: const MaterialStatePropertyAll(Colors.white54),
                 side: MaterialStatePropertyAll(
                   BorderSide(
                     style: BorderStyle.solid,
                     width: 0.5,
-                     color: const Color(0xff4873a6).withOpacity(0.7),
+                    color: const Color(0xff4873a6).withOpacity(0.7),
                   ),
                 ),
               ),
               onPressed: null,
               child: Row(
                 children: [
-                   Icon(
+                  Icon(
                     Icons.cloud_download_outlined,
-                     color: const Color(0xff4873a6).withOpacity(0.7),
+                    color: const Color(0xff4873a6).withOpacity(0.7),
                   ),
                   const SizedBox(
                     width: 10,

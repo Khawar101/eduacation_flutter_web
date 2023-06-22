@@ -17,67 +17,66 @@ class DashboardView extends StackedView<DashboardViewModel> {
     Widget? child,
   ) {
     return Container(
-      height: MediaQuery.of(context).size.height*0.87,
+      height: MediaQuery.of(context).size.height * 0.87,
       color: Colors.white,
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Column(
             children: [
               const HeadButtons(),
               const SizedBox(
                 height: 30,
               ),
-               LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-          if (constraints.maxWidth > 1000) {
-            return const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                Stats(
-                    headingText: 'Total Member',
-                    containerText: '20',
-                    number: '1,620',
-                  ),
-                  Stats(
-                    headingText: 'Enrolled Member',
-                    containerText: '15',
-                    number: '1,220',
-                  ),
-                  Stats(
-                    headingText: 'Active Now ',
-                    containerText: '12',
-                    number: '208',
-                  ),
-                ],
-              );
-          } else {
-            return const Column(
-               
-                children: [
-                Stats(
-                    headingText: 'Total Member',
-                    containerText: '20',
-                    number: '1,620',
-                  ),
-                  SizedBox(height: 10),
-                  Stats(
-                    headingText: 'Enrolled Member',
-                    containerText: '15',
-                    number: '1,220',
-                  ),
-                    SizedBox(height: 10),
-                  Stats(
-                    headingText: 'Active Now ',
-                    containerText: '12',
-                    number: '208',
-                  ),
-                ],
-              );
-          }
-        },
-      ),
-                
+              LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  if (constraints.maxWidth > 1000) {
+                    return const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Stats(
+                          headingText: 'Total Member',
+                          containerText: '20',
+                          number: '1,620',
+                        ),
+                        Stats(
+                          headingText: 'Enrolled Member',
+                          containerText: '15',
+                          number: '1,220',
+                        ),
+                        Stats(
+                          headingText: 'Active Now ',
+                          containerText: '12',
+                          number: '208',
+                        ),
+                      ],
+                    );
+                  } else {
+                    return const Column(
+                      children: [
+                        Stats(
+                          headingText: 'Total Member',
+                          containerText: '20',
+                          number: '1,620',
+                        ),
+                        SizedBox(height: 10),
+                        Stats(
+                          headingText: 'Enrolled Member',
+                          containerText: '15',
+                          number: '1,220',
+                        ),
+                        SizedBox(height: 10),
+                        Stats(
+                          headingText: 'Active Now ',
+                          containerText: '12',
+                          number: '208',
+                        ),
+                      ],
+                    );
+                  }
+                },
+              ),
+
               const SizedBox(
                 height: 20,
               ),

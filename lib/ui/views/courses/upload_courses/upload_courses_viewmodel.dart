@@ -31,7 +31,17 @@ class UploadCoursesViewModel extends BaseViewModel {
     const UploadView_6(),
   ];
   TextEditingController titleCtrl = TextEditingController();
-  TextEditingController categoryCtrl = TextEditingController();
+  final List<String> categoryList = [
+    'A_Item1',
+    'A_Item2',
+    'A_Item3',
+    'A_Item4',
+    'B_Item1',
+    'B_Item2',
+    'B_Item3',
+    'B_Item4',
+  ];
+  String? categoryValue;
   TextEditingController chapterCtrl = TextEditingController();
   TextEditingController descriptionCtrl = TextEditingController();
   TextEditingController questionCtrl = TextEditingController();
@@ -62,6 +72,7 @@ class UploadCoursesViewModel extends BaseViewModel {
 
   getCategoryValue(value) {
     _coursesService.courseData.category = value;
+    notifyListeners();
   }
 
   getChapterValue(value) {
@@ -87,6 +98,9 @@ class UploadCoursesViewModel extends BaseViewModel {
         if (_coursesService.courseData.coverPic == "" ||
             _coursesService.courseData.coverPic == null) {
           snakBar(context, "Please upload cover photo");
+        } else if (_coursesService.courseData.category == "" ||
+            _coursesService.courseData.category == null) {
+          snakBar(context, "Please select category");
         } else {
           nextPage();
         }
@@ -97,22 +111,21 @@ class UploadCoursesViewModel extends BaseViewModel {
         } else {
           nextPage();
         }
-      }else if (screenNo == 3) {
+      } else if (screenNo == 3) {
         if (_coursesService.courseData.lecture == [] ||
             _coursesService.courseData.lecture == null) {
           snakBar(context, "Please enter lecture details");
         } else {
           nextPage();
         }
-      }else if (screenNo == 4) {
+      } else if (screenNo == 4) {
         if (_coursesService.courseData.assigment == [] ||
             _coursesService.courseData.assigment == null) {
           snakBar(context, "Please enter assignment details");
         } else {
           nextPage();
         }
-      }
-       else {
+      } else {
         nextPage();
       }
     }

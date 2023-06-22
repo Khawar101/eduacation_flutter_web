@@ -12,6 +12,7 @@ class UploadView_5 extends StackedView<UploadCoursesViewModel> {
     viewModel.assigments = viewModel.courseData.assigment ?? [];
     super.onViewModelReady(viewModel);
   }
+
   @override
   Widget builder(
     BuildContext context,

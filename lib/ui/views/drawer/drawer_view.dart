@@ -190,7 +190,8 @@ class DrawerView extends StackedView<DrawerViewModel> {
                               ),
                               Row(
                                 children: [
-                                  const Icon(Icons.notifications_outlined, size: 18),
+                                  const Icon(Icons.notifications_outlined,
+                                      size: 18),
                                   const SizedBox(width: 8),
                                   CircleAvatar(
                                     radius: 15,

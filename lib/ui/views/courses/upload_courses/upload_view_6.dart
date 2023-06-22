@@ -30,25 +30,29 @@ class UploadView_6 extends StackedView<UploadCoursesViewModel> {
               BigText(
                   text: viewModel.courseData.title.toString(),
                   color: Colors.black),
-               Padding(
+              Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Row(
                   children: [
                     const ButtonText(text: "Price:", color: Colors.black),
-                    SmallText(text: " ${viewModel.courseData.price}\$ ", color: Colors.black),
+                    SmallText(
+                        text: " ${viewModel.courseData.price}\$ ",
+                        color: Colors.black),
                   ],
                 ),
               ),
             ],
           ),
           verticalSpaceSmall,
-           Row(
+          Row(
             children: [
               Column(
-                 crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const ButtonText(text: "Catogery:", color: Colors.black),
-                  SmallText(text: viewModel.courseData.category.toString(), color: Colors.black),
+                  SmallText(
+                      text: viewModel.courseData.category.toString(),
+                      color: Colors.black),
                 ],
               ),
               horizontalSpaceLarge,
@@ -56,17 +60,18 @@ class UploadView_6 extends StackedView<UploadCoursesViewModel> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const ButtonText(text: "Duration:", color: Colors.black),
-                  SmallText(text: viewModel.courseData.duration.toString(), color: Colors.black),
+                  SmallText(
+                      text: viewModel.courseData.duration.toString(),
+                      color: Colors.black),
                 ],
               ),
             ],
           ),
           verticalSpaceSmall,
           const ButtonText(text: "Description:", color: Colors.black),
-           SmallText(
-            color: Colors.black,
-            text: viewModel.courseData.description.toString()  
-          ),
+          SmallText(
+              color: Colors.black,
+              text: viewModel.courseData.description.toString()),
           verticalSpaceSmall,
           const StarText(
             text: 'Lectures',

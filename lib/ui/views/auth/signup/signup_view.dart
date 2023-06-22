@@ -58,7 +58,6 @@ class SignupView extends StackedView<SignupViewModel> {
                           controller: viewModel.emailCTRL,
                           hintText: 'you@example.com',
                           prefix: const Icon(Icons.email),
-                          
                         ),
                         const SizedBox(height: 18),
                         CustomTextField(
@@ -96,10 +95,8 @@ class SignupView extends StackedView<SignupViewModel> {
                         const SizedBox(height: 15),
                         GestureDetector(
                           onTap: () {
-                             viewModel.sendOtp();
-                            if (_formKey.currentState!.validate()) {
-                             
-                            }
+                            viewModel.sendOtp();
+                            if (_formKey.currentState!.validate()) {}
                           },
                           child: Container(
                             height: 50,
@@ -146,8 +143,8 @@ class SignupView extends StackedView<SignupViewModel> {
                               width: MediaQuery.of(context).size.width * 0.15,
                               decoration: BoxDecoration(
                                   border: Border.all(
-                                    color:
-                                        const Color(0xff4873a6).withOpacity(0.7),
+                                    color: const Color(0xff4873a6)
+                                        .withOpacity(0.7),
                                   ),
                                   borderRadius: BorderRadius.circular(10)),
                               child: Row(
@@ -174,8 +171,8 @@ class SignupView extends StackedView<SignupViewModel> {
                               width: MediaQuery.of(context).size.width * 0.15,
                               decoration: BoxDecoration(
                                   border: Border.all(
-                                    color:
-                                        const Color(0xff4873a6).withOpacity(0.7),
+                                    color: const Color(0xff4873a6)
+                                        .withOpacity(0.7),
                                   ),
                                   borderRadius: BorderRadius.circular(10)),
                               child: Row(

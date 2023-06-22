@@ -46,7 +46,7 @@ class LoginViewModel extends BaseViewModel {
         await Store.save('userId', userDetail.uID!);
       }
       _navigationService.navigateToDrawerView();
-    } 
+    }
     snakBar(context, _loginService.message);
   }
 }

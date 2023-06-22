@@ -27,13 +27,13 @@ class SplashScreenView extends StackedView<SplashScreenViewModel> {
           children: [
             Center(
                 child: Text(
-                  'Education\nApp',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.ibmPlexSans(
-                      color: Colors.black,
-                      fontSize: 26,
-                      fontWeight: FontWeight.w500),
-                )),
+              'Education\nApp',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.ibmPlexSans(
+                  color: Colors.black,
+                  fontSize: 26,
+                  fontWeight: FontWeight.w500),
+            )),
             Padding(
               padding: const EdgeInsets.all(60),
               child: Container(
@@ -46,9 +46,9 @@ class SplashScreenView extends StackedView<SplashScreenViewModel> {
                 transform: Matrix4.identity()..rotateZ(15 * 3.1415927 / -360),
                 child: const Center(
                     child: Icon(
-                      Icons.book,
-                      color: Colors.white,
-                    )),
+                  Icons.book,
+                  color: Colors.white,
+                )),
               ),
             ),
             Padding(
@@ -64,9 +64,9 @@ class SplashScreenView extends StackedView<SplashScreenViewModel> {
                 ),
                 child: Center(
                     child: Image.asset(
-                      'assets/icons/graduation-cap.png',
-                      width: 30,
-                    )),
+                  'assets/icons/graduation-cap.png',
+                  width: 30,
+                )),
               ),
             ),
             Padding(
@@ -81,19 +81,19 @@ class SplashScreenView extends StackedView<SplashScreenViewModel> {
                     color: Colors.amber),
                 child: Center(
                     child: Container(
-                      height: 30,
-                      width: 30,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(color: Colors.white)),
-                      child: Center(
-                          child: Text(
-                            'A+',
-                            style: GoogleFonts.ibmPlexSans(
-                              color: Colors.white,
-                            ),
-                          )),
-                    )),
+                  height: 30,
+                  width: 30,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.white)),
+                  child: Center(
+                      child: Text(
+                    'A+',
+                    style: GoogleFonts.ibmPlexSans(
+                      color: Colors.white,
+                    ),
+                  )),
+                )),
               ),
             ),
             Padding(
@@ -108,9 +108,9 @@ class SplashScreenView extends StackedView<SplashScreenViewModel> {
                     color: Colors.grey),
                 child: Center(
                     child: Image.asset(
-                      'assets/icons/react-native-50.png',
-                      width: 40,
-                    )),
+                  'assets/icons/react-native-50.png',
+                  width: 40,
+                )),
               ),
             ),
             Padding(
@@ -126,10 +126,10 @@ class SplashScreenView extends StackedView<SplashScreenViewModel> {
                 ),
                 child: const Center(
                     child: Icon(
-                      Icons.phone_android_sharp,
-                      color: Colors.white,
-                      size: 18,
-                    )),
+                  Icons.phone_android_sharp,
+                  color: Colors.white,
+                  size: 18,
+                )),
               ),
             ),
             Padding(
@@ -146,9 +146,9 @@ class SplashScreenView extends StackedView<SplashScreenViewModel> {
                 transform: Matrix4.identity()..rotateZ(15 * 3.1415927 / -360),
                 child: Center(
                     child: Image.asset(
-                      'assets/icons/book-64.png',
-                      width: 27,
-                    )),
+                  'assets/icons/book-64.png',
+                  width: 27,
+                )),
               ),
             ),
           ],

@@ -49,7 +49,6 @@ class SignupService {
     String password = passwordCTRL.text.trim();
     if (name == "" || email == "" || password == "") {
       message = "filled all filed";
-     
     } else {
       try {
         myauth.setConfig(
@@ -85,7 +84,6 @@ class SignupService {
 
     if (name == "" || email == "" || password == "") {
       message = "filled all filed";
-      
     } else {
       try {
         UserCredential user = await FirebaseAuth.instance
