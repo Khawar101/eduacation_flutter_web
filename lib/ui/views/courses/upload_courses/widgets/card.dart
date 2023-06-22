@@ -70,7 +70,7 @@ Widget Card_Page(context, lectureData, remove) {
                     fontSize: 15,
                     overflow: TextOverflow.ellipsis,
                     fontWeight: FontWeight.w400),
-                maxLines: 6,
+                maxLines: 7,
               ),
             ],
           ),

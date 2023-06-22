@@ -97,7 +97,22 @@ class UploadCoursesViewModel extends BaseViewModel {
         } else {
           nextPage();
         }
-      } else {
+      }else if (screenNo == 3) {
+        if (_coursesService.courseData.lecture == [] ||
+            _coursesService.courseData.lecture == null) {
+          snakBar(context, "Please enter lecture details");
+        } else {
+          nextPage();
+        }
+      }else if (screenNo == 4) {
+        if (_coursesService.courseData.assigment == [] ||
+            _coursesService.courseData.assigment == null) {
+          snakBar(context, "Please enter assignment details");
+        } else {
+          nextPage();
+        }
+      }
+       else {
         nextPage();
       }
     }
