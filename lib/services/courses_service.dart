@@ -199,12 +199,11 @@ class CoursesService {
     return assigmentUrl;
   }
 
-  publishData() async {
+  publishData(publish) async {
     try {
       var key = DateTime.now().microsecondsSinceEpoch;
       courseData.publishDate = key.toString();
-      courseData.publish = true;
-      print("${courseData.publishDate}===");
+      courseData.publish = publish;
       await firestore
           .collection("courses")
           .doc(key.toString())

@@ -248,7 +248,7 @@ class UploadCoursesViewModel extends BaseViewModel {
     );
   }
 
-  publish() {
-    _coursesService.publishData();
+  publish(publish) {
+    _coursesService.publishData(publish);
   }
 }

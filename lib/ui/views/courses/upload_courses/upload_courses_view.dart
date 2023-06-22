@@ -1,3 +1,4 @@
+import 'package:education_flutter_web/ui/views/courses/upload_courses/widgets/bottomBtn.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../../../widgets/common/sized_text/sized_text.dart';
@@ -62,81 +63,42 @@ class UploadCoursesView extends StackedView<UploadCoursesViewModel> {
             ),
           ),
         ),
-        bottomNavigationBar: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width * 0.009,
-              vertical: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                onTap: viewModel.coursesService.cancelPage,
-                child: Container(
-                    height: 50,
-                    width: 100,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                            width: 1,
-                            color: const Color(0xff4873a6).withOpacity(0.7))),
-                    child: const Center(
-                        child:
-                            ButtonText(text: "Cancel", color: Colors.black))),
-              ),
-              Row(
-                children: [
-                  GestureDetector(
-                    onTap: viewModel.backPage,
-                    child: Container(
-                      height: 50,
-                      width: 100,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                              width: 1,
-                              color: const Color(0xff4873a6).withOpacity(0.7))),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.arrow_back_ios, size: 14),
-                          SizedBox(width: 6),
-                          ButtonText(text: "Previous", color: Colors.black)
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 20),
-                  GestureDetector(
-                    onTap: () {
-                      viewModel.screenNo == 5
-                          ? viewModel.publish()
-                          : viewModel.validation(context);
-                    },
-                    child: Container(
-                      height: 50,
-                      width: 100,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                              width: 1,
-                              color: const Color(0xff4873a6).withOpacity(0.7))),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ButtonText(
-                              text:
-                                  viewModel.screenNo == 5 ? "Publish" : "Next",
-                              color: Colors.black),
-                          SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.01),
-                          const Icon(Icons.arrow_forward_ios, size: 14),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              )
-            ],
+        bottomNavigationBar: SizedBox(
+          height: 60,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.009),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                bottomBtn(context, "Cancel", () {
+                  viewModel.coursesService.cancelPage();
+                }),
+                Row(
+                  children: [
+                    viewModel.screenNo != 0
+                        ? bottomBtn(context, "Previous", () {
+                            viewModel.backPage();
+                          })
+                        : Container(),
+                    const SizedBox(width: 20),
+                    viewModel.screenNo == 5
+                        ? bottomBtn(context, "Publish", () {
+                            viewModel.publish(true);
+                          })
+                        : bottomBtn(context, "Next", () {
+                            viewModel.validation(context);
+                          }),
+                    const SizedBox(width: 20),
+                    viewModel.screenNo == 5
+                        ? bottomBtn(context, "Draft", () {
+                            viewModel.publish(false);
+                          })
+                        : Container(),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),

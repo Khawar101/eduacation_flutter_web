@@ -32,12 +32,10 @@ class CoursesViewModel extends BaseViewModel {
   publishCourse(key) {
     coursesService.publishCourseService(key);
     notifyListeners();
-    rebuildUi();
   }
 
   draftCourse(key) {
     coursesService.draftCourseService(key);
     notifyListeners();
-    rebuildUi();
   }
 }
