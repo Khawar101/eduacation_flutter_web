@@ -8,16 +8,12 @@ import 'Model/userData.dart';
 class LoginService {
   var message = "";
   userData UserData = userData();
-
-// bool looding=true;
-  // String number = numberCTRL.text.trim();
-
-  // FlutterSecureStorage storage = const FlutterSecureStorage();
+  FirebaseAuth auth = FirebaseAuth.instance;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   logins(emailCTRL, passwordCTRL) async {
     final UserCredential user;
-    FirebaseAuth auth = FirebaseAuth.instance;
-    FirebaseFirestore firestore = FirebaseFirestore.instance;
+
     final String useremail = emailCTRL.text.trim();
     final String userpassword = passwordCTRL.text;
     try {
@@ -56,10 +52,8 @@ class LoginService {
   }
 
   updateUserData(id) async {
-    final DocumentSnapshot snapshot = await FirebaseFirestore.instance
-        .collection("users")
-        .doc(id)
-        .get();
+    final DocumentSnapshot snapshot =
+        await firestore.collection("users").doc(id).get();
     Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
     UserData = userData(
         uID: data["UID"],

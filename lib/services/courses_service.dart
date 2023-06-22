@@ -13,7 +13,8 @@ import 'Model/CoursesModel.dart';
 
 class CoursesService {
   final _loginService = locator<LoginService>();
-
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  FirebaseStorage storage = FirebaseStorage.instance;
   late CoursesModel courseData = CoursesModel(
       uID: _loginService.UserData.uID ?? "UaRZTAS3CYOE79s79cYeSNoANPa2",
       publisherData: PublisherData(
@@ -51,7 +52,6 @@ class CoursesService {
     uploadImage(
       onSelected: (file) {
         // final path = '${dateTime}${file.name}}';
-        FirebaseStorage storage = FirebaseStorage.instance;
         Reference ref = storage
             .ref()
             .child("courses/$type/${DateTime.now().microsecondsSinceEpoch}");
@@ -107,7 +107,6 @@ class CoursesService {
     uploadVideo(
       onSelected: (file) {
         // final path = '${dateTime}${file.name}}';
-        FirebaseStorage storage = FirebaseStorage.instance;
         Reference ref = storage
             .ref()
             .child("courses/$type/${DateTime.now().microsecondsSinceEpoch}");
@@ -159,7 +158,6 @@ class CoursesService {
     loadFile(
       onSelected: (file) {
         // final path = '${dateTime}${file.name}}';
-        FirebaseStorage storage = FirebaseStorage.instance;
         Reference ref = storage
             .ref()
             .child("courses/$type/${DateTime.now().microsecondsSinceEpoch}");
@@ -192,7 +190,7 @@ class CoursesService {
       var key = DateTime.now().microsecondsSinceEpoch;
       courseData.publishDate = key.toString();
       print("${courseData.publishDate}===");
-      await FirebaseFirestore.instance
+      await firestore
           .collection("courses")
           .doc(key.toString())
           .set(courseData.toJson());
@@ -205,7 +203,7 @@ class CoursesService {
   }
 
   Stream<List<CoursesModel>> coursesStream() {
-    final stream = FirebaseFirestore.instance.collection("courses").snapshots();
+    final stream = firestore.collection("courses").snapshots();
     return stream.map((event) => event.docs.map((doc) {
           return CoursesModel.fromJson(doc.data());
         }).toList());

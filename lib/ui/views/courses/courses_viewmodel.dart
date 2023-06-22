@@ -27,4 +27,8 @@ class CoursesViewModel extends BaseViewModel {
     notifyListeners();
   }
 
- }
+  editCourse() {}
+  deleteCourse() {}
+  publishCourse() {}
+  draftCourse() {}
+}
