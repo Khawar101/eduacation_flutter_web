@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../widgets/common/sized_text/sized_text.dart';
 import '../upload_courses/widgets/pop_up_menu.dart';
 
-Widget courseCard(CoursesModel data){
+Widget courseCard(CoursesModel data,context){
   return GestureDetector(
             child: Card(
               child: Column(
@@ -48,10 +48,10 @@ Widget courseCard(CoursesModel data){
                               ],
                             ),
                           ),
-                          const Positioned(
+                           Positioned(
                             right: 5,
                             top: 5,
-                            child: PopupMenu(),
+                            child: popupMenu(context),
                           )
                         ],
                       ),

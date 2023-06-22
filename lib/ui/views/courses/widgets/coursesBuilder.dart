@@ -27,7 +27,7 @@ Widget coursesBuilder(CoursesService coursesService) {
         ),
         itemBuilder: (BuildContext context, int index) {
           CoursesModel data = snapshot.data![index];
-          return courseCard(data);
+          return courseCard(data, context);
         },
       );
     },
