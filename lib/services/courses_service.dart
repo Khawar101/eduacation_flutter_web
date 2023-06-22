@@ -201,7 +201,7 @@ class CoursesService {
 
   publishData(publish) async {
     try {
-      var key = DateTime.now().microsecondsSinceEpoch;
+      var key = courseData.publishDate ?? DateTime.now().microsecondsSinceEpoch;
       courseData.publishDate = key.toString();
       courseData.publish = publish;
       await firestore
