@@ -71,11 +71,13 @@ class _NewPasswordState extends State<NewPassword> {
                           ),
                         ),
                       ),
-                      
                       const SizedBox(height: 15),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> ResetSuccess()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ResetSuccess()));
                         },
                         child: Container(
                           height: 50,
@@ -97,8 +99,30 @@ class _NewPasswordState extends State<NewPassword> {
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.5,
-                color: Colors.black,
+                height: MediaQuery.of(context).size.width * 0.47,
+                color: Color(0xff4873a6).withOpacity(0.7),
+                child: Column(
+                  children: [
+                    Image.asset(
+                      "assets/images/log.png",
+                      height: MediaQuery.of(context).size.height*0.5,
+                      width: MediaQuery.of(context).size.width*0.5,
+                    ),
+                    const CustomText(
+                          text: 'Welcome to the Future',
+                          size: 24,
+                          fontWeight: FontWeight.w600,
+                          color: Color.fromARGB(255, 139, 238, 200)),
+                      const SizedBox(height: 18),
+                      const CustomText(
+                          text: 'Kindly SignUp to use all the features of the app',
+                          size: 18,
+                          fontWeight: FontWeight.w400,
+                          color: Color.fromARGB(255, 216, 247, 131)),
+                  ],
+                ),
               )
+              
             ],
           ),
         ));

@@ -23,7 +23,7 @@ class _UsersDataState extends State<UsersHead> {
                 value: false,
                 onChanged: null),
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.2,
+              width: MediaQuery.of(context).size.width * 0.25,
               child: Row(
                 children: [
                   Text(
@@ -44,7 +44,7 @@ class _UsersDataState extends State<UsersHead> {
               ),
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.1,
+              width: MediaQuery.of(context).size.width * 0.15,
               child: Text(
                 "Status",
                 style: GoogleFonts.ibmPlexSans(

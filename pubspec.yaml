@@ -31,6 +31,9 @@ dependencies:
   fl_chart: ^0.63.0
   toggle_switch: ^2.1.0
   percent_indicator: ^4.2.3
+  flutter_rating_bar: ^4.0.1
+  data_table_2: ^2.5.3
+
 
 
 dev_dependencies:
@@ -63,6 +66,7 @@ flutter:
   assets:
     # - assets/images/
     - assets/icons/
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -4,7 +4,6 @@ import 'package:education_flutter_web/app/app.locator.dart';
 import 'package:education_flutter_web/app/app.router.dart';
 import 'package:education_flutter_web/ui/common/app_colors.dart';
 import 'package:stacked_services/stacked_services.dart';
-
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -30,7 +29,7 @@ class MyApp extends StatelessWidget {
               bodyColor: Colors.black,
             ),
       ),
-      initialRoute: Routes.signupView,
+      initialRoute: Routes.dashboardView,
       onGenerateRoute: StackedRouter().onGenerateRoute,
       navigatorKey: StackedService.navigatorKey,
       navigatorObservers: [
