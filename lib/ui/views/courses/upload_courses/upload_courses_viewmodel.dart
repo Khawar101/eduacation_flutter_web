@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../app/app.locator.dart';
 import '../../../../services/courses_service.dart';
+import '../../../../utils/snakBar.dart';
 import '../../../dialogs/addAssigment.dart';
 import 'upload_view_1.dart';
 import 'upload_view_2.dart';
@@ -79,15 +80,35 @@ class UploadCoursesViewModel extends BaseViewModel {
     _coursesService.courseData.duration = value;
   }
 
-  nextPage() {
+  validation(context) {
     final isValid = formKey.currentState?.validate();
     if (isValid!) {
-      if (screenNo != screens.length - 1) {
-        screenNo += 1;
-        notifyListeners();
+      if (screenNo == 0) {
+        if (_coursesService.courseData.coverPic == "" ||
+            _coursesService.courseData.coverPic == null) {
+          snakBar(context, "Please upload cover photo");
+        } else {
+          nextPage();
+        }
+      } else if (screenNo == 1) {
+        if (_coursesService.courseData.fAQ == [] ||
+            _coursesService.courseData.fAQ == null) {
+          snakBar(context, "Please add FAQ");
+        } else {
+          nextPage();
+        }
+      } else {
+        nextPage();
       }
     }
     formKey.currentState?.save();
+  }
+
+  nextPage() {
+    if (screenNo != screens.length - 1) {
+      screenNo += 1;
+      notifyListeners();
+    }
   }
 
   addQuestion(context) {

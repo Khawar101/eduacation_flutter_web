@@ -25,7 +25,7 @@ class UploadCoursesView extends StackedView<UploadCoursesViewModel> {
               horizontal: MediaQuery.of(context).size.width * 0.009,
             ),
             child: Form(
-      key: viewModel.formKey,
+              key: viewModel.formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -103,7 +103,11 @@ class UploadCoursesView extends StackedView<UploadCoursesViewModel> {
                   ),
                   const SizedBox(width: 20),
                   GestureDetector(
-                    onTap: viewModel.screenNo==5?viewModel.publish: viewModel.nextPage,
+                    onTap: () {
+                      viewModel.screenNo == 5
+                          ? viewModel.publish()
+                          : viewModel.validation(context);
+                    },
                     child: Container(
                       height: 50,
                       width: 100,
@@ -115,7 +119,10 @@ class UploadCoursesView extends StackedView<UploadCoursesViewModel> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                           ButtonText(text:viewModel.screenNo==5? "Publish": "Next", color: Colors.black),
+                          ButtonText(
+                              text:
+                                  viewModel.screenNo == 5 ? "Publish" : "Next",
+                              color: Colors.black),
                           SizedBox(
                               width: MediaQuery.of(context).size.width * 0.01),
                           const Icon(Icons.arrow_forward_ios, size: 14),
