@@ -16,14 +16,13 @@ class CoursesViewModel extends BaseViewModel {
   // final _navigationService = locator<NavigationService>();
   final coursesService = locator<CoursesService>();
 
-  var pageNo = 0;
   nextPage() {
-    pageNo += 1;
+    coursesService.coursesPage += 1;
     notifyListeners();
   }
 
   backPage() {
-    pageNo -= 1;
+    coursesService.coursesPage -= 1;
     notifyListeners();
   }
 

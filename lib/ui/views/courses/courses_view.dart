@@ -14,7 +14,7 @@ class CoursesView extends StackedView<CoursesViewModel> {
     CoursesViewModel viewModel,
     Widget? child,
   ) {
-    if (viewModel.pageNo == 0) {
+    if (viewModel.coursesService.coursesPage == 0) {
       return Column(
         children: [
           verticalSpaceSmall,

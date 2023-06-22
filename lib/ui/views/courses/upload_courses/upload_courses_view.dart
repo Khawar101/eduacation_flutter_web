@@ -69,16 +69,20 @@ class UploadCoursesView extends StackedView<UploadCoursesViewModel> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                  height: 50,
-                  width: 100,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                          width: 1,
-                          color: const Color(0xff4873a6).withOpacity(0.7))),
-                  child: const Center(
-                      child: ButtonText(text: "Cancel", color: Colors.black))),
+              GestureDetector(
+                onTap: viewModel.cancelPage,
+                child: Container(
+                    height: 50,
+                    width: 100,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                            width: 1,
+                            color: const Color(0xff4873a6).withOpacity(0.7))),
+                    child: const Center(
+                        child:
+                            ButtonText(text: "Cancel", color: Colors.black))),
+              ),
               Row(
                 children: [
                   GestureDetector(
