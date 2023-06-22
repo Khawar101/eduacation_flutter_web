@@ -175,7 +175,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
                     child: Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                               left: 30, top: 8.0, right: 30, bottom: 8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -205,8 +205,8 @@ class DrawerView extends StackedView<DrawerViewModel> {
                                           .loginService.UserData.username
                                           .toString(),
                                       color: Colors.black),
-                                  SizedBox(width: 8),
-                                  Icon(Icons.arrow_drop_down)
+                                  const SizedBox(width: 8),
+                                  const Icon(Icons.arrow_drop_down)
                                 ],
                               )
                             ],
