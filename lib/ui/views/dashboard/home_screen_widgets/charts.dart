@@ -123,12 +123,12 @@ class _LineChartSample2State extends State<LineChartSample2> {
         getDrawingHorizontalLine: (value) {
           return const FlLine(
             color: Colors.blue,
-            strokeWidth: 1,
+            strokeWidth: 0.1,
           );
         },
         getDrawingVerticalLine: (value) {
           return const FlLine(
-            color: Colors.green,
+            color: Colors.transparent,
             strokeWidth: 1,
           );
         },
@@ -139,6 +139,9 @@ class _LineChartSample2State extends State<LineChartSample2> {
           sideTitles: SideTitles(showTitles: false),
         ),
         topTitles: const AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+        leftTitles: const AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
         bottomTitles: AxisTitles(
@@ -184,7 +187,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
           gradient: LinearGradient(
             colors: gradientColors,
           ),
-          barWidth: 5,
+          barWidth: 1,
           isStrokeCapRound: true,
           dotData: const FlDotData(
             show: false,

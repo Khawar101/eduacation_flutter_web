@@ -30,9 +30,7 @@ class SignupViewModel extends BaseViewModel {
     _navigationService.navigateToLoginView();
   }
 
-  navigateforgetpassword() {
-    _navigationService.navigateToLoginView();
-  }
+
 
   TextEditingController nameCTRL = TextEditingController(text: "xyz");
   TextEditingController emailCTRL = TextEditingController(text: "");

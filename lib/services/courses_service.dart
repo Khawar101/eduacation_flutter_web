@@ -27,6 +27,8 @@ class CoursesService {
   var uploadCoursesPage = 0;
 
   late String thubnailUrl = "";
+  late String videoThubnailUrl = "";
+  late String assigmentThubnailUrl = "";
   late String videoUrl = "";
   late String assigmentUrl = "";
   var progressshow = 0;

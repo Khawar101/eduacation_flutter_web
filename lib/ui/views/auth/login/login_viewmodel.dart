@@ -29,8 +29,9 @@ class LoginViewModel extends BaseViewModel {
   }
 
   navigateForget() {
-    // _navigationService.navigateToForgetView();
+    _navigationService.navigateToForgetpasswordView();
   }
+
   TextEditingController emailCTRL =
       TextEditingController(text: "xyz@gmail.com");
 

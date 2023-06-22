@@ -78,11 +78,14 @@ class LoginView extends StackedView<LoginViewModel> {
                   verticalSpaceSmall,
                   Align(
                       alignment: Alignment.centerRight,
-                      child: MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: SmallText(
-                          text: "Forgot password",
-                          color: const Color(0xff4873a6).withOpacity(0.7),
+                      child: InkWell(
+                        onTap: viewModel.navigateForget,
+                        child: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: SmallText(
+                            text: "Forgot password",
+                            color: const Color(0xff4873a6).withOpacity(0.7),
+                          ),
                         ),
                       )),
                   verticalSpaceSmall,

@@ -1,20 +1,18 @@
-import 'package:education_flutter_web/ui/views/auth/forgetpassword/screens/forget_otp_screen.dart';
+import 'package:education_flutter_web/ui/views/auth/forgetpassword/screens/reset_success.dart';
 import 'package:flutter/material.dart';
-import 'package:stacked/stacked.dart';
+import '../../../../widgets/common/custom_text_field/custom_text_field.dart';
+import '../../../../widgets/common/sized_text/sized_text.dart';
 
-import '../../../widgets/common/custom_text_field/custom_text_field.dart';
-import '../../../widgets/common/sized_text/sized_text.dart';
-import 'forgetpassword_viewmodel.dart';
-
-class ForgetpasswordView extends StackedView<ForgetpasswordViewModel> {
-  const ForgetpasswordView({Key? key}) : super(key: key);
+class NewPassword extends StatefulWidget {
+  const NewPassword({super.key});
 
   @override
-  Widget builder(
-    BuildContext context,
-    ForgetpasswordViewModel viewModel,
-    Widget? child,
-  ) {
+  State<NewPassword> createState() => _NewPasswordState();
+}
+
+class _NewPasswordState extends State<NewPassword> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
         body: SingleChildScrollView(
@@ -33,24 +31,45 @@ class ForgetpasswordView extends StackedView<ForgetpasswordViewModel> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const CustomText(
-                          text: 'Forget Password',
+                          text: 'Reset Password',
                           size: 18,
                           fontWeight: FontWeight.w600,
                           color: Colors.black),
                       const SizedBox(height: 18),
                       const CustomText(
-                          text: 'Please enter your email to get OTP',
+                          text: 'Please type your new password of 8 characters',
                           size: 14,
                           fontWeight: FontWeight.w400,
                           color: Colors.black45),
                       const SizedBox(height: 18),
                       CustomTextField(
-                        hintText: 'you@example.com',
-                        prefix: const Icon(Icons.email),
+                        hintText: 'Type 8 Characters Password',
                         validator: (value) {
-                          // adminEmail= value!;
                           return null;
                         },
+                        //isObscureText: viewModel.visibleCheck,
+                        prefix: GestureDetector(
+                          //onTap: viewModel.visible_check,
+                          child: Icon(
+                            Icons.visibility_outlined,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 18),
+                      CustomTextField(
+                        hintText: 'Re-Type Password',
+                        validator: (value) {
+                          return null;
+                        },
+                        //isObscureText: viewModel.visibleCheck,
+                        prefix: GestureDetector(
+                          //onTap: viewModel.visible_check,
+                          child: Icon(
+                            Icons.visibility_outlined,
+                            color: Colors.black,
+                          ),
+                        ),
                       ),
                       const SizedBox(height: 15),
                       GestureDetector(
@@ -58,7 +77,7 @@ class ForgetpasswordView extends StackedView<ForgetpasswordViewModel> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ForgetOtp()));
+                                  builder: (context) => ResetSuccess()));
                         },
                         child: Container(
                           height: 50,
@@ -68,51 +87,44 @@ class ForgetpasswordView extends StackedView<ForgetpasswordViewModel> {
                               borderRadius: BorderRadius.circular(10)),
                           child: const Center(
                               child: CustomText(
-                                  text: 'Send OTP',
+                                  text: 'Reset Password',
                                   size: 14,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.white)),
                         ),
                       ),
-                      const SizedBox(height: 30),
                     ],
                   ),
                 ),
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.5,
-                height: MediaQuery.of(context).size.height * 1,
+                height: MediaQuery.of(context).size.width * 0.47,
                 color: Color(0xff4873a6).withOpacity(0.7),
                 child: Column(
                   children: [
                     Image.asset(
                       "assets/images/log.png",
-                      height: MediaQuery.of(context).size.height * 0.5,
-                      width: MediaQuery.of(context).size.width * 0.5,
+                      height: MediaQuery.of(context).size.height*0.5,
+                      width: MediaQuery.of(context).size.width*0.5,
                     ),
                     const CustomText(
-                        text: 'Welcome to the Future',
-                        size: 24,
-                        fontWeight: FontWeight.w600,
-                        color: Color.fromARGB(255, 139, 238, 200)),
-                    const SizedBox(height: 18),
-                    const CustomText(
-                        text:
-                            'Kindly SignUp to use all the features of the app',
-                        size: 18,
-                        fontWeight: FontWeight.w400,
-                        color: Color.fromARGB(255, 216, 247, 131)),
+                          text: 'Welcome to the Future',
+                          size: 24,
+                          fontWeight: FontWeight.w600,
+                          color: Color.fromARGB(255, 139, 238, 200)),
+                      const SizedBox(height: 18),
+                      const CustomText(
+                          text: 'Kindly SignUp to use all the features of the app',
+                          size: 18,
+                          fontWeight: FontWeight.w400,
+                          color: Color.fromARGB(255, 216, 247, 131)),
                   ],
                 ),
               )
+              
             ],
           ),
         ));
   }
-
-  @override
-  ForgetpasswordViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
-      ForgetpasswordViewModel();
 }
