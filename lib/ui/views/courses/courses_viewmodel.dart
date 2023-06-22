@@ -20,10 +20,24 @@ class CoursesViewModel extends BaseViewModel {
     coursesService.uploadCoursePage(notifyListeners);
   }
 
+  editCourse(data) {
+    coursesService.courseData = data;
+    coursesService.uploadCoursePage(notifyListeners);
+  }
 
+  deleteCourse(key) {
+    coursesService.deleteCourseService(key);
+  }
 
-  editCourse() {}
-  deleteCourse() {}
-  publishCourse() {}
-  draftCourse() {}
+  publishCourse(key) {
+    coursesService.publishCourseService(key);
+    notifyListeners();
+    rebuildUi();
+  }
+
+  draftCourse(key) {
+    coursesService.draftCourseService(key);
+    notifyListeners();
+    rebuildUi();
+  }
 }

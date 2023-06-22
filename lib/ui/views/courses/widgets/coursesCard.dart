@@ -2,9 +2,10 @@ import 'package:education_flutter_web/services/Model/CoursesModel.dart';
 import 'package:flutter/material.dart';
 
 import '../../../widgets/common/sized_text/sized_text.dart';
+import '../courses_viewmodel.dart';
 import '../upload_courses/widgets/pop_up_menu.dart';
 
-Widget courseCard(CoursesModel data, context) {
+Widget courseCard(CoursesModel data, context, CoursesViewModel viewModel) {
   return GestureDetector(
     child: Card(
       child: Stack(
@@ -67,7 +68,7 @@ Widget courseCard(CoursesModel data, context) {
           Positioned(
             right: 5,
             top: 5,
-            child: popupMenu(context),
+            child: popupMenu(context, data,viewModel),
           )
         ],
       ),

@@ -1,12 +1,12 @@
+import 'package:education_flutter_web/ui/views/courses/courses_viewmodel.dart';
 import 'package:flutter/material.dart';
 import '../../../../services/Model/CoursesModel.dart';
-import '../../../../services/courses_service.dart';
 import '../../../../utils/loading.dart';
 import 'coursesCard.dart';
 
-Widget coursesBuilder(CoursesService coursesService) {
+Widget coursesBuilder(CoursesViewModel viewModel) {
   return StreamBuilder<List<CoursesModel>>(
-    stream: coursesService.coursesStream(),
+    stream: viewModel.coursesService.coursesStream(),
     builder:
         (BuildContext context, AsyncSnapshot<List<CoursesModel>> snapshot) {
       if (snapshot.hasError) {
@@ -27,7 +27,7 @@ Widget coursesBuilder(CoursesService coursesService) {
         ),
         itemBuilder: (BuildContext context, int index) {
           CoursesModel data = snapshot.data![index];
-          return courseCard(data, context);
+          return courseCard(data, context, viewModel);
         },
       );
     },

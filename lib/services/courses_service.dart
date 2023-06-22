@@ -203,11 +203,14 @@ class CoursesService {
     try {
       var key = DateTime.now().microsecondsSinceEpoch;
       courseData.publishDate = key.toString();
+      courseData.publish = true;
       print("${courseData.publishDate}===");
       await firestore
           .collection("courses")
           .doc(key.toString())
           .set(courseData.toJson());
+      coursesPage = 0;
+      coursesNotifyListeners();
       // message = "Login Successfully";
       log("upload successfully");
     } catch (e) {
@@ -221,5 +224,18 @@ class CoursesService {
     return stream.map((event) => event.docs.map((doc) {
           return CoursesModel.fromJson(doc.data());
         }).toList());
+  }
+
+  editCourseService() {}
+  deleteCourseService(key) {
+    firestore.collection("courses").doc(key).delete();
+  }
+
+  publishCourseService(key) {
+    firestore.collection("courses").doc(key).update({"publish": true});
+  }
+
+  draftCourseService(key) {
+    firestore.collection("courses").doc(key).update({"publish": false});
   }
 }
