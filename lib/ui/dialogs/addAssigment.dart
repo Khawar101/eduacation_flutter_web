@@ -38,12 +38,12 @@ addAssigmentAlert(
                 IconTextField(
                   titleText: "Title",
                   controller: titleCtrl,
-                  hintText: 'e.g: Free Programming Courses',
+                  hintText: 'Enter your title...',
                 ),
                 IconTextField(
                   titleText: "Description",
                   controller: descriptionCtrl,
-                  hintText: 'e.g: Free Programming Courses',
+                  hintText: 'Write a description...',
                 ),
                 const SizedBox(
                   height: 20,

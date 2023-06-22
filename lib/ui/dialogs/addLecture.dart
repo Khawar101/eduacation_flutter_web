@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../services/Model/CoursesModel.dart';
 import '../../services/courses_service.dart';
 import '../views/courses/upload_courses/widgets/dropAddBtn.dart';
@@ -26,7 +25,7 @@ addLectureAlert(
       content: StatefulBuilder(builder: (context, newSetState) {
         return Form(
           key: _formKey,
-          child: Container(
+          child: SizedBox(
             height: 290,
             width: MediaQuery.of(context).size.width * 0.3,
             child: Column(
@@ -35,12 +34,12 @@ addLectureAlert(
                 IconTextField(
                   titleText: "Title",
                   controller: videoTitleCtrl,
-                  hintText: 'e.g: Free Programming Courses',
+                  hintText: 'Enter your title...',
                 ),
                 IconTextField(
                   titleText: "Description",
                   controller: videoDescriptionCtrl,
-                  hintText: 'e.g: Free Programming Courses',
+                  hintText: 'Write a description...',
                 ),
                 const SizedBox(
                   height: 20,
