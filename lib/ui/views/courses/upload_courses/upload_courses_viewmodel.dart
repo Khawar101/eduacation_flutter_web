@@ -139,10 +139,7 @@ class UploadCoursesViewModel extends BaseViewModel {
     }
   }
 
-  cancelPage() {
-    coursesService.coursesPage = 0;
-    notifyListeners();
-  }
+
 
   addQuestion(context) {
     addQuestionAlert(

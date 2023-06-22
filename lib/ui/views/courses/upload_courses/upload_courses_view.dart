@@ -70,7 +70,7 @@ class UploadCoursesView extends StackedView<UploadCoursesViewModel> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GestureDetector(
-                onTap: viewModel.cancelPage,
+                onTap: viewModel.coursesService.cancelPage,
                 child: Container(
                     height: 50,
                     width: 100,

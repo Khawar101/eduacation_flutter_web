@@ -23,7 +23,7 @@ class CoursesService {
         profile: _loginService.UserData.profile ??
             "https://firebasestorage.googleapis.com/v0/b/education-app-b5aed.appspot.com/o/profile%2F1686228451064708?alt=media&token=7c093e32-23fd-432b-b7ba-a914cb4b5317",
       ));
-        var coursesPage = 0;
+  var coursesPage = 0;
   var uploadCoursesPage = 0;
 
   late String thubnailUrl = "";
@@ -34,6 +34,17 @@ class CoursesService {
   var assigmentProgress = 0;
   var imageLooding = false;
   late final XFile? image;
+  var coursesNotifyListeners;
+  cancelPage() {
+    coursesPage = 0;
+    coursesNotifyListeners();
+  }
+
+  uploadCoursePage(notifyListeners) {
+    coursesPage += 1;
+    coursesNotifyListeners = notifyListeners;
+    notifyListeners();
+  }
 
   void uploadImage({required Function(File file) onSelected}) {
     FileUploadInputElement uploadInput = FileUploadInputElement()
