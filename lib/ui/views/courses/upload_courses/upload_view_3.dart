@@ -42,7 +42,7 @@ class UploadView_3 extends StackedView<UploadCoursesViewModel> {
                 color: const Color(0xff4873a6).withOpacity(0.7),
               ),
               width: width / 2.5,
-              hintText: 'e.g: Free Programming Courses',
+              hintText: 'Please enter Price...',
             ),
             verticalSpaceSmall,
             IconTextField(
@@ -56,7 +56,7 @@ class UploadView_3 extends StackedView<UploadCoursesViewModel> {
                 Icons.price_change,
                 color: const Color(0xff4873a6).withOpacity(0.7),
               ),
-              hintText: 'e.g: Free Programming Courses',
+              hintText: 'Enter duratiuon please...',
             ),
           ],
         ),
