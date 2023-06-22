@@ -33,6 +33,7 @@ dependencies:
   percent_indicator: ^4.2.3
   loading_animation_widget: ^1.2.0+4
   shared_preferences:
+  dropdown_button2: ^2.1.4
 
 dev_dependencies:
   flutter_test:
