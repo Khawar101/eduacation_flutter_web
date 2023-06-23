@@ -2,9 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:education_flutter_web/ui/views/settings/widgets/setteing_tabs.dart';
-import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.dart';
-import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../settings_viewmodel.dart';
@@ -19,7 +16,7 @@ class MyProfile extends StackedView<SettingsViewModel> {
     Widget? child,
   ) {
     //  var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height - 50;
+   // var height = MediaQuery.of(context).size.height - 50;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
@@ -51,9 +48,10 @@ class MyProfile extends StackedView<SettingsViewModel> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const CircleAvatar(
+                         CircleAvatar(
                           radius: 35,
                           backgroundColor: Colors.red,
+                          backgroundImage: NetworkImage(viewModel.userdata.profile.toString()),
                         ),
                         const SizedBox(width: 15),
                         Column(
@@ -192,27 +190,18 @@ class MyProfile extends StackedView<SettingsViewModel> {
                         ),
                         SizedBox(
                             width: MediaQuery.of(context).size.width * 0.2),
-                        const Texts(
+                         Texts(
                           question: "City",
-                          answer: "Lahore",
+                          answer: viewModel.userdata.city??"",
                         ),
                       ],
                     ),
                     const SizedBox(height: 20),
-                    Row(
-                      children: [
-                        const Texts(
-                          question: "Postal Code",
-                          answer: "ERT 2354",
+                    Texts(
+                          question: "Address",
+                          answer: viewModel.userdata.address??"",
                         ),
-                        SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.2),
-                        const Texts(
-                          question: "TAX ID",
-                          answer: "AS4566765",
-                        ),
-                      ],
-                    ),
+                  
                   ],
                 ),
               ),
