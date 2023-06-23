@@ -11,6 +11,8 @@ import 'package:image_picker/image_picker.dart';
 import '../app/app.locator.dart';
 import 'Model/CoursesModel.dart';
 
+
+
 class CoursesService {
   final _loginService = locator<LoginService>();
   FirebaseFirestore firestore = FirebaseFirestore.instance;
