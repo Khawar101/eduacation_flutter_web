@@ -36,6 +36,7 @@ dependencies:
   dropdown_button2: ^2.1.4
   flutter_rating_bar: ^4.0.1
   data_table_2: ^2.5.3
+  motion_toast: ^2.6.8
 
 
 

@@ -1,6 +1,8 @@
 import 'package:education_flutter_web/ui/views/settings/widgets/my_profile.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../utils/snakBar.dart';
+
 Widget tabSection(context) {
   return DefaultTabController(
     length: 7,
@@ -35,14 +37,22 @@ Widget tabSection(context) {
             ]),
         SizedBox(
           height: MediaQuery.of(context).size.height * 1,
-          child: const TabBarView(children: [
-            MyProfile(),
-            Text("Articles Body"),
-            Text("User Body"),
-            Text("Home Body"),
-            Text("Articles Body"),
-            Text("User Body"),
-            Text("User Body"),
+          child: TabBarView(children: [
+            const MyProfile(),
+            SizedBox(
+              width: 200,
+              child: ElevatedButton(
+                onPressed: () {
+                  displayWarningMotionToast(context);
+                },
+                child: const Text('Without sidebar'),
+              ),
+            ),
+            const Text("User Body"),
+            const Text("Home Body"),
+            const Text("Articles Body"),
+            const Text("User Body"),
+            const Text("User Body"),
           ]),
         )
       ],
