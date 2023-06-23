@@ -25,8 +25,8 @@ class SettingsView extends StackedView<SettingsViewModel> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            BigText(text: "Account Settings", color: Colors.black),
-            SizedBox(height: 20),
+            const BigText(text: "Account Settings", color: Colors.black),
+            const SizedBox(height: 20),
             tabSection(context),
           ],
         ),
