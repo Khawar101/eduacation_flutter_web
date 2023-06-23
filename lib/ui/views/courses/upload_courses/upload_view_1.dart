@@ -16,6 +16,7 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
   void onViewModelReady(UploadCoursesViewModel viewModel) {
     viewModel.titleCtrl.text = viewModel.courseData.title ?? "";
     viewModel.chapterCtrl.text = viewModel.courseData.chapter ?? "";
+    viewModel.getCategoryValue(viewModel.courseData.category ?? "Programming");
     viewModel.descriptionCtrl.text = viewModel.courseData.description ?? "";
     super.onViewModelReady(viewModel);
   }

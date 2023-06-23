@@ -45,7 +45,7 @@ addQuestionAlert(context, questionCtrl, answerCtrl, List<FAQ> faq,
             final isValid = _formKey.currentState?.validate();
             if (isValid!) {
               faq.add(
-                  FAQ(answer: questionCtrl.text, question: answerCtrl.text));
+                  FAQ(question: questionCtrl.text, answer: answerCtrl.text));
               courseData.fAQ = faq;
               notifyListeners();
               questionCtrl.clear();
@@ -53,7 +53,6 @@ addQuestionAlert(context, questionCtrl, answerCtrl, List<FAQ> faq,
               Navigator.pop(context);
             }
             _formKey.currentState?.save();
-
           },
           child: const Text(
             'Add Question',

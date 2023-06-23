@@ -35,10 +35,17 @@ class CoursesView extends StackedView<CoursesViewModel> {
                   child: coursesBuilder(viewModel))),
         ],
       );
-    } else if (viewModel.coursesService.coursesPage == 0) {
-      return const CourseDetails();
-    } else {
+    } else if (viewModel.coursesService.coursesPage == 1) {
       return const UploadCoursesView();
+    } else {
+      return SizedBox(
+          height: MediaQuery.of(context).size.height - 50,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.009,
+            ),
+            child: const CourseDetails(),
+          ));
     }
   }
 
