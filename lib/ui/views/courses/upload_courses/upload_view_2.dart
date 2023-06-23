@@ -21,7 +21,7 @@ class UploadView_2 extends StackedView<UploadCoursesViewModel> {
     UploadCoursesViewModel viewModel,
     Widget? child,
   ) {
-    // var width = MediaQuery.of(context).size.width;
+     var width = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,14 +30,20 @@ class UploadView_2 extends StackedView<UploadCoursesViewModel> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Column(
+               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  BigText(text: "FAQs", color: Colors.black),
+                  const BigText(text: "FAQs", color: Colors.black),
                   verticalSpaceTiny,
-                  BigSubText(
-                      text:
-                          "Everything you need to know about the product and how it works.Can't find an answer?Please chat to your student."),
+                  SizedBox(
+                    width: width/1.5,
+                    child: const Align(
+                      alignment: Alignment.centerLeft,
+                      child: BigSubText(
+                          text:
+                              "Everything you need to know about the product and how it works.Can't find an answer?Please chat to your student."),
+                    ),
+                  ),
                 ],
               ),
               IconButton(

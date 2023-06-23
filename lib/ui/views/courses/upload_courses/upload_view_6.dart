@@ -20,6 +20,7 @@ class CourseDetails extends StackedView<UploadCoursesViewModel> {
     UploadCoursesViewModel viewModel,
     Widget? child,
   ) {
+         var width = MediaQuery.of(context).size.width;
      return SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,9 +29,12 @@ class CourseDetails extends StackedView<UploadCoursesViewModel> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                BigText(
-                    text: viewModel.courseData.title.toString(),
-                    color: Colors.black),
+                SizedBox(
+                 width: width/2,
+                  child: BigText(
+                      text: viewModel.courseData.title.toString(),
+                      color: Colors.black),
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: Row(
@@ -88,8 +92,12 @@ class CourseDetails extends StackedView<UploadCoursesViewModel> {
               text: 'FAQ',
             ),
             const UploadView_2(),
+             verticalSpaceSmall,
+            const StarText(
+              text: 'Rating',
+            ),
             verticalSpaceSmall,
-            Container(
+            SizedBox(
               height: 150,
               child: ScrollConfiguration(
                 behavior:MyCustomScrollBehavior(),
@@ -100,18 +108,14 @@ class CourseDetails extends StackedView<UploadCoursesViewModel> {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 100, color: Colors.red,
-                          // width: MediaQuery.of(context).size.width*1,
-                          child: Text("djkdjddd"),
-                        ),
+                        padding: const EdgeInsets.only(right: 8),
+                        child: ratingCont(context),
                       );
                     }),
               ),
             ),
      
-            SizedBox(
+            const SizedBox(
               height: 60,
             )
           ],
