@@ -34,7 +34,7 @@ class _DataTablesState extends State<DataTables> {
             label: SizedBox(
               width: screenWidth <= 650
                   ? MediaQuery.of(context).size.width * 0.6
-                  : MediaQuery.of(context).size.width * 0.3,
+                  : MediaQuery.of(context).size.width * 0.2,
               child: const Row(
                 children: [
                   CustomText(
@@ -88,7 +88,7 @@ class _DataTablesState extends State<DataTables> {
             label: Visibility(
               visible: screenWidth >= 900,
               child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.2,
+                width: MediaQuery.of(context).size.width * 0.15,
                 child: const CustomText(
                     text: "Progress",
                     size: 12,
@@ -118,7 +118,7 @@ class _DataTablesState extends State<DataTables> {
                     SizedBox(
                       width: screenWidth <= 650
                           ? MediaQuery.of(context).size.width * 0.6
-                          : MediaQuery.of(context).size.width * 0.3,
+                          : MediaQuery.of(context).size.width * 0.2,
                       child: Row(
                         children: [
                           Image.asset(
@@ -244,11 +244,11 @@ class _DataTablesState extends State<DataTables> {
                     Visibility(
                       visible: screenWidth >= 900,
                       child: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.2,
+                        width: MediaQuery.of(context).size.width * 0.15,
                         child: LinearPercentIndicator(
-                          width: MediaQuery.of(context).size.width * 0.15,
+                          width: MediaQuery.of(context).size.width * 0.12,
                           animation: true,
-                          lineHeight: 8.0,
+                          lineHeight: 5.0,
                           animationDuration: 2500,
                           percent: widget.progress_percent,
                           trailing: Text(

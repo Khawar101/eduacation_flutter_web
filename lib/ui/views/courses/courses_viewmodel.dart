@@ -17,12 +17,17 @@ class CoursesViewModel extends BaseViewModel {
   final coursesService = locator<CoursesService>();
 
   nextPage() {
-    coursesService.uploadCoursePage(notifyListeners);
+    coursesService.uploadCoursePage(notifyListeners,1);
   }
 
   editCourse(data) {
     coursesService.courseData = data;
-    coursesService.uploadCoursePage(notifyListeners);
+    coursesService.uploadCoursePage(notifyListeners,1);
+  }
+
+  showCourseDetail(data) {
+    coursesService.courseData = data;
+    coursesService.uploadCoursePage(notifyListeners,2);
   }
 
   deleteCourse(key) {

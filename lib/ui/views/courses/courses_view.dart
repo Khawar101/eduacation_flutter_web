@@ -1,5 +1,6 @@
 import 'package:education_flutter_web/ui/common/ui_helpers.dart';
 import 'package:education_flutter_web/ui/views/courses/upload_courses/upload_courses_view.dart';
+import 'package:education_flutter_web/ui/views/courses/upload_courses/upload_view_6.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'courses_viewmodel.dart';
@@ -34,6 +35,8 @@ class CoursesView extends StackedView<CoursesViewModel> {
                   child: coursesBuilder(viewModel))),
         ],
       );
+    } else if (viewModel.coursesService.coursesPage == 0) {
+      return const CourseDetails();
     } else {
       return const UploadCoursesView();
     }

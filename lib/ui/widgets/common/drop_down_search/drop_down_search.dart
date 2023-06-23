@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
+import '../../../common/app_const.dart';
 import '../../../views/courses/upload_courses/upload_courses_viewmodel.dart';
 
 Widget dropDownSearch(context, UploadCoursesViewModel viewModel) {
@@ -19,7 +20,7 @@ Widget dropDownSearch(context, UploadCoursesViewModel viewModel) {
               color: Colors.black,
             ),
           ),
-          items: viewModel.categoryList
+          items: categoryList
               .map((item) => DropdownMenuItem(
                     value: item,
                     child: Text(
