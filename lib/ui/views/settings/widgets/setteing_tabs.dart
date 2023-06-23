@@ -40,12 +40,36 @@ Widget tabSection(context) {
           child: TabBarView(children: [
             const MyProfile(),
             SizedBox(
-              width: 200,
-              child: ElevatedButton(
-                onPressed: () {
-                  displayWarningMotionToast(context);
-                },
-                child: const Text('Without sidebar'),
+              width: 100,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      warningToast(
+                          context, 'kasdf sf s fsd f sd f ds f sd f sd f sd');
+                    },
+                    child: const Text('warningToast'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      successToast(context);
+                    },
+                    child: const Text('successToast'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      infoToast(context);
+                    },
+                    child: const Text('infoToast'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      errorToast(context);
+                    },
+                    child: const Text('errorToast'),
+                  ),
+                ],
               ),
             ),
             const Text("User Body"),

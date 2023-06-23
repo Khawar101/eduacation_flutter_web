@@ -10,9 +10,33 @@ snakBar(context, title) {
   ));
 }
 
-void displayWarningMotionToast(context) {
+void warningToast(context, title) {
   MotionToast.warning(
-    animationType: AnimationType.fromLeft,
+    animationType: AnimationType.fromBottom,
+    position: MotionToastPosition.bottom,
+    animationDuration: const Duration(milliseconds: 1000),
+    toastDuration: const Duration(seconds: 3),
+    animationCurve: Curves.ease,
+    title: const Text(
+      'Warning',
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    description: Text(title),
+    borderRadius: 10,
+  ).show(context);
+}
+
+void successToast(context) {
+  MotionToast.success(
+    animationType: AnimationType.fromBottom,
+    position: MotionToastPosition.bottom,
+    animationDuration: const Duration(milliseconds: 1000),
+    toastDuration: const Duration(seconds: 3),
+    animationCurve: Curves.ease,
+    width: 350,
+    height: 80,
     title: const Text(
       'Warning Motion Toast',
       style: TextStyle(
@@ -20,8 +44,42 @@ void displayWarningMotionToast(context) {
       ),
     ),
     description: const Text('This is a Warning'),
-    animationCurve: Curves.bounceIn,
-    borderRadius: 0,
+    borderRadius: 10,
+  ).show(context);
+}
+
+void infoToast(context) {
+  MotionToast.info(
+    animationType: AnimationType.fromBottom,
+    position: MotionToastPosition.bottom,
     animationDuration: const Duration(milliseconds: 1000),
+    toastDuration: const Duration(seconds: 3),
+    animationCurve: Curves.ease,
+    title: const Text(
+      'Warning Motion Toast',
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    description: const Text('This is a Warning'),
+    borderRadius: 10,
+  ).show(context);
+}
+
+void errorToast(context) {
+  MotionToast.error(
+    animationType: AnimationType.fromBottom,
+    position: MotionToastPosition.bottom,
+    animationDuration: const Duration(milliseconds: 1000),
+    toastDuration: const Duration(seconds: 3),
+    animationCurve: Curves.ease,
+    title: const Text(
+      'Warning Motion Toast',
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    description: const Text('This is a Warning'),
+    borderRadius: 10,
   ).show(context);
 }
