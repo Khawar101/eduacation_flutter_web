@@ -170,52 +170,50 @@ class DrawerView extends StackedView<DrawerViewModel> {
             ),
             Expanded(
                 flex: 5,
-                child: Container(
-                    color: Colors.red.withOpacity(0.2),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 30, top: 8.0, right: 30, bottom: 8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 30, top: 8.0, right: 30, bottom: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Row(
                             children: [
-                              const Row(
-                                children: [
-                                  Icon(
-                                    Icons.vertical_distribute,
-                                    size: 15,
-                                  ),
-                                ],
+                              Icon(
+                                Icons.vertical_distribute,
+                                size: 15,
                               ),
-                              Row(
-                                children: [
-                                  const Icon(Icons.notifications_outlined,
-                                      size: 18),
-                                  const SizedBox(width: 8),
-                                  CircleAvatar(
-                                    radius: 15,
-                                    backgroundColor: Colors.black,
-                                    backgroundImage: NetworkImage(viewModel
-                                        .loginService.UserData.profile
-                                        .toString()),
-                                  ),
-                                  const SizedBox(width: 4),
-                                  ButtonText(
-                                      text: viewModel
-                                          .loginService.UserData.username
-                                          .toString(),
-                                      color: Colors.black),
-                                  const SizedBox(width: 8),
-                                  const Icon(Icons.arrow_drop_down)
-                                ],
-                              )
                             ],
                           ),
-                        ),
-                        Center(child: viewModel.pages[viewModel.pageNo]),
-                      ],
-                    )))
+                          Row(
+                            children: [
+                              const Icon(Icons.notifications_outlined,
+                                  size: 18),
+                              const SizedBox(width: 8),
+                              CircleAvatar(
+                                radius: 15,
+                                backgroundColor: Colors.black,
+                                backgroundImage: NetworkImage(viewModel
+                                    .loginService.UserData.profile
+                                    .toString()),
+                              ),
+                              const SizedBox(width: 4),
+                              ButtonText(
+                                  text: viewModel
+                                      .loginService.UserData.username
+                                      .toString(),
+                                  color: Colors.black),
+                              const SizedBox(width: 8),
+                              const Icon(Icons.arrow_drop_down)
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    Center(child: viewModel.pages[viewModel.pageNo]),
+                  ],
+                ))
           ],
         ),
       ),
