@@ -58,9 +58,16 @@ class UploadView_4 extends StackedView<UploadCoursesViewModel> {
                           size: 50,
                         ),
                       )
-                    : Card_Page(context, viewModel.lectures[index], () {
-                        viewModel.removeLecture(index);
-                      }),
+                    : GestureDetector(
+                        onTap: () {
+                          viewModel.watchvideo(
+                              context, viewModel.lectures[index].videoUrl);
+                        },
+                        child:
+                            Card_Page(context, viewModel.lectures[index], () {
+                          viewModel.removeLecture(index);
+                        }),
+                      ),
               );
             }),
         //

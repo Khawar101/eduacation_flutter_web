@@ -30,8 +30,6 @@ class SignupViewModel extends BaseViewModel {
     _navigationService.navigateToLoginView();
   }
 
-
-
   TextEditingController nameCTRL = TextEditingController(text: "xyz");
   TextEditingController emailCTRL = TextEditingController(text: "");
   TextEditingController passwordCTRL = TextEditingController(text: "qwerty");
@@ -54,12 +52,10 @@ class SignupViewModel extends BaseViewModel {
         log("Profile uploded successfully...");
         // _navigationService.navigateToVerifyView();
         profile = _signupService.profile;
-        log('2====>$profile');
         notifyListeners();
       } else {
-        log("try again...");
+        log("=====>${_signupService.message}");
       }
-      log("=====>${_signupService.message}");
     });
   }
 
