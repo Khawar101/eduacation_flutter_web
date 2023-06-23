@@ -2,6 +2,7 @@ import 'package:education_flutter_web/ui/views/auth/forgetpassword/screens/reset
 import 'package:flutter/material.dart';
 import '../../../../widgets/common/custom_text_field/custom_text_field.dart';
 import '../../../../widgets/common/sized_text/sized_text.dart';
+import 'Logo_screen.dart';
 
 class NewPassword extends StatefulWidget {
   const NewPassword({super.key});
@@ -13,14 +14,15 @@ class NewPassword extends StatefulWidget {
 class _NewPasswordState extends State<NewPassword> {
   @override
   Widget build(BuildContext context) {
+        final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
+        //backgroundColor: Theme.of(context).colorScheme.background,
         body: SingleChildScrollView(
           child: Row(
             children: [
               Container(
                 height: MediaQuery.of(context).size.height * 1,
-                width: MediaQuery.of(context).size.width * 0.5,
+                width: screenWidth>700?screenWidth * 0.5:screenWidth*1,
                 color: Colors.white,
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -97,31 +99,7 @@ class _NewPasswordState extends State<NewPassword> {
                   ),
                 ),
               ),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.5,
-                height: MediaQuery.of(context).size.width * 0.47,
-                color: Color(0xff4873a6).withOpacity(0.7),
-                child: Column(
-                  children: [
-                    Image.asset(
-                      "assets/images/log.png",
-                      height: MediaQuery.of(context).size.height*0.5,
-                      width: MediaQuery.of(context).size.width*0.5,
-                    ),
-                    const CustomText(
-                          text: 'Welcome to the Future',
-                          size: 24,
-                          fontWeight: FontWeight.w600,
-                          color: Color.fromARGB(255, 139, 238, 200)),
-                      const SizedBox(height: 18),
-                      const CustomText(
-                          text: 'Kindly SignUp to use all the features of the app',
-                          size: 18,
-                          fontWeight: FontWeight.w400,
-                          color: Color.fromARGB(255, 216, 247, 131)),
-                  ],
-                ),
-              )
+              const LogoScreen(),
               
             ],
           ),

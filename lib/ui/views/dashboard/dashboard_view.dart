@@ -14,6 +14,7 @@ class DashboardView extends StackedView<DashboardViewModel> {
     DashboardViewModel viewModel,
     Widget? child,
   ) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return  Container(
         height: MediaQuery.of(context).size.height * 0.87,
         color: Colors.white,
@@ -26,11 +27,8 @@ class DashboardView extends StackedView<DashboardViewModel> {
                 const SizedBox(
                   height: 30,
                 ),
-                LayoutBuilder(
-                  builder: (BuildContext context, BoxConstraints constraints) {
-                    if (constraints.maxWidth > 600) {
-                      return const Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                screenWidth>690?const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Stats(
                             headingText: 'Total Member',
@@ -48,32 +46,26 @@ class DashboardView extends StackedView<DashboardViewModel> {
                             number: '208',
                           ),
                         ],
-                      );
-                    } else {
-                      return const Column(
+                      ):const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Stats(
                             headingText: 'Total Member',
                             containerText: '20',
                             number: '1,620',
                           ),
-                          SizedBox(height: 10),
                           Stats(
                             headingText: 'Enrolled Member',
                             containerText: '15',
                             number: '1,220',
                           ),
-                          SizedBox(height: 10),
                           Stats(
                             headingText: 'Active Now ',
                             containerText: '12',
                             number: '208',
                           ),
                         ],
-                      );
-                    }
-                  },
-                ),
+                      ),
                 const SizedBox(
                   height: 20,
                 ),
