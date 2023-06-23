@@ -65,10 +65,10 @@ class _ForgetOtpState extends State<ForgetOtp> {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 alignment: Alignment.center,
-                                child: Text(
+                                child: const Text(
                                   "",
                                   //viewModel.codes[i],
-                                  style: const TextStyle(fontSize: 24),
+                                  style: TextStyle(fontSize: 24),
                                 ),
                               ),
                             ),

@@ -24,6 +24,7 @@ class _DataTablesState extends State<DataTables> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final fontsize = MediaQuery.of(context).size.height/900;
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: DataTable(
@@ -33,8 +34,8 @@ class _DataTablesState extends State<DataTables> {
           DataColumn(
             label: SizedBox(
               width: screenWidth <= 650
-                  ? MediaQuery.of(context).size.width * 0.6
-                  : MediaQuery.of(context).size.width * 0.2,
+                  ? screenWidth * 0.5
+                  : screenWidth * 0.2,
               child: const Row(
                 children: [
                   CustomText(
@@ -50,7 +51,7 @@ class _DataTablesState extends State<DataTables> {
             label: Visibility(
               visible: screenWidth >= 900,
               child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.1,
+                width: screenWidth * 0.1,
                 child: const CustomText(
                     text: "Status",
                     size: 12,
@@ -62,8 +63,8 @@ class _DataTablesState extends State<DataTables> {
           DataColumn(
             label: SizedBox(
               width: screenWidth <= 650
-                  ? MediaQuery.of(context).size.width * 0.3
-                  : MediaQuery.of(context).size.width * 0.1,
+                  ? screenWidth * 0.3
+                  : screenWidth * 0.1,
               child: const CustomText(
                   text: "Course",
                   size: 12,
@@ -75,7 +76,7 @@ class _DataTablesState extends State<DataTables> {
             label: Visibility(
               visible: screenWidth >= 600,
               child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.1,
+                width: screenWidth * 0.1,
                 child: const CustomText(
                     text: "Enrolled",
                     size: 12,
@@ -88,7 +89,7 @@ class _DataTablesState extends State<DataTables> {
             label: Visibility(
               visible: screenWidth >= 900,
               child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.15,
+                width: screenWidth * 0.15,
                 child: const CustomText(
                     text: "Progress",
                     size: 12,
@@ -101,7 +102,7 @@ class _DataTablesState extends State<DataTables> {
             label: Visibility(
               visible: screenWidth >= 1000,
               child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.1,
+                width: screenWidth * 0.1,
                 child: const CustomText(
                     text: "Rating",
                     size: 12,
@@ -116,9 +117,9 @@ class _DataTablesState extends State<DataTables> {
             (index) => DataRow(cells: [
                   DataCell(
                     SizedBox(
-                      width: screenWidth <= 650
-                          ? MediaQuery.of(context).size.width * 0.6
-                          : MediaQuery.of(context).size.width * 0.2,
+                      width: screenWidth <= 800
+                          ? screenWidth * 0.5
+                          : screenWidth * 0.2,
                       child: Row(
                         children: [
                           Image.asset(
@@ -131,19 +132,20 @@ class _DataTablesState extends State<DataTables> {
                                 vertical: 5, horizontal: 10),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 CustomText(
                                     text: widget.name +
                                         " " +
                                         (index + 1).toString(),
-                                    size: 14,
+                                    size: fontsize*14,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black),
                                 Text(
                                   widget.email,
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.ibmPlexSans(
-                                    fontSize: 14,
+                                    fontSize: fontsize*14,
                                     color: Colors.black38,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -159,12 +161,12 @@ class _DataTablesState extends State<DataTables> {
                     Visibility(
                       visible: screenWidth >= 900,
                       child: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.1,
+                        width: screenWidth * 0.1,
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Container(
                             //height: 30,
-                            width: MediaQuery.of(context).size.width * 0.08,
+                            width: screenWidth * 0.08,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               color: Colors.white,
@@ -197,7 +199,7 @@ class _DataTablesState extends State<DataTables> {
                                         : widget.status,
                                     textAlign: TextAlign.center,
                                     style: GoogleFonts.ibmPlexSans(
-                                      fontSize: 14,
+                                      fontSize: fontsize*14,
                                       color: index % 3 == 0
                                           ? Colors.red
                                           : Colors.green,
@@ -215,11 +217,11 @@ class _DataTablesState extends State<DataTables> {
                   DataCell(
                     SizedBox(
                       width: screenWidth <= 650
-                          ? MediaQuery.of(context).size.width * 0.3
-                          : MediaQuery.of(context).size.width * 0.1,
+                          ? screenWidth * 0.3
+                          : screenWidth * 0.1,
                       child: CustomText(
                           text: widget.course,
-                          size: 14,
+                          size: fontsize*14,
                           fontWeight: FontWeight.normal,
                           color: Colors.black45),
                     ),
@@ -228,11 +230,11 @@ class _DataTablesState extends State<DataTables> {
                     Visibility(
                       visible: screenWidth >= 600,
                       child: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.1,
+                        width: screenWidth * 0.1,
                         child: Text(
                           widget.enroll_date,
                           style: GoogleFonts.ibmPlexSans(
-                            fontSize: 14,
+                            fontSize: fontsize*14,
                             fontWeight: FontWeight.w300,
                             color: Colors.black45,
                           ),
@@ -244,9 +246,9 @@ class _DataTablesState extends State<DataTables> {
                     Visibility(
                       visible: screenWidth >= 900,
                       child: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.15,
+                        width: screenWidth * 0.15,
                         child: LinearPercentIndicator(
-                          width: MediaQuery.of(context).size.width * 0.12,
+                          width: screenWidth * 0.1,
                           animation: true,
                           lineHeight: 5.0,
                           animationDuration: 2500,
@@ -269,7 +271,7 @@ class _DataTablesState extends State<DataTables> {
                     Visibility(
                       visible: screenWidth >= 1000,
                       child: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.2,
+                        width: screenWidth * 0.2,
                         child: RatingBar.builder(
                           wrapAlignment: WrapAlignment.start,
                           initialRating: widget.ratings,
@@ -277,7 +279,7 @@ class _DataTablesState extends State<DataTables> {
                           direction: Axis.horizontal,
                           allowHalfRating: true,
                           itemCount: 5,
-                          itemSize: 20,
+                          itemSize: fontsize*20,
                           itemBuilder: (context, _) => const Icon(
                             Icons.star,
                             color: Colors.yellow,
