@@ -42,8 +42,8 @@ class CoursesService {
     coursesNotifyListeners();
   }
 
-  uploadCoursePage(notifyListeners) {
-    coursesPage += 1;
+  uploadCoursePage(notifyListeners, page) {
+    coursesPage = page;
     coursesNotifyListeners = notifyListeners;
     notifyListeners();
   }

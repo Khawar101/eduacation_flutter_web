@@ -7,6 +7,9 @@ import '../upload_courses/widgets/pop_up_menu.dart';
 
 Widget courseCard(CoursesModel data, context, CoursesViewModel viewModel) {
   return GestureDetector(
+    onTap: () {
+      viewModel.showCourseDetail(data);
+    },
     child: Card(
       child: Stack(
         children: [
@@ -68,7 +71,7 @@ Widget courseCard(CoursesModel data, context, CoursesViewModel viewModel) {
           Positioned(
             right: 5,
             top: 5,
-            child: popupMenu(context, data,viewModel),
+            child: popupMenu(context, data, viewModel),
           )
         ],
       ),
