@@ -7,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:education_flutter_web/services/login_service.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:video_player/video_player.dart';
 
 import '../app/app.locator.dart';
 import 'Model/CoursesModel.dart';
@@ -139,6 +140,11 @@ class CoursesService {
           videoUrl = await ref.getDownloadURL();
           newSetState(() {});
           notifyListeners();
+          VideoPlayerController controller =
+              await VideoPlayerController.network(videoUrl)
+                ..initialize().then((_) {});
+          print("===>${videoUrl}");
+          print("===>${controller.value.duration}");
           // print("=====>$url=====>${file.type.split("/")[0]}");
           // postType = "${file.type.split("/")[0]}";
           // _videoPlayerController = VideoPlayerController.network(url);
