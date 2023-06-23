@@ -46,8 +46,10 @@ class LoginViewModel extends BaseViewModel {
       if (userDetail.uID!.isNotEmpty && userDetail.uID != "") {
         await Store.save('userId', userDetail.uID!);
       }
+      snakBar(context, _loginService.message);
       _navigationService.navigateToDrawerView();
+    } else {
+      snakBar(context, _loginService.message);
     }
-    snakBar(context, _loginService.message);
   }
 }

@@ -31,7 +31,7 @@ class UploadCoursesViewModel extends BaseViewModel {
     const CourseDetails(),
   ];
   TextEditingController titleCtrl = TextEditingController();
- String? categoryValue;
+  String? categoryValue;
   TextEditingController chapterCtrl = TextEditingController();
   TextEditingController descriptionCtrl = TextEditingController();
   TextEditingController questionCtrl = TextEditingController();
@@ -204,34 +204,25 @@ class UploadCoursesViewModel extends BaseViewModel {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: const Text(
-          'Video',
+        title: Stack(
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width - 600,
+              child: videoPlayer(
+                url: _url,
+              ),
+            ),
+            Positioned(
+              right: 0,
+              child: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const CircleAvatar(
+                      backgroundColor: Colors.white, child: Icon(Icons.close))),
+            )
+          ],
         ),
-        content: SizedBox(
-          height: 200,
-          width: 300,
-          child: videoPlayer(
-            url: _url,
-          ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.pop(
-              context,
-              'Cancel',
-            ),
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(
-              context,
-              'Add Question',
-            ),
-            child: const Text(
-              'OK',
-            ),
-          ),
-        ],
       ),
     );
   }
