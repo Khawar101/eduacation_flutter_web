@@ -2,17 +2,24 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:education_flutter_web/ui/views/settings/widgets/setteing_tabs.dart';
+import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.dart';
+import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
-class MyProfile extends StatefulWidget {
-  const MyProfile({super.key});
+import '../settings_viewmodel.dart';
+
+class MyProfile extends StackedView<SettingsViewModel> {
+  const MyProfile({Key? key}) : super(key: key);
 
   @override
-  State<MyProfile> createState() => _MyProfileState();
-}
-
-class _MyProfileState extends State<MyProfile> {
-  @override
-  Widget build(BuildContext context) {
+  Widget builder(
+    BuildContext context,
+    SettingsViewModel viewModel,
+    Widget? child,
+  ) {
+    //  var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height - 50;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
@@ -61,14 +68,14 @@ class _MyProfileState extends State<MyProfile> {
                                   fontWeight: FontWeight.w500),
                             ),
                             Text(
-                              "Team Manager",
+                              "Teacher",
                               style: GoogleFonts.ibmPlexSans(
                                   color: Colors.black45,
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400),
                             ),
                             Text(
-                              "Leeds,Pakistan",
+                              viewModel.userdata.address??"",
                               style: GoogleFonts.ibmPlexSans(
                                   color: Colors.black45,
                                   fontSize: 12,
@@ -113,37 +120,37 @@ class _MyProfileState extends State<MyProfile> {
                     const SizedBox(height: 20),
                     Row(
                       children: [
-                        const Texts(
+                         Texts(
                           question: "First Name",
-                          answer: "Mudassir",
+                          answer: viewModel.userdata.firstName??"",
                         ),
                         SizedBox(
                             width: MediaQuery.of(context).size.width * 0.2),
-                        const Texts(
+                         Texts(
                           question: "Last Name",
-                          answer: "Ali",
+                          answer: viewModel.userdata.lastName??"",
                         ),
                       ],
                     ),
                     const SizedBox(height: 20),
                     Row(
                       children: [
-                        const Texts(
+                         Texts(
                           question: "Email Addres",
-                          answer: "xyz124@gmail.com",
+                          answer: viewModel.userdata.email??"",
                         ),
                         SizedBox(
                             width: MediaQuery.of(context).size.width * 0.2),
-                        const Texts(
+                         Texts(
                           question: "Phone",
-                          answer: "+0912345566",
+                          answer: viewModel.userdata.phoneNo??"",
                         ),
                       ],
                     ),
                     const SizedBox(height: 20),
                     const Texts(
                       question: "Bio",
-                      answer: "Team Manager",
+                      answer: "Teacher",
                     ),
                   ],
                 ),
@@ -167,7 +174,7 @@ class _MyProfileState extends State<MyProfile> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Address",
+                          viewModel.userdata.address??"",
                           style: GoogleFonts.ibmPlexSans(
                               color: Colors.black,
                               fontSize: 14,
@@ -179,9 +186,9 @@ class _MyProfileState extends State<MyProfile> {
                     const SizedBox(height: 20),
                     Row(
                       children: [
-                        const Texts(
+                         Texts(
                           question: "Country",
-                          answer: "Pakistan",
+                          answer: viewModel.userdata.country??"",
                         ),
                         SizedBox(
                             width: MediaQuery.of(context).size.width * 0.2),
@@ -215,8 +222,16 @@ class _MyProfileState extends State<MyProfile> {
         ),
       ),
     );
-  }
 }
+
+  @override
+  SettingsViewModel viewModelBuilder(
+    BuildContext context,
+  ) =>
+      SettingsViewModel();
+}
+
+
 
 Widget tabSection() {
   return Container(
