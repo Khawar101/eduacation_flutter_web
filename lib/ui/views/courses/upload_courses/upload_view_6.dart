@@ -9,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'upload_courses_viewmodel.dart';
 
-class UploadView_6 extends StackedView<UploadCoursesViewModel> {
-  const UploadView_6({Key? key}) : super(key: key);
+class CourseDetails extends StackedView<UploadCoursesViewModel> {
+  const CourseDetails({Key? key}) : super(key: key);
 
   @override
   Widget builder(

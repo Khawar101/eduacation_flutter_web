@@ -28,19 +28,10 @@ class UploadCoursesViewModel extends BaseViewModel {
     const UploadView_3(),
     const UploadView_4(),
     const UploadView_5(),
-    const UploadView_6(),
+    const CourseDetails(),
   ];
   TextEditingController titleCtrl = TextEditingController();
-  final List<String> categoryList = [
-    'A_Item1',
-    'A_Item2',
-    'A_Item3',
-    'A_Item4',
-    'B_Item1',
-    'B_Item2',
-    'B_Item3',
-    'B_Item4',
-  ];
+
   String? categoryValue;
   TextEditingController chapterCtrl = TextEditingController();
   TextEditingController descriptionCtrl = TextEditingController();
@@ -138,8 +129,6 @@ class UploadCoursesViewModel extends BaseViewModel {
       notifyListeners();
     }
   }
-
-
 
   addQuestion(context) {
     addQuestionAlert(
