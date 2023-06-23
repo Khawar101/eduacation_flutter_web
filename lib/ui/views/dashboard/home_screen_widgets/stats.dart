@@ -18,13 +18,14 @@ class Stats extends StatefulWidget {
 class _StatsState extends State<Stats> {
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.only(right: 15),
       child: Row(
         children: [
           Container(
               // height: 90,
-              width: 300,
+              width: screenWidth*0.22,
               decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
                   color: Colors.white,
