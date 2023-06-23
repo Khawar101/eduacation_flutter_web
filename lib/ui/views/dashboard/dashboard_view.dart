@@ -28,7 +28,7 @@ class DashboardView extends StackedView<DashboardViewModel> {
                 ),
                 LayoutBuilder(
                   builder: (BuildContext context, BoxConstraints constraints) {
-                    if (constraints.maxWidth > 1000) {
+                    if (constraints.maxWidth > 600) {
                       return const Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
