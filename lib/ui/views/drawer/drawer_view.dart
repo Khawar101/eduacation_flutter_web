@@ -17,6 +17,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
   ) {
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
