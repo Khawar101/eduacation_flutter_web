@@ -1,4 +1,5 @@
 import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/head_buttons.dart';
+import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/state_manage.dart';
 import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/stats.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -22,50 +23,13 @@ class DashboardView extends StackedView<DashboardViewModel> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const HeadButtons(),
                 const SizedBox(
                   height: 30,
                 ),
-                screenWidth>690?const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Stats(
-                            headingText: 'Total Member',
-                            containerText: '20',
-                            number: '1,620',
-                          ),
-                          Stats(
-                            headingText: 'Enrolled Member',
-                            containerText: '15',
-                            number: '1,220',
-                          ),
-                          Stats(
-                            headingText: 'Active Now ',
-                            containerText: '12',
-                            number: '208',
-                          ),
-                        ],
-                      ):const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Stats(
-                            headingText: 'Total Member',
-                            containerText: '20',
-                            number: '1,620',
-                          ),
-                          Stats(
-                            headingText: 'Enrolled Member',
-                            containerText: '15',
-                            number: '1,220',
-                          ),
-                          Stats(
-                            headingText: 'Active Now ',
-                            containerText: '12',
-                            number: '208',
-                          ),
-                        ],
-                      ),
+                 stateManage(context),
                 const SizedBox(
                   height: 20,
                 ),

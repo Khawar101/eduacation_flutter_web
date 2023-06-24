@@ -27,7 +27,7 @@ class _StatsState extends State<Stats> {
         children: [
           Container(
               // height: 90,
-              width: screenWidth > 690 ? screenWidth * 0.22 : screenWidth * 0.7,
+              width: 300,
               decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
                   color: Colors.white,
