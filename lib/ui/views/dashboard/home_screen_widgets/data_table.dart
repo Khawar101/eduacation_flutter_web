@@ -144,7 +144,7 @@ class _DataTablesState extends State<DataTables> {
                   (index) => DataRow(cells: [
                         DataCell(
                           SizedBox(
-                            width: 300,
+                            width: 270,
                           
                             child: Row(
                               children: [
@@ -187,12 +187,12 @@ class _DataTablesState extends State<DataTables> {
                         ),
                         DataCell(
                           SizedBox(
-                            width: screenWidth * 0.1,
+                                width: 100,
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Container(
                               
-                                width: screenWidth * 0.08,
+                                width: 90,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: Colors.white,
@@ -241,9 +241,10 @@ class _DataTablesState extends State<DataTables> {
                         ),
                         DataCell(
                           SizedBox(
-                            width: screenWidth <= 650
-                                ? screenWidth * 0.3
-                                : screenWidth * 0.1,
+                                width: 100,
+                            // width: screenWidth <= 650
+                            //     ? screenWidth * 0.3
+                            //     : screenWidth * 0.1,
                             child: CustomText(
                                 text: widget.course,
                                 size: 14,
@@ -253,7 +254,7 @@ class _DataTablesState extends State<DataTables> {
                         ),
                         DataCell(
                           SizedBox(
-                            width: screenWidth * 0.1,
+                              width: 100,
                             child: Text(
                               widget.enroll_date,
                               style: GoogleFonts.ibmPlexSans(
@@ -266,7 +267,8 @@ class _DataTablesState extends State<DataTables> {
                         ),
                         DataCell(
                           SizedBox(
-                            width: screenWidth * 0.15,
+                                width: 200,
+                            // width: screenWidth * 0.15,
                             child: LinearPercentIndicator(
                               width: screenWidth * 0.1,
                               animation: true,

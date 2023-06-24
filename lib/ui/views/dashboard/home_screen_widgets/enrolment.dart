@@ -37,7 +37,7 @@ Widget tab_Section(context) {
               Column(
                 children: [
                   SizedBox(
-                    height: MediaQuery.of(context).size.height*0.8,
+                    height: MediaQuery.of(context).size.height*1,
                    width: MediaQuery.of(context).size.width * 1,
                     child:  const DataTables(title: 'dfdf',
                       status: "Enrolled",
