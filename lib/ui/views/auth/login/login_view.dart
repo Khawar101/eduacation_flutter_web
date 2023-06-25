@@ -64,6 +64,7 @@ class LoginView extends StackedView<LoginViewModel> {
                         validator: (value) {
                           return null;
                         },
+                        // flutter run -d chrome --web-renderer html
                         isObscureText: viewModel.visibleCheck,
                         prefix: MouseRegion(
                           cursor: SystemMouseCursors.click,
