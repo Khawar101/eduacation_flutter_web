@@ -28,7 +28,7 @@ void warningToast(context, title) {
   ).show(context);
 }
 
-void successToast(context) {
+void successToast(context,title) {
   MotionToast.success(
     animationType: AnimationType.fromBottom,
     position: MotionToastPosition.bottom,
@@ -38,17 +38,17 @@ void successToast(context) {
     width: 350,
     height: 80,
     title: const Text(
-      'Warning Motion Toast',
+      'Success',
       style: TextStyle(
         fontWeight: FontWeight.bold,
       ),
     ),
-    description: const Text('This is a Warning'),
+    description:  Text(title),
     borderRadius: 10,
   ).show(context);
 }
 
-void infoToast(context) {
+void infoToast(context,title) {
   MotionToast.info(
     animationType: AnimationType.fromBottom,
     position: MotionToastPosition.bottom,
@@ -56,17 +56,17 @@ void infoToast(context) {
     toastDuration: const Duration(seconds: 3),
     animationCurve: Curves.ease,
     title: const Text(
-      'Warning Motion Toast',
+      'Information',
       style: TextStyle(
         fontWeight: FontWeight.bold,
       ),
     ),
-    description: const Text('This is a Warning'),
+    description: Text(title),
     borderRadius: 10,
   ).show(context);
 }
 
-void errorToast(context) {
+void errorToast(context,title) {
   MotionToast.error(
     animationType: AnimationType.fromBottom,
     position: MotionToastPosition.bottom,
@@ -74,12 +74,12 @@ void errorToast(context) {
     toastDuration: const Duration(seconds: 3),
     animationCurve: Curves.ease,
     title: const Text(
-      'Warning Motion Toast',
+      'Error',
       style: TextStyle(
         fontWeight: FontWeight.bold,
       ),
     ),
-    description: const Text('This is a Warning'),
+    description: Text(title),
     borderRadius: 10,
   ).show(context);
 }

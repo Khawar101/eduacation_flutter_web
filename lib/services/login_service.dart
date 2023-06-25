@@ -1,4 +1,6 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, unused_import, avoid_web_libraries_in_flutter
+
+import 'dart:js';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -43,7 +45,10 @@ class LoginService {
         );
         message = "login successfully";
         return UserData;
-      } else {
+      }
+      
+      
+      else {
         message = "Please fill all text field";
       }
     } catch (e) {
