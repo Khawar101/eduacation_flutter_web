@@ -1,6 +1,5 @@
 import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/head_buttons.dart';
 import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/state_manage.dart';
-import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/stats.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'dashboard_viewmodel.dart';
@@ -15,7 +14,7 @@ class DashboardView extends StackedView<DashboardViewModel> {
     DashboardViewModel viewModel,
     Widget? child,
   ) {
-    final screenWidth = MediaQuery.of(context).size.width;
+ //   final screenWidth = MediaQuery.of(context).size.width;
     return  Container(
         height: MediaQuery.of(context).size.height * 0.9,
         color: Colors.white,
