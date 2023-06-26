@@ -26,8 +26,8 @@ class UploadCoursesViewModel extends BaseViewModel {
     const UploadView_1(),
     const UploadView_2(),
     const UploadView_3(),
-    const UploadView_4(),
-    const UploadView_5(),
+    const UploadView_4(false),
+    const UploadView_5(false),
     const CourseDetails(),
   ];
   TextEditingController titleCtrl = TextEditingController();

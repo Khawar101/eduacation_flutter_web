@@ -81,12 +81,12 @@ class CourseDetails extends StackedView<UploadCoursesViewModel> {
             const StarText(
               text: 'Lectures',
             ),
-            const UploadView_4(),
+            const UploadView_4(true),
             verticalSpaceSmall,
             const StarText(
               text: 'Assignments',
             ),
-            const UploadView_5(),
+             const UploadView_5(true),
             verticalSpaceSmall,
             const StarText(
               text: 'FAQ',

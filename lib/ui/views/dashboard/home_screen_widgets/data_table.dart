@@ -88,16 +88,16 @@ class _DataTablesState extends State<DataTables> {
                     ),
                   ),
                 ),
-                const DataColumn(
-                  label: SizedBox(
-                    // width: screenWidth * 0.1,
-                    child: CustomText(
-                        text: "Status",
-                        size: 12,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                  ),
-                ),
+                // const DataColumn(
+                //   label: SizedBox(
+                //     // width: screenWidth * 0.1,
+                //     child: CustomText(
+                //         text: "Status",
+                //         size: 12,
+                //         fontWeight: FontWeight.bold,
+                //         color: Colors.black),
+                //   ),
+                // ),
                 DataColumn(
                   label: SizedBox(
                     width:
@@ -186,60 +186,60 @@ class _DataTablesState extends State<DataTables> {
                             ),
                           ),
                         ),
-                        DataCell(
-                          SizedBox(
-                                width: 100,
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Container(
+                        // DataCell(
+                        //   SizedBox(
+                        //         width: 100,
+                        //     child: Align(
+                        //       alignment: Alignment.centerLeft,
+                        //       child: Container(
                               
-                                width: 90,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.white,
-                                  border: Border.all(
-                                    width: 1,
-                                    color:
-                                        index % 3 == 0 ? Colors.red : Colors.green,
-                                    style: BorderStyle.solid,
-                                  ),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.circle_sharp,
-                                      color: index % 3 == 0
-                                          ? Colors.red
-                                          : Colors.green,
-                                      size: 10,
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 5, horizontal: 0),
-                                      child: Text(
-                                        index % 3 == 0
-                                            ? "Unenrolled"
-                                            : widget.status,
-                                        textAlign: TextAlign.center,
-                                        style: GoogleFonts.ibmPlexSans(
-                                          fontSize: 14,
-                                          color: index % 3 == 0
-                                              ? Colors.red
-                                              : Colors.green,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                        //         width: 90,
+                        //         decoration: BoxDecoration(
+                        //           borderRadius: BorderRadius.circular(10),
+                        //           color: Colors.white,
+                        //           border: Border.all(
+                        //             width: 1,
+                        //             color:
+                        //                 index % 3 == 0 ? Colors.red : Colors.green,
+                        //             style: BorderStyle.solid,
+                        //           ),
+                        //         ),
+                        //         child: Row(
+                        //           mainAxisAlignment: MainAxisAlignment.center,
+                        //           children: [
+                        //             Icon(
+                        //               Icons.circle_sharp,
+                        //               color: index % 3 == 0
+                        //                   ? Colors.red
+                        //                   : Colors.green,
+                        //               size: 10,
+                        //             ),
+                        //             const SizedBox(
+                        //               width: 5,
+                        //             ),
+                        //             Padding(
+                        //               padding: const EdgeInsets.symmetric(
+                        //                   vertical: 5, horizontal: 0),
+                        //               child: Text(
+                        //                 index % 3 == 0
+                        //                     ? "Unenrolled"
+                        //                     : widget.status,
+                        //                 textAlign: TextAlign.center,
+                        //                 style: GoogleFonts.ibmPlexSans(
+                        //                   fontSize: 14,
+                        //                   color: index % 3 == 0
+                        //                       ? Colors.red
+                        //                       : Colors.green,
+                        //                   fontWeight: FontWeight.w600,
+                        //                 ),
+                        //               ),
+                        //             ),
+                        //           ],
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                         DataCell(
                           SizedBox(
                                 width: 100,

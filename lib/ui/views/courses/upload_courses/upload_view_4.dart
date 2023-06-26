@@ -8,7 +8,8 @@ import 'package:stacked/stacked.dart';
 import 'upload_courses_viewmodel.dart';
 
 class UploadView_4 extends StackedView<UploadCoursesViewModel> {
-  const UploadView_4({Key? key}) : super(key: key);
+   final bool review;
+  const UploadView_4(this.review, {Key? key}) : super(key: key);
   @override
   void onViewModelReady(UploadCoursesViewModel viewModel) {
     viewModel.lectures = viewModel.courseData.lecture ?? [];
@@ -42,7 +43,9 @@ class UploadView_4 extends StackedView<UploadCoursesViewModel> {
                 //  childAspectRatio: 1/4,
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20),
-            itemCount: viewModel.lectures.length + 1,
+            itemCount: review
+                ? viewModel.lectures.length
+                : viewModel.lectures.length + 1,
             itemBuilder: (BuildContext context, index) {
               return Container(
                 decoration: BoxDecoration(
