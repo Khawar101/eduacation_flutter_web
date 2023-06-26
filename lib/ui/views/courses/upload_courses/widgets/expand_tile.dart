@@ -1,26 +1,47 @@
 import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../upload_courses_viewmodel.dart';
 
-Widget expend_tile(UploadCoursesViewModel viewModel, index) {
-  return Card(
-    child: ExpansionTile(
-      title: ButtonText(
-          text: viewModel.faq[index].question.toString(), color: Colors.black),
-      trailing: IconButton(
-          onPressed: () {
-            viewModel.removeQuestion(index);
-          },
-          icon: const Icon(Icons.remove_circle_outline)),
-      children: <Widget>[
-        Row(
-          children: [
-            const SizedBox(width: 100),
-            BigSubText(text: viewModel.faq[index].answer.toString()),
-          ],
-        ),
-      ],
-    ),
+Widget expend_tile(UploadCoursesViewModel viewModel, index, context) {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.start,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.35,
+            child: Text(
+              "Q:${viewModel.faq[index].question.toString()}",            
+              style: GoogleFonts.ibmPlexSans(
+                  color: Colors.black,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500),
+              maxLines: 1,
+            ),
+          ),
+          IconButton(
+              padding: const EdgeInsets.all(0),
+              onPressed: () {
+                viewModel.removeQuestion(index);
+              },
+              icon: const Icon(Icons.remove_circle_outline)),
+        ],
+      ),
+      Text(
+        "Ans:${viewModel.faq[index].answer.toString()}",
+        textAlign: TextAlign.center,
+        style: GoogleFonts.ibmPlexSans(
+            color: const Color(0xff969799),
+            fontSize: 15,
+            fontWeight: FontWeight.w400),
+        maxLines: 5,
+        overflow: TextOverflow.ellipsis,
+      ),
+    ],
   );
 }
