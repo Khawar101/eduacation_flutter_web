@@ -73,9 +73,10 @@ class UploadView_2 extends StackedView<UploadCoursesViewModel> {
                 itemBuilder: (context, index) {
             
                 return Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
+                    border: Border.all(width: 1, color: const Color(0xff4873a6).withOpacity(0.7),),
                      color: Colors.white,
                   ),
                  
