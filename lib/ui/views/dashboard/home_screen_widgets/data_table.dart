@@ -30,43 +30,49 @@ class _DataTablesState extends State<DataTables> {
     final screenWidth = MediaQuery.of(context).size.width;
     final _verticalScrollController = ScrollController();
     final _horizontalScrollController = ScrollController();
-    return  AdaptiveScrollbar(
+    return AdaptiveScrollbar(
       width: 10,
-          underColor: Colors.grey.withOpacity(0.1),
-          sliderDefaultColor: Colors.grey.withOpacity(0.8),
-          sliderActiveColor: Colors.grey.withOpacity(0.8),
-          sliderActiveDecoration: BoxDecoration(
-           shape: BoxShape.rectangle, color: Colors.grey.withOpacity(0.1),borderRadius: BorderRadius.circular(4)
-          ),
-          underDecoration: BoxDecoration(
-         shape: BoxShape.rectangle, color: Colors.grey.withOpacity(0.1),borderRadius: BorderRadius.circular(4)
-          ),
-          sliderDecoration: BoxDecoration(
-         shape: BoxShape.rectangle, color: Colors.grey.withOpacity(0.8),borderRadius: BorderRadius.circular(4)
-          ),
+      underColor: Colors.grey.withOpacity(0.1),
+      sliderDefaultColor: Colors.grey.withOpacity(0.8),
+      sliderActiveColor: Colors.grey.withOpacity(0.8),
+      sliderActiveDecoration: BoxDecoration(
+          shape: BoxShape.rectangle,
+          color: Colors.grey.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(4)),
+      underDecoration: BoxDecoration(
+          shape: BoxShape.rectangle,
+          color: Colors.grey.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(4)),
+      sliderDecoration: BoxDecoration(
+          shape: BoxShape.rectangle,
+          color: Colors.grey.withOpacity(0.8),
+          borderRadius: BorderRadius.circular(4)),
+      controller: _verticalScrollController,
+      child: AdaptiveScrollbar(
+        width: 10,
+        controller: _horizontalScrollController,
+        position: ScrollbarPosition.bottom,
+        underColor: Colors.grey.withOpacity(0.1),
+        sliderDefaultColor: Colors.grey.withOpacity(0.8),
+        sliderActiveColor: Colors.grey.withOpacity(0.8),
+        sliderActiveDecoration: BoxDecoration(
+            shape: BoxShape.rectangle,
+            color: Colors.grey.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(4)),
+        underDecoration: BoxDecoration(
+            shape: BoxShape.rectangle,
+            color: Colors.grey.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(4)),
+        sliderDecoration: BoxDecoration(
+            shape: BoxShape.rectangle,
+            color: Colors.grey.withOpacity(0.8),
+            borderRadius: BorderRadius.circular(4)),
+        child: SingleChildScrollView(
           controller: _verticalScrollController,
-          child: AdaptiveScrollbar(
-            width: 10,
+          scrollDirection: Axis.vertical,
+          child: SingleChildScrollView(
             controller: _horizontalScrollController,
-            position: ScrollbarPosition.bottom,
-             underColor: Colors.grey.withOpacity(0.1),
-          sliderDefaultColor: Colors.grey.withOpacity(0.8),
-          sliderActiveColor: Colors.grey.withOpacity(0.8),
-          sliderActiveDecoration: BoxDecoration(
-           shape: BoxShape.rectangle, color: Colors.grey.withOpacity(0.1),borderRadius: BorderRadius.circular(4)
-          ),
-          underDecoration: BoxDecoration(
-         shape: BoxShape.rectangle, color: Colors.grey.withOpacity(0.1),borderRadius: BorderRadius.circular(4)
-          ),
-          sliderDecoration: BoxDecoration(
-         shape: BoxShape.rectangle, color: Colors.grey.withOpacity(0.8),borderRadius: BorderRadius.circular(4)
-          ),
-            child: SingleChildScrollView(
-              controller: _verticalScrollController,
-              scrollDirection: Axis.vertical,
-              child: SingleChildScrollView(
-                controller: _horizontalScrollController,
-                scrollDirection: Axis.horizontal,
+            scrollDirection: Axis.horizontal,
             child: DataTable(
               horizontalMargin: 20,
               showBottomBorder: true,
@@ -75,8 +81,9 @@ class _DataTablesState extends State<DataTables> {
               columns: [
                 DataColumn(
                   label: SizedBox(
-                    width:
-                        screenWidth <= 650 ? screenWidth * 0.5 : screenWidth * 0.2,
+                    width: screenWidth <= 650
+                        ? screenWidth * 0.5
+                        : screenWidth * 0.2,
                     child: const Row(
                       children: [
                         CustomText(
@@ -100,8 +107,9 @@ class _DataTablesState extends State<DataTables> {
                 // ),
                 DataColumn(
                   label: SizedBox(
-                    width:
-                        screenWidth <= 650 ? screenWidth * 0.3 : screenWidth * 0.1,
+                    width: screenWidth <= 650
+                        ? screenWidth * 0.3
+                        : screenWidth * 0.1,
                     child: const CustomText(
                         text: "Course",
                         size: 12,
@@ -146,12 +154,13 @@ class _DataTablesState extends State<DataTables> {
                         DataCell(
                           SizedBox(
                             width: 270,
-                          
                             child: Row(
                               children: [
                                 const CircleAvatar(
                                   radius: 20,
-                                 backgroundImage: AssetImage("assets/images/girl-images-4.jpg",),                                
+                                  backgroundImage: AssetImage(
+                                    "assets/images/girl-images-4.jpg",
+                                  ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -159,14 +168,16 @@ class _DataTablesState extends State<DataTables> {
                                   child: SizedBox(
                                     width: 200,
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         CustomText(
                                             text: widget.name +
                                                 " " +
                                                 (index + 1).toString(),
-                                            size:   14,
+                                            size: 14,
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black),
                                         Text(
@@ -192,7 +203,7 @@ class _DataTablesState extends State<DataTables> {
                         //     child: Align(
                         //       alignment: Alignment.centerLeft,
                         //       child: Container(
-                              
+
                         //         width: 90,
                         //         decoration: BoxDecoration(
                         //           borderRadius: BorderRadius.circular(10),
@@ -242,7 +253,7 @@ class _DataTablesState extends State<DataTables> {
                         // ),
                         DataCell(
                           SizedBox(
-                                width: 100,
+                            width: 100,
                             // width: screenWidth <= 650
                             //     ? screenWidth * 0.3
                             //     : screenWidth * 0.1,
@@ -255,7 +266,7 @@ class _DataTablesState extends State<DataTables> {
                         ),
                         DataCell(
                           SizedBox(
-                              width: 100,
+                            width: 100,
                             child: Text(
                               widget.enroll_date,
                               style: GoogleFonts.ibmPlexSans(
@@ -268,7 +279,7 @@ class _DataTablesState extends State<DataTables> {
                         ),
                         DataCell(
                           SizedBox(
-                                width: 200,
+                            width: 200,
                             // width: screenWidth * 0.15,
                             child: LinearPercentIndicator(
                               width: screenWidth * 0.1,
@@ -314,7 +325,7 @@ class _DataTablesState extends State<DataTables> {
             ),
           ),
         ),
-       ),
+      ),
     );
   }
 }

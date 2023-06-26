@@ -46,26 +46,25 @@ Widget tabSection(context) {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      warningToast(
-                          context, 'something wrong in your process');
+                      warningToast(context, 'something wrong in your process');
                     },
                     child: const Text('warningToast'),
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      successToast(context,'Your process successfully done');
+                      successToast(context, 'Your process successfully done');
                     },
                     child: const Text('successToast'),
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      infoToast(context,"write your correct information");
+                      infoToast(context, "write your correct information");
                     },
                     child: const Text('infoToast'),
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      errorToast(context,"First resolve the error");
+                      errorToast(context, "First resolve the error");
                     },
                     child: const Text('errorToast'),
                   ),

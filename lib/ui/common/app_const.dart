@@ -1,9 +1,9 @@
-  final List<String> categoryList = [
-    "Programming",
-    "Web Development",
-    "Data Science",
-    "Machine Learning",
-    "Artificial Intelligence",
+final List<String> categoryList = [
+  "Programming",
+  "Web Development",
+  "Data Science",
+  "Machine Learning",
+  "Artificial Intelligence",
 // Mobile App Development
 // Game Development
 // Graphic Design
@@ -79,4 +79,4 @@
 // Cybersecurity
 // Ethical Hacking
 // Artificial Intelligence in Healthcare
-  ];
+];

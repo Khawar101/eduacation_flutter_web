@@ -14,31 +14,30 @@ class DashboardView extends StackedView<DashboardViewModel> {
     DashboardViewModel viewModel,
     Widget? child,
   ) {
- //   final screenWidth = MediaQuery.of(context).size.width;
-    return  Container(
-        height: MediaQuery.of(context).size.height * 0.9,
-        color: Colors.white,
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const HeadButtons(),
-                const SizedBox(
-                  height: 30,
-                ),
-                 stateManage(context),
-                const SizedBox(
-                  height: 20,
-                ),
-                tab_Section(context),
-                
-              ],
-            ),
+    //   final screenWidth = MediaQuery.of(context).size.width;
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.9,
+      color: Colors.white,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const HeadButtons(),
+              const SizedBox(
+                height: 30,
+              ),
+              stateManage(context),
+              const SizedBox(
+                height: 20,
+              ),
+              tab_Section(context),
+            ],
           ),
         ),
-      );
+      ),
+    );
   }
 
   @override

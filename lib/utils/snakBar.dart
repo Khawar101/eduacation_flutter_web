@@ -28,7 +28,7 @@ void warningToast(context, title) {
   ).show(context);
 }
 
-void successToast(context,title) {
+void successToast(context, title) {
   MotionToast.success(
     animationType: AnimationType.fromBottom,
     position: MotionToastPosition.bottom,
@@ -43,12 +43,12 @@ void successToast(context,title) {
         fontWeight: FontWeight.bold,
       ),
     ),
-    description:  Text(title),
+    description: Text(title),
     borderRadius: 10,
   ).show(context);
 }
 
-void infoToast(context,title) {
+void infoToast(context, title) {
   MotionToast.info(
     animationType: AnimationType.fromBottom,
     position: MotionToastPosition.bottom,
@@ -66,7 +66,7 @@ void infoToast(context,title) {
   ).show(context);
 }
 
-void errorToast(context,title) {
+void errorToast(context, title) {
   MotionToast.error(
     animationType: AnimationType.fromBottom,
     position: MotionToastPosition.bottom,

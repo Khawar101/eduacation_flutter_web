@@ -201,8 +201,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
                               ),
                               const SizedBox(width: 4),
                               ButtonText(
-                                  text: viewModel
-                                      .loginService.UserData.username
+                                  text: viewModel.loginService.UserData.username
                                       .toString(),
                                   color: Colors.black),
                               const SizedBox(width: 8),

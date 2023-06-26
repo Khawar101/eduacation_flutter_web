@@ -28,7 +28,6 @@ class _UsersDataState extends State<UsersData> {
       child: Column(
         children: [
           Row(
-            
             children: [
               Checkbox(
                   fillColor: const MaterialStatePropertyAll(Colors.black26),
@@ -39,7 +38,7 @@ class _UsersDataState extends State<UsersData> {
                   onChanged: null),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.25,
-                height: MediaQuery.of(context).size.height*0.1,
+                height: MediaQuery.of(context).size.height * 0.1,
                 child: Row(
                   children: [
                     Image.asset(
@@ -48,8 +47,8 @@ class _UsersDataState extends State<UsersData> {
                       width: 35,
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 5, horizontal: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -94,8 +93,14 @@ class _UsersDataState extends State<UsersData> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.circle_sharp, color: Colors.green, size: 10,),
-                        const SizedBox(width: 5,),
+                        const Icon(
+                          Icons.circle_sharp,
+                          color: Colors.green,
+                          size: 10,
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
                         Text(
                           widget.status,
                           textAlign: TextAlign.center,
@@ -153,36 +158,37 @@ class _UsersDataState extends State<UsersData> {
                 ),
               ),
               SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.1,
-                  child: const Row(
-                    children: [
-                      Icon(
-                        Icons.star,
-                        color: Color.fromARGB(255, 3, 12, 65),
-                        size: 18,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Color.fromARGB(255, 3, 12, 65),
-                        size: 18,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Color.fromARGB(255, 3, 12, 65),
-                        size: 18,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Color.fromARGB(255, 3, 12, 65),
-                        size: 18,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Color.fromARGB(255, 3, 12, 65),
-                        size: 18,
-                      ),
-                    ],
-                  ),),
+                width: MediaQuery.of(context).size.width * 0.1,
+                child: const Row(
+                  children: [
+                    Icon(
+                      Icons.star,
+                      color: Color.fromARGB(255, 3, 12, 65),
+                      size: 18,
+                    ),
+                    Icon(
+                      Icons.star,
+                      color: Color.fromARGB(255, 3, 12, 65),
+                      size: 18,
+                    ),
+                    Icon(
+                      Icons.star,
+                      color: Color.fromARGB(255, 3, 12, 65),
+                      size: 18,
+                    ),
+                    Icon(
+                      Icons.star,
+                      color: Color.fromARGB(255, 3, 12, 65),
+                      size: 18,
+                    ),
+                    Icon(
+                      Icons.star,
+                      color: Color.fromARGB(255, 3, 12, 65),
+                      size: 18,
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
           const Divider(

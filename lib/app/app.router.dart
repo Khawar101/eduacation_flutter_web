@@ -5,6 +5,8 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:education_flutter_web/ui/views/account/account_view.dart'
+    as _i13;
 import 'package:education_flutter_web/ui/views/auth/forgetpassword/forgetpassword_view.dart'
     as _i11;
 import 'package:education_flutter_web/ui/views/auth/login/login_view.dart'
@@ -26,10 +28,10 @@ import 'package:education_flutter_web/ui/views/splash_screen/splash_screen_view.
     as _i12;
 import 'package:education_flutter_web/ui/views/teachers/teachers_view.dart'
     as _i4;
-import 'package:flutter/material.dart' as _i13;
+import 'package:flutter/material.dart' as _i14;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i14;
+import 'package:stacked_services/stacked_services.dart' as _i15;
 
 class Routes {
   static const coursesView = '/courses-view';
@@ -54,6 +56,8 @@ class Routes {
 
   static const splashScreenView = '/splash-screen-view';
 
+  static const accountView = '/account-view';
+
   static const all = <String>{
     coursesView,
     dashboardView,
@@ -66,6 +70,7 @@ class Routes {
     verifyView,
     forgetpasswordView,
     splashScreenView,
+    accountView,
   };
 }
 
@@ -115,72 +120,82 @@ class StackedRouter extends _i1.RouterBase {
       Routes.splashScreenView,
       page: _i12.SplashScreenView,
     ),
+    _i1.RouteDef(
+      Routes.accountView,
+      page: _i13.AccountView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.CoursesView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.CoursesView(),
         settings: data,
       );
     },
     _i3.DashboardView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.DashboardView(),
         settings: data,
       );
     },
     _i4.TeachersView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.TeachersView(),
         settings: data,
       );
     },
     _i5.SettingsView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.SettingsView(),
         settings: data,
       );
     },
     _i6.UploadCoursesView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i6.UploadCoursesView(),
         settings: data,
       );
     },
     _i7.DrawerView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i7.DrawerView(),
         settings: data,
       );
     },
     _i8.LoginView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i8.LoginView(),
         settings: data,
       );
     },
     _i9.SignupView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i9.SignupView(),
         settings: data,
       );
     },
     _i10.VerifyView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i10.VerifyView(),
         settings: data,
       );
     },
     _i11.ForgetpasswordView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i11.ForgetpasswordView(),
         settings: data,
       );
     },
     _i12.SplashScreenView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i12.SplashScreenView(),
+        settings: data,
+      );
+    },
+    _i13.AccountView: (data) {
+      return _i14.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i13.AccountView(),
         settings: data,
       );
     },
@@ -192,7 +207,7 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i14.NavigationService {
+extension NavigatorStateExtension on _i15.NavigationService {
   Future<dynamic> navigateToCoursesView([
     int? routerId,
     bool preventDuplicates = true,
@@ -347,6 +362,20 @@ extension NavigatorStateExtension on _i14.NavigationService {
         transition: transition);
   }
 
+  Future<dynamic> navigateToAccountView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.accountView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> replaceWithCoursesView([
     int? routerId,
     bool preventDuplicates = true,
@@ -495,6 +524,20 @@ extension NavigatorStateExtension on _i14.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.splashScreenView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithAccountView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.accountView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

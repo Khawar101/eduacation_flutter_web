@@ -16,7 +16,7 @@ Widget expend_tile(UploadCoursesViewModel viewModel, index, context) {
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.35,
             child: Text(
-              "Q:${viewModel.faq[index].question.toString()}",            
+              "Q:${viewModel.faq[index].question.toString()}",
               style: GoogleFonts.ibmPlexSans(
                   color: Colors.black,
                   fontSize: 15,

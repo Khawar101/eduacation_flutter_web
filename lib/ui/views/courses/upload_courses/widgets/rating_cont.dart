@@ -55,7 +55,13 @@ Widget ratingCont(context) {
             ],
           ),
           SizedBox(height: 10),
-          Text("Last week, we dropped some major updates, giving you the power to embed custom code blocks into the site you designed and published with STUDIO AI.Cue the new Embed box from the Add panel! HTML, CSS, JavaScript - you can now inject them into your page with ease. Imagine the ability to include third party elements from surveys to Docs to your site. Its as easy as copying and pasting.",style: GoogleFonts.ibmPlexSans(color:Colors.black,fontWeight: FontWeight.bold),overflow: TextOverflow.ellipsis,maxLines:4,)
+          Text(
+            "Last week, we dropped some major updates, giving you the power to embed custom code blocks into the site you designed and published with STUDIO AI.Cue the new Embed box from the Add panel! HTML, CSS, JavaScript - you can now inject them into your page with ease. Imagine the ability to include third party elements from surveys to Docs to your site. Its as easy as copying and pasting.",
+            style: GoogleFonts.ibmPlexSans(
+                color: Colors.black, fontWeight: FontWeight.bold),
+            overflow: TextOverflow.ellipsis,
+            maxLines: 4,
+          )
         ],
       ),
     ),

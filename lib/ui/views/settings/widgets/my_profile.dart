@@ -16,7 +16,7 @@ class MyProfile extends StackedView<SettingsViewModel> {
     Widget? child,
   ) {
     //  var width = MediaQuery.of(context).size.width;
-   // var height = MediaQuery.of(context).size.height - 50;
+    // var height = MediaQuery.of(context).size.height - 50;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
@@ -48,10 +48,11 @@ class MyProfile extends StackedView<SettingsViewModel> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                         CircleAvatar(
+                        CircleAvatar(
                           radius: 35,
                           backgroundColor: Colors.red,
-                          backgroundImage: NetworkImage(viewModel.userdata.profile.toString()),
+                          backgroundImage: NetworkImage(
+                              viewModel.userdata.profile.toString()),
                         ),
                         const SizedBox(width: 15),
                         Column(
@@ -73,7 +74,7 @@ class MyProfile extends StackedView<SettingsViewModel> {
                                   fontWeight: FontWeight.w400),
                             ),
                             Text(
-                              viewModel.userdata.address??"",
+                              viewModel.userdata.address ?? "",
                               style: GoogleFonts.ibmPlexSans(
                                   color: Colors.black45,
                                   fontSize: 12,
@@ -118,30 +119,30 @@ class MyProfile extends StackedView<SettingsViewModel> {
                     const SizedBox(height: 20),
                     Row(
                       children: [
-                         Texts(
+                        Texts(
                           question: "First Name",
-                          answer: viewModel.userdata.firstName??"",
+                          answer: viewModel.userdata.firstName ?? "",
                         ),
                         SizedBox(
                             width: MediaQuery.of(context).size.width * 0.2),
-                         Texts(
+                        Texts(
                           question: "Last Name",
-                          answer: viewModel.userdata.lastName??"",
+                          answer: viewModel.userdata.lastName ?? "",
                         ),
                       ],
                     ),
                     const SizedBox(height: 20),
                     Row(
                       children: [
-                         Texts(
+                        Texts(
                           question: "Email Addres",
-                          answer: viewModel.userdata.email??"",
+                          answer: viewModel.userdata.email ?? "",
                         ),
                         SizedBox(
                             width: MediaQuery.of(context).size.width * 0.2),
-                         Texts(
+                        Texts(
                           question: "Phone",
-                          answer: viewModel.userdata.phoneNo??"",
+                          answer: viewModel.userdata.phoneNo ?? "",
                         ),
                       ],
                     ),
@@ -172,7 +173,7 @@ class MyProfile extends StackedView<SettingsViewModel> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          viewModel.userdata.address??"",
+                          viewModel.userdata.address ?? "",
                           style: GoogleFonts.ibmPlexSans(
                               color: Colors.black,
                               fontSize: 14,
@@ -184,24 +185,23 @@ class MyProfile extends StackedView<SettingsViewModel> {
                     const SizedBox(height: 20),
                     Row(
                       children: [
-                         Texts(
+                        Texts(
                           question: "Country",
-                          answer: viewModel.userdata.country??"",
+                          answer: viewModel.userdata.country ?? "",
                         ),
                         SizedBox(
                             width: MediaQuery.of(context).size.width * 0.2),
-                         Texts(
+                        Texts(
                           question: "City",
-                          answer: viewModel.userdata.city??"",
+                          answer: viewModel.userdata.city ?? "",
                         ),
                       ],
                     ),
                     const SizedBox(height: 20),
                     Texts(
-                          question: "Address",
-                          answer: viewModel.userdata.address??"",
-                        ),
-                  
+                      question: "Address",
+                      answer: viewModel.userdata.address ?? "",
+                    ),
                   ],
                 ),
               ),
@@ -211,7 +211,7 @@ class MyProfile extends StackedView<SettingsViewModel> {
         ),
       ),
     );
-}
+  }
 
   @override
   SettingsViewModel viewModelBuilder(
@@ -219,8 +219,6 @@ class MyProfile extends StackedView<SettingsViewModel> {
   ) =>
       SettingsViewModel();
 }
-
-
 
 Widget tabSection() {
   return Container(

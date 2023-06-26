@@ -21,7 +21,7 @@ class UploadView_2 extends StackedView<UploadCoursesViewModel> {
     UploadCoursesViewModel viewModel,
     Widget? child,
   ) {
-     var width = MediaQuery.of(context).size.width;
+    var width = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,13 +30,13 @@ class UploadView_2 extends StackedView<UploadCoursesViewModel> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-               Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const BigText(text: "FAQs", color: Colors.black),
                   verticalSpaceTiny,
                   SizedBox(
-                    width: width/1.5,
+                    width: width / 1.5,
                     child: const Align(
                       alignment: Alignment.centerLeft,
                       child: BigSubText(
@@ -61,26 +61,28 @@ class UploadView_2 extends StackedView<UploadCoursesViewModel> {
             color: Colors.grey,
           ),
           GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: viewModel.faq.length,
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 1000,
-          mainAxisExtent: 160,
-          crossAxisSpacing: 8,
-          mainAxisSpacing: 8,
-        ),
-                itemBuilder: (context, index) {
-            
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: viewModel.faq.length,
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 1000,
+                mainAxisExtent: 160,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
+              ),
+              itemBuilder: (context, index) {
                 return Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(width: 1, color: const Color(0xff4873a6).withOpacity(0.7),),
-                     color: Colors.white,
-                  ),
-                 
-                  child: expend_tile(viewModel, index,context));
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        width: 1,
+                        color: const Color(0xff4873a6).withOpacity(0.7),
+                      ),
+                      color: Colors.white,
+                    ),
+                    child: expend_tile(viewModel, index, context));
               }),
         ],
       ),

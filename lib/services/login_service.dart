@@ -45,10 +45,7 @@ class LoginService {
         );
         message = "login successfully";
         return UserData;
-      }
-      
-      
-      else {
+      } else {
         message = "Please fill all text field";
       }
     } catch (e) {
