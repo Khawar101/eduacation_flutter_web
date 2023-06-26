@@ -20,6 +20,7 @@ class UploadCoursesView extends StackedView<UploadCoursesViewModel> {
     return SizedBox(
       height: height,
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(
