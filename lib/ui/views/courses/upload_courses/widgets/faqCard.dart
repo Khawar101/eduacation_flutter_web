@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../upload_courses_viewmodel.dart';
 
-Widget expend_tile(UploadCoursesViewModel viewModel, index, context) {
+Widget faqCard(UploadCoursesViewModel viewModel, index, context) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,

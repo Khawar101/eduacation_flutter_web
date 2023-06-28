@@ -1,7 +1,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:education_flutter_web/ui/common/ui_helpers.dart';
-import 'package:education_flutter_web/ui/views/courses/upload_courses/widgets/expand_tile.dart';
+import 'package:education_flutter_web/ui/views/courses/upload_courses/widgets/faqCard.dart';
 import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -82,7 +82,7 @@ class UploadView_2 extends StackedView<UploadCoursesViewModel> {
                       ),
                       color: Colors.white,
                     ),
-                    child: expend_tile(viewModel, index, context));
+                    child: faqCard(viewModel, index, context));
               }),
         ],
       ),
