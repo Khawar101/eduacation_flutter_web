@@ -16,6 +16,7 @@ import 'package:education_flutter_web/ui/views/auth/forgetpassword/forgetpasswor
 
 import '../ui/views/splash_screen/splash_screen_view.dart';
 import 'package:education_flutter_web/ui/views/account/account_view.dart';
+import 'package:education_flutter_web/services/rating_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -39,6 +40,7 @@ import 'package:education_flutter_web/ui/views/account/account_view.dart';
     LazySingleton(classType: SignupService),
     LazySingleton(classType: LoginService),
     LazySingleton(classType: CoursesService),
+    LazySingleton(classType: RatingService),
 // @stacked-service
   ],
 )

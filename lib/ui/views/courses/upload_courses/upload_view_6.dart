@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types
 
+import 'package:education_flutter_web/services/Model/ratingModel.dart';
 import 'package:education_flutter_web/ui/common/ui_helpers.dart';
 import 'package:education_flutter_web/ui/views/courses/upload_courses/upload_view_2.dart';
 import 'package:education_flutter_web/ui/views/courses/upload_courses/upload_view_4.dart';
@@ -9,6 +10,7 @@ import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.da
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import '../../../../utils/loading.dart';
 import 'upload_courses_viewmodel.dart';
 
 class CourseDetails extends StackedView<UploadCoursesViewModel> {
@@ -101,18 +103,40 @@ class CourseDetails extends StackedView<UploadCoursesViewModel> {
             height: 150,
             child: ScrollConfiguration(
               behavior: MyCustomScrollBehavior(),
-              child: ListView.builder(
-                  itemCount: 500,
-                  // shrinkWrap: true,
-                  // physics: ClampingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: ratingCont(context),
-                    );
-                  }),
+              child: StreamBuilder<List<RatingModel>>(
+                stream:viewModel.rateingService.ratingStream(viewModel.courseData.publishDate),
+                builder: (BuildContext context,
+                    AsyncSnapshot<List<RatingModel>> snapshot) {
+                  if (snapshot.hasError) {
+                    return Center(child: Text(snapshot.error.toString()));
+                  }
+
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Loading();
+                  }
+                  if (snapshot.data!.isEmpty) {
+                    return const Center(child: Text("No rating yet..."));
+                  }
+                  return ListView.builder(
+                      itemCount: snapshot.data!.length,
+                      // shrinkWrap: true,
+                      // physics: ClampingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (BuildContext context, int index) {
+                        // RatingModel data = snapshot.data![index];
+                        return Padding(
+                          padding:  const EdgeInsets.only(right: 8),
+                          child: ratingCont(context,snapshot.data![index]),
+                        );
+                      });
+                },
+              ),
             ),
+          ),
+          SizedBox(height: 20),
+          Container(
+            height: 50,
+            width: 200,
           ),
           const SizedBox(
             height: 60,
