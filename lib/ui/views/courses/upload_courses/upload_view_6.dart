@@ -5,6 +5,7 @@ import 'package:education_flutter_web/ui/common/ui_helpers.dart';
 import 'package:education_flutter_web/ui/views/courses/upload_courses/upload_view_2.dart';
 import 'package:education_flutter_web/ui/views/courses/upload_courses/upload_view_4.dart';
 import 'package:education_flutter_web/ui/views/courses/upload_courses/upload_view_5.dart';
+import 'package:education_flutter_web/ui/views/courses/upload_courses/widgets/bottomBtn.dart';
 import 'package:education_flutter_web/ui/views/courses/upload_courses/widgets/rating_cont.dart';
 import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.dart';
 import 'package:flutter/gestures.dart';
@@ -134,16 +135,16 @@ class CourseDetails extends StackedView<UploadCoursesViewModel> {
               ),
             ),
           ),
-          SizedBox(height: 20),
-          Container(
-            height: 50,
-            width: 200,
-            decoration: BoxDecoration(
-                color: const Color(0xff4873a6).withOpacity(0.7),
-                borderRadius: BorderRadius.circular(10)),
-          ),
+          const SizedBox(height: 20),
+           Center(
+             child: SizedBox(width: 200,
+               child: bottomBtn(context, "Cancel", () {
+                      viewModel.coursesService.cancelPage();
+                    }),
+             ),
+           ),
           const SizedBox(
-            height: 60,
+            height: 40,
           )
         ],
       ),
