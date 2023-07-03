@@ -1,6 +1,8 @@
+// ignore_for_file: file_names
+
 import 'package:education_flutter_web/services/Model/CoursesModel.dart';
 import 'package:flutter/material.dart';
-
+import '../../../widgets/common/reating.dart';
 import '../../../widgets/common/sized_text/sized_text.dart';
 import '../courses_viewmodel.dart';
 import '../upload_courses/widgets/pop_up_menu.dart';
@@ -40,10 +42,10 @@ Widget courseCard(CoursesModel data, context, CoursesViewModel viewModel) {
                           style: const TextStyle(
                               overflow: TextOverflow.ellipsis,
                               fontWeight: FontWeight.bold),
-                          maxLines: 2,
+                          maxLines: 1,
                         ),
-
-                        // reating(data["rating"], data["reated"]),
+                        
+                         reating(data.rating??0,"266"),
                         CustomText(
                             text: "\$${data.price.toString()}",
                             size: 17,
