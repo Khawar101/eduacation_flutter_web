@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -33,7 +35,6 @@ Widget faqCard(UploadCoursesViewModel viewModel, index, context) {
       ),
       Text(
         "Ans:${viewModel.faq[index].answer.toString()}",
-        textAlign: TextAlign.center,
         style: GoogleFonts.ibmPlexSans(
             color: const Color(0xff969799),
             fontSize: 15,

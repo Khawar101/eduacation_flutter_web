@@ -12,6 +12,7 @@ import 'package:education_flutter_web/services/courses_service.dart' as _i15;
 import 'package:education_flutter_web/services/login_service.dart' as _i14;
 import 'package:education_flutter_web/services/Model/CoursesModel.dart' as _i7;
 import 'package:education_flutter_web/services/Model/userData.dart' as _i4;
+import 'package:education_flutter_web/services/rating_service.dart' as _i17;
 import 'package:education_flutter_web/services/signup_service.dart' as _i12;
 import 'package:email_otp/email_otp.dart' as _i3;
 import 'package:firebase_auth/firebase_auth.dart' as _i5;
@@ -1207,3 +1208,8 @@ class MockCoursesService extends _i1.Mock implements _i15.CoursesService {
         returnValueForMissingStub: _i10.Stream<List<_i7.CoursesModel>>.empty(),
       ) as _i10.Stream<List<_i7.CoursesModel>>);
 }
+
+/// A class which mocks [RatingService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockRatingService extends _i1.Mock implements _i17.RatingService {}

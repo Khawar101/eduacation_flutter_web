@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../app/app.locator.dart';
 import '../../../../services/courses_service.dart';
+import '../../../../services/rating_service.dart';
 import '../../../../utils/snakBar.dart';
 import '../../../dialogs/addAssigment.dart';
 import 'upload_view_1.dart';
@@ -16,6 +17,7 @@ import 'upload_view_5.dart';
 import 'upload_view_6.dart';
 
 class UploadCoursesViewModel extends BaseViewModel {
+  final rateingService = locator<RatingService>();
   final _coursesService = locator<CoursesService>();
   CoursesService get coursesService => _coursesService;
   CoursesModel get courseData => _coursesService.courseData;
