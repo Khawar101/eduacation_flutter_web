@@ -104,7 +104,8 @@ class CourseDetails extends StackedView<UploadCoursesViewModel> {
             child: ScrollConfiguration(
               behavior: MyCustomScrollBehavior(),
               child: StreamBuilder<List<RatingModel>>(
-                stream:viewModel.rateingService.ratingStream(viewModel.courseData.publishDate),
+                stream: viewModel.rateingService
+                    .ratingStream(viewModel.courseData.publishDate),
                 builder: (BuildContext context,
                     AsyncSnapshot<List<RatingModel>> snapshot) {
                   if (snapshot.hasError) {
@@ -125,8 +126,8 @@ class CourseDetails extends StackedView<UploadCoursesViewModel> {
                       itemBuilder: (BuildContext context, int index) {
                         // RatingModel data = snapshot.data![index];
                         return Padding(
-                          padding:  const EdgeInsets.only(right: 8),
-                          child: ratingCont(context,snapshot.data![index]),
+                          padding: const EdgeInsets.only(right: 8),
+                          child: ratingCont(context, snapshot.data![index]),
                         );
                       });
                 },
@@ -137,6 +138,9 @@ class CourseDetails extends StackedView<UploadCoursesViewModel> {
           Container(
             height: 50,
             width: 200,
+            decoration: BoxDecoration(
+                color: const Color(0xff4873a6).withOpacity(0.7),
+                borderRadius: BorderRadius.circular(10)),
           ),
           const SizedBox(
             height: 60,
