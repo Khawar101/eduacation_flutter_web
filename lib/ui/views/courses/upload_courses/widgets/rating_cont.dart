@@ -2,8 +2,10 @@ import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.da
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../../services/Model/ratingModel.dart';
 
-Widget ratingCont(context) {
+Widget ratingCont(context,RatingModel rating) {
+   
   return Container(
     // height: 100,
     width: 250,
@@ -16,13 +18,15 @@ Widget ratingCont(context) {
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CircleAvatar(
+               CircleAvatar(
                 radius: 20,
                 backgroundColor: Colors.black,
+                backgroundImage: NetworkImage(rating.profile!),
               ),
               const SizedBox(
                 width: 10,
@@ -31,11 +35,11 @@ Widget ratingCont(context) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const ButtonText(
-                      text: "Mudassir Mukhtar", color: Colors.black),
+                   ButtonText(
+                      text: rating.name!, color: Colors.black),
                   const SizedBox(height: 4),
                   RatingBar.builder(
-                    initialRating: 3,
+                    initialRating: rating.rating!,
                     itemSize: 15,
                     minRating: 1,
                     direction: Axis.horizontal,
@@ -54,9 +58,9 @@ Widget ratingCont(context) {
               )
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Text(
-            "Last week, we dropped some major updates, giving you the power to embed custom code blocks into the site you designed and published with STUDIO AI.Cue the new Embed box from the Add panel! HTML, CSS, JavaScript - you can now inject them into your page with ease. Imagine the ability to include third party elements from surveys to Docs to your site. Its as easy as copying and pasting.",
+           rating.review.toString(),
             style: GoogleFonts.ibmPlexSans(
                 color: Colors.black, fontWeight: FontWeight.bold),
             overflow: TextOverflow.ellipsis,

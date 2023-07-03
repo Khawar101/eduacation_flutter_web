@@ -57,29 +57,30 @@ class MyProfile extends StackedView<SettingsViewModel> {
                         const SizedBox(width: 15),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Mudasir Ali",
+                              viewModel.userdata.username??"",
                               style: GoogleFonts.ibmPlexSans(
                                   color: Colors.black,
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500),
                             ),
+                            const SizedBox(height: 10),
                             Text(
-                              "Teacher",
+                              viewModel.userdata.userType??"",
                               style: GoogleFonts.ibmPlexSans(
                                   color: Colors.black45,
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400),
                             ),
-                            Text(
-                              viewModel.userdata.address ?? "",
-                              style: GoogleFonts.ibmPlexSans(
-                                  color: Colors.black45,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400),
-                            ),
+                            // Text(
+                            //   viewModel.userdata.address ?? "",
+                            //   style: GoogleFonts.ibmPlexSans(
+                            //       color: Colors.black45,
+                            //       fontSize: 12,
+                            //       fontWeight: FontWeight.w400),
+                            // ),
                           ],
                         ),
                       ],
@@ -173,7 +174,7 @@ class MyProfile extends StackedView<SettingsViewModel> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          viewModel.userdata.address ?? "",
+                          "Your Region",
                           style: GoogleFonts.ibmPlexSans(
                               color: Colors.black,
                               fontSize: 14,

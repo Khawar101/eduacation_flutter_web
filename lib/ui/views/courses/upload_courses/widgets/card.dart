@@ -17,17 +17,13 @@ Widget Card_Page(context, lectureData, remove) {
       children: [
         Expanded(
           flex: 1,
-
-          //  height: MediaQuery.of(context).size.height * 0.22,
-
-          //   width:MediaQuery.of(context).size.width * 0.1,
           child: Padding(
-            padding: const EdgeInsets.only(left: 8.0),
+            padding: const EdgeInsets.only(left: 0),
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.network(
                   lectureData.thumbnail.toString(),
-                  height: MediaQuery.of(context).size.height * 0.3,
+                height: MediaQuery.of(context).size.height * 0.32,
                   fit: BoxFit.cover,
                 )),
           ),
