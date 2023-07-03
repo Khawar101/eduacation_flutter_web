@@ -60,7 +60,7 @@ class MyProfile extends StackedView<SettingsViewModel> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              viewModel.userdata.username??"",
+                              viewModel.userdata.username ?? "",
                               style: GoogleFonts.ibmPlexSans(
                                   color: Colors.black,
                                   fontSize: 14,
@@ -68,7 +68,7 @@ class MyProfile extends StackedView<SettingsViewModel> {
                             ),
                             const SizedBox(height: 10),
                             Text(
-                              viewModel.userdata.userType??"",
+                              viewModel.userdata.userType ?? "",
                               style: GoogleFonts.ibmPlexSans(
                                   color: Colors.black45,
                                   fontSize: 12,
