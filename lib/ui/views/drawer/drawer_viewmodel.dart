@@ -7,6 +7,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../app/app.locator.dart';
+import '../account/account_view.dart';
 import '../courses/courses_view.dart';
 import '../dashboard/dashboard_view.dart';
 
@@ -14,8 +15,8 @@ class DrawerViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final loginService = locator<LoginService>();
   var pages = [
+    const AccountView(),
     const DashboardView(),
-    const Text("2 page"),
     const Text("3 jhfghjfghjg"),
     const Text("page 4"),
     const CoursesView(),
