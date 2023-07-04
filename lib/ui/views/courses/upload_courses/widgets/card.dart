@@ -23,7 +23,7 @@ Widget Card_Page(context, lectureData, remove) {
                 borderRadius: BorderRadius.circular(10),
                 child: Image.network(
                   lectureData.thumbnail.toString(),
-                height: MediaQuery.of(context).size.height * 0.32,
+                  height: MediaQuery.of(context).size.height * 0.32,
                   fit: BoxFit.cover,
                 )),
           ),

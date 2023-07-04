@@ -167,8 +167,7 @@ class _LineChart extends StatelessWidget {
   FlBorderData get borderData => FlBorderData(
         show: true,
         border: Border(
-          bottom:
-              BorderSide(color: Colors.blue.withOpacity(0.2), width: 4),
+          bottom: BorderSide(color: Colors.blue.withOpacity(0.2), width: 4),
           left: const BorderSide(color: Colors.transparent),
           right: const BorderSide(color: Colors.transparent),
           top: const BorderSide(color: Colors.transparent),

@@ -136,13 +136,14 @@ class CourseDetails extends StackedView<UploadCoursesViewModel> {
             ),
           ),
           const SizedBox(height: 20),
-           Center(
-             child: SizedBox(width: 200,
-               child: bottomBtn(context, "Cancel", () {
-                      viewModel.coursesService.cancelPage();
-                    }),
-             ),
-           ),
+          Center(
+            child: SizedBox(
+              width: 200,
+              child: bottomBtn(context, "Cancel", () {
+                viewModel.coursesService.cancelPage();
+              }),
+            ),
+          ),
           const SizedBox(
             height: 40,
           )

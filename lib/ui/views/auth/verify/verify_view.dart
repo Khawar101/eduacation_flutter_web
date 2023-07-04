@@ -71,7 +71,8 @@ class VerifyView extends StackedView<VerifyViewModel> {
                   verticalSpaceSmall,
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
+                    child: InkWell(
+                      mouseCursor: MaterialStateMouseCursor.clickable,
                       onTap: () {
                         // viewModel.logIN(context);
                       },

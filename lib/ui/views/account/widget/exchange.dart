@@ -10,8 +10,6 @@ class Exchange extends StatefulWidget {
 class _ExchangeState extends State<Exchange> {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      
-    );
+    return Row();
   }
 }

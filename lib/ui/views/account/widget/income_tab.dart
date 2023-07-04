@@ -43,13 +43,15 @@ class _Income_TabState extends State<Income_Tab> {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Container(
                   height: 35,
-                  padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
                   decoration: BoxDecoration(
                       border: Border.all(
                         style: BorderStyle.solid,
                         color: Colors.black38,
                       ),
-                      borderRadius: const BorderRadius.all(Radius.circular(30))),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(30))),
                   child: DropdownButton(
                     borderRadius: const BorderRadius.all(Radius.circular(20)),
                     padding:

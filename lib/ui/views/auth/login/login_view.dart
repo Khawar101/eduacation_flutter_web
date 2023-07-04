@@ -1,4 +1,3 @@
-
 import 'package:education_flutter_web/ui/common/ui_helpers.dart';
 import 'package:education_flutter_web/ui/widgets/common/custom_text_field/custom_text_field.dart';
 import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.dart';
@@ -66,30 +65,26 @@ class LoginView extends StackedView<LoginViewModel> {
                       return null;
                     },
                     isObscureText: viewModel.visibleCheck,
-                    prefix: MouseRegion(
-                      cursor: SystemMouseCursors.click,
-                      child: GestureDetector(
-                        onTap: viewModel.visible_check,
-                        child: Icon(
-                          viewModel.visibleCheck == true
-                              ? Icons.visibility_off_outlined
-                              : Icons.visibility_outlined,
-                          color: Colors.black,
-                        ),
+                    prefix: InkWell(
+                      mouseCursor: MaterialStateMouseCursor.clickable,
+                      onTap: viewModel.visible_check,
+                      child: Icon(
+                        viewModel.visibleCheck == true
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
+                        color: Colors.black,
                       ),
                     ),
                   ),
                   verticalSpaceSmall,
                   Align(
                       alignment: Alignment.centerRight,
-                      child: InkWell(
-                        onTap: viewModel.navigateForget,
-                        child: MouseRegion(
-                          cursor: SystemMouseCursors.click,
-                          child: SmallText(
-                            text: "Forgot password",
-                            color: const Color(0xff4873a6).withOpacity(0.7),
-                          ),
+                      child:  InkWell(
+                    mouseCursor: MaterialStateMouseCursor.clickable,
+                    onTap: viewModel.navigateForget,
+                        child: SmallText(
+                          text: "Forgot password",
+                          color: const Color(0xff4873a6).withOpacity(0.7),
                         ),
                       )),
                   verticalSpaceSmall,
@@ -197,7 +192,8 @@ class LoginView extends StackedView<LoginViewModel> {
                   verticalSpaceSmall,
                   Align(
                     alignment: Alignment.center,
-                    child: GestureDetector(
+                    child: InkWell(
+                      mouseCursor: MaterialStateMouseCursor.clickable,
                       onTap: viewModel.navigateSignup,
                       child: RichText(
                           text: TextSpan(children: [

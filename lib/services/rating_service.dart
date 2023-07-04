@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
 import '../app/app.locator.dart';
 import 'Model/CoursesModel.dart';
 import 'Model/ratingModel.dart';
@@ -55,4 +54,3 @@ class RatingService {
     }
   }
 }
-

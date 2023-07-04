@@ -44,22 +44,20 @@ Widget courseCard(CoursesModel data, context, CoursesViewModel viewModel) {
                               fontWeight: FontWeight.bold),
                           maxLines: 1,
                         ),
-                        
-                         Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                           children: [
-                             reating(data.rating??0,"266"),
-                          
-                        Padding(
-                          padding: const EdgeInsets.only(right: 6),
-                          child: CustomText(
-                              text: "\$${data.price.toString()}",
-                              size: 15,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black),
+                          children: [
+                            reating(data.rating ?? 0, "266"),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 6),
+                              child: CustomText(
+                                  text: "\$${data.price.toString()}",
+                                  size: 15,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black),
+                            ),
+                          ],
                         ),
-                             ],
-                         ),
                       ],
                     ),
                   ),

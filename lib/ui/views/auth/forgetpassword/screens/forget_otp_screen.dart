@@ -75,28 +75,26 @@ class _ForgetOtpState extends State<ForgetOtp> {
                   ),
                   const SizedBox(height: 18),
                   verticalSpaceSmall,
-                  MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => NewPassword()));
-                      },
-                      child: Container(
-                        height: 50,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: const Color(0xff4873a6).withOpacity(0.7),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: const Center(
-                            child: CustomText(
-                                text: 'Confirm OTP',
-                                size: 14,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white)),
-                      ),
+                  InkWell(
+                    mouseCursor: MaterialStateMouseCursor.clickable,
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => NewPassword()));
+                    },
+                    child: Container(
+                      height: 50,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: const Color(0xff4873a6).withOpacity(0.7),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: const Center(
+                          child: CustomText(
+                              text: 'Confirm OTP',
+                              size: 14,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white)),
                     ),
                   ),
                 ],

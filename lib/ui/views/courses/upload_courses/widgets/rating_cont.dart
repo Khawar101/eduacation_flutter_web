@@ -4,8 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../../services/Model/ratingModel.dart';
 
-Widget ratingCont(context,RatingModel rating) {
-   
+Widget ratingCont(context, RatingModel rating) {
   return Container(
     // height: 100,
     width: 250,
@@ -18,12 +17,12 @@ Widget ratingCont(context,RatingModel rating) {
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               CircleAvatar(
+              CircleAvatar(
                 radius: 20,
                 backgroundColor: Colors.black,
                 backgroundImage: NetworkImage(rating.profile!),
@@ -35,8 +34,7 @@ Widget ratingCont(context,RatingModel rating) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                   ButtonText(
-                      text: rating.name!, color: Colors.black),
+                  ButtonText(text: rating.name!, color: Colors.black),
                   const SizedBox(height: 4),
                   RatingBar.builder(
                     initialRating: rating.rating!,
@@ -60,7 +58,7 @@ Widget ratingCont(context,RatingModel rating) {
           ),
           const SizedBox(height: 10),
           Text(
-           rating.review.toString(),
+            rating.review.toString(),
             style: GoogleFonts.ibmPlexSans(
                 color: Colors.black, fontWeight: FontWeight.bold),
             overflow: TextOverflow.ellipsis,
