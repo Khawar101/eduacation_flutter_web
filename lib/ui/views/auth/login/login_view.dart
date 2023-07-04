@@ -1,3 +1,4 @@
+
 import 'package:education_flutter_web/ui/common/ui_helpers.dart';
 import 'package:education_flutter_web/ui/widgets/common/custom_text_field/custom_text_field.dart';
 import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.dart';
@@ -23,7 +24,7 @@ class LoginView extends StackedView<LoginViewModel> {
         body: SingleChildScrollView(
       child: Row(
         children: [
-          Container(
+          SizedBox(
             height: MediaQuery.of(context).size.height,
             width: screenWidth > 700 ? screenWidth * 0.5 : screenWidth * 1,
             //color: Colors.white,
@@ -92,25 +93,23 @@ class LoginView extends StackedView<LoginViewModel> {
                         ),
                       )),
                   verticalSpaceSmall,
-                  MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () {
-                        viewModel.logIN(context);
-                      },
-                      child: Container(
-                        height: 50,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: const Color(0xff4873a6).withOpacity(0.7),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: const Center(
-                            child: CustomText(
-                                text: 'Signin',
-                                size: 14,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white)),
-                      ),
+                  InkWell(
+                    mouseCursor: MaterialStateMouseCursor.clickable,
+                    onTap: () {
+                      viewModel.logIN(context);
+                    },
+                    child: Container(
+                      height: 50,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: const Color(0xff4873a6).withOpacity(0.7),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: const Center(
+                          child: CustomText(
+                              text: 'Signin',
+                              size: 14,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white)),
                     ),
                   ),
                   const SizedBox(height: 30),
