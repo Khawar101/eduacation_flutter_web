@@ -81,7 +81,7 @@ class _ForgetOtpState extends State<ForgetOtp> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => NewPassword()));
+                              builder: (context) => const NewPassword()));
                     },
                     child: Container(
                       height: 50,

@@ -110,6 +110,7 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
 
 Widget coverBtn(progress, url, fun, context) {
   return InkWell(
+    mouseCursor: MaterialStateMouseCursor.clickable,
     onTap: fun,
     child: Container(
       decoration: BoxDecoration(

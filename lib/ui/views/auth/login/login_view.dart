@@ -79,9 +79,9 @@ class LoginView extends StackedView<LoginViewModel> {
                   verticalSpaceSmall,
                   Align(
                       alignment: Alignment.centerRight,
-                      child:  InkWell(
-                    mouseCursor: MaterialStateMouseCursor.clickable,
-                    onTap: viewModel.navigateForget,
+                      child: InkWell(
+                        mouseCursor: MaterialStateMouseCursor.clickable,
+                        onTap: viewModel.navigateForget,
                         child: SmallText(
                           text: "Forgot password",
                           color: const Color(0xff4873a6).withOpacity(0.7),
@@ -133,58 +133,67 @@ class LoginView extends StackedView<LoginViewModel> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        height: 50,
-                        width: screenWidth * 0.15,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: const Color(0xff4873a6).withOpacity(0.7),
-                            ),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              'icons/google-48.png',
-                              scale: 2,
-                            ),
-                            const SizedBox(width: 6),
-                            Visibility(
-                              visible: screenWidth >= 700,
-                              child: const CustomText(
-                                  text: 'Google',
-                                  size: 14,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.black),
-                            ),
-                          ],
+                      InkWell(
+                        mouseCursor: MaterialStateMouseCursor.clickable,
+                        onTap: () {},
+                        child: Container(
+                          height: 50,
+                          width: MediaQuery.of(context).size.width * 0.15,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                color: const Color(0xff4873a6).withOpacity(0.7),
+                              ),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'icons/google-48.png',
+                                scale: 2,
+                              ),
+                              const SizedBox(width: 6),
+                              Visibility(
+                                visible: screenWidth >= 700,
+                                child: const CustomText(
+                                    text: 'Google',
+                                    size: 14,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.black),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                      Container(
-                        height: 50,
-                        width: screenWidth * 0.15,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: const Color(0xff4873a6).withOpacity(0.7),
-                                style: BorderStyle.solid),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              'icons/facebook-48.png',
-                              scale: 2,
-                            ),
-                            const SizedBox(width: 6),
-                            Visibility(
-                              visible: screenWidth >= 700,
-                              child: const CustomText(
-                                  text: 'Facebook',
-                                  size: 14,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.black),
-                            ),
-                          ],
+                      InkWell(
+                        mouseCursor: MaterialStateMouseCursor.clickable,
+                        onTap: () {},
+                        child: Container(
+                          height: 50,
+                          width: screenWidth * 0.15,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color:
+                                      const Color(0xff4873a6).withOpacity(0.7),
+                                  style: BorderStyle.solid),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'icons/facebook-48.png',
+                                scale: 2,
+                              ),
+                              const SizedBox(width: 6),
+                              Visibility(
+                                visible: screenWidth >= 700,
+                                child: const CustomText(
+                                    text: 'Facebook',
+                                    size: 14,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.black),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
