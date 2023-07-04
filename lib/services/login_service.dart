@@ -40,6 +40,8 @@ class LoginService {
           phoneNo: data["phoneNo"],
           address: data["address"],
           clas: data["clas"],
+          country: data['country'],
+          city: data['city'],
           educationSector: data["educationSector"],
           socialLinks: data["socialLinks"],
         );

@@ -11,7 +11,9 @@ import 'package:cloud_firestore/cloud_firestore.dart' as _i2;
 import 'package:education_flutter_web/services/courses_service.dart' as _i15;
 import 'package:education_flutter_web/services/login_service.dart' as _i14;
 import 'package:education_flutter_web/services/Model/CoursesModel.dart' as _i7;
+import 'package:education_flutter_web/services/Model/ratingModel.dart' as _i18;
 import 'package:education_flutter_web/services/Model/userData.dart' as _i4;
+import 'package:education_flutter_web/services/profile_service.dart' as _i19;
 import 'package:education_flutter_web/services/rating_service.dart' as _i17;
 import 'package:education_flutter_web/services/signup_service.dart' as _i12;
 import 'package:email_otp/email_otp.dart' as _i3;
@@ -1212,4 +1214,71 @@ class MockCoursesService extends _i1.Mock implements _i15.CoursesService {
 /// A class which mocks [RatingService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRatingService extends _i1.Mock implements _i17.RatingService {}
+class MockRatingService extends _i1.Mock implements _i17.RatingService {
+  @override
+  String get message => (super.noSuchMethod(
+        Invocation.getter(#message),
+        returnValue: '',
+        returnValueForMissingStub: '',
+      ) as String);
+  @override
+  set message(String? _message) => super.noSuchMethod(
+        Invocation.setter(
+          #message,
+          _message,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  _i2.FirebaseFirestore get firestore => (super.noSuchMethod(
+        Invocation.getter(#firestore),
+        returnValue: _FakeFirebaseFirestore_0(
+          this,
+          Invocation.getter(#firestore),
+        ),
+        returnValueForMissingStub: _FakeFirebaseFirestore_0(
+          this,
+          Invocation.getter(#firestore),
+        ),
+      ) as _i2.FirebaseFirestore);
+  @override
+  set firestore(_i2.FirebaseFirestore? _firestore) => super.noSuchMethod(
+        Invocation.setter(
+          #firestore,
+          _firestore,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  _i10.Stream<List<_i18.RatingModel>> ratingStream(dynamic courseKey) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #ratingStream,
+          [courseKey],
+        ),
+        returnValue: _i10.Stream<List<_i18.RatingModel>>.empty(),
+        returnValueForMissingStub: _i10.Stream<List<_i18.RatingModel>>.empty(),
+      ) as _i10.Stream<List<_i18.RatingModel>>);
+  @override
+  dynamic rateNow(
+    dynamic reviewCTRL,
+    dynamic rating,
+    _i7.CoursesModel? courseData,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #rateNow,
+          [
+            reviewCTRL,
+            rating,
+            courseData,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [ProfileService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockProfileService extends _i1.Mock implements _i19.ProfileService {}
