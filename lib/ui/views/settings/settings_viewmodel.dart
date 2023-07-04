@@ -1,11 +1,7 @@
 // ignore_for_file: unused_field
-
-import 'dart:developer';
-
 import 'package:education_flutter_web/services/login_service.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-
 import '../../../app/app.locator.dart';
 import '../../../services/Model/userData.dart';
 import '../../../services/profile_service.dart';
@@ -49,6 +45,18 @@ class SettingsViewModel extends BaseViewModel {
       print("=====>${_profileService.message}");
       successToast(context, "Edit Done Sucessfully");
       basicDataEdit();
+    } else {
+      print("=====>${_profileService.message}");
+      errorToast(context, "please enter complete info");
+    }
+  }
+
+  personalDataUpdate(context) async {
+    await _profileService.personalDataUpdatee(firstNameController.text,lastNameController.text,emailController.text,phoneController.text,bioController.text);
+    if (_profileService.message == 'update successfully') {
+      print("=====>${_profileService.message}");
+      successToast(context, "Edit Done Sucessfully");
+      personalDataEdit();
     } else {
       print("=====>${_profileService.message}");
       errorToast(context, "please enter complete info");

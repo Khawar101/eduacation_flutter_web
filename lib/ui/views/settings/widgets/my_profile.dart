@@ -65,13 +65,6 @@ class MyProfile extends StackedView<SettingsViewModel> {
                                       width: 200,
                                       child: editTextField(viewModel,
                                           viewModel.usernameController)),
-                                  // Text(
-                                  //   viewModel.userdata.username ?? "",
-                                  //   style: GoogleFonts.ibmPlexSans(
-                                  //       color: Colors.black,
-                                  //       fontSize: 14,
-                                  //       fontWeight: FontWeight.w500),
-                                  // ),
                                   const SizedBox(height: 10),
                                   Text(
                                     viewModel.userdata.userType ?? "",
@@ -109,7 +102,9 @@ class MyProfile extends StackedView<SettingsViewModel> {
                     InkWell(
                       mouseCursor: MaterialStateMouseCursor.clickable,
                       onTap: viewModel.basicData
-                          ? (){viewModel.basicDataUpdate(context);}
+                          ? () {
+                              viewModel.basicDataUpdate(context);
+                            }
                           : viewModel.basicDataEdit,
                       child: btnSection(viewModel.basicData),
                     )
@@ -141,21 +136,29 @@ class MyProfile extends StackedView<SettingsViewModel> {
                               fontSize: 14,
                               fontWeight: FontWeight.w500),
                         ),
-                        btnSection(viewModel.personalData),
+                        InkWell(
+                            mouseCursor: MaterialStateMouseCursor.clickable,
+                            onTap: viewModel.personalData
+                                ? () {
+                                    viewModel.personalDataUpdate(context);
+                                  }
+                                : viewModel.personalDataEdit,
+                            child: btnSection(viewModel.personalData)),
                       ],
                     ),
                     const SizedBox(height: 20),
                     Row(
                       children: [
-                        Texts(
-                          question: "First Name",
-                          answer: viewModel.userdata.firstName ?? "",
-                        ),
+                       Texts(
+                                question: "First Name",
+                                answer: viewModel.userdata.firstName ?? "", viewModel: viewModel, cTRL: viewModel.firstNameController,
+                              ),
                         SizedBox(
                             width: MediaQuery.of(context).size.width * 0.2),
                         Texts(
                           question: "Last Name",
-                          answer: viewModel.userdata.lastName ?? "",
+                          answer: viewModel.userdata.lastName ?? "",viewModel: viewModel,
+                          cTRL: viewModel.lastNameController,
                         ),
                       ],
                     ),
@@ -164,20 +167,21 @@ class MyProfile extends StackedView<SettingsViewModel> {
                       children: [
                         Texts(
                           question: "Email Addres",
-                          answer: viewModel.userdata.email ?? "",
+                          answer: viewModel.userdata.email ?? "",viewModel: viewModel,
+                          cTRL: viewModel.emailController,
                         ),
                         SizedBox(
                             width: MediaQuery.of(context).size.width * 0.2),
                         Texts(
                           question: "Phone",
-                          answer: viewModel.userdata.phoneNo ?? "",
+                          answer: viewModel.userdata.phoneNo ?? "",viewModel: viewModel,cTRL: viewModel.phoneController,
                         ),
                       ],
                     ),
                     const SizedBox(height: 20),
-                    const Texts(
+                     Texts(
                       question: "Bio",
-                      answer: "Teacher",
+                      answer:viewModel.userdata.bio ?? "",viewModel: viewModel,cTRL: viewModel.bioController,
                     ),
                   ],
                 ),
@@ -215,20 +219,20 @@ class MyProfile extends StackedView<SettingsViewModel> {
                       children: [
                         Texts(
                           question: "Country",
-                          answer: viewModel.userdata.country ?? "",
+                          answer: viewModel.userdata.country ?? "",viewModel: viewModel,cTRL: viewModel.countryController,
                         ),
                         SizedBox(
                             width: MediaQuery.of(context).size.width * 0.2),
                         Texts(
                           question: "City",
-                          answer: viewModel.userdata.city ?? "",
+                          answer: viewModel.userdata.city ?? "",viewModel: viewModel,cTRL: viewModel.cityController,
                         ),
                       ],
                     ),
                     const SizedBox(height: 20),
                     Texts(
                       question: "Address",
-                      answer: viewModel.userdata.address ?? "",
+                      answer: viewModel.userdata.address ?? "",viewModel: viewModel,cTRL: viewModel.addressController,
                     ),
                   ],
                 ),
@@ -283,7 +287,13 @@ Widget btnSection(
 class Texts extends StatelessWidget {
   final question;
   final answer;
-  const Texts({super.key, required this.question, required this.answer});
+  final SettingsViewModel viewModel;
+  final TextEditingController cTRL;
+  const Texts(
+      {super.key,
+      required this.question,
+      required this.answer,
+      required this.viewModel, required this.cTRL});
 
   @override
   Widget build(BuildContext context) {
@@ -305,10 +315,16 @@ class Texts extends StatelessWidget {
         ),
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.2,
-          child: Text(
-            answer,
-            style: GoogleFonts.ibmPlexSans(color: Colors.black),
-          ),
+          child: viewModel.personalData
+              ? SizedBox(
+                  height: 20,
+                  width: MediaQuery.of(context).size.width * 0.2,
+                  child:
+                      editTextField(viewModel, cTRL))
+              : Text(
+                  answer,
+                  style: GoogleFonts.ibmPlexSans(color: Colors.black),
+                ),
         ),
         const SizedBox(
           height: 10,
