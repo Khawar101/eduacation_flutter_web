@@ -1,10 +1,9 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
-
 import '../settings_viewmodel.dart';
+import 'edit_Text_field.dart';
 
 class MyProfile extends StackedView<SettingsViewModel> {
   const MyProfile({Key? key}) : super(key: key);
@@ -55,37 +54,60 @@ class MyProfile extends StackedView<SettingsViewModel> {
                               viewModel.userdata.profile.toString()),
                         ),
                         const SizedBox(width: 15),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              viewModel.userdata.username ?? "",
-                              style: GoogleFonts.ibmPlexSans(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            const SizedBox(height: 10),
-                            Text(
-                              viewModel.userdata.userType ?? "",
-                              style: GoogleFonts.ibmPlexSans(
-                                  color: Colors.black45,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                            // Text(
-                            //   viewModel.userdata.address ?? "",
-                            //   style: GoogleFonts.ibmPlexSans(
-                            //       color: Colors.black45,
-                            //       fontSize: 12,
-                            //       fontWeight: FontWeight.w400),
-                            // ),
-                          ],
-                        ),
+                        viewModel.basicData
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                      height: 20,
+                                      width: 200,
+                                      child: editTextField(viewModel,
+                                          viewModel.usernameController)),
+                                  const SizedBox(height: 10),
+                                  Text(
+                                    viewModel.userdata.userType ?? "",
+                                    style: GoogleFonts.ibmPlexSans(
+                                        color: Colors.black45,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ],
+                              )
+                            : Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    viewModel.userdata.username ?? "",
+                                    style: GoogleFonts.ibmPlexSans(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Text(
+                                    viewModel.userdata.userType ?? "",
+                                    style: GoogleFonts.ibmPlexSans(
+                                        color: Colors.black45,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ],
+                              ),
                       ],
                     ),
-                    tabSection()
+                    InkWell(
+                      mouseCursor: MaterialStateMouseCursor.clickable,
+                      onTap: viewModel.basicData
+                          ? () {
+                              viewModel.basicDataUpdate(context);
+                            }
+                          : viewModel.basicDataEdit,
+                      child: btnSection(viewModel.basicData),
+                    )
                   ],
                 ),
               ),
@@ -114,7 +136,14 @@ class MyProfile extends StackedView<SettingsViewModel> {
                               fontSize: 14,
                               fontWeight: FontWeight.w500),
                         ),
-                        tabSection(),
+                        InkWell(
+                            mouseCursor: MaterialStateMouseCursor.clickable,
+                            onTap: viewModel.personalData
+                                ? () {
+                                    viewModel.personalDataUpdate(context);
+                                  }
+                                : viewModel.personalDataEdit,
+                            child: btnSection(viewModel.personalData)),
                       ],
                     ),
                     const SizedBox(height: 20),
@@ -123,12 +152,16 @@ class MyProfile extends StackedView<SettingsViewModel> {
                         Texts(
                           question: "First Name",
                           answer: viewModel.userdata.firstName ?? "",
+                          viewModel: viewModel,
+                          cTRL: viewModel.firstNameController,
                         ),
                         SizedBox(
                             width: MediaQuery.of(context).size.width * 0.2),
                         Texts(
                           question: "Last Name",
                           answer: viewModel.userdata.lastName ?? "",
+                          viewModel: viewModel,
+                          cTRL: viewModel.lastNameController,
                         ),
                       ],
                     ),
@@ -138,19 +171,25 @@ class MyProfile extends StackedView<SettingsViewModel> {
                         Texts(
                           question: "Email Addres",
                           answer: viewModel.userdata.email ?? "",
+                          viewModel: viewModel,
+                          cTRL: viewModel.emailController,
                         ),
                         SizedBox(
                             width: MediaQuery.of(context).size.width * 0.2),
                         Texts(
                           question: "Phone",
                           answer: viewModel.userdata.phoneNo ?? "",
+                          viewModel: viewModel,
+                          cTRL: viewModel.phoneController,
                         ),
                       ],
                     ),
                     const SizedBox(height: 20),
-                    const Texts(
+                    Texts(
                       question: "Bio",
-                      answer: "Teacher",
+                      answer: viewModel.userdata.bio ?? "",
+                      viewModel: viewModel,
+                      cTRL: viewModel.bioController,
                     ),
                   ],
                 ),
@@ -180,7 +219,15 @@ class MyProfile extends StackedView<SettingsViewModel> {
                               fontSize: 14,
                               fontWeight: FontWeight.w500),
                         ),
-                        tabSection(),
+                        InkWell(
+                          mouseCursor: MaterialStateMouseCursor.clickable,
+                          onTap: viewModel.regionData
+                              ? () {
+                                  viewModel.regionDataUpdate(context);
+                                }
+                              : viewModel.regionDataEdit,
+                          child: btnSection(viewModel.regionData),
+                        )
                       ],
                     ),
                     const SizedBox(height: 20),
@@ -189,12 +236,16 @@ class MyProfile extends StackedView<SettingsViewModel> {
                         Texts(
                           question: "Country",
                           answer: viewModel.userdata.country ?? "",
+                          viewModel: viewModel,
+                          cTRL: viewModel.countryController,
                         ),
                         SizedBox(
                             width: MediaQuery.of(context).size.width * 0.2),
                         Texts(
                           question: "City",
                           answer: viewModel.userdata.city ?? "",
+                          viewModel: viewModel,
+                          cTRL: viewModel.cityController,
                         ),
                       ],
                     ),
@@ -202,6 +253,8 @@ class MyProfile extends StackedView<SettingsViewModel> {
                     Texts(
                       question: "Address",
                       answer: viewModel.userdata.address ?? "",
+                      viewModel: viewModel,
+                      cTRL: viewModel.addressController,
                     ),
                   ],
                 ),
@@ -221,7 +274,9 @@ class MyProfile extends StackedView<SettingsViewModel> {
       SettingsViewModel();
 }
 
-Widget tabSection() {
+Widget btnSection(
+  bool save,
+) {
   return Container(
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -234,15 +289,15 @@ Widget tabSection() {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              "Edit",
+              save ? "save" : "Edit",
               style: GoogleFonts.ibmPlexSans(
                   color: Colors.black45,
                   fontSize: 12,
                   fontWeight: FontWeight.w400),
             ),
             const SizedBox(width: 3),
-            const Icon(
-              Icons.drive_file_rename_outline_outlined,
+            Icon(
+              save ? Icons.save : Icons.drive_file_rename_outline_outlined,
               color: Colors.black45,
               size: 14,
             )
@@ -254,7 +309,14 @@ Widget tabSection() {
 class Texts extends StatelessWidget {
   final question;
   final answer;
-  const Texts({super.key, required this.question, required this.answer});
+  final SettingsViewModel viewModel;
+  final TextEditingController cTRL;
+  const Texts(
+      {super.key,
+      required this.question,
+      required this.answer,
+      required this.viewModel,
+      required this.cTRL});
 
   @override
   Widget build(BuildContext context) {
@@ -276,10 +338,15 @@ class Texts extends StatelessWidget {
         ),
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.2,
-          child: Text(
-            answer,
-            style: GoogleFonts.ibmPlexSans(color: Colors.black),
-          ),
+          child: viewModel.personalData
+              ? SizedBox(
+                  height: 20,
+                  width: MediaQuery.of(context).size.width * 0.2,
+                  child: editTextField(viewModel, cTRL))
+              : Text(
+                  answer,
+                  style: GoogleFonts.ibmPlexSans(color: Colors.black),
+                ),
         ),
         const SizedBox(
           height: 10,

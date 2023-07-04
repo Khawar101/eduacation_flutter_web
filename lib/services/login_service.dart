@@ -40,6 +40,9 @@ class LoginService {
           phoneNo: data["phoneNo"],
           address: data["address"],
           clas: data["clas"],
+          country: data['country'],
+          city: data['city'],
+          bio: data['bio'],
           educationSector: data["educationSector"],
           socialLinks: data["socialLinks"],
         );
@@ -58,17 +61,24 @@ class LoginService {
         await firestore.collection("users").doc(id).get();
     Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
     UserData = userData(
-        uID: data["UID"],
-        username: data["username"],
-        firstName: data["firstName"],
-        lastName: data["lastName"],
-        email: data["email"],
-        password: data["password"],
-        profile: data["profile"],
-        userType: data["userType"],
-        phoneNo: data["phoneNo"],
-        address: data["address"],
-        clas: data["clas"]);
+      uID: data["UID"],
+      username: data["username"],
+      firstName: data["firstName"],
+      lastName: data["lastName"],
+      email: data["email"],
+      password: data["password"],
+      profile: data["profile"],
+      userType: data["userType"],
+      gender: data["gender"],
+      phoneNo: data["phoneNo"],
+      address: data["address"],
+      clas: data["clas"],
+      country: data['country'],
+      city: data['city'],
+      bio: data['bio'],
+      educationSector: data["educationSector"],
+      socialLinks: data["socialLinks"],
+    );
   }
 
   profileComplete() {
