@@ -31,7 +31,6 @@ class MyProfile extends StackedView<SettingsViewModel> {
             ),
             const SizedBox(height: 20),
             Container(
-              //  height: 100,
               width: double.infinity,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
@@ -185,76 +184,42 @@ class MyProfile extends StackedView<SettingsViewModel> {
                       ],
                     ),
                     const SizedBox(height: 20),
-                    Texts(
-                      question: "Bio",
-                      answer: viewModel.userdata.bio ?? "",
-                      viewModel: viewModel,
-                      cTRL: viewModel.bioController,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  border: Border.all(
-                      color: const Color(0xff4873a6).withOpacity(0.7),
-                      width: 1)),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          "Your Region",
-                          style: GoogleFonts.ibmPlexSans(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500),
+                        Texts(
+                          question: "Bio",
+                          answer: viewModel.userdata.bio ?? "",
+                          viewModel: viewModel,
+                          cTRL: viewModel.bioController,
                         ),
-                        InkWell(
-                          mouseCursor: MaterialStateMouseCursor.clickable,
-                          onTap: viewModel.regionData
-                              ? () {
-                                  viewModel.regionDataUpdate(context);
-                                }
-                              : viewModel.regionDataEdit,
-                          child: btnSection(viewModel.regionData),
-                        )
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.2),
+                        Texts(
+                          question: "Address",
+                          answer: viewModel.userdata.address ?? "",
+                          viewModel: viewModel,
+                          cTRL: viewModel.addressController,
+                        ),
                       ],
                     ),
                     const SizedBox(height: 20),
                     Row(
                       children: [
-                        Texts(
-                          question: "Country",
-                          answer: viewModel.userdata.country ?? "",
-                          viewModel: viewModel,
-                          cTRL: viewModel.countryController,
-                        ),
-                        SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.2),
                         Texts(
                           question: "City",
                           answer: viewModel.userdata.city ?? "",
                           viewModel: viewModel,
                           cTRL: viewModel.cityController,
                         ),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.2),
+                        Texts(
+                          question: "Country",
+                          answer: viewModel.userdata.country ?? "",
+                          viewModel: viewModel,
+                          cTRL: viewModel.countryController,
+                        ),
                       ],
-                    ),
-                    const SizedBox(height: 20),
-                    Texts(
-                      question: "Address",
-                      answer: viewModel.userdata.address ?? "",
-                      viewModel: viewModel,
-                      cTRL: viewModel.addressController,
                     ),
                   ],
                 ),

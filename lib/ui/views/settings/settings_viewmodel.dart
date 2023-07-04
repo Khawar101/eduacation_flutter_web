@@ -57,7 +57,11 @@ class SettingsViewModel extends BaseViewModel {
         lastNameController.text,
         emailController.text,
         phoneController.text,
-        bioController.text);
+        bioController.text,
+        addressController.text,
+        cityController.text,
+        countryController.text
+        );
     if (_profileService.message == 'update successfully') {
       print("=====>${_profileService.message}");
       successToast(context, "Edit Done Sucessfully");
@@ -68,16 +72,5 @@ class SettingsViewModel extends BaseViewModel {
     }
   }
 
-  regionDataUpdate(context) async {
-    await _profileService.regionDataUpdate(
-        countryController.text, cityController.text, addressController.text);
-    if (_profileService.message == 'update successfully') {
-      print("=====>${_profileService.message}");
-      successToast(context, "Edit Done Sucessfully");
-      regionDataEdit();
-    } else {
-      print("=====>${_profileService.message}");
-      errorToast(context, "please enter complete info");
-    }
-  }
+  
 }
