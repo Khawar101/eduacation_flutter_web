@@ -14,8 +14,7 @@ class MyProfile extends StackedView<SettingsViewModel> {
     SettingsViewModel viewModel,
     Widget? child,
   ) {
-    //  var width = MediaQuery.of(context).size.width;
-    // var height = MediaQuery.of(context).size.height - 50;
+   
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
