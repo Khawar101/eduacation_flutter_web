@@ -9,6 +9,7 @@ class LogoScreen extends StatefulWidget {
   @override
   State<LogoScreen> createState() => _LogoScreenState();
 }
+
 class _LogoScreenState extends State<LogoScreen> {
   @override
   Widget build(BuildContext context) {

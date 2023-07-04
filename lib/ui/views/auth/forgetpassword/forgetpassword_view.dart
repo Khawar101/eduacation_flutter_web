@@ -56,8 +56,10 @@ class ForgetpasswordView extends StackedView<ForgetpasswordViewModel> {
                   InkWell(
                     mouseCursor: MaterialStateMouseCursor.clickable,
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const ForgetOtp()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ForgetOtp()));
                     },
                     child: Container(
                       height: 50,

@@ -45,10 +45,12 @@ class _ResetSuccessState extends State<ResetSuccess>
                       color: Colors.green),
                   const SizedBox(height: 18),
                   InkWell(
-                        mouseCursor: MaterialStateMouseCursor.clickable,
+                    mouseCursor: MaterialStateMouseCursor.clickable,
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const LoginView()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginView()));
                     },
                     child: Container(
                       height: 50,
