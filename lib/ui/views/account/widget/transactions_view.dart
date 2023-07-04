@@ -76,23 +76,23 @@ class _Transactions_ViewState extends State<Transactions_View> {
               fontWeight: FontWeight.normal,
               color: Colors.black45),
         ),
-        Transaction(
+        const Transaction(
           sign: "S",
           title: "P&B",
           purpose: "Shopping",
           amount: "-\$199.00",
         ),
-        Transaction(
+        const Transaction(
           sign: "R",
           title: "From Ann Jones",
-          purpose: "Shopping",
-          amount: "-\$199.00",
+          purpose: "Received",
+          amount: "+\$120.00",
         ),
-        Transaction(
+        const Transaction(
           sign: "S",
           title: "P&B",
-          purpose: "Shopping",
-          amount: "-\$199.00",
+          purpose: "Was Sent",
+          amount: "-\$240.00",
         ),
       ],
     );
