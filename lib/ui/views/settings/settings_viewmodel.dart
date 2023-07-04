@@ -34,11 +34,6 @@ class SettingsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  regionDataEdit() {
-    regionData = !regionData;
-    notifyListeners();
-  }
-
   basicDataUpdate(context) async {
     await _profileService.basicDataUpdate(usernameController.text);
     if (_profileService.message == 'update successfully') {

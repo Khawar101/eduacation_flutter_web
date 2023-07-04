@@ -3,7 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget editTextField(viewModel, cTRL) {
+
+Widget editedTextField(viewModel, cTRL) {
   return TextField(
     style: GoogleFonts.ibmPlexSans(
         color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500),

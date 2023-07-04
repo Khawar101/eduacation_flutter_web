@@ -1,10 +1,8 @@
 // ignore_for_file: non_constant_identifier_names, unused_import, avoid_web_libraries_in_flutter
 
 import 'dart:js';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'Model/userData.dart';
 
 class LoginService {

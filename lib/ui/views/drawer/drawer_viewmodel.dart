@@ -25,9 +25,15 @@ class DrawerViewModel extends BaseViewModel {
     const SettingsView()
   ];
   var pageNo = 0;
+  var screenNo=7;
 
   updatePage(value) {
     pageNo = value;
+    notifyListeners();
+    rebuildUi();
+  }
+   recalPage(value) {
+    screenNo = value;
     notifyListeners();
     rebuildUi();
   }
