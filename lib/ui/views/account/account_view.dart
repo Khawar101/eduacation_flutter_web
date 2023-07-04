@@ -1,3 +1,4 @@
+import 'package:education_flutter_web/ui/views/account/widget/exchange_view.dart';
 import 'package:education_flutter_web/ui/views/account/widget/income_tab.dart';
 import 'package:education_flutter_web/ui/views/account/widget/statistics.dart';
 import 'package:education_flutter_web/ui/views/account/widget/transactions_view.dart';
@@ -55,7 +56,18 @@ class AccountView extends StackedView<AccountViewModel> {
                 ),
               ),
               const Income_Tab(),
-              Transactions_View(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  
+                  SizedBox(
+                    width: screenWidth*0.37,
+                    child: Transactions_View()),
+                  SizedBox(
+                    width: screenWidth*0.37,
+                    child: Exchange_View()),
+                ],
+              ),
             ],
           ),
         ),
