@@ -52,11 +52,29 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   personalDataUpdate(context) async {
-    await _profileService.personalDataUpdatee(firstNameController.text,lastNameController.text,emailController.text,phoneController.text,bioController.text);
+    await _profileService.personalDataUpdatee(
+        firstNameController.text,
+        lastNameController.text,
+        emailController.text,
+        phoneController.text,
+        bioController.text);
     if (_profileService.message == 'update successfully') {
       print("=====>${_profileService.message}");
       successToast(context, "Edit Done Sucessfully");
       personalDataEdit();
+    } else {
+      print("=====>${_profileService.message}");
+      errorToast(context, "please enter complete info");
+    }
+  }
+
+  regionDataUpdate(context) async {
+    await _profileService.regionDataUpdate(
+        countryController.text, cityController.text, addressController.text);
+    if (_profileService.message == 'update successfully') {
+      print("=====>${_profileService.message}");
+      successToast(context, "Edit Done Sucessfully");
+      regionDataEdit();
     } else {
       print("=====>${_profileService.message}");
       errorToast(context, "please enter complete info");

@@ -75,7 +75,7 @@ class LoginService {
       clas: data["clas"],
       country: data['country'],
       city: data['city'],
-       bio: data['bio'],
+      bio: data['bio'],
       educationSector: data["educationSector"],
       socialLinks: data["socialLinks"],
     );
