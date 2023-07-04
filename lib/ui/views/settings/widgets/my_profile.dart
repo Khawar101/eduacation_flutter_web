@@ -14,7 +14,15 @@ class MyProfile extends StackedView<SettingsViewModel> {
     SettingsViewModel viewModel,
     Widget? child,
   ) {
-   
+   viewModel.usernameController.text = viewModel.userdata.username ?? "";
+    viewModel.firstNameController.text = viewModel.userdata.firstName ?? "";
+    viewModel.lastNameController.text = viewModel.userdata.lastName ?? "";
+    viewModel.emailController.text = viewModel.userdata.email ?? "";
+    viewModel.phoneController.text = viewModel.userdata.phoneNo ?? "";
+    viewModel.bioController.text = viewModel.userdata.bio ?? "";
+    viewModel.addressController.text = viewModel.userdata.address ?? "";
+    viewModel.cityController.text = viewModel.userdata.city ?? "";
+    viewModel.countryController.text = viewModel.userdata.country ?? "";
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
@@ -284,6 +292,7 @@ class Texts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+      cTRL.text = answer ?? "";
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
