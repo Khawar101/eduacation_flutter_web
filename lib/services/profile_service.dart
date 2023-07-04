@@ -1,5 +1,4 @@
 // ignore_for_file: unrelated_type_equality_checks
-import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../app/app.locator.dart';
 import 'Model/userData.dart';
@@ -32,7 +31,8 @@ class ProfileService {
     }
   }
 
-  personalDataUpdatee(firstName, lastName, email, phoneNo, bio) async {
+  personalDataUpdatee(
+      firstName, lastName, email, phoneNo, bio, country, city, address) async {
     var UserData = loginService.UserData;
     var uid = UserData.uID.toString();
 
@@ -48,6 +48,9 @@ class ProfileService {
           email: email,
           phoneNo: phoneNo,
           bio: bio,
+          address: address,
+          city: city,
+          country: country,
         );
         await firestore.collection("users").doc(uid).update({
           "firstName": firstName,
@@ -55,32 +58,9 @@ class ProfileService {
           "email": email,
           "phoneNo": phoneNo,
           "bio": bio,
-        });
-        await loginService.updateUserData(uid);
-        message = "update successfully";
-      } catch (e) {
-        message = e.toString();
-      }
-    } else {
-      message = "Filed all TextField";
-    }
-  }
-
-  regionDataUpdate(country, city, address) async {
-    var UserData = loginService.UserData;
-    var uid = UserData.uID.toString();
-
-    if (country != null && city != null && address != null) {
-      try {
-        UserData = userData(
-          country: country,
-          city: city,
-          address: address,
-        );
-        await firestore.collection("users").doc(uid).update({
-          "country": country,
-          "city": city,
           "address": address,
+          "city": city,
+          "country": country,
         });
         await loginService.updateUserData(uid);
         message = "update successfully";
