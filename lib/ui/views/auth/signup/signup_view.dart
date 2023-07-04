@@ -69,7 +69,8 @@ class SignupView extends StackedView<SignupViewModel> {
                               return null;
                             },
                             isObscureText: viewModel.visibleCheck,
-                            prefix: GestureDetector(
+                            prefix: InkWell(
+                              mouseCursor: MaterialStateMouseCursor.clickable,
                               onTap: viewModel.visible_check,
                               child: Icon(
                                 viewModel.visibleCheck == true
@@ -80,7 +81,8 @@ class SignupView extends StackedView<SignupViewModel> {
                             ),
                           ),
                           const SizedBox(height: 15),
-                          GestureDetector(
+                          InkWell(
+                            mouseCursor: MaterialStateMouseCursor.clickable,
                             onTap: () {
                               viewModel.sendOtp();
                               if (_formKey.currentState!.validate()) {}
@@ -126,60 +128,69 @@ class SignupView extends StackedView<SignupViewModel> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
-                                height: 50,
-                                width: MediaQuery.of(context).size.width * 0.15,
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: const Color(0xff4873a6)
-                                          .withOpacity(0.7),
-                                    ),
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(
-                                      'icons/google-48.png',
-                                      scale: 2,
-                                    ),
-                                    const SizedBox(width: 6),
-                                    Visibility(
-                                      visible: screenWidth >= 700,
-                                      child: const CustomText(
-                                          text: 'Google',
-                                          size: 14,
-                                          fontWeight: FontWeight.w700,
-                                          color: Colors.black),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                height: 50,
-                                width: screenWidth * 0.15,
-                                decoration: BoxDecoration(
-                                    border: Border.all(
+                              InkWell(
+                                mouseCursor: MaterialStateMouseCursor.clickable,
+                                onTap: () {},
+                                child: Container(
+                                  height: 50,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.15,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
                                         color: const Color(0xff4873a6)
                                             .withOpacity(0.7),
-                                        style: BorderStyle.solid),
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(
-                                      'icons/facebook-48.png',
-                                      scale: 2,
-                                    ),
-                                    const SizedBox(width: 6),
-                                    Visibility(
-                                      visible: screenWidth >= 700,
-                                      child: const CustomText(
-                                          text: 'Facebook',
-                                          size: 14,
-                                          fontWeight: FontWeight.w700,
-                                          color: Colors.black),
-                                    ),
-                                  ],
+                                      ),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Image.asset(
+                                        'icons/google-48.png',
+                                        scale: 2,
+                                      ),
+                                      const SizedBox(width: 6),
+                                      Visibility(
+                                        visible: screenWidth >= 700,
+                                        child: const CustomText(
+                                            text: 'Google',
+                                            size: 14,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.black),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                mouseCursor: MaterialStateMouseCursor.clickable,
+                                onTap: () {},
+                                child: Container(
+                                  height: 50,
+                                  width: screenWidth * 0.15,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: const Color(0xff4873a6)
+                                              .withOpacity(0.7),
+                                          style: BorderStyle.solid),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Image.asset(
+                                        'icons/facebook-48.png',
+                                        scale: 2,
+                                      ),
+                                      const SizedBox(width: 6),
+                                      Visibility(
+                                        visible: screenWidth >= 700,
+                                        child: const CustomText(
+                                            text: 'Facebook',
+                                            size: 14,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.black),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
@@ -187,7 +198,8 @@ class SignupView extends StackedView<SignupViewModel> {
                           verticalSpaceSmall,
                           Align(
                             alignment: Alignment.center,
-                            child: GestureDetector(
+                            child: InkWell(
+                              mouseCursor: MaterialStateMouseCursor.clickable,
                               onTap: viewModel.navigateLogin,
                               child: RichText(
                                   text: TextSpan(children: [

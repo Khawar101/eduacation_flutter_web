@@ -65,7 +65,8 @@ class UploadView_4 extends StackedView<UploadCoursesViewModel> {
                           size: 50,
                         ),
                       )
-                    : GestureDetector(
+                    :InkWell(
+                    mouseCursor: MaterialStateMouseCursor.clickable,
                         onTap: () {
                           viewModel.watchvideo(
                               context, viewModel.lectures[index].videoUrl);

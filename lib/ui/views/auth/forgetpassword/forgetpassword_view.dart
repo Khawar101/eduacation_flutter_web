@@ -2,7 +2,6 @@ import 'package:education_flutter_web/ui/views/auth/forgetpassword/screens/Logo_
 import 'package:education_flutter_web/ui/views/auth/forgetpassword/screens/forget_otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-
 import '../../../widgets/common/custom_text_field/custom_text_field.dart';
 import '../../../widgets/common/sized_text/sized_text.dart';
 import 'forgetpassword_viewmodel.dart';
@@ -19,14 +18,12 @@ class ForgetpasswordView extends StackedView<ForgetpasswordViewModel> {
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-        //backgroundColor: Theme.of(context).colorScheme.background,
         body: SingleChildScrollView(
       child: Row(
         children: [
-          Container(
+          SizedBox(
             height: MediaQuery.of(context).size.height * 1,
             width: screenWidth > 700 ? screenWidth * 0.5 : screenWidth * 1,
-            //color: Colors.white,
             child: Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width * 0.09,
@@ -56,10 +53,11 @@ class ForgetpasswordView extends StackedView<ForgetpasswordViewModel> {
                     },
                   ),
                   const SizedBox(height: 15),
-                  GestureDetector(
+                  InkWell(
+                    mouseCursor: MaterialStateMouseCursor.clickable,
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => ForgetOtp()));
+                          MaterialPageRoute(builder: (context) => const ForgetOtp()));
                     },
                     child: Container(
                       height: 50,
