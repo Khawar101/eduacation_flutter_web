@@ -126,6 +126,16 @@ class _DataTablesState extends State<DataTables> {
                         color: Colors.black),
                   ),
                 ),
+                const DataColumn(
+                  label: SizedBox(
+                    // width: screenWidth * 0.1,
+                    child: CustomText(
+                        text: "Finished",
+                        size: 12,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  ),
+                ),
                 DataColumn(
                   label: SizedBox(
                     width: screenWidth * 0.15,
@@ -250,9 +260,6 @@ class _DataTablesState extends State<DataTables> {
                   DataCell(
                     SizedBox(
                       width: 100,
-                      // width: screenWidth <= 650
-                      //     ? screenWidth * 0.3
-                      //     : screenWidth * 0.1,
                       child: Text(
                         data.courseName.toString(),
                         style: GoogleFonts.ibmPlexSans(
@@ -266,35 +273,24 @@ class _DataTablesState extends State<DataTables> {
                     ),
                   ),
                   DataCell(
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: 100,
-                          child: Text(
-                            DateFormat('dd, MM, yy')
-                                .format(data.startDate.toDate())
-                                .toString(),
-                            style: GoogleFonts.ibmPlexSans(
-                              color: Colors.black45,
-                              fontSize: 12,
-                              fontWeight: FontWeight.normal,
-                            ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                    SizedBox(
+                      width: 100,
+                      child: Text(
+                        DateFormat('dd, MM, yy')
+                            .format(data.startDate.toDate())
+                            .toString(),
+                        style: GoogleFonts.ibmPlexSans(
+                          color: Colors.black45,
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
                         ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ),
+                   DataCell(
                       data.startDate != data.endDate
-                            ?  Text(
-                          "   ' To '",
-                          style: GoogleFonts.ibmPlexSans(
-                            // color: Colors.black45,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ):Container(),
-                        data.startDate != data.endDate
                             ? SizedBox(
                                 width: 100,
                                 child: Text(
@@ -311,8 +307,6 @@ class _DataTablesState extends State<DataTables> {
                                 ),
                               )
                             : Container(),
-                      ],
-                    ),
                   ),
                   DataCell(
                     SizedBox(
