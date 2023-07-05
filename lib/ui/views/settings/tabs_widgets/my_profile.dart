@@ -15,7 +15,7 @@ class MyProfile extends StackedView<SettingsViewModel> {
     SettingsViewModel viewModel,
     Widget? child,
   ) {
-   viewModel.usernameController.text = viewModel.userdata.username ?? "";
+    viewModel.usernameController.text = viewModel.userdata.username ?? "";
     viewModel.firstNameController.text = viewModel.userdata.firstName ?? "";
     viewModel.lastNameController.text = viewModel.userdata.lastName ?? "";
     viewModel.emailController.text = viewModel.userdata.email ?? "";
@@ -38,9 +38,9 @@ class MyProfile extends StackedView<SettingsViewModel> {
                   fontWeight: FontWeight.w500),
             ),
             const SizedBox(height: 20),
-           headingInfo(viewModel,context),
+            headingInfo(viewModel, context),
             const SizedBox(height: 20),
-           personalInformation(viewModel, context),
+            personalInformation(viewModel, context),
             const SizedBox(height: 50)
           ],
         ),
@@ -54,7 +54,3 @@ class MyProfile extends StackedView<SettingsViewModel> {
   ) =>
       SettingsViewModel();
 }
-
-
-
-

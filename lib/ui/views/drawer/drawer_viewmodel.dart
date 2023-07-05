@@ -25,7 +25,7 @@ class DrawerViewModel extends BaseViewModel {
     const SettingsView()
   ];
   var pageNo = 0;
-  var screenNo=7;
+  var screenNo = 7;
 
   updatePage(value) {
     pageNo = value;
@@ -43,5 +43,13 @@ class DrawerViewModel extends BaseViewModel {
   removeDataFromSpAndGoToLogin() async {
     await Store.removeValueAgainstKey('userId');
     _navigationService.navigateToLoginView();
+  }
+
+  restoreData() async {
+    var userId = await Store.retrieve('userId');
+    if (userId.isNotEmpty && userId != "") {
+      await loginService.updateUserData(userId);
+      notifyListeners();
+    }
   }
 }
