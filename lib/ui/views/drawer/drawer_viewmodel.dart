@@ -30,12 +30,6 @@ class DrawerViewModel extends BaseViewModel {
   updatePage(value) {
     pageNo = value;
     notifyListeners();
-    rebuildUi();
-  }
-   recalPage(value) {
-    screenNo = value;
-    notifyListeners();
-    rebuildUi();
   }
 
   navigateLogin() {
