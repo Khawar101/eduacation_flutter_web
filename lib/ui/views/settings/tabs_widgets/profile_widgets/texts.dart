@@ -5,7 +5,6 @@ import 'package:education_flutter_web/ui/views/settings/tabs_widgets/profile_wid
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class Texts extends StatelessWidget {
   final question;
   final answer;
@@ -20,7 +19,7 @@ class Texts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      cTRL.text = answer ?? "";
+    cTRL.text = answer ?? "";
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,

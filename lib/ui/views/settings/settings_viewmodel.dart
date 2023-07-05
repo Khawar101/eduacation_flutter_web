@@ -55,8 +55,7 @@ class SettingsViewModel extends BaseViewModel {
         bioController.text,
         addressController.text,
         cityController.text,
-        countryController.text
-        );
+        countryController.text);
     if (_profileService.message == 'update successfully') {
       print("=====>${_profileService.message}");
       successToast(context, "Edit Done Sucessfully");
@@ -66,6 +65,4 @@ class SettingsViewModel extends BaseViewModel {
       errorToast(context, "please enter complete info");
     }
   }
-
-  
 }

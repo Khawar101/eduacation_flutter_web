@@ -8,6 +8,11 @@ import 'drawer_viewmodel.dart';
 
 class DrawerView extends StackedView<DrawerViewModel> {
   const DrawerView({Key? key}) : super(key: key);
+  @override
+  void onViewModelReady(DrawerViewModel viewModel) {
+    viewModel.restoreData();
+    super.onViewModelReady(viewModel);
+  }
 
   @override
   Widget builder(
@@ -201,8 +206,9 @@ class DrawerView extends StackedView<DrawerViewModel> {
                               ),
                               const SizedBox(width: 4),
                               ButtonText(
-                                  text: viewModel.loginService.UserData.username
-                                      .toString(),
+                                  text: viewModel
+                                          .loginService.UserData.username ??
+                                      "",
                                   color: Colors.black),
                               const SizedBox(width: 8),
                               const Icon(Icons.arrow_drop_down)
