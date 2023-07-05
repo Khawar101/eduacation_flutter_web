@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-
+import 'package:timeago/timeago.dart' as timeago;
 import '../../../../services/Model/reportModel.dart';
 
 class DataTables extends StatefulWidget {
@@ -171,12 +171,12 @@ class _DataTablesState extends State<DataTables> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   CustomText(
-                                      text: "khawar",
+                                      text: "khawar jutt",
                                       size: 14,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black),
                                   Text(
-                                    "khawar",
+                                    "khawarjutteade123@gmail.com",
                                     overflow: TextOverflow.ellipsis,
                                     style: GoogleFonts.ibmPlexSans(
                                       fontSize: 14,
@@ -252,23 +252,32 @@ class _DataTablesState extends State<DataTables> {
                       // width: screenWidth <= 650
                       //     ? screenWidth * 0.3
                       //     : screenWidth * 0.1,
-                      child: CustomText(
-                          text: data.courseName.toString(),
-                          size: 14,
+                      child: Text(
+                        data.courseName.toString(),
+                        style: GoogleFonts.ibmPlexSans(
+                          color: Colors.black45,
+                          fontSize: 14,
                           fontWeight: FontWeight.normal,
-                          color: Colors.black45),
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                     
                     ),
                   ),
                   DataCell(
                     SizedBox(
                       width: 100,
                       child: Text(
-                        data.startDate.toString(),
+                       timeago
+                                        .format(data.startDate.toDate())
+                                        .toString(),
                         style: GoogleFonts.ibmPlexSans(
+                         color: Colors.black45,
                           fontSize: 14,
-                          fontWeight: FontWeight.w300,
-                          color: Colors.black45,
-                        ),
+                          fontWeight: FontWeight.normal,
+                        ),  maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ),
