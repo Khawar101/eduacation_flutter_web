@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import '../../../../services/Model/reportModel.dart';
+import 'package:intl/intl.dart';
 
 class DataTables extends StatefulWidget {
   final List<ReportModel>? reportData;
@@ -170,7 +171,7 @@ class _DataTablesState extends State<DataTables> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  CustomText(
+                                  const CustomText(
                                       text: "khawar jutt",
                                       size: 14,
                                       fontWeight: FontWeight.bold,
@@ -262,23 +263,55 @@ class _DataTablesState extends State<DataTables> {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
-                     
                     ),
                   ),
                   DataCell(
-                    SizedBox(
-                      width: 100,
-                      child: Text(
-                       timeago
-                                        .format(data.startDate.toDate())
-                                        .toString(),
-                        style: GoogleFonts.ibmPlexSans(
-                         color: Colors.black45,
-                          fontSize: 14,
-                          fontWeight: FontWeight.normal,
-                        ),  maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: 100,
+                          child: Text(
+                            DateFormat('dd, MM, yy')
+                                .format(data.startDate.toDate())
+                                .toString(),
+                            style: GoogleFonts.ibmPlexSans(
+                              color: Colors.black45,
+                              fontSize: 12,
+                              fontWeight: FontWeight.normal,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      data.startDate != data.endDate
+                            ?  Text(
+                          "   ' To '",
+                          style: GoogleFonts.ibmPlexSans(
+                            // color: Colors.black45,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ):Container(),
+                        data.startDate != data.endDate
+                            ? SizedBox(
+                                width: 100,
+                                child: Text(
+                                  DateFormat('dd, MM, yy')
+                                      .format(data.endDate.toDate())
+                                      .toString(),
+                                  style: GoogleFonts.ibmPlexSans(
+                                    color: Colors.black45,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              )
+                            : Container(),
+                      ],
                     ),
                   ),
                   DataCell(

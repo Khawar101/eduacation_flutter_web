@@ -1,7 +1,7 @@
 // {
 //     "courseKey": "",
 //     "key": "",
-//     "progress": 3,
+//     "progress": 2.3,
 //     "courseName":"",
 //     "rating":4.3,
 //     "startDate":"",
@@ -15,7 +15,7 @@
 class ReportModel {
   String? courseKey;
   String? key;
-  int? progress;
+  double? progress;
   String? courseName;
   double? rating;
   dynamic startDate;
