@@ -32,7 +32,7 @@ class DashboardView extends StackedView<DashboardViewModel> {
               const SizedBox(
                 height: 20,
               ),
-              tab_Section(context,viewModel),
+              tab_Section(context, viewModel),
             ],
           ),
         ),

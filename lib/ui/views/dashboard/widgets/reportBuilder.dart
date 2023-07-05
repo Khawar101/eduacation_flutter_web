@@ -14,11 +14,11 @@ Widget reportBuilder(DashboardViewModel viewModel) {
       }
 
       if (snapshot.connectionState == ConnectionState.waiting) {
-        return Loading();
+        return Loading(100);
       }
 
       return DataTables(reportData: snapshot.data);
     },
   );
 }
-  //  
+//

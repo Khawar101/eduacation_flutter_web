@@ -10,6 +10,8 @@ import 'package:timeago/timeago.dart' as timeago;
 import '../../../../services/Model/reportModel.dart';
 import 'package:intl/intl.dart';
 
+import '../widgets/introBuilder.dart';
+
 class DataTables extends StatefulWidget {
   final List<ReportModel>? reportData;
   const DataTables({
@@ -161,48 +163,7 @@ class _DataTablesState extends State<DataTables> {
                   (index) {
                 ReportModel data = widget.reportData![index];
                 return DataRow(cells: [
-                  DataCell(
-                    SizedBox(
-                      width: 270,
-                      child: Row(
-                        children: [
-                          const CircleAvatar(
-                            radius: 20,
-                            backgroundImage: AssetImage(
-                              "assets/images/girl-images-4.jpg",
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 5, horizontal: 10),
-                            child: SizedBox(
-                              width: 200,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const CustomText(
-                                      text: "khawar jutt",
-                                      size: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
-                                  Text(
-                                    "khawarjutteade123@gmail.com",
-                                    overflow: TextOverflow.ellipsis,
-                                    style: GoogleFonts.ibmPlexSans(
-                                      fontSize: 14,
-                                      color: Colors.black38,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  DataCell(introBuilder(data.userKey)),
                   // DataCell(
                   //   SizedBox(
                   //         width: 100,
@@ -289,25 +250,23 @@ class _DataTablesState extends State<DataTables> {
                       ),
                     ),
                   ),
-                   DataCell(
+                  DataCell(SizedBox(
+                    width: 100,
+                    child: Text(
                       data.startDate != data.endDate
-                            ? SizedBox(
-                                width: 100,
-                                child: Text(
-                                  DateFormat('dd, MM, yy')
-                                      .format(data.endDate.toDate())
-                                      .toString(),
-                                  style: GoogleFonts.ibmPlexSans(
-                                    color: Colors.black45,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              )
-                            : Container(),
-                  ),
+                          ? DateFormat('dd, MM, yy')
+                              .format(data.endDate.toDate())
+                              .toString()
+                          : "-------------",
+                      style: GoogleFonts.ibmPlexSans(
+                        color: Colors.black45,
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  )),
                   DataCell(
                     SizedBox(
                       width: 200,
