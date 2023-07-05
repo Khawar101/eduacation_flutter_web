@@ -1,6 +1,7 @@
 import 'package:education_flutter_web/app/app.router.dart';
 import 'package:education_flutter_web/services/Model/userData.dart';
 import 'package:education_flutter_web/services/login_service.dart';
+import 'package:education_flutter_web/ui/views/account/widget/card_drawer.dart';
 import 'package:education_flutter_web/ui/views/settings/settings_view.dart';
 import 'package:education_flutter_web/utils/shared_preferences.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class DrawerViewModel extends BaseViewModel {
     const DashboardView(),
     const AccountView(),
     const Text("3 jhfghjfghjg"),
-    const Text("page 4"),
+    const CardDrawer(),
     const CoursesView(),
     const Text("page 6"),
     const Text("page 7"),

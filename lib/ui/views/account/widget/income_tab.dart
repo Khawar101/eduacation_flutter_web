@@ -31,9 +31,9 @@ class _Income_TabState extends State<Income_Tab> {
           ),
           Row(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: const CustomText(
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: CustomText(
                     text: "Sort By: ",
                     size: 16,
                     fontWeight: FontWeight.normal,
@@ -98,6 +98,7 @@ class _Income_TabState extends State<Income_Tab> {
                   ),
                 ),
               ),
+              
             ],
           ),
         ],
