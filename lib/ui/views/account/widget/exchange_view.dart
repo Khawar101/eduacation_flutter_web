@@ -28,7 +28,7 @@ class _Exchange_ViewState extends State<Exchange_View> {
           eurRate: "1",
           usdRate: "1",
         ),
-        
+
       ],
     );
   }
