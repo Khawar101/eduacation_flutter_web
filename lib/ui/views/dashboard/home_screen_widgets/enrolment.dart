@@ -1,7 +1,9 @@
-import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/data_table.dart';
+// ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
 
-Widget tab_Section(context) {
+import '../widgets/reportBuilder.dart';
+
+Widget tab_Section(context, viewModel) {
   return DefaultTabController(
     length: 4,
     child: Column(
@@ -39,10 +41,7 @@ Widget tab_Section(context) {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 1,
                     width: MediaQuery.of(context).size.width * 1,
-                    child: const DataTables(
-                      title: 'dfdf',
-                      status: "Enrolled",
-                    ),
+                    child: reportBuilder(viewModel),
                   ),
                 ],
               ),

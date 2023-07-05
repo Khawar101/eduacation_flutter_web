@@ -7,17 +7,15 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
+import '../../../../services/Model/reportModel.dart';
+
 class DataTables extends StatefulWidget {
+  final List<ReportModel>? reportData;
   const DataTables({
     super.key,
-    required this.status,
-    required String title,
+    required this.reportData,
   });
-  final name = "Olivia Rhye",
-      email = "hello@oliviarhye.com",
-      status,
-      course = "UI Masterclass",
-      enroll_date = "Jan4 ,2022";
+
   final double progress_percent = 0.7, ratings = 4.5;
 
   @override
@@ -148,180 +146,178 @@ class _DataTablesState extends State<DataTables> {
                   ),
                 ),
               ],
-              rows: List<DataRow>.generate(
-                  50,
-                  (index) => DataRow(cells: [
-                        DataCell(
-                          SizedBox(
-                            width: 270,
-                            child: Row(
-                              children: [
-                                const CircleAvatar(
-                                  radius: 20,
-                                  backgroundImage: AssetImage(
-                                    "assets/images/girl-images-4.jpg",
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 5, horizontal: 10),
-                                  child: SizedBox(
-                                    width: 200,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        CustomText(
-                                            text: widget.name +
-                                                " " +
-                                                (index + 1).toString(),
-                                            size: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black),
-                                        Text(
-                                          widget.email,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: GoogleFonts.ibmPlexSans(
-                                            fontSize: 14,
-                                            color: Colors.black38,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
+              rows: List<DataRow>.generate(widget.reportData?.length ?? 0,
+                  (index) {
+                ReportModel data = widget.reportData![index];
+                return DataRow(cells: [
+                  DataCell(
+                    SizedBox(
+                      width: 270,
+                      child: Row(
+                        children: [
+                          const CircleAvatar(
+                            radius: 20,
+                            backgroundImage: AssetImage(
+                              "assets/images/girl-images-4.jpg",
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            child: SizedBox(
+                              width: 200,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  CustomText(
+                                      text: "khawar",
+                                      size: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black),
+                                  Text(
+                                    "khawar",
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.ibmPlexSans(
+                                      fontSize: 14,
+                                      color: Colors.black38,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        // DataCell(
-                        //   SizedBox(
-                        //         width: 100,
-                        //     child: Align(
-                        //       alignment: Alignment.centerLeft,
-                        //       child: Container(
+                        ],
+                      ),
+                    ),
+                  ),
+                  // DataCell(
+                  //   SizedBox(
+                  //         width: 100,
+                  //     child: Align(
+                  //       alignment: Alignment.centerLeft,
+                  //       child: Container(
 
-                        //         width: 90,
-                        //         decoration: BoxDecoration(
-                        //           borderRadius: BorderRadius.circular(10),
-                        //           color: Colors.white,
-                        //           border: Border.all(
-                        //             width: 1,
-                        //             color:
-                        //                 index % 3 == 0 ? Colors.red : Colors.green,
-                        //             style: BorderStyle.solid,
-                        //           ),
-                        //         ),
-                        //         child: Row(
-                        //           mainAxisAlignment: MainAxisAlignment.center,
-                        //           children: [
-                        //             Icon(
-                        //               Icons.circle_sharp,
-                        //               color: index % 3 == 0
-                        //                   ? Colors.red
-                        //                   : Colors.green,
-                        //               size: 10,
-                        //             ),
-                        //             const SizedBox(
-                        //               width: 5,
-                        //             ),
-                        //             Padding(
-                        //               padding: const EdgeInsets.symmetric(
-                        //                   vertical: 5, horizontal: 0),
-                        //               child: Text(
-                        //                 index % 3 == 0
-                        //                     ? "Unenrolled"
-                        //                     : widget.status,
-                        //                 textAlign: TextAlign.center,
-                        //                 style: GoogleFonts.ibmPlexSans(
-                        //                   fontSize: 14,
-                        //                   color: index % 3 == 0
-                        //                       ? Colors.red
-                        //                       : Colors.green,
-                        //                   fontWeight: FontWeight.w600,
-                        //                 ),
-                        //               ),
-                        //             ),
-                        //           ],
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
-                        DataCell(
-                          SizedBox(
-                            width: 100,
-                            // width: screenWidth <= 650
-                            //     ? screenWidth * 0.3
-                            //     : screenWidth * 0.1,
-                            child: CustomText(
-                                text: widget.course,
-                                size: 14,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.black45),
+                  //         width: 90,
+                  //         decoration: BoxDecoration(
+                  //           borderRadius: BorderRadius.circular(10),
+                  //           color: Colors.white,
+                  //           border: Border.all(
+                  //             width: 1,
+                  //             color:
+                  //                 index % 3 == 0 ? Colors.red : Colors.green,
+                  //             style: BorderStyle.solid,
+                  //           ),
+                  //         ),
+                  //         child: Row(
+                  //           mainAxisAlignment: MainAxisAlignment.center,
+                  //           children: [
+                  //             Icon(
+                  //               Icons.circle_sharp,
+                  //               color: index % 3 == 0
+                  //                   ? Colors.red
+                  //                   : Colors.green,
+                  //               size: 10,
+                  //             ),
+                  //             const SizedBox(
+                  //               width: 5,
+                  //             ),
+                  //             Padding(
+                  //               padding: const EdgeInsets.symmetric(
+                  //                   vertical: 5, horizontal: 0),
+                  //               child: Text(
+                  //                 index % 3 == 0
+                  //                     ? "Unenrolled"
+                  //                     : widget.status,
+                  //                 textAlign: TextAlign.center,
+                  //                 style: GoogleFonts.ibmPlexSans(
+                  //                   fontSize: 14,
+                  //                   color: index % 3 == 0
+                  //                       ? Colors.red
+                  //                       : Colors.green,
+                  //                   fontWeight: FontWeight.w600,
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                  DataCell(
+                    SizedBox(
+                      width: 100,
+                      // width: screenWidth <= 650
+                      //     ? screenWidth * 0.3
+                      //     : screenWidth * 0.1,
+                      child: CustomText(
+                          text: data.courseName.toString(),
+                          size: 14,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black45),
+                    ),
+                  ),
+                  DataCell(
+                    SizedBox(
+                      width: 100,
+                      child: Text(
+                        data.startDate.toString(),
+                        style: GoogleFonts.ibmPlexSans(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w300,
+                          color: Colors.black45,
+                        ),
+                      ),
+                    ),
+                  ),
+                  DataCell(
+                    SizedBox(
+                      width: 200,
+                      // width: screenWidth * 0.15,
+                      child: LinearPercentIndicator(
+                        width: screenWidth * 0.1,
+                        animation: true,
+                        lineHeight: 5.0,
+                        animationDuration: 2500,
+                        percent: widget.progress_percent,
+                        trailing: Text(
+                          "${widget.progress_percent * 100}%",
+                          style: GoogleFonts.ibmPlexSans(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.black45,
                           ),
                         ),
-                        DataCell(
-                          SizedBox(
-                            width: 100,
-                            child: Text(
-                              widget.enroll_date,
-                              style: GoogleFonts.ibmPlexSans(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w300,
-                                color: Colors.black45,
-                              ),
-                            ),
-                          ),
+                        barRadius: const Radius.circular(10),
+                        progressColor: Colors.blueAccent,
+                      ),
+                    ),
+                  ),
+                  DataCell(
+                    SizedBox(
+                      width: screenWidth * 0.2,
+                      child: RatingBar.builder(
+                        wrapAlignment: WrapAlignment.start,
+                        initialRating: widget.ratings,
+                        minRating: 1,
+                        direction: Axis.horizontal,
+                        allowHalfRating: true,
+                        itemCount: 5,
+                        itemSize: 20,
+                        itemBuilder: (context, _) => const Icon(
+                          Icons.star,
+                          color: Colors.yellow,
                         ),
-                        DataCell(
-                          SizedBox(
-                            width: 200,
-                            // width: screenWidth * 0.15,
-                            child: LinearPercentIndicator(
-                              width: screenWidth * 0.1,
-                              animation: true,
-                              lineHeight: 5.0,
-                              animationDuration: 2500,
-                              percent: widget.progress_percent,
-                              trailing: Text(
-                                "${widget.progress_percent * 100}%",
-                                style: GoogleFonts.ibmPlexSans(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w300,
-                                  color: Colors.black45,
-                                ),
-                              ),
-                              barRadius: const Radius.circular(10),
-                              progressColor: Colors.blueAccent,
-                            ),
-                          ),
-                        ),
-                        DataCell(
-                          SizedBox(
-                            width: screenWidth * 0.2,
-                            child: RatingBar.builder(
-                              wrapAlignment: WrapAlignment.start,
-                              initialRating: widget.ratings,
-                              minRating: 1,
-                              direction: Axis.horizontal,
-                              allowHalfRating: true,
-                              itemCount: 5,
-                              itemSize: 20,
-                              itemBuilder: (context, _) => const Icon(
-                                Icons.star,
-                                color: Colors.yellow,
-                              ),
-                              onRatingUpdate: (rating) {
-                                //print(rating);
-                              },
-                            ),
-                          ),
-                        ),
-                      ])),
+                        onRatingUpdate: (rating) {
+                          //print(rating);
+                        },
+                      ),
+                    ),
+                  ),
+                ]);
+              }),
             ),
           ),
         ),
