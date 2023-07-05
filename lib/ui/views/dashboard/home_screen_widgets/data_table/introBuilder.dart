@@ -4,9 +4,9 @@ import 'package:education_flutter_web/app/app.locator.dart';
 import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../../services/Model/userData.dart';
-import '../../../../services/dashboard_service.dart';
-import '../../../../utils/loading.dart';
+import '../../../../../services/Model/userData.dart';
+import '../../../../../services/dashboard_service.dart';
+import '../../../../../utils/loading.dart';
 
 Widget introBuilder(uID) {
   final _dashboardService = locator<DashboardService>();

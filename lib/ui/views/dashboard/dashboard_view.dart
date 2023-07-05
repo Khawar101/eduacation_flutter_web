@@ -3,7 +3,7 @@ import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/sta
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'dashboard_viewmodel.dart';
-import 'home_screen_widgets/enrolment.dart';
+import 'home_screen_widgets/tabs.dart';
 
 class DashboardView extends StackedView<DashboardViewModel> {
   const DashboardView({Key? key}) : super(key: key);

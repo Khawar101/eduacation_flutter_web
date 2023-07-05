@@ -3,7 +3,7 @@ import 'package:education_flutter_web/ui/views/dashboard/dashboard_viewmodel.dar
 import 'package:education_flutter_web/utils/loading.dart';
 import 'package:flutter/material.dart';
 
-import '../home_screen_widgets/data_table.dart';
+import '../home_screen_widgets/data_table/data_table.dart';
 
 Widget reportBuilder(DashboardViewModel viewModel) {
   return StreamBuilder<List<ReportModel>>(

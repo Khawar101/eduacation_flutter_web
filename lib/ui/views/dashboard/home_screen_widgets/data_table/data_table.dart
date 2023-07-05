@@ -6,11 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:timeago/timeago.dart' as timeago;
-import '../../../../services/Model/reportModel.dart';
+import '../../../../../services/Model/reportModel.dart';
 import 'package:intl/intl.dart';
 
-import '../widgets/introBuilder.dart';
+import 'introBuilder.dart';
 
 class DataTables extends StatefulWidget {
   final List<ReportModel>? reportData;
@@ -19,7 +18,7 @@ class DataTables extends StatefulWidget {
     required this.reportData,
   });
 
-  final double progress_percent = 0.7, ratings = 4.5;
+ 
 
   @override
   State<DataTables> createState() => _DataTablesState();
@@ -270,15 +269,14 @@ class _DataTablesState extends State<DataTables> {
                   DataCell(
                     SizedBox(
                       width: 200,
-                      // width: screenWidth * 0.15,
                       child: LinearPercentIndicator(
                         width: screenWidth * 0.1,
                         animation: true,
                         lineHeight: 5.0,
                         animationDuration: 2500,
-                        percent: widget.progress_percent,
+                        percent: data.progress!.toInt()/100,
                         trailing: Text(
-                          "${widget.progress_percent * 100}%",
+                          "${data.progress!.toInt()}%",
                           style: GoogleFonts.ibmPlexSans(
                             fontSize: 14,
                             fontWeight: FontWeight.w300,
@@ -295,12 +293,13 @@ class _DataTablesState extends State<DataTables> {
                       width: screenWidth * 0.2,
                       child: RatingBar.builder(
                         wrapAlignment: WrapAlignment.start,
-                        initialRating: widget.ratings,
+                        initialRating: data.rating!.toDouble(),
                         minRating: 1,
                         direction: Axis.horizontal,
                         allowHalfRating: true,
                         itemCount: 5,
                         itemSize: 20,
+                        ignoreGestures: true,
                         itemBuilder: (context, _) => const Icon(
                           Icons.star,
                           color: Colors.yellow,
