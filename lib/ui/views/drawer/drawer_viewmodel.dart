@@ -1,4 +1,5 @@
 import 'package:education_flutter_web/app/app.router.dart';
+import 'package:education_flutter_web/services/Model/userData.dart';
 import 'package:education_flutter_web/services/login_service.dart';
 import 'package:education_flutter_web/ui/views/settings/settings_view.dart';
 import 'package:education_flutter_web/utils/shared_preferences.dart';
@@ -47,7 +48,10 @@ class DrawerViewModel extends BaseViewModel {
 
   restoreData() async {
     var userId = await Store.retrieve('userId');
-    if (userId.isNotEmpty && userId != "") {
+
+    if (userId.isNotEmpty &&
+        userId != "" &&
+        loginService.UserData.uID == null) {
       await loginService.updateUserData(userId);
       notifyListeners();
     }
