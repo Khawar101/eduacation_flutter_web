@@ -8,7 +8,8 @@ import '../courses_viewmodel.dart';
 import '../upload_courses/widgets/pop_up_menu.dart';
 
 Widget courseCard(CoursesModel data, context, CoursesViewModel viewModel) {
-  return GestureDetector(
+  return InkWell(
+    mouseCursor: MaterialStateMouseCursor.clickable,
     onTap: () {
       viewModel.showCourseDetail(data);
     },

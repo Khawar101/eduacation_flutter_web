@@ -20,7 +20,7 @@ class _ResetSuccessState extends State<ResetSuccess>
         body: SingleChildScrollView(
       child: Row(
         children: [
-          Container(
+          SizedBox(
             height: MediaQuery.of(context).size.height * 1,
             width: screenWidth > 700 ? screenWidth * 0.5 : screenWidth * 1,
             //color: Colors.white,
@@ -32,7 +32,7 @@ class _ResetSuccessState extends State<ResetSuccess>
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.check_circle_outline_rounded,
                     size: 200,
                     color: Colors.green,
@@ -44,10 +44,13 @@ class _ResetSuccessState extends State<ResetSuccess>
                       fontWeight: FontWeight.w500,
                       color: Colors.green),
                   const SizedBox(height: 18),
-                  GestureDetector(
+                  InkWell(
+                    mouseCursor: MaterialStateMouseCursor.clickable,
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => LoginView()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginView()));
                     },
                     child: Container(
                       height: 50,

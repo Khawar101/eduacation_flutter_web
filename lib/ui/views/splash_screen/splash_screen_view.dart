@@ -9,7 +9,6 @@ class SplashScreenView extends StackedView<SplashScreenViewModel> {
 
   @override
   void onViewModelReady(SplashScreenViewModel viewModel) {
-    // TODO: implement onViewModelReady
     super.onViewModelReady(viewModel);
     viewModel.checkIfUserLoggedIn();
   }

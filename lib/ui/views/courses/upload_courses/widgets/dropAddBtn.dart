@@ -6,6 +6,7 @@ import '../../../../common/app_assets.dart';
 
 Widget addBtn(type, progress, url, fun, context) {
   return InkWell(
+    mouseCursor: MaterialStateMouseCursor.clickable,
     onTap: fun,
     child: Container(
       decoration: BoxDecoration(

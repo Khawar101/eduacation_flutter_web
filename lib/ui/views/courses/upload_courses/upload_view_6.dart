@@ -114,7 +114,7 @@ class CourseDetails extends StackedView<UploadCoursesViewModel> {
                   }
 
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Loading();
+                    return Loading(100);
                   }
                   if (snapshot.data!.isEmpty) {
                     return const Center(child: Text("No rating yet..."));

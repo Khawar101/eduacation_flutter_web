@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: file_names
 
+import 'package:flutter/material.dart';
 import '../../../../widgets/common/sized_text/sized_text.dart';
 
 class LogoScreen extends StatefulWidget {
@@ -31,13 +32,13 @@ class _LogoScreenState extends State<LogoScreen> {
                     text: 'Welcome to the Future',
                     size: screenWidth > 850 ? 24 : 18,
                     fontWeight: FontWeight.w600,
-                    color: Color.fromARGB(255, 19, 88, 62)),
+                    color: const Color.fromARGB(255, 19, 88, 62)),
                 const SizedBox(height: 18),
                 CustomText(
                     text: 'Kindly SignUp to use all the features of the app',
                     size: screenWidth > 850 ? 18 : 14,
                     fontWeight: FontWeight.w400,
-                    color: Color.fromARGB(255, 16, 65, 138)),
+                    color: const Color.fromARGB(255, 16, 65, 138)),
               ],
             ),
           )

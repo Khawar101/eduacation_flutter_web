@@ -16,11 +16,10 @@ class _NewPasswordState extends State<NewPassword> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-        //backgroundColor: Theme.of(context).colorScheme.background,
         body: SingleChildScrollView(
       child: Row(
         children: [
-          Container(
+          SizedBox(
             height: MediaQuery.of(context).size.height * 1,
             width: screenWidth > 700 ? screenWidth * 0.5 : screenWidth * 1,
             //color: Colors.white,
@@ -49,10 +48,9 @@ class _NewPasswordState extends State<NewPassword> {
                     validator: (value) {
                       return null;
                     },
-                    //isObscureText: viewModel.visibleCheck,
                     prefix: GestureDetector(
                       //onTap: viewModel.visible_check,
-                      child: Icon(
+                      child: const Icon(
                         Icons.visibility_outlined,
                         color: Colors.black,
                       ),
@@ -67,19 +65,20 @@ class _NewPasswordState extends State<NewPassword> {
                     //isObscureText: viewModel.visibleCheck,
                     prefix: GestureDetector(
                       //onTap: viewModel.visible_check,
-                      child: Icon(
+                      child: const Icon(
                         Icons.visibility_outlined,
                         color: Colors.black,
                       ),
                     ),
                   ),
                   const SizedBox(height: 15),
-                  GestureDetector(
+                  InkWell(
+                    mouseCursor: MaterialStateMouseCursor.clickable,
                     onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ResetSuccess()));
+                              builder: (context) => const ResetSuccess()));
                     },
                     child: Container(
                       height: 50,

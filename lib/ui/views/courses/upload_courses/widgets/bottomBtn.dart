@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../widgets/common/sized_text/sized_text.dart';
 
 Widget bottomBtn(context, title, function) {
-  return GestureDetector(
+  return InkWell(
+    mouseCursor: MaterialStateMouseCursor.clickable,
     onTap: function,
     child: Container(
       height: 50,

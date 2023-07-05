@@ -1,4 +1,5 @@
 import 'package:education_flutter_web/app/app.router.dart';
+import 'package:education_flutter_web/services/Model/userData.dart';
 import 'package:education_flutter_web/services/login_service.dart';
 import 'package:education_flutter_web/ui/views/account/widget/card_drawer.dart';
 import 'package:education_flutter_web/ui/views/settings/settings_view.dart';
@@ -16,8 +17,8 @@ class DrawerViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final loginService = locator<LoginService>();
   var pages = [
-    const AccountView(),
     const DashboardView(),
+    const AccountView(),
     const Text("3 jhfghjfghjg"),
     const CardDrawer(),
     const CoursesView(),
@@ -26,11 +27,11 @@ class DrawerViewModel extends BaseViewModel {
     const SettingsView()
   ];
   var pageNo = 0;
+  var screenNo = 7;
 
   updatePage(value) {
     pageNo = value;
     notifyListeners();
-    rebuildUi();
   }
 
   navigateLogin() {
@@ -44,5 +45,16 @@ class DrawerViewModel extends BaseViewModel {
   removeDataFromSpAndGoToLogin() async {
     await Store.removeValueAgainstKey('userId');
     _navigationService.navigateToLoginView();
+  }
+
+  restoreData() async {
+    var userId = await Store.retrieve('userId');
+
+    if (userId.isNotEmpty &&
+        userId != "" &&
+        loginService.UserData.uID == null) {
+      await loginService.updateUserData(userId);
+      notifyListeners();
+    }
   }
 }
