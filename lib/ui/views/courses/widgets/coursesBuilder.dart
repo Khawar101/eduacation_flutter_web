@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:education_flutter_web/ui/views/courses/courses_viewmodel.dart';
 import 'package:flutter/material.dart';
 import '../../../../services/Model/CoursesModel.dart';
@@ -14,7 +16,7 @@ Widget coursesBuilder(CoursesViewModel viewModel) {
       }
 
       if (snapshot.connectionState == ConnectionState.waiting) {
-        return Loading();
+        return Loading(100);
       }
       return GridView.builder(
         shrinkWrap: true,

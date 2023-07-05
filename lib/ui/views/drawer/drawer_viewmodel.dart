@@ -16,8 +16,8 @@ class DrawerViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final loginService = locator<LoginService>();
   var pages = [
-    const AccountView(),
     const DashboardView(),
+    const AccountView(),
     const Text("3 jhfghjfghjg"),
     const Text("page 4"),
     const CoursesView(),

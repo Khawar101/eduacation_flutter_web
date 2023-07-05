@@ -10,6 +10,7 @@ import 'package:stacked_services/src/navigation/navigation_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 
 import '../services/courses_service.dart';
+import '../services/dashboard_service.dart';
 import '../services/login_service.dart';
 import '../services/profile_service.dart';
 import '../services/rating_service.dart';
@@ -32,4 +33,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => CoursesService());
   locator.registerLazySingleton(() => RatingService());
   locator.registerLazySingleton(() => ProfileService());
+  locator.registerLazySingleton(() => DashboardService());
 }
