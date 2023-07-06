@@ -7,29 +7,23 @@ import '../../widgets/common/sized_text/sized_text.dart';
 import 'drawer_viewmodel.dart';
 
 class DrawerView extends StackedView<DrawerViewModel> {
+
   const DrawerView({Key? key}) : super(key: key);
   @override
   void onViewModelReady(DrawerViewModel viewModel) {
     viewModel.restoreData();
     super.onViewModelReady(viewModel);
   }
-
   @override
   Widget builder(
     BuildContext context,
     DrawerViewModel viewModel,
     Widget? child,
   ) {
-    GlobalKey<ScaffoldState> _key = new GlobalKey<ScaffoldState>();
+    
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: _key,
-      endDrawer: Drawer(
-        width: 200,
-        backgroundColor: Colors.orange,
-        //key: _key,
-        child: Text("fafsad"),
-      ),
+      
       backgroundColor: Colors.white,
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -79,8 +73,8 @@ class DrawerView extends StackedView<DrawerViewModel> {
                     ),
                     ListTile(
                       leading: Icon(
-                        Icons.account_box,
                         color: const Color(0xff4873a6).withOpacity(0.7),
+                        Icons.account_box,
                       ),
                       title: Visibility(
                           visible: screenWidth >= 900,
@@ -89,6 +83,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
                       onTap: () {
                         //_key.currentState?.openEndDrawer();
                         viewModel.updatePage(1);
+                        //AccountView(keyss: _key,);
                       },
                     ),
                     ListTile(

@@ -274,7 +274,7 @@ class _DataTablesState extends State<DataTables> {
                         animation: true,
                         lineHeight: 5.0,
                         animationDuration: 2500,
-                        percent: data.progress!.toInt()/100,
+                        percent: data.progress!.toDouble()/100,
                         trailing: Text(
                           "${data.progress!.toInt()}%",
                           style: GoogleFonts.ibmPlexSans(
