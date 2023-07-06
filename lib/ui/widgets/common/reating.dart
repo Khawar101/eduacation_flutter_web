@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Widget reating(reating, reated) {
   return Row(
@@ -10,7 +11,7 @@ Widget reating(reating, reated) {
       icon(reating <= 2 ? false : true),
       icon(reating <= 3 ? false : true),
       icon(reating <= 4 ? false : true),
-      Text(" ${reating.toString()} ($reated)")
+      Text("${reating.toString()}($reated)",style:GoogleFonts.ibmPlexSans(fontSize: 12))
     ],
   );
 }
@@ -19,6 +20,6 @@ Widget icon(show) {
   return Icon(
     Icons.star,
     color: show ? Colors.yellow : Colors.grey,
-    size: 15,
+    size: 14,
   );
 }

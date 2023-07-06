@@ -5,7 +5,6 @@ import 'package:education_flutter_web/utils/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-
 import '../../../app/app.locator.dart';
 import '../account/account_view.dart';
 import '../courses/courses_view.dart';
@@ -25,7 +24,6 @@ class DrawerViewModel extends BaseViewModel {
     const SettingsView()
   ];
   var pageNo = 0;
-  var screenNo = 7;
 
   updatePage(value) {
     pageNo = value;
