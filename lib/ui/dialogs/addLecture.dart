@@ -79,6 +79,7 @@ addLectureAlert(
               lectures.add(Lecture(
                 title: videoTitleCtrl.text,
                 description: videoDescriptionCtrl.text,
+                duration: _coursesService.duration,
                 thumbnail: _coursesService.thubnailUrl,
                 videoUrl: _coursesService.videoUrl,
               ));

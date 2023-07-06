@@ -20,7 +20,7 @@ Widget coursesBuilder(CoursesViewModel viewModel) {
       }
       return GridView.builder(
         shrinkWrap: true,
-        itemCount: snapshot.data!.length,
+        itemCount: snapshot.data!.length + 1,
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
           maxCrossAxisExtent: 300,
           mainAxisExtent: 260,
@@ -28,6 +28,23 @@ Widget coursesBuilder(CoursesViewModel viewModel) {
           mainAxisSpacing: 8,
         ),
         itemBuilder: (BuildContext context, int index) {
+          if (index == snapshot.data!.length) {
+            return Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(
+                      width: 1,
+                      color: const Color(0xff4873a6).withOpacity(0.7),
+                    ),
+                    borderRadius: BorderRadius.circular(10)),
+                child: IconButton(
+                  onPressed: viewModel.nextPage,
+                  icon: const Icon(
+                    Icons.add_circle_outline,
+                    size: 50,
+                  ),
+                ));
+          }
           CoursesModel data = snapshot.data![index];
           return courseCard(data, context, viewModel);
         },

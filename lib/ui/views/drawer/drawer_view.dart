@@ -1,8 +1,6 @@
 import 'package:education_flutter_web/ui/common/app_assets.dart';
-// import 'package:education_flutter_web/ui/common/ui_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-
 import '../../widgets/common/sized_text/sized_text.dart';
 import 'drawer_viewmodel.dart';
 
@@ -24,6 +22,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       
+
       backgroundColor: Colors.white,
       body: SizedBox(
         width: MediaQuery.of(context).size.width,

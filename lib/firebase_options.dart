@@ -44,46 +44,37 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAKzWpGRL11K034IBVTW7g56-XTg6e_Fm0',
-    appId: '1:771836921251:web:5aa42dd9b1a50e1ee98616',
-    messagingSenderId: '771836921251',
-    projectId: 'education-app-b5aed',
-    authDomain: 'education-app-b5aed.firebaseapp.com',
-    storageBucket: 'education-app-b5aed.appspot.com',
-    measurementId: 'G-M3X7981JKQ',
+    apiKey: 'AIzaSyBVvzrjG9LIlLuMRgl7Sr6FDrYhRejkbGM',
+    appId: '1:296138001275:web:1477a6e888e432e67d8bde',
+    messagingSenderId: '296138001275',
+    projectId: 'flutter-signup-login-app',
+    authDomain: 'flutter-signup-login-app.firebaseapp.com',
+    storageBucket: 'flutter-signup-login-app.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDGFMAhWG2lDZSEaUAuFR0oRp8JOfxmcHM',
-    appId: '1:771836921251:android:2697b9fdbf9cb1fde98616',
-    messagingSenderId: '771836921251',
-    projectId: 'education-app-b5aed',
-    storageBucket: 'education-app-b5aed.appspot.com',
+    apiKey: 'AIzaSyDFt9rfagvcgwcJu2R7DFizFqBEztxsrWg',
+    appId: '1:296138001275:android:9a0c35d6fafd05857d8bde',
+    messagingSenderId: '296138001275',
+    projectId: 'flutter-signup-login-app',
+    storageBucket: 'flutter-signup-login-app.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAUnHnZCPVlrLVaDQjTm2bahCh-LcdINgY',
-    appId: '1:771836921251:ios:a842a440b85e40c0e98616',
-    messagingSenderId: '771836921251',
-    projectId: 'education-app-b5aed',
-    storageBucket: 'education-app-b5aed.appspot.com',
-    androidClientId:
-        '771836921251-b0kln0o3ok07bq2i46sqeqns4mmpbspr.apps.googleusercontent.com',
-    iosClientId:
-        '771836921251-3qujf1kqcbm6ecrc8tumfaegr96u7ar5.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBJo7kEhJt720EZEB_QyvbhxvwXNJzjez8',
+    appId: '1:296138001275:ios:c8bd2d7bbd31b86a7d8bde',
+    messagingSenderId: '296138001275',
+    projectId: 'flutter-signup-login-app',
+    storageBucket: 'flutter-signup-login-app.appspot.com',
     iosBundleId: 'com.example.educationFlutterWeb',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAUnHnZCPVlrLVaDQjTm2bahCh-LcdINgY',
-    appId: '1:771836921251:ios:61a47b17c33ba7fbe98616',
-    messagingSenderId: '771836921251',
-    projectId: 'education-app-b5aed',
-    storageBucket: 'education-app-b5aed.appspot.com',
-    androidClientId:
-        '771836921251-b0kln0o3ok07bq2i46sqeqns4mmpbspr.apps.googleusercontent.com',
-    iosClientId:
-        '771836921251-bh6fa3t1qr9upjpg35g3btgi69iartgo.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBJo7kEhJt720EZEB_QyvbhxvwXNJzjez8',
+    appId: '1:296138001275:ios:c83efdb90932d78d7d8bde',
+    messagingSenderId: '296138001275',
+    projectId: 'flutter-signup-login-app',
+    storageBucket: 'flutter-signup-login-app.appspot.com',
     iosBundleId: 'com.example.educationFlutterWeb.RunnerTests',
   );
 }

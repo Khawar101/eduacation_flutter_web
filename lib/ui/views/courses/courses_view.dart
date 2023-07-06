@@ -1,4 +1,3 @@
-import 'package:education_flutter_web/ui/common/ui_helpers.dart';
 import 'package:education_flutter_web/ui/views/courses/upload_courses/upload_courses_view.dart';
 import 'package:education_flutter_web/ui/views/courses/upload_courses/upload_view_6.dart';
 import 'package:flutter/material.dart';
@@ -18,20 +17,10 @@ class CoursesView extends StackedView<CoursesViewModel> {
     if (viewModel.coursesService.coursesPage == 0) {
       return Column(
         children: [
-          verticalSpaceSmall,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              ElevatedButton(
-                  onPressed: viewModel.nextPage,
-                  child: const Text("Create Course")),
-              horizontalSpaceSmall
-            ],
-          ),
           Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.8,
+                  height: MediaQuery.of(context).size.height-100 ,
                   child: coursesBuilder(viewModel))),
         ],
       );

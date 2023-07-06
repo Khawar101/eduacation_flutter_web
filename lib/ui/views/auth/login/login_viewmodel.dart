@@ -29,7 +29,7 @@ class LoginViewModel extends BaseViewModel {
   }
 
   TextEditingController emailCTRL =
-      TextEditingController(text: "xyz@gmail.com");
+      TextEditingController(text: "khawarjutt101@gmail.com");
 
   TextEditingController passwordCTRL = TextEditingController(text: "qwerty");
 

@@ -2,13 +2,11 @@
 
 import 'dart:developer';
 import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:education_flutter_web/services/login_service.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
-
 import '../app/app.locator.dart';
 import 'Model/CoursesModel.dart';
 
@@ -31,6 +29,7 @@ class CoursesService {
   late String videoThubnailUrl = "";
   late String assigmentThubnailUrl = "";
   late String videoUrl = "";
+  late String duration= "";
   late String assigmentUrl = "";
   var progressshow = 0;
   var videoProgress = 0;
@@ -138,22 +137,24 @@ class CoursesService {
         });
         uploadTask.whenComplete(() async {
           videoUrl = await ref.getDownloadURL();
+
+          void printVideoDuration(String videoUrl) async {
+            VideoPlayerController controller =
+                await VideoPlayerController.network(videoUrl);
+            controller = await VideoPlayerController.network(videoUrl)
+              ..initialize().then((_) {
+                duration = controller.value.duration
+                    .toString()
+                    .split('.')
+                    .first
+                    .padLeft(8, "0");
+              });
+          }
+
+          printVideoDuration(videoUrl);
+
           newSetState(() {});
           notifyListeners();
-
-
-
-          VideoPlayerController controller =
-              await VideoPlayerController.network(videoUrl)
-                ..initialize().then((_) {});
-          print("===>${videoUrl}");
-          print("===>${controller.value.duration}");
-
-
-
-
-
-          
           // print("=====>$url=====>${file.type.split("/")[0]}");
           // postType = "${file.type.split("/")[0]}";
           // _videoPlayerController = VideoPlayerController.network(url);
