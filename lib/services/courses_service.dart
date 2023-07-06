@@ -140,11 +140,20 @@ class CoursesService {
           videoUrl = await ref.getDownloadURL();
           newSetState(() {});
           notifyListeners();
+
+
+
           VideoPlayerController controller =
               await VideoPlayerController.network(videoUrl)
                 ..initialize().then((_) {});
           print("===>${videoUrl}");
           print("===>${controller.value.duration}");
+
+
+
+
+
+          
           // print("=====>$url=====>${file.type.split("/")[0]}");
           // postType = "${file.type.split("/")[0]}";
           // _videoPlayerController = VideoPlayerController.network(url);
