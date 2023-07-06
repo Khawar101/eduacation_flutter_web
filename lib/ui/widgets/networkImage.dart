@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-Widget networkImage() {
+Widget networkImage(url) {
   return CachedNetworkImage(
-    imageUrl: "http://via.placeholder.com/200x150",
+    imageUrl: url ?? "",
+    height: 60,
+    width: 60,
     imageBuilder: (context, imageProvider) => Container(
       decoration: BoxDecoration(
+        shape: BoxShape.circle,
         image: DecorationImage(
-            image: imageProvider,
-            fit: BoxFit.cover,
-            colorFilter: const ColorFilter.mode(Colors.red, BlendMode.colorBurn)),
+          image: imageProvider,
+          fit: BoxFit.cover,
+          // colorFilter: const ColorFilter.mode(Colors.red, BlendMode.colorBurn),
+        ),
       ),
     ),
     placeholder: (context, url) => const CircularProgressIndicator(),
