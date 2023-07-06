@@ -143,17 +143,18 @@ class CoursesService {
 
 
 
-          VideoPlayerController controller =
-              await VideoPlayerController.network(videoUrl)
-                ..initialize().then((_) {});
-          print("===>${videoUrl}");
-          print("===>${controller.value.duration}");
+void printVideoDuration(String videoUrl) async {
+    VideoPlayerController controller=await VideoPlayerController.network(videoUrl);
+     controller = await VideoPlayerController.network(videoUrl)
+    ..initialize().then((_) {
+      print("Video URL: ${videoUrl}");
+      print("Video Duration: ${controller.value.duration}");
+    });
+}
+
+printVideoDuration(videoUrl);
 
 
-
-
-
-          
           // print("=====>$url=====>${file.type.split("/")[0]}");
           // postType = "${file.type.split("/")[0]}";
           // _videoPlayerController = VideoPlayerController.network(url);
