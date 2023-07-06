@@ -8,7 +8,6 @@ import 'home_screen_widgets/tabs.dart';
 class DashboardView extends StackedView<DashboardViewModel> {
   const DashboardView({Key? key}) : super(key: key);
   @override
-  
   Widget builder(
     BuildContext context,
     DashboardViewModel viewModel,
