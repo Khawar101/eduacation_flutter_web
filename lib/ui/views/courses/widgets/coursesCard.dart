@@ -4,6 +4,7 @@ import 'package:education_flutter_web/services/Model/CoursesModel.dart';
 import 'package:flutter/material.dart';
 import '../../../widgets/common/reating.dart';
 import '../../../widgets/common/sized_text/sized_text.dart';
+import '../../../widgets/networkImage.dart';
 import '../courses_viewmodel.dart';
 import '../upload_courses/widgets/pop_up_menu.dart';
 
@@ -19,12 +20,7 @@ Widget courseCard(CoursesModel data, context, CoursesViewModel viewModel) {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.network(
-                data.coverPic.toString(),
-                fit: BoxFit.fitWidth,
-                height: 130,
-                width: 300,
-              ),
+              networkImage(data.coverPic, 130, 300, false),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
