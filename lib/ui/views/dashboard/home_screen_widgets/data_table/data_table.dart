@@ -270,7 +270,7 @@ class _DataTablesState extends State<DataTables> {
                     SizedBox(
                       width: 200,
                       child: LinearPercentIndicator(
-                        width: screenWidth * 0.1,
+                        width: screenWidth * 0.08,
                         animation: true,
                         lineHeight: 5.0,
                         animationDuration: 2500,
