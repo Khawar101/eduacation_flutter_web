@@ -30,7 +30,8 @@ class AccountView extends StackedView<AccountViewModel> {
               Container(
                 alignment: Alignment.center,
                 width: screenWidth,
-                height: screenWidth>800?screenHeight * 0.3:screenHeight * 0.7,
+                height:
+                    screenWidth > 800 ? screenHeight * 0.3 : screenHeight * 0.7,
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.background,
                   borderRadius: const BorderRadius.only(
@@ -38,71 +39,100 @@ class AccountView extends StackedView<AccountViewModel> {
                     bottomRight: Radius.circular(20),
                   ),
                 ),
-                child: screenWidth>800?const Row(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Statistics(
-                      heading: "Education",
-                      money: "350.00",
-                      iconss: Icons.cast_for_education_outlined,
-                    ),
-                    Statistics(
-                      heading: "Travel",
-                      money: "850.00",
-                      iconss: Icons.map_outlined,
-                    ),
-                    Statistics(
-                      heading: "Shopping",
-                      money: "420.00",
-                      iconss: Icons.shopping_bag_outlined,
-                    ),
-                  ],
-                ):const Column(
-                  children: [
-                    Statistics(
-                      heading: "Education",
-                      money: "350.00",
-                      iconss: Icons.cast_for_education_outlined,
-                    ),
-                    Statistics(
-                      heading: "Travel",
-                      money: "850.00",
-                      iconss: Icons.map_outlined,
-                    ),
-                    Statistics(
-                      heading: "Shopping",
-                      money: "420.00",
-                      iconss: Icons.shopping_bag_outlined,
-                    ),
+                    screenWidth > 800
+                        ? const Row(
+                            children: [
+                              Statistics(
+                                heading: "Education",
+                                money: "350.00",
+                                iconss: Icons.cast_for_education_outlined,
+                              ),
+                              Statistics(
+                                heading: "Travel",
+                                money: "850.00",
+                                iconss: Icons.map_outlined,
+                              ),
+                              Statistics(
+                                heading: "Shopping",
+                                money: "420.00",
+                                iconss: Icons.shopping_bag_outlined,
+                              ),
+                            ],
+                          )
+                        : const Column(
+                            children: [
+                              Statistics(
+                                heading: "Education",
+                                money: "350.00",
+                                iconss: Icons.cast_for_education_outlined,
+                              ),
+                              Statistics(
+                                heading: "Travel",
+                                money: "850.00",
+                                iconss: Icons.map_outlined,
+                              ),
+                              Statistics(
+                                heading: "Shopping",
+                                money: "420.00",
+                                iconss: Icons.shopping_bag_outlined,
+                              ),
+                            ],
+                          ),
+                    Container(
+                      height: 30,
+                      width: 30,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(
+                            color: Colors.black45,
+                            width: 1,
+                            style: BorderStyle.solid),
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(5),
+                          bottomLeft: Radius.circular(5),
+                        ),
+                      ),
+                      child: const Icon(
+                        Icons.arrow_back_ios_new_outlined,
+                        color: Colors.black,
+                        size: 16,
+                      ),
+                    )
                   ],
                 ),
               ),
               const Income_Tab(),
               const Account_Chart(),
-              screenWidth>800?Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    width: screenWidth * 0.38,
-                    child: const Transactions_View(),
-                  ),
-                  SizedBox(
-                    width: screenWidth * 0.38,
-                    child: const Exchange_View(),
-                  ),
-                ],
-              ):Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    width: screenWidth * 0.9,
-                    child: const Transactions_View(),
-                  ),
-                  SizedBox(
-                    width: screenWidth * 0.9,
-                    child: const Exchange_View(),
-                  ),
-                ],
-              ),
+              screenWidth > 800
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: screenWidth * 0.38,
+                          child: const Transactions_View(),
+                        ),
+                        SizedBox(
+                          width: screenWidth * 0.38,
+                          child: const Exchange_View(),
+                        ),
+                      ],
+                    )
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: screenWidth * 0.9,
+                          child: const Transactions_View(),
+                        ),
+                        SizedBox(
+                          width: screenWidth * 0.9,
+                          child: const Exchange_View(),
+                        ),
+                      ],
+                    ),
             ],
           ),
         ),
