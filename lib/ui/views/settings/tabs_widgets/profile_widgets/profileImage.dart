@@ -14,20 +14,19 @@ class profileImage extends StackedView<SettingsViewModel> {
   ) {
     return Stack(
       children: [
-        networkImage(viewModel.userdata.profile),
+        networkImage(viewModel.userdata.profile, 60, 60, true),
         Positioned(
           bottom: 0,
           right: 0,
           child: GestureDetector(
             onTap: viewModel.uploadProfile,
             child: Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(5),
               decoration: BoxDecoration(
-                color: const Color(0xff4873a6).withOpacity(0.7),
-                borderRadius: BorderRadius.circular(25),
-              ),
-              child:
-                  const Icon(Icons.camera, color: Color(0xffffffff), size: 20),
+                  color: const Color(0xff4873a6).withOpacity(0.7),
+                  shape: BoxShape.circle),
+              child: const Icon(Icons.camera_alt_outlined,
+                  color: Color(0xffffffff), size: 17),
             ),
           ),
         ),
