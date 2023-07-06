@@ -20,8 +20,16 @@ class DrawerView extends StackedView<DrawerViewModel> {
     DrawerViewModel viewModel,
     Widget? child,
   ) {
+    GlobalKey<ScaffoldState> _key = new GlobalKey<ScaffoldState>();
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      key: _key,
+      endDrawer: Drawer(
+        width: 200,
+        backgroundColor: Colors.orange,
+        //key: _key,
+        child: Text("fafsad"),
+      ),
       backgroundColor: Colors.white,
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -79,6 +87,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
                           child: const Text('Account')),
                       minLeadingWidth: 0.009,
                       onTap: () {
+                        //_key.currentState?.openEndDrawer();
                         viewModel.updatePage(1);
                       },
                     ),
