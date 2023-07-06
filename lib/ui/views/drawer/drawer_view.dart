@@ -1,8 +1,6 @@
 import 'package:education_flutter_web/ui/common/app_assets.dart';
-// import 'package:education_flutter_web/ui/common/ui_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-
 import '../../widgets/common/sized_text/sized_text.dart';
 import 'drawer_viewmodel.dart';
 
@@ -20,11 +18,11 @@ class DrawerView extends StackedView<DrawerViewModel> {
     DrawerViewModel viewModel,
     Widget? child,
   ) {
-    GlobalKey<ScaffoldState> _key = new GlobalKey<ScaffoldState>();
+    GlobalKey<ScaffoldState> _key =  GlobalKey<ScaffoldState>();
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       key: _key,
-      endDrawer: Drawer(
+      endDrawer: const Drawer(
         width: 200,
         backgroundColor: Colors.orange,
         //key: _key,

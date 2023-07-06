@@ -20,7 +20,6 @@ Widget coursesBuilder(CoursesViewModel viewModel) {
       }
       return GridView.builder(
         shrinkWrap: true,
-       
         itemCount: snapshot.data!.length + 1,
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
           maxCrossAxisExtent: 300,

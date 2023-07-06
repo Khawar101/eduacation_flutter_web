@@ -20,7 +20,7 @@ class CoursesView extends StackedView<CoursesViewModel> {
           Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.8,
+                  height: MediaQuery.of(context).size.height-100 ,
                   child: coursesBuilder(viewModel))),
         ],
       );
