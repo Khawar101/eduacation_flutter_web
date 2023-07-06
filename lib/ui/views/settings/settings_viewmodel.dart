@@ -9,7 +9,7 @@ import '../../../utils/snakBar.dart';
 
 class SettingsViewModel extends BaseViewModel {
   final _loginService = locator<LoginService>();
-  final _profileService = locator<ProfileService>();
+  final profileService = locator<ProfileService>();
   userData get userdata => _loginService.UserData;
   TextEditingController usernameController = TextEditingController();
   TextEditingController firstNameController = TextEditingController();
@@ -35,19 +35,19 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   basicDataUpdate(context) async {
-    await _profileService.basicDataUpdate(usernameController.text);
-    if (_profileService.message == 'update successfully') {
-      print("=====>${_profileService.message}");
+    await profileService.basicDataUpdate(usernameController.text);
+    if (profileService.message == 'update successfully') {
+      print("=====>${profileService.message}");
       successToast(context, "Edit Done Sucessfully");
       basicDataEdit();
     } else {
-      print("=====>${_profileService.message}");
+      print("=====>${profileService.message}");
       errorToast(context, "please enter complete info");
     }
   }
 
   personalDataUpdate(context) async {
-    await _profileService.personalDataUpdatee(
+    await profileService.personalDataUpdatee(
         firstNameController.text,
         lastNameController.text,
         emailController.text,
@@ -56,13 +56,16 @@ class SettingsViewModel extends BaseViewModel {
         addressController.text,
         cityController.text,
         countryController.text);
-    if (_profileService.message == 'update successfully') {
-      print("=====>${_profileService.message}");
+    if (profileService.message == 'update successfully') {
+      print("=====>${profileService.message}");
       successToast(context, "Edit Done Sucessfully");
       personalDataEdit();
     } else {
-      print("=====>${_profileService.message}");
+      print("=====>${profileService.message}");
       errorToast(context, "please enter complete info");
     }
+  }
+  uploadProfile(){
+       profileService.uploadProfile(notifyListeners);
   }
 }

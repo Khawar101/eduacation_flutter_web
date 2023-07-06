@@ -53,9 +53,9 @@ class ProfileService {
     });
   }
 
-  Future uploadToStorage(notifyListeners) async {
-    var UserData = loginService.UserData;
-    var uid = UserData.uID.toString();
+  Future uploadProfile(notifyListeners) async {
+    var _userData = loginService.UserData;
+    var uid = _userData.uID.toString();
     uploadImage(
       onSelected: (file) {
         // final path = '${dateTime}${file.name}}';
