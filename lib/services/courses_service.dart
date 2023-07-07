@@ -29,7 +29,7 @@ class CoursesService {
   late String videoThubnailUrl = "";
   late String assigmentThubnailUrl = "";
   late String videoUrl = "";
-  late String duration= "";
+  late String duration = "";
   late String assigmentUrl = "";
   var progressshow = 0;
   var videoProgress = 0;
@@ -222,6 +222,12 @@ class CoursesService {
       var key = courseData.publishDate ?? DateTime.now().microsecondsSinceEpoch;
       courseData.publishDate = key.toString();
       courseData.publish = publish;
+      courseData.students = 0;
+      courseData.rating = 0;
+      // courseData. = publish;
+      // courseData.publish = publish;
+      // courseData.publish = publish;
+
       await firestore
           .collection("courses")
           .doc(key.toString())
