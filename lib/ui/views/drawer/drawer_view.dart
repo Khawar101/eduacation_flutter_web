@@ -1,4 +1,5 @@
 import 'package:education_flutter_web/ui/common/app_assets.dart';
+import 'package:education_flutter_web/ui/widgets/networkImage.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../../widgets/common/sized_text/sized_text.dart';
@@ -200,13 +201,14 @@ class DrawerView extends StackedView<DrawerViewModel> {
                               const Icon(Icons.notifications_outlined,
                                   size: 18),
                               const SizedBox(width: 8),
-                              CircleAvatar(
-                                radius: 15,
-                                backgroundColor: Colors.black,
-                                backgroundImage: NetworkImage(viewModel
-                                    .loginService.UserData.profile
-                                    .toString()),
-                              ),
+                                networkImage(viewModel.loginService.UserData.profile, 20, 20, true),
+                              // CircleAvatar(
+                              //   radius: 15,
+                              //   backgroundColor: Colors.black,
+                              //   backgroundImage: NetworkImage(viewModel
+                              //       .loginService.UserData.profile
+                              //       .toString()),
+                              // ),
                               const SizedBox(width: 4),
                               ButtonText(
                                   text: viewModel
