@@ -139,7 +139,7 @@ class _DataTablesState extends State<DataTables> {
                 ),
                 DataColumn(
                   label: SizedBox(
-                    width: screenWidth * 0.15,
+                    width: screenWidth * 0.1,
                     child: const CustomText(
                         text: "Progress",
                         size: 12,
