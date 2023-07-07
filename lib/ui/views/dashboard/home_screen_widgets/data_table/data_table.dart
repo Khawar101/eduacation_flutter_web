@@ -256,7 +256,7 @@ class _DataTablesState extends State<DataTables> {
                           ? DateFormat('dd, MM, yy')
                               .format(data.endDate.toDate())
                               .toString()
-                          : "-------------",
+                          : "----------",
                       style: GoogleFonts.ibmPlexSans(
                         color: Colors.black45,
                         fontSize: 14,
