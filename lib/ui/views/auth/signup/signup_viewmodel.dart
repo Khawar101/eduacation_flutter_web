@@ -1,4 +1,4 @@
-// ignore_for_file: unused_field, prefer_final_fields, non_constant_identifier_names
+// ignore_for_file: unused_field, prefer_final_fields, non_constant_identifier_names, prefer_typing_uninitialized_variables, avoid_print
 
 import 'dart:developer';
 import 'package:education_flutter_web/app/app.locator.dart';

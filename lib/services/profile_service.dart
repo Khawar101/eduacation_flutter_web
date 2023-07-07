@@ -1,4 +1,4 @@
-// ignore_for_file: unrelated_type_equality_checks, body_might_complete_normally_catch_error
+// ignore_for_file: unrelated_type_equality_checks, body_might_complete_normally_catch_error, non_constant_identifier_names, avoid_web_libraries_in_flutter
 import 'dart:developer';
 import 'dart:html';
 

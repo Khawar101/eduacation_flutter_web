@@ -15,7 +15,7 @@ class _CardDrawerState extends State<CardDrawer> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -41,7 +41,7 @@ class _CardDrawerState extends State<CardDrawer> {
                   decoration: const BoxDecoration(
                     color: Colors.white,
                   ),
-                  child: Row(
+                  child: const Row(
                     children: [
                       CirclePercent()
                     ],

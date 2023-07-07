@@ -3,7 +3,7 @@ import 'package:education_flutter_web/ui/views/settings/tabs_widgets/profile_wid
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'profileImage.dart';
+import 'profile_image.dart';
 
 Widget headingInfo(viewModel, context) {
   return Container(
@@ -26,7 +26,7 @@ Widget headingInfo(viewModel, context) {
               //   backgroundImage:
               //       NetworkImage(viewModel.userdata.profile.toString()),
               // ),
-              profileImage(),
+              const profileImage(),
               const SizedBox(width: 15),
               viewModel.basicData
                   ? Column(

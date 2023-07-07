@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:education_flutter_web/services/Model/reportModel.dart';
 import 'package:education_flutter_web/ui/views/dashboard/dashboard_viewmodel.dart';
 import 'package:education_flutter_web/utils/loading.dart';
