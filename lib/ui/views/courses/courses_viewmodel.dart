@@ -6,7 +6,6 @@ import 'package:education_flutter_web/utils/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-
 import '../../../app/app.locator.dart';
 import '../../../services/Model/CoursesModel.dart';
 import '../../../services/courses_service.dart';
