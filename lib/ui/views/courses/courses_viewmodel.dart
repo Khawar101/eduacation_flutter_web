@@ -14,33 +14,35 @@ import '../../widgets/common/sized_text/sized_text.dart';
 
 class CoursesViewModel extends BaseViewModel {
   // final _navigationService = locator<NavigationService>();
-  final coursesService = locator<CoursesService>();
+  final _coursesService = locator<CoursesService>();
+  CoursesService get coursesService => _coursesService;
 
+  
   nextPage() {
-    coursesService.uploadCoursePage(notifyListeners, 1);
+    _coursesService.uploadCoursePage(notifyListeners, 1);
   }
 
   editCourse(data) {
-    coursesService.courseData = data;
-    coursesService.uploadCoursePage(notifyListeners, 1);
+    _coursesService.courseData = data;
+    _coursesService.uploadCoursePage(notifyListeners, 1);
   }
 
   showCourseDetail(data) {
-    coursesService.courseData = data;
-    coursesService.uploadCoursePage(notifyListeners, 2);
+    _coursesService.courseData = data;
+    _coursesService.uploadCoursePage(notifyListeners, 2);
   }
 
   deleteCourse(key) {
-    coursesService.deleteCourseService(key);
+    _coursesService.deleteCourseService(key);
   }
 
   publishCourse(key) {
-    coursesService.publishCourseService(key);
+    _coursesService.publishCourseService(key);
     notifyListeners();
   }
 
   draftCourse(key) {
-    coursesService.draftCourseService(key);
+    _coursesService.draftCourseService(key);
     notifyListeners();
   }
 }
