@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
 
-import '../widgets/reportBuilder.dart';
+import '../../widgets/reportBuilder.dart';
 
 Widget tab_Section(context, viewModel) {
   return DefaultTabController(

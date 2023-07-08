@@ -5,9 +5,9 @@ import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.da
 import 'package:education_flutter_web/ui/widgets/networkImage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../../../services/Model/userData.dart';
-import '../../../../../services/dashboard_service.dart';
-import '../../../../../utils/loading.dart';
+import '../../../../../../services/Model/userData.dart';
+import '../../../../../../services/dashboard_service.dart';
+import '../../../../../../utils/loading.dart';
 
 Widget introBuilder(uID) {
   final _dashboardService = locator<DashboardService>();
