@@ -28,9 +28,6 @@ Widget introBuilder(uID) {
         child: Row(
           children: [
               networkImage(_userData.profile, 35, 35, true,),
-            // CircleAvatar(
-            //     radius: 20,
-            //     backgroundImage: NetworkImage(_userData.profile.toString())),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
               child: SizedBox(

@@ -1,6 +1,7 @@
-import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/tab_widgets/download_report.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/download_report.dart';
 
 class HeadButtons extends StatefulWidget {
   const HeadButtons({super.key});
