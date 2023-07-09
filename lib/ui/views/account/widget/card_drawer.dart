@@ -73,7 +73,11 @@ class _CardDrawerState extends State<CardDrawer> {
                 size: 24,
                 fontWeight: FontWeight.bold,
                 color: Colors.black87),
-                const Acheivements()
+            const Acheivements(
+              iconstyle: Icons.star_border,
+              name: "Friends",
+              description: "You have 4 friends",
+            )
           ],
         ),
       ),
