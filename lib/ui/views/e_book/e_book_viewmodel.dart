@@ -8,12 +8,12 @@ class EBookViewModel extends BaseViewModel {
   EbookService get ebookServices => _ebookServices;
 
   nextPage() {
-    _coursesService.uploadCoursePage(notifyListeners, 1);
+    _ebookServices.ebookPageNextPage(notifyListeners, 1);
   }
 
-  editCourse(data) {
-    // _coursesService.courseData = data;
-    // _coursesService.uploadCoursePage(notifyListeners, 1);
+  editBook(data) {
+    _ebookServices.ebookData = data;
+    _ebookServices.ebookPageNextPage(notifyListeners, 1);
   }
 
   showEbookDetail(data) {
