@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 Widget coverBtn(progress, url, fun, context) {

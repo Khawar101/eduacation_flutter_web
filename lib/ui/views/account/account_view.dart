@@ -13,7 +13,9 @@ import 'account_viewmodel.dart';
 
 class AccountView extends StackedView<AccountViewModel> {
   //final GlobalKey<ScaffoldState> keyss;
-  const AccountView({Key? key,}) : super(key: key);
+  const AccountView({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget builder(
@@ -28,12 +30,12 @@ class AccountView extends StackedView<AccountViewModel> {
       height: screenHeight * 0.9,
       child: Scaffold(
         key: _key,
-      endDrawer: const Drawer(
-        width: 300,
-        backgroundColor: Colors.white,
-        //key: _key,
-        child: CardDrawer(),
-      ),
+        endDrawer: const Drawer(
+          width: 300,
+          backgroundColor: Colors.white,
+          //key: _key,
+          child: CardDrawer(),
+        ),
         body: Container(
           color: Colors.white,
           child: Padding(
@@ -44,8 +46,9 @@ class AccountView extends StackedView<AccountViewModel> {
                   Container(
                     alignment: Alignment.center,
                     width: screenWidth,
-                    height:
-                        screenWidth > 800 ? screenHeight * 0.3 : screenHeight * 0.7,
+                    height: screenWidth > 800
+                        ? screenHeight * 0.3
+                        : screenHeight * 0.7,
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.background,
                       borderRadius: const BorderRadius.only(
@@ -96,8 +99,8 @@ class AccountView extends StackedView<AccountViewModel> {
                                 ],
                               ),
                         InkWell(
-                          onTap: (){
-                          _key.currentState?.openEndDrawer();
+                          onTap: () {
+                            _key.currentState?.openEndDrawer();
                           },
                           child: Container(
                             height: 30,

@@ -42,9 +42,7 @@ class _CardDrawerState extends State<CardDrawer> {
                     color: Colors.white,
                   ),
                   child: const Row(
-                    children: [
-                      CirclePercent()
-                    ],
+                    children: [CirclePercent()],
                   ),
                 ),
               ],

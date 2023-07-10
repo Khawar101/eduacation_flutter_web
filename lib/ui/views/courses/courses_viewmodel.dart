@@ -16,7 +16,6 @@ class CoursesViewModel extends BaseViewModel {
   final _coursesService = locator<CoursesService>();
   CoursesService get coursesService => _coursesService;
 
-  
   nextPage() {
     _coursesService.uploadCoursePage(notifyListeners, 1);
   }

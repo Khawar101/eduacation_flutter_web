@@ -365,9 +365,8 @@ class _DataTablesState extends State<DataTables> {
           scrollDirection: Axis.horizontal,
           controller: _horizontalScrollController,
           child: SingleChildScrollView(
-                            controller: _verticalScrollController,
-                scrollDirection: Axis.vertical,
-        
+            controller: _verticalScrollController,
+            scrollDirection: Axis.vertical,
             child: Container(
               height: 120,
               child: DataTable(

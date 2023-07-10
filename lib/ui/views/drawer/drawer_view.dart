@@ -6,24 +6,21 @@ import '../../widgets/common/sized_text/sized_text.dart';
 import 'drawer_viewmodel.dart';
 
 class DrawerView extends StackedView<DrawerViewModel> {
-
   const DrawerView({Key? key}) : super(key: key);
   @override
   void onViewModelReady(DrawerViewModel viewModel) {
     viewModel.restoreData();
     super.onViewModelReady(viewModel);
   }
+
   @override
   Widget builder(
     BuildContext context,
     DrawerViewModel viewModel,
     Widget? child,
   ) {
-    
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      
-
       backgroundColor: Colors.white,
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -201,7 +198,11 @@ class DrawerView extends StackedView<DrawerViewModel> {
                               const Icon(Icons.notifications_outlined,
                                   size: 18),
                               const SizedBox(width: 8),
-                                networkImage(viewModel.loginService.UserData.profile, 20, 20, true),
+                              networkImage(
+                                  viewModel.loginService.UserData.profile,
+                                  20,
+                                  20,
+                                  true),
                               // CircleAvatar(
                               //   radius: 15,
                               //   backgroundColor: Colors.black,

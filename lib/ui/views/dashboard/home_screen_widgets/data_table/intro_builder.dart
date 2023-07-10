@@ -27,7 +27,12 @@ Widget introBuilder(uID) {
         width: 270,
         child: Row(
           children: [
-              networkImage(_userData.profile, 35, 35, true,),
+            networkImage(
+              _userData.profile,
+              35,
+              35,
+              true,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
               child: SizedBox(
