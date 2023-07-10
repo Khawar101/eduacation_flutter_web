@@ -1,12 +1,12 @@
 import 'package:education_flutter_web/services/Model/EbookModel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import '../../../../../app/app.locator.dart';
-import '../../../../../services/ebook_service.dart';
-import '../../../../../services/rating_service.dart';
-import '../../../../../utils/snakBar.dart';
+import '../../../../app/app.locator.dart';
+import '../../../../services/ebook_service.dart';
+import '../../../../services/rating_service.dart';
+import '../../../../utils/snakBar.dart';
 
-import '../../../../widgets/common/video_player.dart';
+import '../../../widgets/common/video_player.dart';
 
 class UploadebookViewModel extends BaseViewModel {
   

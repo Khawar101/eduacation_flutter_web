@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:education_flutter_web/ui/views/e_book/e_book_widgets/pop_up_ebook.dart';
 import 'package:flutter/material.dart';
 import '../../../../services/Model/EbookModel.dart';
 import '../../../widgets/common/reating.dart';
@@ -74,11 +75,11 @@ Widget ebookCard(EbookModel data, context, EBookViewModel viewModel) {
               ),
             ],
           ),
-          // Positioned(
-          //   right: 5,
-          //   top: 5,
-          //   child: popupMenu(context, data, viewModel),
-          // )
+          Positioned(
+            right: 5,
+            top: 5,
+            child: popupMenu(context, data, viewModel),
+          )
         ],
       ),
     ),

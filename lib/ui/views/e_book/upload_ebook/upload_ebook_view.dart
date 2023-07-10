@@ -1,9 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import '../../../../widgets/common/sized_text/sized_text.dart';
-import '../../../../widgets/common/step_progress_view.dart';
-import '../../../courses/upload_courses/widgets/bottomBtn.dart';
+import '../../../widgets/common/sized_text/sized_text.dart';
+import '../../../widgets/common/step_progress_view.dart';
+import '../../courses/upload_courses/widgets/bottomBtn.dart';
 import 'upload_ebook_viewmodel.dart';
 
 class UploadebookView extends StackedView<UploadebookViewModel> {
