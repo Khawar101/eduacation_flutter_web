@@ -6,7 +6,7 @@ import '../../../../services/ebook_service.dart';
 import '../../../../services/rating_service.dart';
 import '../../../../utils/snakBar.dart';
 import '../../../widgets/common/video_player.dart';
-import 'uploadebook_pages/ebook_screen_1.dart';
+import 'uploadebook_widget/ebook_screen_1.dart';
 
 class UploadebookViewModel extends BaseViewModel {
   final rateingService = locator<RatingService>();
@@ -51,28 +51,28 @@ class UploadebookViewModel extends BaseViewModel {
   }
 
   getTitleValue(value) {
-    // _coursesService.courseData.title = value;
+    _ebookService.ebookData.title = value;
   }
 
   getCategoryValue(value) {
-    // _coursesService.courseData.category = value;
+    _ebookService.ebookData.category = value;
     notifyListeners();
   }
 
   getChapterValue(value) {
-    // _coursesService.courseData.chapter = value;
+    _ebookService.ebookData.chapter = value;
   }
 
   getDescriptionValue(value) {
-    // _coursesService.courseData.description = value;
+    _ebookService.ebookData.description = value;
   }
 
   getPriceValue(value) {
-    // _coursesService.courseData.price = value;
+    _ebookService.ebookData.price = value;
   }
 
   getDurationValue(value) {
-    // _coursesService.courseData.duration = value;
+    _ebookService.ebookData.duration = value;
   }
 
   validation(context) {

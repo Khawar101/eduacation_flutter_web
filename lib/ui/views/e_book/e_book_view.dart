@@ -3,6 +3,7 @@ import 'package:stacked/stacked.dart';
 
 import 'e_book_viewmodel.dart';
 import 'e_book_widgets/ebook_builders.dart';
+import 'upload_ebook/upload_ebook_view.dart';
 
 class EBookView extends StackedView<EBookViewModel> {
   const EBookView({Key? key}) : super(key: key);
@@ -24,8 +25,8 @@ class EBookView extends StackedView<EBookViewModel> {
         ],
       );
     } else if (viewModel.ebookServices.ebookPage == 1) {
-      // return      const UploadCoursesView();
-      return Container();
+      return      const UploadebookView();
+
     } else {
       return SizedBox(
           height: MediaQuery.of(context).size.height - 50,

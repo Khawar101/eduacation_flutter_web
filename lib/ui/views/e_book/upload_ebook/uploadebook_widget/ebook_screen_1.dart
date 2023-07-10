@@ -3,7 +3,6 @@ import 'package:education_flutter_web/ui/widgets/common/drop_down_search/drop_do
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
-
 import '../../../../common/app_colors.dart';
 import '../../../../widgets/common/custom_text_field/custom_text_field.dart';
 import '../../../../widgets/common/icon_text_field/icon_text_field.dart';
@@ -52,10 +51,10 @@ class EbookScreen1 extends StackedView<UploadebookViewModel> {
           children: [
             Column(
               children: [
-                SizedBox(
-                    height: 50,
-                    width: width / 1.8,
-                    child: dropDownSearch(context, viewModel)),
+                // SizedBox(
+                //     height: 50,
+                //     width: width / 1.8,
+                //     child: dropDownSearch(context, viewModel)),
                 const SizedBox(height: 30),
                 IconTextField(
                   titleText: "Chapter",
