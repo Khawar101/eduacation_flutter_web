@@ -63,6 +63,18 @@ class _CardDrawerState extends State<CardDrawer> {
               children: [
                 CirclePercent(mode: "Income", amount: 840, percent: 80),
                 CirclePercent(mode: "Outcome", amount: 460, percent: 60),
+                Container(
+                  height: 50,
+                  width: 80,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  child: const Row(
+                    children: [
+                      CirclePercent()
+                    ],
+                  ),
+                ),
               ],
             ),
             const SizedBox(

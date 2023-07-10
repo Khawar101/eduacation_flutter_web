@@ -26,7 +26,7 @@ class SignupView extends StackedView<SignupViewModel> {
             child: SingleChildScrollView(
               child: Row(
                 children: [
-                  Container(
+                  SizedBox(
                     height: MediaQuery.of(context).size.height * 1,
                     width:
                         screenWidth > 700 ? screenWidth * 0.5 : screenWidth * 1,

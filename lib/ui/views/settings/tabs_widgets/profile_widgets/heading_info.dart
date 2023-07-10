@@ -2,8 +2,7 @@ import 'package:education_flutter_web/ui/views/settings/tabs_widgets/profile_wid
 import 'package:education_flutter_web/ui/views/settings/tabs_widgets/profile_widgets/edit_Text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'profileImage.dart';
+import 'profile_image.dart';
 
 Widget headingInfo(viewModel, context) {
   return Container(
@@ -19,14 +18,8 @@ Widget headingInfo(viewModel, context) {
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // CircleAvatar(
-              //   radius: 35,
-              //   backgroundColor: Colors.red,
-              //   backgroundImage:
-              //       NetworkImage(viewModel.userdata.profile.toString()),
-              // ),
-              profileImage(),
+            children: [            
+              const profileImage(),
               const SizedBox(width: 15),
               viewModel.basicData
                   ? Column(

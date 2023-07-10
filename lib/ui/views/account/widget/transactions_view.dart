@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:education_flutter_web/ui/views/account/widget/transactions.dart';
 import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +23,7 @@ class _Transactions_ViewState extends State<Transactions_View> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomText(
+            const CustomText(
                 text: "Transactions",
                 size: 20,
                 fontWeight: FontWeight.bold,

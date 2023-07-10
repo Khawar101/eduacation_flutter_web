@@ -202,7 +202,7 @@ class _ExchangeState extends State<Exchange> {
             ),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Row(

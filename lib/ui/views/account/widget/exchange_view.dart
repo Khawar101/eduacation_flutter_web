@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.dart';
 import 'package:flutter/material.dart';
 

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_typing_uninitialized_variables, body_might_complete_normally_catch_error, avoid_web_libraries_in_flutter
+// ignore_for_file: prefer_typing_uninitialized_variables, body_might_complete_normally_catch_error, avoid_web_libraries_in_flutter, await_only_futures
 
 import 'dart:developer';
 import 'dart:html';
@@ -29,7 +29,7 @@ class CoursesService {
   late String videoThubnailUrl = "";
   late String assigmentThubnailUrl = "";
   late String videoUrl = "";
-  late String duration= "";
+  late String duration = "";
   late String assigmentUrl = "";
   var progressshow = 0;
   var videoProgress = 0;
@@ -222,6 +222,12 @@ class CoursesService {
       var key = courseData.publishDate ?? DateTime.now().microsecondsSinceEpoch;
       courseData.publishDate = key.toString();
       courseData.publish = publish;
+      courseData.students = 0;
+      courseData.rating = 0;
+      // courseData. = publish;
+      // courseData.publish = publish;
+      // courseData.publish = publish;
+
       await firestore
           .collection("courses")
           .doc(key.toString())

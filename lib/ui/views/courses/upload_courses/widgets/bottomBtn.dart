@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: file_names
 
+import 'package:flutter/material.dart';
 import '../../../../widgets/common/sized_text/sized_text.dart';
 
 Widget bottomBtn(context, title, function) {

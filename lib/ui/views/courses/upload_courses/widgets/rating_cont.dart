@@ -1,8 +1,11 @@
+// ignore_for_file: avoid_print
+
 import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../../services/Model/ratingModel.dart';
+import '../../../../widgets/networkImage.dart';
 
 Widget ratingCont(context, RatingModel rating) {
   return Container(
@@ -22,11 +25,12 @@ Widget ratingCont(context, RatingModel rating) {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CircleAvatar(
-                radius: 20,
-                backgroundColor: Colors.black,
-                backgroundImage: NetworkImage(rating.profile!),
-              ),
+                networkImage(rating.profile!, 20, 20, false),
+              // CircleAvatar(r
+              //   radius: 20,
+              //   backgroundColor: Colors.black,
+              //   backgroundImage: NetworkImage(rating.profile!),
+              // ),
               const SizedBox(
                 width: 10,
               ),

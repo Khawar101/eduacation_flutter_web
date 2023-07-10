@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_new
+
 import 'package:education_flutter_web/ui/views/account/widget/card_drawer.dart';
 import 'package:education_flutter_web/ui/views/account/widget/exchange_view.dart';
 import 'package:education_flutter_web/ui/views/account/widget/income_tab.dart';
@@ -22,7 +24,7 @@ class AccountView extends StackedView<AccountViewModel> {
     GlobalKey<ScaffoldState> _key = new GlobalKey<ScaffoldState>();
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    return Container(
+    return SizedBox(
       height: screenHeight * 0.9,
       child: Scaffold(
         key: _key,

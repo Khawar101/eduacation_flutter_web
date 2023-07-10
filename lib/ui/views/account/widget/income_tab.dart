@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: camel_case_types
 
+import 'package:flutter/material.dart';
 import '../../../widgets/common/sized_text/sized_text.dart';
 
 const List<String> list = ['Month', 'Week', 'Year'];

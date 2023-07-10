@@ -21,7 +21,7 @@ class _ForgetOtpState extends State<ForgetOtp> {
         body: SingleChildScrollView(
       child: Row(
         children: [
-          Container(
+          SizedBox(
             height: MediaQuery.of(context).size.height,
             width: screenWidth > 700 ? screenWidth * 0.5 : screenWidth * 1,
             //color: Colors.white,
