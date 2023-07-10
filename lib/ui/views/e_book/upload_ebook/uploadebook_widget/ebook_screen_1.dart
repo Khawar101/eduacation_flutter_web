@@ -73,7 +73,7 @@ class EbookScreen1 extends StackedView<UploadebookViewModel> {
             ),
             ebookCoverBtn(viewModel.ebookService.progressshow,
                 viewModel.ebookService.ebookData.coverPic, () {
-              viewModel.addCoverPhoto();
+              viewModel.ebookAddCoverPhoto();
             }, context),
           ],
         ),

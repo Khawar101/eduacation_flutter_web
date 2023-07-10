@@ -1,6 +1,6 @@
 import 'package:education_flutter_web/services/Model/EbookModel.dart';
 import 'package:education_flutter_web/ui/views/e_book/e_book_viewmodel.dart';
-import 'package:education_flutter_web/ui/views/e_book/e_book_widgets/ebookCard.dart';
+import 'package:education_flutter_web/ui/views/e_book/e_book_widgets/ebook_main_Card.dart';
 import 'package:flutter/material.dart';
 import '../../../../utils/loading.dart';
 

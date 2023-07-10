@@ -25,7 +25,7 @@ Widget ebookFaqCard(UploadebookViewModel viewModel, index, context) {
           IconButton(
               padding: const EdgeInsets.all(0),
               onPressed: () {
-                viewModel.removeQuestion(index);
+                viewModel.ebookremoveQuestion(index);
               },
               icon: const Icon(Icons.remove_circle_outline)),
         ],

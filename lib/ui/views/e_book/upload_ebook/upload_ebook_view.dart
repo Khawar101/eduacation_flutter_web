@@ -85,7 +85,7 @@ class UploadebookView extends StackedView<UploadebookViewModel> {
                     const SizedBox(width: 20),
                     viewModel.screenNo == 5
                         ? bottomBtn(context, "Publish", () {
-                            viewModel.publish(true);
+                            viewModel.ebookPublish(true);
                           })
                         : bottomBtn(context, "Next", () {
                             viewModel.validation(context);
@@ -93,7 +93,7 @@ class UploadebookView extends StackedView<UploadebookViewModel> {
                     const SizedBox(width: 20),
                     viewModel.screenNo == 5
                         ? bottomBtn(context, "Draft", () {
-                            viewModel.publish(false);
+                            viewModel.ebookPublish(false);
                           })
                         : Container(),
                   ],
