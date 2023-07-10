@@ -1,16 +1,48 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: unused_field
+
+import 'dart:developer';
+
+import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/user_data.dart';
+import 'package:education_flutter_web/ui/views/dashboard/widgets/report_builder.dart';
 import 'package:flutter/material.dart';
 
-import '../../widgets/reportBuilder.dart';
+class DashTabBar extends StatefulWidget {
+  const DashTabBar({Key? key}) : super(key: key);
 
-Widget tab_Section(context, viewModel) {
-  return DefaultTabController(
-    length: 4,
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+  @override
+  _DashTabBarState createState() => _DashTabBarState();
+}
+
+class _DashTabBarState extends State<DashTabBar>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  int _currentIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 4, vsync: this);
+    _tabController.addListener(_tabSelect);
+  }
+
+  void _tabSelect() {
+    log("Tab index is ${_tabController.index}");
+    setState(() {
+      _currentIndex = _tabController.index;
+    });
+  }
+  // @override
+  // void dispose() {
+  //   _tabController.dispose();
+  //   super.dispose();
+  // }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
+      children: [
         TabBar(
+            controller: _tabController,
             isScrollable: true,
             indicator: BoxDecoration(
               color: const Color(0xff4873a6).withOpacity(0.7),
@@ -32,26 +64,39 @@ Widget tab_Section(context, viewModel) {
               Tab(text: "Active now"),
               Tab(text: "Unenrolled"),
             ]),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 1,
-          child: TabBarView(
-            children: [
-              Column(
-                children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 1,
-                    width: MediaQuery.of(context).size.width * 1,
-                    child: reportBuilder(viewModel),
-                  ),
-                ],
-              ),
-              const Text("User Body"),
-              const Text("User Body"),
-              const Text("Home Body"),
-            ],
-          ),
-        )
+        const SizedBox(height: 10),
+        // _tabController.index == 0
+        //     ? ReportBuilder(context)
+        //     : _tabController.index == 1
+        //         ? DataTableExample()
+        //         : _tabController.index == 2
+        //             ? const Text("User Body")
+        //             : const Text("Home Body"),
+         SizedBox(
+            height: MediaQuery.of(context).size.height  - 250,
+            child:  TabBarView(
+              controller: _tabController,
+              children: [
+                 const Column(
+                  children: [
+                    SizedBox(
+                      // height: MediaQuery.of(context).size.height * 1,
+                      // width: MediaQuery.of(context).size.width * 1,
+                      child: ReportBuilder(),
+                    ),
+                  ],
+                ),
+                 SizedBox(
+                    height: MediaQuery.of(context).size.height ,
+                   // width: MediaQuery.of(context).size.width * 1,
+                   child: const DataTableExample(),
+                 ),
+                const Text("User Body"),
+                const Text("Home Body"),
+              ],
+            ),
+          )
       ],
-    ),
-  );
+    );
+  }
 }

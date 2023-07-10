@@ -1,9 +1,9 @@
 import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/head_buttons.dart';
 import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/state_manage.dart';
+import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/tab_widgets/tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'dashboard_viewmodel.dart';
-import 'home_screen_widgets/tab_widgets/tabs.dart';
 
 class DashboardView extends StackedView<DashboardViewModel> {
   const DashboardView({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class DashboardView extends StackedView<DashboardViewModel> {
   ) {
     //   final screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      height: MediaQuery.of(context).size.height * 0.9,
+      height: MediaQuery.of(context).size.height *0.9,
       color: Colors.white,
       child: SingleChildScrollView(
         child: Padding(
@@ -31,7 +31,7 @@ class DashboardView extends StackedView<DashboardViewModel> {
               const SizedBox(
                 height: 20,
               ),
-              tab_Section(context, viewModel),
+              const DashTabBar(),
             ],
           ),
         ),
