@@ -20,9 +20,7 @@ class EBookView extends StackedView<EBookViewModel> {
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
                   height: MediaQuery.of(context).size.height - 100,
-                  child: ebookBuilder(viewModel)
-                  )
-                  ),
+                  child: ebookBuilder(viewModel))),
         ],
       );
     } else if (viewModel.ebookServices.ebookPage == 1) {

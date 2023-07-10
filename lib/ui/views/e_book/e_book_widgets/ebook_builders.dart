@@ -1,4 +1,3 @@
-
 import 'package:education_flutter_web/services/Model/EbookModel.dart';
 import 'package:education_flutter_web/ui/views/e_book/e_book_viewmodel.dart';
 import 'package:education_flutter_web/ui/views/e_book/e_book_widgets/ebookCard.dart';
@@ -8,8 +7,7 @@ import '../../../../utils/loading.dart';
 Widget ebookBuilder(EBookViewModel viewModel) {
   return StreamBuilder<List<EbookModel>>(
     stream: viewModel.ebookServices.ebookStream(),
-    builder:
-        (BuildContext context, AsyncSnapshot<List<EbookModel>> snapshot) {
+    builder: (BuildContext context, AsyncSnapshot<List<EbookModel>> snapshot) {
       if (snapshot.hasError) {
         return const Text('Something went wrong');
       }

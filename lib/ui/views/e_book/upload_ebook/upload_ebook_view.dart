@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../../../widgets/common/sized_text/sized_text.dart';
@@ -15,7 +14,7 @@ class UploadebookView extends StackedView<UploadebookViewModel> {
     UploadebookViewModel viewModel,
     Widget? child,
   ) {
-     var width = MediaQuery.of(context).size.width;
+    var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height - 50;
 
     return SizedBox(
@@ -28,12 +27,12 @@ class UploadebookView extends StackedView<UploadebookViewModel> {
               horizontal: MediaQuery.of(context).size.width * 0.009,
             ),
             child: Form(
-            key: viewModel.formKey,
+              key: viewModel.formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 10),
-                   const Row(
+                  const Row(
                     children: [
                       ButtonText(text: "Bundle Courses", color: Colors.black),
                       SizedBox(width: 20),

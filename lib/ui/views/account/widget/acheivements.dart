@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 class Acheivements extends StatefulWidget {
   final IconData iconstyle;
   final String name, description;
-  const Acheivements({super.key, required this.name, required this.description, required this.iconstyle});
+  const Acheivements(
+      {super.key,
+      required this.name,
+      required this.description,
+      required this.iconstyle});
 
   @override
   State<Acheivements> createState() => _AcheivementsState();

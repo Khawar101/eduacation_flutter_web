@@ -8,7 +8,6 @@ import '../../../widgets/common/sized_text/sized_text.dart';
 import '../../../widgets/networkImage.dart';
 import '../e_book_viewmodel.dart';
 
-
 Widget ebookCard(EbookModel data, context, EBookViewModel viewModel) {
   return InkWell(
     mouseCursor: MaterialStateMouseCursor.clickable,

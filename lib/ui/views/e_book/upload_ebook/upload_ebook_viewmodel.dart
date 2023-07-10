@@ -5,11 +5,10 @@ import '../../../../app/app.locator.dart';
 import '../../../../services/ebook_service.dart';
 import '../../../../services/rating_service.dart';
 import '../../../../utils/snakBar.dart';
-
 import '../../../widgets/common/video_player.dart';
+import 'uploadebook_pages/ebook_screen_1.dart';
 
 class UploadebookViewModel extends BaseViewModel {
-  
   final rateingService = locator<RatingService>();
   final _ebookService = locator<EbookService>();
   EbookService get ebookService => _ebookService;
@@ -18,7 +17,7 @@ class UploadebookViewModel extends BaseViewModel {
 
   var screenNo = 0;
   var screens = [
-    // const UploadView_1(),
+    const EbookScreen1(),
     // const UploadView_2(),
     // const UploadView_3(),
     // const UploadView_4(false),
@@ -126,7 +125,7 @@ class UploadebookViewModel extends BaseViewModel {
 
   addQuestion(context) {
     // addQuestionAlert(
-        // context, questionCtrl, answerCtrl, faq, ebookData, notifyListeners);
+    // context, questionCtrl, answerCtrl, faq, ebookData, notifyListeners);
   }
 
   removeQuestion(index) {
@@ -226,6 +225,3 @@ class UploadebookViewModel extends BaseViewModel {
     _ebookService.publishData(publish);
   }
 }
-
-
-

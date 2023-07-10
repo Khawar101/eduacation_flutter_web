@@ -22,16 +22,16 @@ class EBookViewModel extends BaseViewModel {
   }
 
   deleteCourse(key) {
- //   _coursesService.deleteCourseService(key);
+    //   _coursesService.deleteCourseService(key);
   }
 
   publishCourse(key) {
-  //  _coursesService.publishCourseService(key);
+    //  _coursesService.publishCourseService(key);
     notifyListeners();
   }
 
   draftCourse(key) {
- //   _coursesService.draftCourseService(key);
+    //   _coursesService.draftCourseService(key);
     notifyListeners();
   }
 }
