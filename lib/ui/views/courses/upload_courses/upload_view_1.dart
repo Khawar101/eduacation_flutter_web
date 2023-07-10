@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 import '../../../widgets/common/custom_text_field/custom_text_field.dart';
-import '../../../widgets/common/drop_down_search/drop_down_search.dart';
+import '../../../widgets/common/drop_down_search/drop_down_category_search.dart';
 import '../../../widgets/common/icon_text_field/icon_text_field.dart';
 import 'upload_courses_viewmodel.dart';
 

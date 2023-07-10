@@ -1,8 +1,9 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import '../../../common/app_const.dart';
+import '../../../views/courses/upload_courses/upload_courses_viewmodel.dart';
 
-Widget dropDownSearch(context, viewModel) {
+Widget dropDownSearch(context,UploadCoursesViewModel viewModel) {
   final TextEditingController searchCtrl = TextEditingController();
 
   var width = MediaQuery.of(context).size.width;

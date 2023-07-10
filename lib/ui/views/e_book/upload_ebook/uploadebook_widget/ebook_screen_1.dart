@@ -1,5 +1,5 @@
 import 'package:education_flutter_web/ui/views/e_book/upload_ebook/upload_ebook_viewmodel.dart';
-import 'package:education_flutter_web/ui/widgets/common/drop_down_search/drop_down_search.dart';
+import 'package:education_flutter_web/ui/widgets/common/drop_down_search/books_search.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
@@ -15,7 +15,7 @@ class EbookScreen1 extends StackedView<UploadebookViewModel> {
   void onViewModelReady(UploadebookViewModel viewModel) {
     viewModel.titleCtrl.text = viewModel.ebookData.title ?? "";
     viewModel.chapterCtrl.text = viewModel.ebookData.chapter ?? "";
-    viewModel.getCategoryValue(viewModel.ebookData.category ?? "Programming");
+    viewModel.getCategoryValue(viewModel.ebookData.category ?? "Adventure");
     viewModel.descriptionCtrl.text = viewModel.ebookData.description ?? "";
     super.onViewModelReady(viewModel);
   }
@@ -51,10 +51,10 @@ class EbookScreen1 extends StackedView<UploadebookViewModel> {
           children: [
             Column(
               children: [
-                // SizedBox(
-                //     height: 50,
-                //     width: width / 1.8,
-                //     child: dropDownSearch(context, viewModel)),
+                SizedBox(
+                    height: 50,
+                    width: width / 1.8,
+                    child: booksSearch(context, viewModel)),
                 const SizedBox(height: 30),
                 IconTextField(
                   titleText: "Chapter",
