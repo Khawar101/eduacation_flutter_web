@@ -18,7 +18,7 @@ Widget headingInfo(viewModel, context) {
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [            
+            children: [
               const profileImage(),
               const SizedBox(width: 15),
               viewModel.basicData

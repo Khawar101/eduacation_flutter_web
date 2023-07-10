@@ -11,7 +11,8 @@ Widget reating(reating, reated) {
       icon(reating <= 2 ? false : true),
       icon(reating <= 3 ? false : true),
       icon(reating <= 4 ? false : true),
-      Text("${reating.toString()}($reated)",style:GoogleFonts.ibmPlexSans(fontSize: 12))
+      Text("${reating.toString()}($reated)",
+          style: GoogleFonts.ibmPlexSans(fontSize: 12))
     ],
   );
 }

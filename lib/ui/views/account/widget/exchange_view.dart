@@ -23,14 +23,12 @@ class _Exchange_ViewState extends State<Exchange_View> {
             size: 20,
             fontWeight: FontWeight.bold,
             color: Colors.black),
-        
         Exchange(
           buyAmt: "1150.33",
           sellAmt: "1240",
           eurRate: "1",
           usdRate: "1",
         ),
-
       ],
     );
   }

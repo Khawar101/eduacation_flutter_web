@@ -72,30 +72,30 @@ class _DashTabBarState extends State<DashTabBar>
         //         : _tabController.index == 2
         //             ? const Text("User Body")
         //             : const Text("Home Body"),
-         SizedBox(
-            height: MediaQuery.of(context).size.height  - 250,
-            child:  TabBarView(
-              controller: _tabController,
-              children: [
-                 const Column(
-                  children: [
-                    SizedBox(
-                      // height: MediaQuery.of(context).size.height * 1,
-                      // width: MediaQuery.of(context).size.width * 1,
-                      child: ReportBuilder(),
-                    ),
-                  ],
-                ),
-                 SizedBox(
-                    height: MediaQuery.of(context).size.height ,
-                   // width: MediaQuery.of(context).size.width * 1,
-                   child: const DataTableExample(),
-                 ),
-                const Text("User Body"),
-                const Text("Home Body"),
-              ],
-            ),
-          )
+        SizedBox(
+          height: MediaQuery.of(context).size.height - 250,
+          child: TabBarView(
+            controller: _tabController,
+            children: [
+              const Column(
+                children: [
+                  SizedBox(
+                    // height: MediaQuery.of(context).size.height * 1,
+                    // width: MediaQuery.of(context).size.width * 1,
+                    child: ReportBuilder(),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height,
+                // width: MediaQuery.of(context).size.width * 1,
+                child: const DataTableExample(),
+              ),
+              const Text("User Body"),
+              const Text("Home Body"),
+            ],
+          ),
+        )
       ],
     );
   }

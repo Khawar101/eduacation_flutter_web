@@ -65,7 +65,8 @@ class SettingsViewModel extends BaseViewModel {
       errorToast(context, "please enter complete info");
     }
   }
-  uploadProfile(){
-       profileService.uploadProfile(notifyListeners);
+
+  uploadProfile() {
+    profileService.uploadProfile(notifyListeners);
   }
 }

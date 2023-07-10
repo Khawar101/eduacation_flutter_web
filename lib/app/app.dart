@@ -19,6 +19,9 @@ import 'package:education_flutter_web/ui/views/account/account_view.dart';
 import 'package:education_flutter_web/services/rating_service.dart';
 import 'package:education_flutter_web/services/profile_service.dart';
 import 'package:education_flutter_web/services/dashboard_service.dart';
+import 'package:education_flutter_web/ui/views/e_book/e_book_view.dart';
+import 'package:education_flutter_web/services/ebook_service.dart';
+import 'package:education_flutter_web/ui/views/e_book/upload_ebook/uploadebook/upload_ebook_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -35,6 +38,8 @@ import 'package:education_flutter_web/services/dashboard_service.dart';
     MaterialRoute(page: ForgetpasswordView),
     MaterialRoute(page: SplashScreenView),
     MaterialRoute(page: AccountView),
+    MaterialRoute(page: EBookView),
+    MaterialRoute(page: UploadebookView),
 // @stacked-route
   ],
   dependencies: [
@@ -45,6 +50,7 @@ import 'package:education_flutter_web/services/dashboard_service.dart';
     LazySingleton(classType: RatingService),
     LazySingleton(classType: ProfileService),
     LazySingleton(classType: DashboardService),
+    LazySingleton(classType: EbookService),
 // @stacked-service
   ],
 )

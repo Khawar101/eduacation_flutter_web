@@ -20,10 +20,11 @@ class _StatisticsState extends State<Statistics> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.width;
     return Container(
-      padding: EdgeInsets.symmetric(vertical: screenWidth/80, horizontal: screenHeight/80),
-      margin: EdgeInsets.all(screenWidth/100),
-      height: screenWidth>800?screenHeight * 0.08:screenHeight * 0.15,
-      width: screenWidth>800?screenWidth * 0.2:screenWidth * 0.6,
+      padding: EdgeInsets.symmetric(
+          vertical: screenWidth / 80, horizontal: screenHeight / 80),
+      margin: EdgeInsets.all(screenWidth / 100),
+      height: screenWidth > 800 ? screenHeight * 0.08 : screenHeight * 0.15,
+      width: screenWidth > 800 ? screenWidth * 0.2 : screenWidth * 0.6,
       decoration: const BoxDecoration(
         color: Colors.blue,
         borderRadius: BorderRadius.all(
@@ -33,7 +34,7 @@ class _StatisticsState extends State<Statistics> {
       child: Row(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: screenWidth/80),
+            padding: EdgeInsets.symmetric(horizontal: screenWidth / 80),
             child: Icon(
               widget.iconss,
               color: Colors.white,

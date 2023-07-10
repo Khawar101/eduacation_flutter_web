@@ -25,7 +25,7 @@ Widget ratingCont(context, RatingModel rating) {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-                networkImage(rating.profile!, 20, 20, false),
+              networkImage(rating.profile!, 20, 20, false),
               // CircleAvatar(r
               //   radius: 20,
               //   backgroundColor: Colors.black,
