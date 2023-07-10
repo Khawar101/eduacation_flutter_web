@@ -1,4 +1,3 @@
-
 import 'package:education_flutter_web/ui/views/e_book/e_book_widgets/ebook_faq.dart';
 import 'package:education_flutter_web/ui/views/e_book/upload_ebook/upload_ebook_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +47,7 @@ class EbookScreen2 extends StackedView<UploadebookViewModel> {
               ),
               IconButton(
                   onPressed: () {
-                    viewModel.addQuestion(context);
+                    viewModel.ebookAddQuestion(context);
                   },
                   icon: const Icon(
                     Icons.add_circle_outline,

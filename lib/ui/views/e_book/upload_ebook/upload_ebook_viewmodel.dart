@@ -1,10 +1,13 @@
 import 'package:education_flutter_web/services/Model/EbookModel.dart';
+import 'package:education_flutter_web/ui/views/e_book/upload_ebook/uploadebook_widget/ebook_screen_2.dart';
+import 'package:education_flutter_web/ui/views/e_book/upload_ebook/uploadebook_widget/ebook_screen_3.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../app/app.locator.dart';
 import '../../../../services/ebook_service.dart';
 import '../../../../services/rating_service.dart';
 import '../../../../utils/snakBar.dart';
+import '../../../dialogs/ebook_dialogs/add_questions.dart';
 import '../../../widgets/common/video_player.dart';
 import 'uploadebook_widget/ebook_screen_1.dart';
 
@@ -18,8 +21,8 @@ class UploadebookViewModel extends BaseViewModel {
   var screenNo = 0;
   var screens = [
     const EbookScreen1(),
-    // const UploadView_2(),
-    // const UploadView_3(),
+    const EbookScreen2(),
+    const EbookScreen3(),
     // const UploadView_4(false),
     // const UploadView_5(false),
     // const CourseDetails(),
@@ -123,9 +126,9 @@ class UploadebookViewModel extends BaseViewModel {
     }
   }
 
-  addQuestion(context) {
-    // addQuestionAlert(
-    // context, questionCtrl, answerCtrl, faq, ebookData, notifyListeners);
+  ebookAddQuestion(context) {
+    ebookAddQuesAlert(
+        context, questionCtrl, answerCtrl, faq, ebookData, notifyListeners);
   }
 
   removeQuestion(index) {
@@ -190,8 +193,8 @@ class UploadebookViewModel extends BaseViewModel {
   }
 
   addCoverPhoto() async {
-    // await _coursesService.uploadToStorage(
-    //     titleCtrl.text, "Cover", notifyListeners, null);
+    await _ebookService.uploadToStorage(
+        titleCtrl.text, "Cover", notifyListeners, null);
   }
 
   watchvideo(context, _url) async {

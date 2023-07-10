@@ -25,8 +25,7 @@ class EBookView extends StackedView<EBookViewModel> {
         ],
       );
     } else if (viewModel.ebookServices.ebookPage == 1) {
-      return      const UploadebookView();
-
+      return const UploadebookView();
     } else {
       return SizedBox(
           height: MediaQuery.of(context).size.height - 50,

@@ -1,28 +1,30 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import '../../services/Model/CoursesModel.dart';
-import '../../services/courses_service.dart';
-import '../views/courses/upload_courses/widgets/dropAddBtn.dart';
-import '../widgets/common/icon_text_field/icon_text_field.dart';
+import '../../../services/Model/CoursesModel.dart';
+import '../../../services/courses_service.dart';
+import '../../views/courses/upload_courses/widgets/dropAddBtn.dart';
+import '../../widgets/common/icon_text_field/icon_text_field.dart';
 
-addLectureAlert(
+addAssigmentAlert(
     context,
-    videoTitleCtrl,
-    videoDescriptionCtrl,
+    titleCtrl,
+    descriptionCtrl,
     CoursesService _coursesService,
     notifyListeners,
-    List<Lecture> lectures,
+    List<Assigment> assigments,
     CoursesModel courseData,
     addThumbnail,
-    addVideo) async {
+    addAssigmentFile) async {
   var _formKey = GlobalKey<FormState>();
 
   return showDialog<String>(
     context: context,
     builder: (BuildContext context) => AlertDialog(
-      title: const Text(
-        'Upload Lecture',
+      title: const Center(
+        child: Text(
+          'Upload Lecture',
+        ),
       ),
       content: StatefulBuilder(builder: (context, newSetState) {
         return Form(
@@ -35,12 +37,12 @@ addLectureAlert(
               children: [
                 IconTextField(
                   titleText: "Title",
-                  controller: videoTitleCtrl,
+                  controller: titleCtrl,
                   hintText: 'Enter your title...',
                 ),
                 IconTextField(
                   titleText: "Description",
-                  controller: videoDescriptionCtrl,
+                  controller: descriptionCtrl,
                   hintText: 'Write a description...',
                 ),
                 const SizedBox(
@@ -54,11 +56,10 @@ addLectureAlert(
                       addThumbnail(newSetState);
                     }, context),
                     const SizedBox(width: 20),
-                    addBtn("Video", _coursesService.videoProgress,
-                        _coursesService.videoUrl, () {
-                      addVideo(newSetState);
+                    addBtn("Assigment", _coursesService.videoProgress,
+                        _coursesService.assigmentUrl, () {
+                      addAssigmentFile(newSetState);
                     }, context),
-                    // dropAddBtn(),
                   ],
                 )
               ],
@@ -78,19 +79,18 @@ addLectureAlert(
           onPressed: () {
             final isValid = _formKey.currentState?.validate();
             if (isValid!) {
-              lectures.add(Lecture(
-                title: videoTitleCtrl.text,
-                description: videoDescriptionCtrl.text,
-                duration: _coursesService.duration,
+              assigments.add(Assigment(
+                title: titleCtrl.text,
+                description: descriptionCtrl.text,
                 thumbnail: _coursesService.thubnailUrl,
-                videoUrl: _coursesService.videoUrl,
+                fileUrl: _coursesService.assigmentUrl,
               ));
-              courseData.lecture = lectures;
+              courseData.assigment = assigments;
               notifyListeners();
-              videoTitleCtrl.clear();
-              videoDescriptionCtrl.clear();
+              titleCtrl.clear();
+              descriptionCtrl.clear();
               _coursesService.thubnailUrl = "";
-              _coursesService.videoUrl = "";
+              _coursesService.assigmentUrl = "";
               _coursesService.progressshow = 0;
               _coursesService.videoProgress = 0;
               Navigator.pop(context);
@@ -98,7 +98,7 @@ addLectureAlert(
             _formKey.currentState?.save();
           },
           child: const Text(
-            'Add Lecture',
+            'Add Assigment',
           ),
         ),
       ],
