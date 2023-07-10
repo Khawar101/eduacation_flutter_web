@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_web_libraries_in_flutter, body_might_complete_normally_catch_error, prefer_typing_uninitialized_variables
+// ignore_for_file: avoid_web_libraries_in_flutter, body_might_complete_normally_catch_error, prefer_typing_uninitialized_variables, non_constant_identifier_names
 
 import 'dart:developer';
 import 'dart:html';
@@ -42,7 +42,7 @@ class EbookService {
     ebookNotifyListeners();
   }
 
-  uploadCoursePage(notifyListeners, page) {
+  ebookPageNextPage(notifyListeners, page) {
     ebookPage = page;
     ebookNotifyListeners = notifyListeners;
     notifyListeners();

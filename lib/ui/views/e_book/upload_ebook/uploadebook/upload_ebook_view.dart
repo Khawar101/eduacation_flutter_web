@@ -1,8 +1,6 @@
-import 'package:education_flutter_web/services/ebook_service.dart';
+
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-
-import '../../../../../services/ebook_service.dart';
 import '../../../../widgets/common/sized_text/sized_text.dart';
 import '../../../../widgets/common/step_progress_view.dart';
 import '../../../courses/upload_courses/widgets/bottomBtn.dart';
@@ -30,7 +28,7 @@ class UploadebookView extends StackedView<UploadebookViewModel> {
               horizontal: MediaQuery.of(context).size.width * 0.009,
             ),
             child: Form(
-       //      key: viewModel.formKey,
+            key: viewModel.formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -48,19 +46,19 @@ class UploadebookView extends StackedView<UploadebookViewModel> {
                     ],
                   ),
                   const SizedBox(height: 30),
-                  // StepProgressView(
-                  //   curStep: viewModel.screenNo + 1,
-                  //   titles: const [
-                  //     "Courses",
-                  //     'FAQ',
-                  //     'Pricing',
-                  //     'Lecture',
-                  //     'Assignment',
-                  //     'Publish'
-                  //   ],
-                  //   width: width * 0.6,
-                  // ),
-                  // viewModel.screens[viewModel.screenNo],
+                  StepProgressView(
+                    curStep: viewModel.screenNo + 1,
+                    titles: const [
+                      "Courses",
+                      'FAQ',
+                      'Pricing',
+                      'Lecture',
+                      'Assignment',
+                      'Publish'
+                    ],
+                    width: width * 0.6,
+                  ),
+                  viewModel.screens[viewModel.screenNo],
                   const SizedBox(height: 30),
                 ],
               ),
@@ -72,37 +70,37 @@ class UploadebookView extends StackedView<UploadebookViewModel> {
           child: Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width * 0.009),
-            // child: Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: [
-            //     bottomBtn(context, "Cancel", () {
-            //       viewModel.EbookService.cancelPage();
-            //     }),
-            //     Row(
-            //       children: [
-            //         viewModel.screenNo != 0
-            //             ? bottomBtn(context, "Previous", () {
-            //                 viewModel.backPage();
-            //               })
-            //             : Container(),
-            //         const SizedBox(width: 20),
-            //         viewModel.screenNo == 5
-            //             ? bottomBtn(context, "Publish", () {
-            //                 viewModel.publish(true);
-            //               })
-            //             : bottomBtn(context, "Next", () {
-            //                 viewModel.validation(context);
-            //               }),
-            //         const SizedBox(width: 20),
-            //         viewModel.screenNo == 5
-            //             ? bottomBtn(context, "Draft", () {
-            //                 viewModel.publish(false);
-            //               })
-            //             : Container(),
-            //       ],
-            //     )
-            //   ],
-            // ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                bottomBtn(context, "Cancel", () {
+                  viewModel.ebookService.cancelPage();
+                }),
+                Row(
+                  children: [
+                    viewModel.screenNo != 0
+                        ? bottomBtn(context, "Previous", () {
+                            viewModel.backPage();
+                          })
+                        : Container(),
+                    const SizedBox(width: 20),
+                    viewModel.screenNo == 5
+                        ? bottomBtn(context, "Publish", () {
+                            viewModel.publish(true);
+                          })
+                        : bottomBtn(context, "Next", () {
+                            viewModel.validation(context);
+                          }),
+                    const SizedBox(width: 20),
+                    viewModel.screenNo == 5
+                        ? bottomBtn(context, "Draft", () {
+                            viewModel.publish(false);
+                          })
+                        : Container(),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),

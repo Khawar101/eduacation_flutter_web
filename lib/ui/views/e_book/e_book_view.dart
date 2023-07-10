@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import 'e_book_viewmodel.dart';
+import 'e_book_widgets/ebook_builders.dart';
 
 class EBookView extends StackedView<EBookViewModel> {
   const EBookView({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class EBookView extends StackedView<EBookViewModel> {
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
                   height: MediaQuery.of(context).size.height - 100,
-                  // child: coursesBuilder(viewModel)
+                  child: ebookBuilder(viewModel)
                   )
                   ),
         ],
