@@ -33,17 +33,7 @@ class EbookDetails extends StackedView<UploadebookViewModel> {
                     text: viewModel.ebookData.title.toString(),
                     color: Colors.black),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Row(
-                  children: [
-                    const ButtonText(text: "Price:", color: Colors.black),
-                    SmallText(
-                        text: " ${viewModel.ebookData.price}\$ ",
-                        color: Colors.black),
-                  ],
-                ),
-              ),
+           
             ],
           ),
           verticalSpaceSmall,
@@ -62,9 +52,9 @@ class EbookDetails extends StackedView<UploadebookViewModel> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const ButtonText(text: "Duration:", color: Colors.black),
+                  const ButtonText(text: "Price:", color: Colors.black),
                   SmallText(
-                      text: viewModel.ebookData.duration.toString(),
+                      text:"${viewModel.ebookData.price}\$",
                       color: Colors.black),
                 ],
               ),
