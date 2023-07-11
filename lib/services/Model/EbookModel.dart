@@ -23,7 +23,7 @@
 //             "duration": "",
 //             "description": "",
 //             "thumbnail": "",
-//             "videoUrl": ""
+//             "pdfUrl": ""
 //         }
 //     ],
 //     "assigment": [
@@ -169,21 +169,21 @@ class PdfFile {
   String? duration;
   String? description;
   String? thumbnail;
-  String? videoUrl;
+  String? pdfUrl;
 
   PdfFile(
       {this.title,
       this.duration,
       this.description,
       this.thumbnail,
-      this.videoUrl});
+      this.pdfUrl});
 
   PdfFile.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     duration = json['duration'];
     description = json['description'];
     thumbnail = json['thumbnail'];
-    videoUrl = json['videoUrl'];
+    pdfUrl = json['pdfUrl'];
   }
 
   Map<String, dynamic> toJson() {
@@ -192,7 +192,7 @@ class PdfFile {
     data['duration'] = this.duration;
     data['description'] = this.description;
     data['thumbnail'] = this.thumbnail;
-    data['videoUrl'] = this.videoUrl;
+    data['pdfUrl'] = this.pdfUrl;
     return data;
   }
 }

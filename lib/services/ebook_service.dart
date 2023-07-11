@@ -27,11 +27,11 @@ class EbookService {
   late String thubnailUrl = "";
   late String videoThubnailUrl = "";
   late String assigmentThubnailUrl = "";
-  late String videoUrl = "";
+  late String pdfUrl = "";
   late String duration = "";
   late String assigmentUrl = "";
   var progressshow = 0;
-  var videoProgress = 0;
+  var pdfProgress = 0;
   var assigmentProgress = 0;
   var imageLooding = false;
   late final XFile? image;
@@ -182,7 +182,7 @@ class EbookService {
           double progress =
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           imageLooding = true;
-          videoProgress = progress.round();
+          pdfProgress = progress.round();
           notifyListeners();
           newSetState(() {});
         });

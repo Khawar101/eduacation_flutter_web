@@ -2,7 +2,6 @@ import 'package:education_flutter_web/services/Model/EbookModel.dart';
 import 'package:education_flutter_web/services/ebook_service.dart';
 import 'package:education_flutter_web/ui/views/e_book/e_book_widgets/ebook_drop_add_btn.dart';
 import 'package:flutter/material.dart';
-
 import '../../widgets/common/icon_text_field/icon_text_field.dart';
 
 ebookAddLectureAlert(
@@ -53,8 +52,8 @@ ebookAddLectureAlert(
                       addThumbnail(newSetState);
                     }, context),
                     const SizedBox(width: 20),
-                    ebookAddBtn("Video", _ebookService.videoProgress,
-                        _ebookService.videoUrl, () {
+                    ebookAddBtn("Video", _ebookService.pdfProgress,
+                        _ebookService.pdfUrl, () {
                       addVideo(newSetState);
                     }, context),
                     // dropAddBtn(),
@@ -82,16 +81,16 @@ ebookAddLectureAlert(
                 description: videoDescriptionCtrl.text,
                 duration: _ebookService.duration,
                 thumbnail: _ebookService.thubnailUrl,
-                videoUrl: _ebookService.videoUrl,
+                pdfUrl: _ebookService.pdfUrl,
               ));
               ebookData.pdfFile = pdfFile;
               notifyListeners();
               videoTitleCtrl.clear();
               videoDescriptionCtrl.clear();
               _ebookService.thubnailUrl = "";
-              _ebookService.videoUrl = "";
+              _ebookService.pdfUrl = "";
               _ebookService.progressshow = 0;
-              _ebookService.videoProgress = 0;
+              _ebookService.pdfProgress = 0;
               Navigator.pop(context);
             }
             _formKey.currentState?.save();
