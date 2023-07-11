@@ -81,29 +81,28 @@ final List<String> categoryList = [
   "Artificial Intelligence in Healthcare"
 ];
 
-
-
 final List<String> bookslist = [
   "Adventure",
-"Agriculture",
-"Anthropology",
-"Archaeology",
-"Architecture",
-"Art and Photography",
-"Astronomy"
-"Biography",
-"Biology",
-"Business and Economics",
-"Chemistry",
-"Children and Young Adult",
-"Classics",
-"Comics and Graphic Novels",
-"Communication",
-"Computers and Technology",
-"Cookbooks and Food",
-"Crafts and Hobbies",
-"Crime and Detective",
-"Cultural Studies",
+  "Programming",
+  "Agriculture",
+  "Anthropology",
+  "Archaeology",
+  "Architecture",
+  "Art and Photography",
+  "Astronomy"
+      "Biography",
+  "Biology",
+  "Business and Economics",
+  "Chemistry",
+  "Children and Young Adult",
+  "Classics",
+  "Comics and Graphic Novels",
+  "Communication",
+  "Computers and Technology",
+  "Cookbooks and Food",
+  "Crafts and Hobbies",
+  "Crime and Detective",
+  "Cultural Studies",
 // Current Affairs
 // Dance
 // Drama and Theater

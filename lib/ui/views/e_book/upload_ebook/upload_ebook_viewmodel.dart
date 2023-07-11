@@ -1,7 +1,6 @@
 import 'package:education_flutter_web/services/Model/EbookModel.dart';
 import 'package:education_flutter_web/ui/dialogs/ebook_dialogs/add_lecture.dart';
 import 'package:education_flutter_web/ui/views/e_book/upload_ebook/uploadebook_widget/ebook_screen_2.dart';
-import 'package:education_flutter_web/ui/views/e_book/upload_ebook/uploadebook_widget/ebook_screen_3.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../app/app.locator.dart';
@@ -11,7 +10,8 @@ import '../../../../utils/snakBar.dart';
 import '../../../dialogs/ebook_dialogs/add_questions.dart';
 import '../../../widgets/common/video_player.dart';
 import 'uploadebook_widget/ebook_screen_1.dart';
-import 'uploadebook_widget/ebook_screen_4.dart';
+import 'uploadebook_widget/ebook_screen_3.dart';
+import 'uploadebook_widget/ebook_screen_detail.dart';
 
 class UploadebookViewModel extends BaseViewModel {
   final rateingService = locator<RatingService>();
@@ -24,10 +24,9 @@ class UploadebookViewModel extends BaseViewModel {
   var screens = [
     const EbookScreen1(),
     const EbookScreen2(),
-    const EbookScreen3(),
-    const EbookScreen4(false),
-    // const UploadView_5(false),
-    // const CourseDetails(),
+    const EbookScreen3(false),
+    const EbookDetails(),
+  
   ];
   TextEditingController titleCtrl = TextEditingController();
   String? categoryValue;
@@ -107,14 +106,7 @@ class UploadebookViewModel extends BaseViewModel {
         } else {
           nextPage();
         }
-      } else if (screenNo == 4) {
-        if (_ebookService.ebookData.assigment == [] ||
-            _ebookService.ebookData.assigment == null) {
-          snakBar(context, "Please enter assignment details");
-        } else {
-          nextPage();
-        }
-      } else {
+      }  else {
         nextPage();
       }
     }

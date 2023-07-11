@@ -48,11 +48,9 @@ class UploadebookView extends StackedView<UploadebookViewModel> {
                   StepProgressView(
                     curStep: viewModel.screenNo + 1,
                     titles: const [
-                      "Courses",
+                      "EBooks",
                       'FAQ',
-                      'Pricing',
-                      'Lecture',
-                      'Assignment',
+                      'pdf Books',                 
                       'Publish'
                     ],
                     width: width * 0.6,
@@ -83,7 +81,7 @@ class UploadebookView extends StackedView<UploadebookViewModel> {
                           })
                         : Container(),
                     const SizedBox(width: 20),
-                    viewModel.screenNo == 5
+                    viewModel.screenNo == 3
                         ? bottomBtn(context, "Publish", () {
                             viewModel.ebookPublish(true);
                           })
@@ -91,7 +89,7 @@ class UploadebookView extends StackedView<UploadebookViewModel> {
                             viewModel.validation(context);
                           }),
                     const SizedBox(width: 20),
-                    viewModel.screenNo == 5
+                    viewModel.screenNo == 3
                         ? bottomBtn(context, "Draft", () {
                             viewModel.ebookPublish(false);
                           })

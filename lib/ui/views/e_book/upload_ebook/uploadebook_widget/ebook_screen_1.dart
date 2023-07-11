@@ -31,7 +31,7 @@ class EbookScreen1 extends StackedView<UploadebookViewModel> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 30),
-        Text("Courses Title",
+        Text("Ebook Title",
             style: GoogleFonts.ibmPlexSans(
                 color: kcPrimaryColor,
                 fontWeight: FontWeight.bold,
@@ -57,18 +57,33 @@ class EbookScreen1 extends StackedView<UploadebookViewModel> {
                     child: booksSearch(context, viewModel)),
                 const SizedBox(height: 30),
                 IconTextField(
-                  titleText: "Chapter",
-                  controller: viewModel.chapterCtrl,
-                  onChanged: (s) {
-                    viewModel.getChapterValue(s);
-                  },
-                  width: width / 1.8,
-                  prefix: Icon(
-                    Icons.price_change,
-                    color: const Color(0xff4873a6).withOpacity(0.7),
-                  ),
-                  hintText: 'Enter your chapter...',
-                ),
+              textInputType: TextInputType.number,
+              titleText: "Price",
+              controller: viewModel.priceCtrl,
+              onChanged: (s) {
+                viewModel.getPriceValue(s);
+              },
+              icon: Icons.category,
+              prefix: Icon(
+                Icons.category,
+                color: const Color(0xff4873a6).withOpacity(0.7),
+              ),
+              width: width / 1.8,
+              hintText: 'Please enter Price...',
+            ),
+                // IconTextField(
+                //   titleText: "Chapter",
+                //   controller: viewModel.chapterCtrl,
+                //   onChanged: (s) {
+                //     viewModel.getChapterValue(s);
+                //   },
+                //   width: width / 1.8,
+                //   prefix: Icon(
+                //     Icons.price_change,
+                //     color: const Color(0xff4873a6).withOpacity(0.7),
+                //   ),
+                //   hintText: 'Enter your chapter...',
+                // ),
               ],
             ),
             ebookCoverBtn(viewModel.ebookService.progressshow,
