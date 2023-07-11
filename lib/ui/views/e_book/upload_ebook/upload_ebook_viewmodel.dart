@@ -1,36 +1,32 @@
-import 'package:education_flutter_web/services/Model/CoursesModel.dart';
-import 'package:education_flutter_web/ui/dialogs/courses_dialogs/addLecture.dart';
-import 'package:education_flutter_web/ui/dialogs/courses_dialogs/addQuestion.dart';
-import 'package:education_flutter_web/ui/widgets/common/video_player.dart';
+import 'package:education_flutter_web/services/Model/EbookModel.dart';
+import 'package:education_flutter_web/ui/dialogs/ebook_dialogs/add_lecture.dart';
+import 'package:education_flutter_web/ui/views/e_book/upload_ebook/uploadebook_widget/ebook_screen_2.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../app/app.locator.dart';
-import '../../../../services/courses_service.dart';
+import '../../../../services/ebook_service.dart';
 import '../../../../services/rating_service.dart';
 import '../../../../utils/snakBar.dart';
-import '../../../dialogs/courses_dialogs/addAssigment.dart';
-import 'upload_view_1.dart';
-import 'upload_view_2.dart';
-import 'upload_view_3.dart';
-import 'upload_view_4.dart';
-import 'upload_view_5.dart';
-import 'upload_view_6.dart';
+import '../../../dialogs/ebook_dialogs/add_questions.dart';
+import '../../../widgets/common/video_player.dart';
+import 'uploadebook_widget/ebook_screen_1.dart';
+import 'uploadebook_widget/ebook_screen_3.dart';
+import 'uploadebook_widget/ebook_screen_detail.dart';
 
-class UploadCoursesViewModel extends BaseViewModel {
+class UploadebookViewModel extends BaseViewModel {
   final rateingService = locator<RatingService>();
-  final _coursesService = locator<CoursesService>();
-  CoursesService get coursesService => _coursesService;
-  CoursesModel get courseData => _coursesService.courseData;
+  final _ebookService = locator<EbookService>();
+  EbookService get ebookService => _ebookService;
+  EbookModel get ebookData => _ebookService.ebookData;
   var formKey = GlobalKey<FormState>();
 
   var screenNo = 0;
   var screens = [
-    const UploadView_1(),
-    const UploadView_2(),
-    const UploadView_3(),
-    const UploadView_4(false),
-    const UploadView_5(false),
-    const CourseDetails(),
+    const EbookScreen1(),
+    const EbookScreen2(),
+    const EbookScreen3(false),
+    const EbookDetails(),
+  
   ];
   TextEditingController titleCtrl = TextEditingController();
   String? categoryValue;
@@ -45,7 +41,7 @@ class UploadCoursesViewModel extends BaseViewModel {
   final TextEditingController videoDescriptionCtrl = TextEditingController();
   late String videoThubnailUrl;
   late String videoUrl;
-  List<Lecture> lectures = [];
+  List<PdfFile> pdfFile = [];
   final TextEditingController assigmentTitleCtrl = TextEditingController();
   final TextEditingController assigmentDescriptCtrl = TextEditingController();
   late String assigmentThubnailUrl;
@@ -59,65 +55,58 @@ class UploadCoursesViewModel extends BaseViewModel {
   }
 
   getTitleValue(value) {
-    _coursesService.courseData.title = value;
+    _ebookService.ebookData.title = value;
   }
 
   getCategoryValue(value) {
-    _coursesService.courseData.category = value;
+    _ebookService.ebookData.category = value;
     notifyListeners();
   }
 
   getChapterValue(value) {
-    _coursesService.courseData.chapter = value;
+    _ebookService.ebookData.chapter = value;
   }
 
   getDescriptionValue(value) {
-    _coursesService.courseData.description = value;
+    _ebookService.ebookData.description = value;
   }
 
   getPriceValue(value) {
-    _coursesService.courseData.price = value;
+    _ebookService.ebookData.price = value;
   }
 
   getDurationValue(value) {
-    _coursesService.courseData.duration = value;
+    _ebookService.ebookData.duration = value;
   }
 
   validation(context) {
     final isValid = formKey.currentState?.validate();
     if (isValid!) {
       if (screenNo == 0) {
-        if (_coursesService.courseData.coverPic == "" ||
-            _coursesService.courseData.coverPic == null) {
+        if (_ebookService.ebookData.coverPic == "" ||
+            _ebookService.ebookData.coverPic == null) {
           snakBar(context, "Please upload cover photo");
-        } else if (_coursesService.courseData.category == "" ||
-            _coursesService.courseData.category == null) {
+        } else if (_ebookService.ebookData.category == "" ||
+            _ebookService.ebookData.category == null) {
           snakBar(context, "Please select category");
         } else {
           nextPage();
         }
       } else if (screenNo == 1) {
-        if (_coursesService.courseData.fAQ == [] ||
-            _coursesService.courseData.fAQ == null) {
+        if (_ebookService.ebookData.fAQ == [] ||
+            _ebookService.ebookData.fAQ == null) {
           snakBar(context, "Please add FAQ");
         } else {
           nextPage();
         }
       } else if (screenNo == 3) {
-        if (_coursesService.courseData.lecture == [] ||
-            _coursesService.courseData.lecture == null) {
+        if (_ebookService.ebookData.pdfFile == [] ||
+            _ebookService.ebookData.pdfFile == null) {
           snakBar(context, "Please enter lecture details");
         } else {
           nextPage();
         }
-      } else if (screenNo == 4) {
-        if (_coursesService.courseData.assigment == [] ||
-            _coursesService.courseData.assigment == null) {
-          snakBar(context, "Please enter assignment details");
-        } else {
-          nextPage();
-        }
-      } else {
+      }  else {
         nextPage();
       }
     }
@@ -131,78 +120,78 @@ class UploadCoursesViewModel extends BaseViewModel {
     }
   }
 
-  addQuestion(context) {
-    addQuestionAlert(
-        context, questionCtrl, answerCtrl, faq, courseData, notifyListeners);
+  ebookAddQuestion(context) {
+    ebookAddQuesAlert(
+        context, questionCtrl, answerCtrl, faq, ebookData, notifyListeners);
   }
 
-  removeQuestion(index) {
-    courseData.fAQ!.removeAt(index);
+  ebookremoveQuestion(index) {
+    ebookData.fAQ!.removeAt(index);
     notifyListeners();
   }
 
-  addThumbnail(newSetState) async {
-    await _coursesService.uploadToStorage(
+  ebookaddThumbnail(newSetState) async {
+    await _ebookService.uploadToStorage(
         titleCtrl.text, "Thumbnail", notifyListeners, newSetState);
   }
 
-  addVideo(newSetState) async {
-    await _coursesService.uploadVideoToStorage(
+  ebookaddVideo(newSetState) async {
+    await _ebookService.uploadVideoToStorage(
         titleCtrl.text, "Video", notifyListeners, newSetState);
   }
 
-  addLecture(context) {
-    addLectureAlert(
+  ebookAddLecture(context) {
+    ebookAddLectureAlert(
         context,
         videoTitleCtrl,
         videoDescriptionCtrl,
-        _coursesService,
+        _ebookService,
         notifyListeners,
-        lectures,
-        courseData,
-        addThumbnail,
-        addVideo);
+        pdfFile,
+        ebookData,
+        ebookaddThumbnail,
+        ebookaddVideo);
   }
 
-  removeLecture(index) {
-    courseData.lecture!.removeAt(index);
+  ebookRemoveLecture(index) {
+    ebookData.pdfFile!.removeAt(index);
     notifyListeners();
   }
 
-  addAssigment(context) {
-    addAssigmentAlert(
-        context,
-        assigmentTitleCtrl,
-        assigmentDescriptCtrl,
-        _coursesService,
-        notifyListeners,
-        assigments,
-        courseData,
-        addThumbnail,
-        addAssigmentFile);
+  ebookAddAssigment(context) {
+    // addAssigmentAlert(
+    //     context,
+    //     assigmentTitleCtrl,
+    //     assigmentDescriptCtrl,
+    //     _coursesService,
+    //     notifyListeners,
+    //     assigments,
+    //     courseData,
+    //     addThumbnail,
+    //     addAssigmentFile);
   }
 
-  removeAssigment(index) {
-    courseData.assigment!.removeAt(index);
-    notifyListeners();
+  ebookRemoveAssigment(index) {
+    // courseData.assigment!.removeAt(index);
+    // notifyListeners();
   }
 
-  addAssigmentThumbnail(newSetState) async {
-    await _coursesService.uploadToStorage(
-        titleCtrl.text, "Thumbnail", notifyListeners, newSetState);
+  ebookAddAssigmentThumbnail(newSetState) async {
+    // await _coursesService.uploadToStorage(
+    //     titleCtrl.text, "Thumbnail", notifyListeners, newSetState);
   }
 
-  addAssigmentFile(newSetState) async {
-    await _coursesService.uploadFile(
-        titleCtrl.text, "Assigments", notifyListeners, newSetState);
+  ebookAddAssigmentFile(newSetState) async {
+    // await _coursesService.uploadFile(
+    //     titleCtrl.text, "Assigments", notifyListeners, newSetState);
   }
 
-  addCoverPhoto() async {
-    await _coursesService.uploadToStorage(
+  ebookAddCoverPhoto() async {
+    await _ebookService.uploadToStorage(
         titleCtrl.text, "Cover", notifyListeners, null);
   }
 
-  watchvideo(context, _url) async {
+  ebookWatchvideo(context, _url) async {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -229,7 +218,7 @@ class UploadCoursesViewModel extends BaseViewModel {
     );
   }
 
-  publish(publish) {
-    _coursesService.publishData(publish);
+  ebookPublish(publish) {
+    _ebookService.publishData(publish);
   }
 }

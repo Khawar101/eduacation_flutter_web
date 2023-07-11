@@ -17,7 +17,7 @@
 //     ],
 //     "price": "",
 //     "duration": "",
-//     "lecture": [
+//     "pdfFile": [
 //         {
 //             "title": "",
 //             "duration": "",
@@ -57,7 +57,7 @@ class EbookModel {
   List<FAQ>? fAQ;
   String? price;
   String? duration;
-  List<Lecture>? lecture;
+  List<PdfFile>? pdfFile;
   List<Assigment>? assigment;
   PublisherData? publisherData;
 
@@ -75,7 +75,7 @@ class EbookModel {
       this.fAQ,
       this.price,
       this.duration,
-      this.lecture,
+      this.pdfFile,
       this.assigment,
       this.publisherData});
 
@@ -98,10 +98,10 @@ class EbookModel {
     }
     price = json['price'];
     duration = json['duration'];
-    if (json['lecture'] != null) {
-      lecture = <Lecture>[];
-      json['lecture'].forEach((v) {
-        lecture!.add(new Lecture.fromJson(v));
+    if (json['pdfFile'] != null) {
+      pdfFile = <PdfFile>[];
+      json['pdfFile'].forEach((v) {
+        pdfFile!.add(new PdfFile.fromJson(v));
       });
     }
     if (json['assigment'] != null) {
@@ -132,8 +132,8 @@ class EbookModel {
     }
     data['price'] = this.price;
     data['duration'] = this.duration;
-    if (this.lecture != null) {
-      data['lecture'] = this.lecture!.map((v) => v.toJson()).toList();
+    if (this.pdfFile != null) {
+      data['pdfFile'] = this.pdfFile!.map((v) => v.toJson()).toList();
     }
     if (this.assigment != null) {
       data['assigment'] = this.assigment!.map((v) => v.toJson()).toList();
@@ -164,21 +164,21 @@ class FAQ {
   }
 }
 
-class Lecture {
+class PdfFile {
   String? title;
   String? duration;
   String? description;
   String? thumbnail;
   String? videoUrl;
 
-  Lecture(
+  PdfFile(
       {this.title,
       this.duration,
       this.description,
       this.thumbnail,
       this.videoUrl});
 
-  Lecture.fromJson(Map<String, dynamic> json) {
+  PdfFile.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     duration = json['duration'];
     description = json['description'];

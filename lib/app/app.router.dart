@@ -29,7 +29,7 @@ import 'package:education_flutter_web/ui/views/splash_screen/splash_screen_view.
     as _i12;
 import 'package:education_flutter_web/ui/views/teachers/teachers_view.dart'
     as _i4;
-import 'package:education_flutter_web/ui/views/e_book/upload_ebook/uploadebook/upload_ebook_view.dart'
+import 'package:education_flutter_web/ui/views/e_book/upload_ebook/upload_ebook_view.dart'
     as _i15;
 import 'package:flutter/material.dart' as _i16;
 import 'package:flutter/material.dart';

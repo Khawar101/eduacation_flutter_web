@@ -9,6 +9,7 @@ import '../../../app/app.locator.dart';
 import '../account/account_view.dart';
 import '../courses/courses_view.dart';
 import '../dashboard/dashboard_view.dart';
+import '../e_book/e_book_view.dart';
 
 class DrawerViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
@@ -19,7 +20,7 @@ class DrawerViewModel extends BaseViewModel {
     const Text("Contacts"),
     const Text("Teachers"),
     const CoursesView(),
-    const Text("E Books"),
+    const EBookView(),
     const Text("E Learning"),
     const SettingsView()
   ];

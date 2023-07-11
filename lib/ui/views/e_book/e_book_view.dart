@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import 'e_book_viewmodel.dart';
+import 'e_book_widgets/ebook_builders.dart';
+import 'upload_ebook/upload_ebook_view.dart';
+import 'upload_ebook/uploadebook_widget/ebook_screen_detail.dart';
 
 class EBookView extends StackedView<EBookViewModel> {
   const EBookView({Key? key}) : super(key: key);
@@ -19,14 +22,11 @@ class EBookView extends StackedView<EBookViewModel> {
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
                   height: MediaQuery.of(context).size.height - 100,
-                  // child: coursesBuilder(viewModel)
-                  )
-                  ),
+                  child: ebookBuilder(viewModel))),
         ],
       );
     } else if (viewModel.ebookServices.ebookPage == 1) {
-      // return      const UploadCoursesView();
-      return Container();
+      return const UploadebookView();
     } else {
       return SizedBox(
           height: MediaQuery.of(context).size.height - 50,
@@ -34,7 +34,7 @@ class EBookView extends StackedView<EBookViewModel> {
             padding: EdgeInsets.symmetric(
               horizontal: MediaQuery.of(context).size.width * 0.009,
             ),
-            // child: const CourseDetails(),
+            child: const EbookDetails(),
           ));
     }
   }

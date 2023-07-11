@@ -1,19 +1,18 @@
-// ignore_for_file: file_names
-
+import 'package:education_flutter_web/services/Model/EbookModel.dart';
+import 'package:education_flutter_web/services/ebook_service.dart';
+import 'package:education_flutter_web/ui/views/e_book/e_book_widgets/ebook_drop_add_btn.dart';
 import 'package:flutter/material.dart';
-import '../../services/Model/CoursesModel.dart';
-import '../../services/courses_service.dart';
-import '../views/courses/upload_courses/widgets/dropAddBtn.dart';
-import '../widgets/common/icon_text_field/icon_text_field.dart';
 
-addLectureAlert(
+import '../../widgets/common/icon_text_field/icon_text_field.dart';
+
+ebookAddLectureAlert(
     context,
     videoTitleCtrl,
     videoDescriptionCtrl,
-    CoursesService _coursesService,
+    EbookService _ebookService,
     notifyListeners,
-    List<Lecture> lectures,
-    CoursesModel courseData,
+    List<PdfFile> pdfFile,
+    EbookModel ebookData,
     addThumbnail,
     addVideo) async {
   var _formKey = GlobalKey<FormState>();
@@ -49,13 +48,13 @@ addLectureAlert(
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    addBtn("Thumbnail", _coursesService.progressshow,
-                        _coursesService.thubnailUrl, () {
+                    ebookAddBtn("Thumbnail", _ebookService.progressshow,
+                        _ebookService.thubnailUrl, () {
                       addThumbnail(newSetState);
                     }, context),
                     const SizedBox(width: 20),
-                    addBtn("Video", _coursesService.videoProgress,
-                        _coursesService.videoUrl, () {
+                    ebookAddBtn("Video", _ebookService.videoProgress,
+                        _ebookService.videoUrl, () {
                       addVideo(newSetState);
                     }, context),
                     // dropAddBtn(),
@@ -78,27 +77,27 @@ addLectureAlert(
           onPressed: () {
             final isValid = _formKey.currentState?.validate();
             if (isValid!) {
-              lectures.add(Lecture(
+              pdfFile.add(PdfFile(
                 title: videoTitleCtrl.text,
                 description: videoDescriptionCtrl.text,
-                duration: _coursesService.duration,
-                thumbnail: _coursesService.thubnailUrl,
-                videoUrl: _coursesService.videoUrl,
+                duration: _ebookService.duration,
+                thumbnail: _ebookService.thubnailUrl,
+                videoUrl: _ebookService.videoUrl,
               ));
-              courseData.lecture = lectures;
+              ebookData.pdfFile = pdfFile;
               notifyListeners();
               videoTitleCtrl.clear();
               videoDescriptionCtrl.clear();
-              _coursesService.thubnailUrl = "";
-              _coursesService.videoUrl = "";
-              _coursesService.progressshow = 0;
-              _coursesService.videoProgress = 0;
+              _ebookService.thubnailUrl = "";
+              _ebookService.videoUrl = "";
+              _ebookService.progressshow = 0;
+              _ebookService.videoProgress = 0;
               Navigator.pop(context);
             }
             _formKey.currentState?.save();
           },
           child: const Text(
-            'Add Lecture',
+            'Add Pdf File',
           ),
         ),
       ],

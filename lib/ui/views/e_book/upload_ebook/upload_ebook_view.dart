@@ -1,17 +1,17 @@
-import 'package:education_flutter_web/ui/views/courses/upload_courses/widgets/bottomBtn.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../../../widgets/common/sized_text/sized_text.dart';
 import '../../../widgets/common/step_progress_view.dart';
-import 'upload_courses_viewmodel.dart';
+import '../../courses/upload_courses/widgets/bottomBtn.dart';
+import 'upload_ebook_viewmodel.dart';
 
-class UploadCoursesView extends StackedView<UploadCoursesViewModel> {
-  const UploadCoursesView({Key? key}) : super(key: key);
+class UploadebookView extends StackedView<UploadebookViewModel> {
+  const UploadebookView({Key? key}) : super(key: key);
 
   @override
   Widget builder(
     BuildContext context,
-    UploadCoursesViewModel viewModel,
+    UploadebookViewModel viewModel,
     Widget? child,
   ) {
     var width = MediaQuery.of(context).size.width;
@@ -34,24 +34,23 @@ class UploadCoursesView extends StackedView<UploadCoursesViewModel> {
                   const SizedBox(height: 10),
                   const Row(
                     children: [
-                      ButtonText(text: "Bundle Courses", color: Colors.black),
+                      ButtonText(text: "Bundle Ebook", color: Colors.black),
                       SizedBox(width: 20),
                       Icon(
                         Icons.arrow_forward_ios,
                         size: 14,
                       ),
                       SizedBox(width: 10),
-                      ButtonText(text: "Create Bundle", color: Colors.black),
+                      ButtonText(text: "Create Ebook", color: Colors.black),
                     ],
                   ),
                   const SizedBox(height: 30),
                   StepProgressView(
                     curStep: viewModel.screenNo + 1,
                     titles: const [
-                      "Courses",
+                      "EBooks",
                       'FAQ',
-                      'Pricing',
-                      'Lecture',
+                      'pdf Books',                 
                       'Publish'
                     ],
                     width: width * 0.6,
@@ -72,7 +71,7 @@ class UploadCoursesView extends StackedView<UploadCoursesViewModel> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 bottomBtn(context, "Cancel", () {
-                  viewModel.coursesService.cancelPage();
+                  viewModel.ebookService.cancelPage();
                 }),
                 Row(
                   children: [
@@ -82,17 +81,17 @@ class UploadCoursesView extends StackedView<UploadCoursesViewModel> {
                           })
                         : Container(),
                     const SizedBox(width: 20),
-                    viewModel.screenNo == 5
+                    viewModel.screenNo == 3
                         ? bottomBtn(context, "Publish", () {
-                            viewModel.publish(true);
+                            viewModel.ebookPublish(true);
                           })
                         : bottomBtn(context, "Next", () {
                             viewModel.validation(context);
                           }),
                     const SizedBox(width: 20),
-                    viewModel.screenNo == 5
+                    viewModel.screenNo == 3
                         ? bottomBtn(context, "Draft", () {
-                            viewModel.publish(false);
+                            viewModel.ebookPublish(false);
                           })
                         : Container(),
                   ],
@@ -106,8 +105,8 @@ class UploadCoursesView extends StackedView<UploadCoursesViewModel> {
   }
 
   @override
-  UploadCoursesViewModel viewModelBuilder(
+  UploadebookViewModel viewModelBuilder(
     BuildContext context,
   ) =>
-      UploadCoursesViewModel();
+      UploadebookViewModel();
 }

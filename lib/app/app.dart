@@ -21,7 +21,7 @@ import 'package:education_flutter_web/services/profile_service.dart';
 import 'package:education_flutter_web/services/dashboard_service.dart';
 import 'package:education_flutter_web/ui/views/e_book/e_book_view.dart';
 import 'package:education_flutter_web/services/ebook_service.dart';
-import 'package:education_flutter_web/ui/views/e_book/upload_ebook/uploadebook/upload_ebook_view.dart';
+import 'package:education_flutter_web/ui/views/e_book/upload_ebook/upload_ebook_view.dart';
 // @stacked-import
 
 @StackedApp(

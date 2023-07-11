@@ -30,12 +30,12 @@ class AccountView extends StackedView<AccountViewModel> {
       height: screenHeight * 0.9,
       child: Scaffold(
         key: _key,
-      endDrawer: const Drawer(
-        width: 350,
-        backgroundColor: Colors.white,
-        //key: _key,
-        child: CardDrawer(),
-      ),
+        endDrawer: const Drawer(
+          width: 350,
+          backgroundColor: Colors.white,
+          //key: _key,
+          child: CardDrawer(),
+        ),
         body: Container(
           color: Colors.white,
           child: Padding(
