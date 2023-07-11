@@ -11,7 +11,7 @@ ebookAddLectureAlert(
     videoDescriptionCtrl,
     EbookService _ebookService,
     notifyListeners,
-    List<Lecture> lectures,
+    List<PdfFile> pdfFile,
     EbookModel ebookData,
     addThumbnail,
     addVideo) async {
@@ -77,14 +77,14 @@ ebookAddLectureAlert(
           onPressed: () {
             final isValid = _formKey.currentState?.validate();
             if (isValid!) {
-              lectures.add(Lecture(
+              pdfFile.add(PdfFile(
                 title: videoTitleCtrl.text,
                 description: videoDescriptionCtrl.text,
                 duration: _ebookService.duration,
                 thumbnail: _ebookService.thubnailUrl,
                 videoUrl: _ebookService.videoUrl,
               ));
-              ebookData.lecture = lectures;
+              ebookData.pdfFile = pdfFile;
               notifyListeners();
               videoTitleCtrl.clear();
               videoDescriptionCtrl.clear();
@@ -97,7 +97,7 @@ ebookAddLectureAlert(
             _formKey.currentState?.save();
           },
           child: const Text(
-            'Add Lecture',
+            'Add Pdf File',
           ),
         ),
       ],

@@ -41,7 +41,7 @@ class UploadebookViewModel extends BaseViewModel {
   final TextEditingController videoDescriptionCtrl = TextEditingController();
   late String videoThubnailUrl;
   late String videoUrl;
-  List<Lecture> lectures = [];
+  List<PdfFile> pdfFile = [];
   final TextEditingController assigmentTitleCtrl = TextEditingController();
   final TextEditingController assigmentDescriptCtrl = TextEditingController();
   late String assigmentThubnailUrl;
@@ -100,8 +100,8 @@ class UploadebookViewModel extends BaseViewModel {
           nextPage();
         }
       } else if (screenNo == 3) {
-        if (_ebookService.ebookData.lecture == [] ||
-            _ebookService.ebookData.lecture == null) {
+        if (_ebookService.ebookData.pdfFile == [] ||
+            _ebookService.ebookData.pdfFile == null) {
           snakBar(context, "Please enter lecture details");
         } else {
           nextPage();
@@ -147,14 +147,14 @@ class UploadebookViewModel extends BaseViewModel {
         videoDescriptionCtrl,
         _ebookService,
         notifyListeners,
-        lectures,
+        pdfFile,
         ebookData,
         ebookaddThumbnail,
         ebookaddVideo);
   }
 
   ebookRemoveLecture(index) {
-    ebookData.lecture!.removeAt(index);
+    ebookData.pdfFile!.removeAt(index);
     notifyListeners();
   }
 

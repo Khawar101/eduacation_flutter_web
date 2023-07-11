@@ -9,7 +9,7 @@ class EbookScreen3 extends StackedView<UploadebookViewModel> {
   const EbookScreen3(this.review, {Key? key}) : super(key: key);
   @override
   void onViewModelReady(UploadebookViewModel viewModel) {
-    viewModel.lectures = viewModel.ebookData.lecture ?? [];
+    viewModel.pdfFile = viewModel.ebookData.pdfFile ?? [];
     super.onViewModelReady(viewModel);
   }
 
@@ -41,8 +41,8 @@ class EbookScreen3 extends StackedView<UploadebookViewModel> {
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20),
             itemCount: review
-                ? viewModel.lectures.length
-                : viewModel.lectures.length + 1,
+                ? viewModel.pdfFile.length
+                : viewModel.pdfFile.length + 1,
             itemBuilder: (BuildContext context, index) {
               return Container(
                 decoration: BoxDecoration(
@@ -52,7 +52,7 @@ class EbookScreen3 extends StackedView<UploadebookViewModel> {
                       color: const Color(0xff4873a6).withOpacity(0.7),
                     ),
                     borderRadius: BorderRadius.circular(10)),
-                child: index == viewModel.lectures.length
+                child: index == viewModel.pdfFile.length
                     ? IconButton(
                         onPressed: () {
                           viewModel.ebookAddLecture(context);
@@ -66,9 +66,9 @@ class EbookScreen3 extends StackedView<UploadebookViewModel> {
                         mouseCursor: MaterialStateMouseCursor.clickable,
                         onTap: () {
                           viewModel.ebookWatchvideo(
-                              context, viewModel.lectures[index].videoUrl);
+                              context, viewModel.pdfFile[index].videoUrl);
                         },
-                        child: ebookCardPage(context, viewModel.lectures[index],
+                        child: ebookCardPage(context, viewModel.pdfFile[index],
                             () {
                           viewModel.ebookRemoveLecture(index);
                         }),
