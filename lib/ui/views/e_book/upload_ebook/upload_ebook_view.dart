@@ -34,14 +34,14 @@ class UploadebookView extends StackedView<UploadebookViewModel> {
                   const SizedBox(height: 10),
                   const Row(
                     children: [
-                      ButtonText(text: "Bundle Courses", color: Colors.black),
+                      ButtonText(text: "Bundle Ebook", color: Colors.black),
                       SizedBox(width: 20),
                       Icon(
                         Icons.arrow_forward_ios,
                         size: 14,
                       ),
                       SizedBox(width: 10),
-                      ButtonText(text: "Create Bundle", color: Colors.black),
+                      ButtonText(text: "Create Ebook", color: Colors.black),
                     ],
                   ),
                   const SizedBox(height: 30),
