@@ -70,7 +70,7 @@ class EbookService {
         // final path = '${dateTime}${file.name}}';
         Reference ref = storage
             .ref()
-            .child("courses/$type/${DateTime.now().microsecondsSinceEpoch}");
+            .child("E Books/$type/${DateTime.now().microsecondsSinceEpoch}");
         UploadTask uploadTask = ref.putBlob(file);
         uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
           double progress =
@@ -125,7 +125,7 @@ class EbookService {
         // final path = '${dateTime}${file.name}}';
         Reference ref = storage
             .ref()
-            .child("courses/$type/${DateTime.now().microsecondsSinceEpoch}");
+            .child("E Books/$type/${DateTime.now().microsecondsSinceEpoch}");
         UploadTask uploadTask = ref.putBlob(file);
         uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
           double progress =
@@ -192,7 +192,7 @@ class EbookService {
         // final path = '${dateTime}${file.name}}';
         Reference ref = storage
             .ref()
-            .child("courses/$type/${DateTime.now().microsecondsSinceEpoch}");
+            .child("E Books/$type/${DateTime.now().microsecondsSinceEpoch}");
         UploadTask uploadTask = ref.putBlob(file);
         uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
           double progress =
@@ -229,7 +229,7 @@ class EbookService {
       // courseData.publish = publish;
 
       await firestore
-          .collection("courses")
+          .collection("E Books")
           .doc(key.toString())
           .set(ebookData.toJson());
       ebookPage = 0;
@@ -243,7 +243,7 @@ class EbookService {
   }
 
   Stream<List<EbookModel>> ebookStream() {
-    final stream = firestore.collection("courses").snapshots();
+    final stream = firestore.collection("E Books").snapshots();
     return stream.map((event) => event.docs.map((doc) {
           return EbookModel.fromJson(doc.data());
         }).toList());
@@ -251,14 +251,14 @@ class EbookService {
 
   editEbookService() {}
   deleteEbookService(key) {
-    firestore.collection("courses").doc(key).delete();
+    firestore.collection("E Books").doc(key).delete();
   }
 
   publisEbookService(key) {
-    firestore.collection("courses").doc(key).update({"publish": true});
+    firestore.collection("E Books").doc(key).update({"publish": true});
   }
 
   draftEbookService(key) {
-    firestore.collection("courses").doc(key).update({"publish": false});
+    firestore.collection("E Books").doc(key).update({"publish": false});
   }
 }
