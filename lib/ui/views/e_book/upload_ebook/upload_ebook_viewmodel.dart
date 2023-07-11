@@ -102,7 +102,7 @@ class UploadebookViewModel extends BaseViewModel {
       } else if (screenNo == 3) {
         if (_ebookService.ebookData.pdfFile == [] ||
             _ebookService.ebookData.pdfFile == null) {
-          snakBar(context, "Please enter lecture details");
+          snakBar(context, "Please enter pdf file details");
         } else {
           nextPage();
         }
@@ -135,10 +135,16 @@ class UploadebookViewModel extends BaseViewModel {
         titleCtrl.text, "Thumbnail", notifyListeners, newSetState);
   }
 
-  ebookaddVideo(newSetState) async {
-    await _ebookService.uploadVideoToStorage(
-        titleCtrl.text, "Video", notifyListeners, newSetState);
-  }
+  // ebookaddVideo(newSetState) async {
+  //   await _ebookService.uploadFile(
+  //       titleCtrl.text, "Pdf", notifyListeners, newSetState);
+  // }
+  ebookaddVideo(Function newSetState) async {
+  String title = titleCtrl.text;
+  bool notifyListeners = true;
+
+  _ebookService.uploadFile(title, "Pdf", notifyListeners, newSetState);
+}
 
   ebookAddLecture(context) {
     ebookAddLectureAlert(
