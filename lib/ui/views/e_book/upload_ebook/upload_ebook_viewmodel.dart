@@ -1,12 +1,10 @@
-import 'dart:io';
-
+import 'package:education_flutter_web/app/app.router.dart';
 import 'package:education_flutter_web/services/Model/EbookModel.dart';
 import 'package:education_flutter_web/ui/dialogs/ebook_dialogs/add_pdf.dart';
 import 'package:education_flutter_web/ui/views/e_book/upload_ebook/uploadebook_widget/ebook_screen_2.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-import 'package:pdf_viewer_plugin/pdf_viewer_plugin.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 import '../../../../app/app.locator.dart';
 import '../../../../services/ebook_service.dart';
 import '../../../../services/rating_service.dart';
@@ -19,6 +17,7 @@ import 'uploadebook_widget/ebook_screen_detail.dart';
 class UploadebookViewModel extends BaseViewModel {
   final rateingService = locator<RatingService>();
   final _ebookService = locator<EbookService>();
+    final _navigationService = locator<NavigationService>();
   EbookService get ebookService => _ebookService;
   EbookModel get ebookData => _ebookService.ebookData;
   var formKey = GlobalKey<FormState>();
@@ -199,31 +198,9 @@ class UploadebookViewModel extends BaseViewModel {
         titleCtrl.text, "Cover", notifyListeners, null);
   }
 
-  ebookPdfFile(context, _url) async {
-    print("======3==========>${_url}");
-    return showDialog<String>(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: Stack(
-          children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width - 600,
-              height: MediaQuery.of(context).size.height - 100,
-              child: PdfView(path: _url),
-            ),
-            Positioned(
-              right: 0,
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const CircleAvatar(
-                      backgroundColor: Colors.white, child: Icon(Icons.close))),
-            )
-          ],
-        ),
-      ),
-    );
+
+  ebookPdfFile(PdfFile pdfData) async {
+   _navigationService.navigateToPdfViewer(pdfData: pdfData);
   }
 
   ebookPublish(publish) {

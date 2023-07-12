@@ -20,7 +20,7 @@ ebookAddLectureAlert(
     context: context,
     builder: (BuildContext context) => AlertDialog(
       title: const Text(
-        'Upload Lecture',
+        'Upload PDF Book',
       ),
       content: StatefulBuilder(builder: (context, newSetState) {
         return Form(
@@ -52,7 +52,7 @@ ebookAddLectureAlert(
                       addThumbnail(newSetState);
                     }, context),
                     const SizedBox(width: 20),
-                    ebookAddBtn("Video", _ebookService.pdfProgress,
+                    ebookAddBtn("PDF", _ebookService.pdfProgress,
                         _ebookService.pdfUrl, () {
                       addVideo(newSetState);
                     }, context),
