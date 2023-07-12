@@ -30,11 +30,11 @@ class _DashTabBarState extends State<DashTabBar>
       _currentIndex = _tabController.index;
     });
   }
-  // @override
-  // void dispose() {
-  //   _tabController.dispose();
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,37 +65,37 @@ class _DashTabBarState extends State<DashTabBar>
               Tab(text: "Unenrolled"),
             ]),
         const SizedBox(height: 10),
-        // _tabController.index == 0
-        //     ? ReportBuilder(context)
-        //     : _tabController.index == 1
-        //         ? DataTableExample()
-        //         : _tabController.index == 2
-        //             ? const Text("User Body")
-        //             : const Text("Home Body"),
-        SizedBox(
-          height: MediaQuery.of(context).size.height - 250,
-          child: TabBarView(
-            controller: _tabController,
-            children: [
-              const Column(
-                children: [
-                  SizedBox(
-                    // height: MediaQuery.of(context).size.height * 1,
-                    // width: MediaQuery.of(context).size.width * 1,
-                    child: ReportBuilder(),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height,
-                // width: MediaQuery.of(context).size.width * 1,
-                child: const DataTableExample(),
-              ),
-              const Text("User Body"),
-              const Text("Home Body"),
-            ],
-          ),
-        )
+        _tabController.index == 0
+            ?  const ReportBuilder()
+            : _tabController.index == 1
+                ? const DataTableExample()
+                : _tabController.index == 2
+                    ? const Text("User Body")
+                    : const Text("Home Body"),
+        // SizedBox(
+        //   height: MediaQuery.of(context).size.height - 250,
+        //   child: TabBarView(
+        //     controller: _tabController,
+        //     children: [
+        //       const Column(
+        //         children: [
+        //           SizedBox(
+        //             // height: MediaQuery.of(context).size.height * 1,
+        //             // width: MediaQuery.of(context).size.width * 1,
+        //             child: ReportBuilder(),
+        //           ),
+        //         ],
+        //       ),
+        //       SizedBox(
+        //         height: MediaQuery.of(context).size.height,
+        //         // width: MediaQuery.of(context).size.width * 1,
+        //         child: const DataTableExample(),
+        //       ),
+        //       const Text("User Body"),
+        //       const Text("Home Body"),
+        //     ],
+        //   ),
+        // )
       ],
     );
   }

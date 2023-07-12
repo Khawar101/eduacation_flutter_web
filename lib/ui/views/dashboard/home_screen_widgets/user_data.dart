@@ -220,7 +220,7 @@ class _DataTableExampleState extends State<DataTableExample> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
+      width: 800,
       child: DataTable(
         columns: const <DataColumn>[
           DataColumn(

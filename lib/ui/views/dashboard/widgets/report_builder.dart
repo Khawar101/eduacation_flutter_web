@@ -14,6 +14,7 @@ class ReportBuilder extends StackedView<DashboardViewModel> {
     DashboardViewModel viewModel,
     Widget? child,
   ) {
+    
     return StreamBuilder<List<ReportModel>>(
       stream: viewModel.dashboardService.reportStream(),
       builder:
