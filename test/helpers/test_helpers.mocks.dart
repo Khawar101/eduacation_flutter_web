@@ -1587,44 +1587,16 @@ class MockEbookService extends _i1.Mock implements _i23.EbookService {
         returnValueForMissingStub: null,
       );
   @override
-  String get videoThubnailUrl => (super.noSuchMethod(
-        Invocation.getter(#videoThubnailUrl),
+  String get pdfUrl => (super.noSuchMethod(
+        Invocation.getter(#pdfUrl),
         returnValue: '',
         returnValueForMissingStub: '',
       ) as String);
   @override
-  set videoThubnailUrl(String? _videoThubnailUrl) => super.noSuchMethod(
+  set pdfUrl(String? _pdfUrl) => super.noSuchMethod(
         Invocation.setter(
-          #videoThubnailUrl,
-          _videoThubnailUrl,
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  String get assigmentThubnailUrl => (super.noSuchMethod(
-        Invocation.getter(#assigmentThubnailUrl),
-        returnValue: '',
-        returnValueForMissingStub: '',
-      ) as String);
-  @override
-  set assigmentThubnailUrl(String? _assigmentThubnailUrl) => super.noSuchMethod(
-        Invocation.setter(
-          #assigmentThubnailUrl,
-          _assigmentThubnailUrl,
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  String get videoUrl => (super.noSuchMethod(
-        Invocation.getter(#videoUrl),
-        returnValue: '',
-        returnValueForMissingStub: '',
-      ) as String);
-  @override
-  set videoUrl(String? _videoUrl) => super.noSuchMethod(
-        Invocation.setter(
-          #videoUrl,
-          _videoUrl,
+          #pdfUrl,
+          _pdfUrl,
         ),
         returnValueForMissingStub: null,
       );
@@ -1643,20 +1615,6 @@ class MockEbookService extends _i1.Mock implements _i23.EbookService {
         returnValueForMissingStub: null,
       );
   @override
-  String get assigmentUrl => (super.noSuchMethod(
-        Invocation.getter(#assigmentUrl),
-        returnValue: '',
-        returnValueForMissingStub: '',
-      ) as String);
-  @override
-  set assigmentUrl(String? _assigmentUrl) => super.noSuchMethod(
-        Invocation.setter(
-          #assigmentUrl,
-          _assigmentUrl,
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
   int get progressshow => (super.noSuchMethod(
         Invocation.getter(#progressshow),
         returnValue: 0,
@@ -1671,16 +1629,16 @@ class MockEbookService extends _i1.Mock implements _i23.EbookService {
         returnValueForMissingStub: null,
       );
   @override
-  int get videoProgress => (super.noSuchMethod(
-        Invocation.getter(#videoProgress),
+  int get pdfProgress => (super.noSuchMethod(
+        Invocation.getter(#pdfProgress),
         returnValue: 0,
         returnValueForMissingStub: 0,
       ) as int);
   @override
-  set videoProgress(int? _videoProgress) => super.noSuchMethod(
+  set pdfProgress(int? _pdfProgress) => super.noSuchMethod(
         Invocation.setter(
-          #videoProgress,
-          _videoProgress,
+          #pdfProgress,
+          _pdfProgress,
         ),
         returnValueForMissingStub: null,
       );
@@ -1748,36 +1706,6 @@ class MockEbookService extends _i1.Mock implements _i23.EbookService {
       (super.noSuchMethod(
         Invocation.method(
           #uploadToStorage,
-          [
-            title,
-            type,
-            notifyListeners,
-            newSetState,
-          ],
-        ),
-        returnValue: _i12.Future<dynamic>.value(),
-        returnValueForMissingStub: _i12.Future<dynamic>.value(),
-      ) as _i12.Future<dynamic>);
-  @override
-  void uploadVideo({required dynamic Function(_i17.File)? onSelected}) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #uploadVideo,
-          [],
-          {#onSelected: onSelected},
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  _i12.Future<dynamic> uploadVideoToStorage(
-    dynamic title,
-    dynamic type,
-    dynamic notifyListeners,
-    dynamic newSetState,
-  ) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #uploadVideoToStorage,
           [
             title,
             type,
