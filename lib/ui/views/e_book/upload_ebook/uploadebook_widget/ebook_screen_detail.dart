@@ -33,7 +33,6 @@ class EbookDetails extends StackedView<UploadebookViewModel> {
                     text: viewModel.ebookData.title.toString(),
                     color: Colors.black),
               ),
-           
             ],
           ),
           verticalSpaceSmall,
@@ -54,7 +53,7 @@ class EbookDetails extends StackedView<UploadebookViewModel> {
                 children: [
                   const ButtonText(text: "Price:", color: Colors.black),
                   SmallText(
-                      text:"${viewModel.ebookData.price}\$",
+                      text: "${viewModel.ebookData.price}\$",
                       color: Colors.black),
                 ],
               ),
@@ -71,7 +70,6 @@ class EbookDetails extends StackedView<UploadebookViewModel> {
           ),
           const EbookScreen3(true),
           verticalSpaceSmall,
-          
           const StarText(
             text: 'FAQ',
           ),
@@ -80,7 +78,6 @@ class EbookDetails extends StackedView<UploadebookViewModel> {
           const StarText(
             text: 'Rating',
           ),
-         
           const SizedBox(height: 20),
           Center(
             child: SizedBox(
