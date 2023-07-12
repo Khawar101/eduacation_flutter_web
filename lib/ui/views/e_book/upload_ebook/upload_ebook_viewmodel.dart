@@ -1,7 +1,6 @@
 import 'package:education_flutter_web/services/Model/EbookModel.dart';
 import 'package:education_flutter_web/ui/dialogs/ebook_dialogs/add_pdf.dart';
 import 'package:education_flutter_web/ui/views/e_book/upload_ebook/uploadebook_widget/ebook_screen_2.dart';
-import 'package:pdf_viewer_plugin/pdf_viewer_plugin.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../app/app.locator.dart';
