@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:stacked/stacked.dart';
+import '../dashboard_viewmodel.dart';
+import 'download_report.dart';
 
-import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/download_report.dart';
-
-class HeadButtons extends StatefulWidget {
+class HeadButtons extends ViewModelWidget<DashboardViewModel> {
   const HeadButtons({super.key});
 
   @override
-  State<HeadButtons> createState() => _HeadButtonsState();
-}
-
-class _HeadButtonsState extends State<HeadButtons> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+    DashboardViewModel viewModel,
+  ) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -38,6 +37,7 @@ class _HeadButtonsState extends State<HeadButtons> {
             ),
           ],
         ),
+        SizedBox(width: MediaQuery.of(context).size.width*0.5),
         const Row(
           children: [
             DownloadReport(),
@@ -50,3 +50,4 @@ class _HeadButtonsState extends State<HeadButtons> {
     );
   }
 }
+
