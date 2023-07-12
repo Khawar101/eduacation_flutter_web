@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:pdfx/pdfx.dart';
 import 'package:internet_file/internet_file.dart';
 class pdfViewer extends StatefulWidget {
-  const pdfViewer({super.key});
+  final String url;
+  const pdfViewer({super.key, required this.url});
 
   @override
   State<pdfViewer> createState() => _pdfViewerState();
@@ -18,7 +19,7 @@ class _pdfViewerState extends State<pdfViewer> {
     super.initState();
     _pdfController = PdfController(
       document: PdfDocument.openData(
-          InternetFile.get('https://www.pdf995.com/samples/pdf.pdf')),
+          InternetFile.get(widget.url)),
       initialPage: _initialPage,
     );
   }
