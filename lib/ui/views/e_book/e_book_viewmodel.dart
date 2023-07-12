@@ -13,6 +13,7 @@ class EBookViewModel extends BaseViewModel {
 
   editBook(data) {
     _ebookServices.ebookData = data;
+    print("object========>${data}");
     _ebookServices.ebookPageNextPage(notifyListeners, 1);
   }
 

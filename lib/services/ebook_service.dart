@@ -231,6 +231,10 @@ class EbookService {
   }
 
   editEbookService() {}
+
+
+
+  
   deleteEbookService(key) {
     firestore.collection("E Books").doc(key).delete();
   }
