@@ -1,6 +1,7 @@
 import 'package:education_flutter_web/services/Model/EbookModel.dart';
 import 'package:education_flutter_web/ui/dialogs/ebook_dialogs/add_lecture.dart';
 import 'package:education_flutter_web/ui/views/e_book/upload_ebook/uploadebook_widget/ebook_screen_2.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../app/app.locator.dart';
@@ -205,9 +206,9 @@ class UploadebookViewModel extends BaseViewModel {
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width - 600,
-              child: videoPlayer(
-                url: _url,
-              ),
+              child: SfPdfViewer.network(
+              'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf', 
+             pageLayoutMode: PdfPageLayoutMode.single),
             ),
             Positioned(
               right: 0,
