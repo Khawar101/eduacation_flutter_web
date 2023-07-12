@@ -25,6 +25,7 @@ class DashboardView extends StackedView<DashboardViewModel> {
     //   final screenWidth = MediaQuery.of(context).size.width;
     return Container(
       height: MediaQuery.of(context).size.height * 0.9,
+     
       color: Colors.white,
       child: Scrollbar(
         isAlwaysShown: true,
