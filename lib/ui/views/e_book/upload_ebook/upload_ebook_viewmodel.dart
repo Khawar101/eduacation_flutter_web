@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:education_flutter_web/services/Model/EbookModel.dart';
-import 'package:education_flutter_web/ui/dialogs/ebook_dialogs/add_lecture.dart';
+import 'package:education_flutter_web/ui/dialogs/ebook_dialogs/add_pdf.dart';
 import 'package:education_flutter_web/ui/views/e_book/upload_ebook/uploadebook_widget/ebook_screen_2.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'package:pdf_viewer_plugin/pdf_viewer_plugin.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../app/app.locator.dart';
@@ -9,7 +12,6 @@ import '../../../../services/ebook_service.dart';
 import '../../../../services/rating_service.dart';
 import '../../../../utils/snakBar.dart';
 import '../../../dialogs/ebook_dialogs/add_questions.dart';
-import '../../../widgets/common/video_player.dart';
 import 'uploadebook_widget/ebook_screen_1.dart';
 import 'uploadebook_widget/ebook_screen_3.dart';
 import 'uploadebook_widget/ebook_screen_detail.dart';
@@ -198,7 +200,10 @@ class UploadebookViewModel extends BaseViewModel {
         titleCtrl.text, "Cover", notifyListeners, null);
   }
 
-  ebookWatchvideo(context, _url) async {
+
+
+  ebookPdfFile(context, _url) async {
+    print("======3==========>${_url}");
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -206,9 +211,8 @@ class UploadebookViewModel extends BaseViewModel {
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width - 600,
-              child: SfPdfViewer.network(
-              'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf', 
-             pageLayoutMode: PdfPageLayoutMode.single),
+              height: MediaQuery.of(context).size.height - 100,
+              child: PdfView(path:_url),
             ),
             Positioned(
               right: 0,
@@ -224,6 +228,7 @@ class UploadebookViewModel extends BaseViewModel {
       ),
     );
   }
+
 
   ebookPublish(publish) {
     _ebookService.publishData(publish);

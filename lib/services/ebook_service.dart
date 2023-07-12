@@ -25,11 +25,8 @@ class EbookService {
   var uploadEbookPage = 0;
 
   late String thubnailUrl = "";
-  late String videoThubnailUrl = "";
-  late String assigmentThubnailUrl = "";
   late String pdfUrl = "";
   late String duration = "";
-  late String assigmentUrl = "";
   var progressshow = 0;
   var pdfProgress = 0;
   var assigmentProgress = 0;
@@ -102,61 +99,9 @@ class EbookService {
     return thubnailUrl;
   }
 
-// uploadFile(title, type, notifyListeners, newSetState) async {
-//   print("==================>");
-  
-//   FilePickerResult? result = await FilePicker.platform.pickFiles(
-//     allowedExtensions: ['pdf'],
-    
-//     allowCompression: true,
-//     allowMultiple: true,
-//     withData: true,
-//     withReadStream: true,
-    
-//   type: FileType.any,
-  
-// );
-// }
-// void uploadFile(
-//     String title,
-//     String type,
-//     bool notifyListeners,
-//     Function newSetState,
-// ) {
-//   print("==================>");
-
-//   final input = html.FileUploadInputElement()
-//     ..accept = 'application/pdf'; // Set accepted file types to PDF only
-
-//   input.click();
-
-//   input.onChange.listen((event) {
-//     final files = input.files;
-//     if (files != null && files.isNotEmpty) {
-//       final file = files[0];
-//       final reader = html.FileReader();
-
-//       reader.onLoadEnd.listen((event) {
-//         final fileContent = reader.result as String;
-//         // Perform the necessary operations with the file content
-
-//         // Notify listeners or update state if required
-//         if (notifyListeners) {
-//           // Call your listener function or update state using newSetState
-//         }
-//       });
-
-//       reader.readAsDataUrl(file);
-//     } else {
-//       // User canceled the file picking operation
-//     }
-//   });
-// }
-
-
   void loadFile({required Function(File file) onSelected}) {
     FileUploadInputElement uploadInput = FileUploadInputElement()
-    ..accept = 'application/pdf'; // Set accepted file types to PDF only
+      ..accept = 'application/pdf'; // Set accepted file types to PDF only
     uploadInput.click();
 
     uploadInput.onChange.listen((event) {
@@ -187,18 +132,18 @@ class EbookService {
           newSetState(() {});
         });
         uploadTask.whenComplete(() async {
-          assigmentUrl = await ref.getDownloadURL();
-          // print("======>${file.type.split("/")[0]}");
+          pdfUrl = await ref.getDownloadURL();
+          // print("$pdfUrl======>${file.type.split("/")[0]}");
           newSetState(() {});
           notifyListeners();
           imageLooding = false;
-          log(assigmentUrl);
+          print(pdfUrl);
         }).catchError((onError) {
-          log(onError);
+          print(onError);
         });
       },
     );
-    return assigmentUrl;
+    return pdfUrl;
   }
 
   publishData(publish) async {
@@ -232,9 +177,6 @@ class EbookService {
 
   editEbookService() {}
 
-
-
-  
   deleteEbookService(key) {
     firestore.collection("E Books").doc(key).delete();
   }
