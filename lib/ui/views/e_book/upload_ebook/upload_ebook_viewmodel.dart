@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:education_flutter_web/services/Model/EbookModel.dart';
-import 'package:education_flutter_web/ui/dialogs/ebook_dialogs/add_lecture.dart';
+import 'package:education_flutter_web/ui/dialogs/ebook_dialogs/add_pdf.dart';
 import 'package:education_flutter_web/ui/views/e_book/upload_ebook/uploadebook_widget/ebook_screen_2.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'package:pdf_viewer_plugin/pdf_viewer_plugin.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../app/app.locator.dart';
@@ -8,7 +12,6 @@ import '../../../../services/ebook_service.dart';
 import '../../../../services/rating_service.dart';
 import '../../../../utils/snakBar.dart';
 import '../../../dialogs/ebook_dialogs/add_questions.dart';
-import '../../../widgets/common/video_player.dart';
 import 'uploadebook_widget/ebook_screen_1.dart';
 import 'uploadebook_widget/ebook_screen_3.dart';
 import 'uploadebook_widget/ebook_screen_detail.dart';
@@ -102,7 +105,7 @@ class UploadebookViewModel extends BaseViewModel {
       } else if (screenNo == 3) {
         if (_ebookService.ebookData.pdfFile == [] ||
             _ebookService.ebookData.pdfFile == null) {
-          snakBar(context, "Please enter lecture details");
+          snakBar(context, "Please enter pdf file details");
         } else {
           nextPage();
         }
@@ -135,10 +138,16 @@ class UploadebookViewModel extends BaseViewModel {
         titleCtrl.text, "Thumbnail", notifyListeners, newSetState);
   }
 
-  ebookaddVideo(newSetState) async {
-    await _ebookService.uploadVideoToStorage(
-        titleCtrl.text, "Video", notifyListeners, newSetState);
-  }
+  // ebookaddVideo(newSetState) async {
+  //   await _ebookService.uploadFile(
+  //       titleCtrl.text, "Pdf", notifyListeners, newSetState);
+  // }
+  ebookaddVideo(Function newSetState) async {
+  String title = titleCtrl.text;
+  bool notifyListeners = true;
+
+  _ebookService.uploadFile(title, "Pdf", notifyListeners, newSetState);
+}
 
   ebookAddLecture(context) {
     ebookAddLectureAlert(
@@ -191,7 +200,10 @@ class UploadebookViewModel extends BaseViewModel {
         titleCtrl.text, "Cover", notifyListeners, null);
   }
 
-  ebookWatchvideo(context, _url) async {
+
+
+  ebookPdfFile(context, _url) async {
+    print("======3==========>${_url}");
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -199,9 +211,8 @@ class UploadebookViewModel extends BaseViewModel {
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width - 600,
-              child: videoPlayer(
-                url: _url,
-              ),
+              height: MediaQuery.of(context).size.height - 100,
+              child: PdfView(path:_url),
             ),
             Positioned(
               right: 0,
@@ -217,6 +228,7 @@ class UploadebookViewModel extends BaseViewModel {
       ),
     );
   }
+
 
   ebookPublish(publish) {
     _ebookService.publishData(publish);

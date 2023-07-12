@@ -14,6 +14,8 @@ class EbookScreen1 extends StackedView<UploadebookViewModel> {
   @override
   void onViewModelReady(UploadebookViewModel viewModel) {
     viewModel.titleCtrl.text = viewModel.ebookData.title ?? "";
+    viewModel.priceCtrl.text = viewModel.ebookData.price ?? "";
+
     viewModel.chapterCtrl.text = viewModel.ebookData.chapter ?? "";
     viewModel.getCategoryValue(viewModel.ebookData.category ?? "Adventure");
     viewModel.descriptionCtrl.text = viewModel.ebookData.description ?? "";
@@ -57,33 +59,20 @@ class EbookScreen1 extends StackedView<UploadebookViewModel> {
                     child: booksSearch(context, viewModel)),
                 const SizedBox(height: 30),
                 IconTextField(
-              textInputType: TextInputType.number,
-              titleText: "Price",
-              controller: viewModel.priceCtrl,
-              onChanged: (s) {
-                viewModel.getPriceValue(s);
-              },
-              icon: Icons.category,
-              prefix: Icon(
-                Icons.category,
-                color: const Color(0xff4873a6).withOpacity(0.7),
-              ),
-              width: width / 1.8,
-              hintText: 'Please enter Price...',
-            ),
-                // IconTextField(
-                //   titleText: "Chapter",
-                //   controller: viewModel.chapterCtrl,
-                //   onChanged: (s) {
-                //     viewModel.getChapterValue(s);
-                //   },
-                //   width: width / 1.8,
-                //   prefix: Icon(
-                //     Icons.price_change,
-                //     color: const Color(0xff4873a6).withOpacity(0.7),
-                //   ),
-                //   hintText: 'Enter your chapter...',
-                // ),
+                  textInputType: TextInputType.number,
+                  titleText: "Price",
+                  controller: viewModel.priceCtrl,
+                  onChanged: (s) {
+                    viewModel.getPriceValue(s);
+                  },
+                  icon: Icons.category,
+                  prefix: Icon(
+                    Icons.category,
+                    color: const Color(0xff4873a6).withOpacity(0.7),
+                  ),
+                  width: width / 1.8,
+                  hintText: 'Please enter Price...',
+                ),
               ],
             ),
             ebookCoverBtn(viewModel.ebookService.progressshow,

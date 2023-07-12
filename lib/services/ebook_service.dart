@@ -6,7 +6,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:education_flutter_web/app/app.locator.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:video_player/video_player.dart';
 import 'Model/EbookModel.dart';
 import 'login_service.dart';
 
@@ -26,13 +25,10 @@ class EbookService {
   var uploadEbookPage = 0;
 
   late String thubnailUrl = "";
-  late String videoThubnailUrl = "";
-  late String assigmentThubnailUrl = "";
-  late String videoUrl = "";
+  late String pdfUrl = "";
   late String duration = "";
-  late String assigmentUrl = "";
   var progressshow = 0;
-  var videoProgress = 0;
+  var pdfProgress = 0;
   var assigmentProgress = 0;
   var imageLooding = false;
   late final XFile? image;
@@ -103,76 +99,9 @@ class EbookService {
     return thubnailUrl;
   }
 
-  void uploadVideo({required Function(File file) onSelected}) {
-    FileUploadInputElement uploadInput = FileUploadInputElement()
-      ..accept = "video/*";
-    uploadInput.click();
-
-    uploadInput.onChange.listen((event) {
-      final file = uploadInput.files!.first;
-      final reader = FileReader();
-      reader.readAsDataUrl(file);
-      reader.onLoadEnd.listen((event) {
-        onSelected(file);
-      });
-    });
-  }
-
-  Future uploadVideoToStorage(title, type, notifyListeners, newSetState) async {
-    // final dateTime = DateTime.now();
-    uploadVideo(
-      onSelected: (file) {
-        // final path = '${dateTime}${file.name}}';
-        Reference ref = storage
-            .ref()
-            .child("E Books/$type/${DateTime.now().microsecondsSinceEpoch}");
-        UploadTask uploadTask = ref.putBlob(file);
-        uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
-          double progress =
-              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          imageLooding = true;
-          videoProgress = progress.round();
-          notifyListeners();
-          newSetState(() {});
-        });
-        uploadTask.whenComplete(() async {
-          videoUrl = await ref.getDownloadURL();
-
-          void printVideoDuration(String videoUrl) async {
-            VideoPlayerController controller =
-                await VideoPlayerController.network(videoUrl);
-            controller = await VideoPlayerController.network(videoUrl)
-              ..initialize().then((_) {
-                duration = controller.value.duration
-                    .toString()
-                    .split('.')
-                    .first
-                    .padLeft(8, "0");
-              });
-          }
-
-          printVideoDuration(videoUrl);
-
-          newSetState(() {});
-          notifyListeners();
-          // print("=====>$url=====>${file.type.split("/")[0]}");
-          // postType = "${file.type.split("/")[0]}";
-          // _videoPlayerController = VideoPlayerController.network(url);
-          // _isVideoPlaying = true;
-          imageLooding = false;
-          // _videoPlayerController.play();
-        }).catchError((onError) {
-          log(onError);
-          // snackBar2(context, onError.toString());
-        });
-      },
-    );
-    return videoUrl;
-  }
-
   void loadFile({required Function(File file) onSelected}) {
     FileUploadInputElement uploadInput = FileUploadInputElement()
-      ..accept = "pdf/*";
+      ..accept = 'application/pdf'; // Set accepted file types to PDF only
     uploadInput.click();
 
     uploadInput.onChange.listen((event) {
@@ -198,23 +127,23 @@ class EbookService {
           double progress =
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           imageLooding = true;
-          videoProgress = progress.round();
+          pdfProgress = progress.round();
           notifyListeners();
           newSetState(() {});
         });
         uploadTask.whenComplete(() async {
-          assigmentUrl = await ref.getDownloadURL();
-          // print("======>${file.type.split("/")[0]}");
+          pdfUrl = await ref.getDownloadURL();
+          // print("$pdfUrl======>${file.type.split("/")[0]}");
           newSetState(() {});
           notifyListeners();
           imageLooding = false;
-          log(assigmentUrl);
+          print(pdfUrl);
         }).catchError((onError) {
-          log(onError);
+          print(onError);
         });
       },
     );
-    return assigmentUrl;
+    return pdfUrl;
   }
 
   publishData(publish) async {
@@ -224,9 +153,6 @@ class EbookService {
       ebookData.publish = publish;
       ebookData.students = 0;
       ebookData.rating = 0;
-      // courseData. = publish;
-      // courseData.publish = publish;
-      // courseData.publish = publish;
 
       await firestore
           .collection("E Books")
@@ -250,6 +176,7 @@ class EbookService {
   }
 
   editEbookService() {}
+
   deleteEbookService(key) {
     firestore.collection("E Books").doc(key).delete();
   }
