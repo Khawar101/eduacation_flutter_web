@@ -1,54 +1,43 @@
-
-// // ignore_for_file: prefer_typing_uninitialized_variables, non_constant_identifier_names
-
-import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.dart';
+import 'package:education_flutter_web/ui/views/dashboard/dashboard_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:percent_indicator/percent_indicator.dart';
+import 'package:stacked/stacked.dart';
 import '../../../../../services/Model/reportModel.dart';
+import '../../../../widgets/common/sized_text/sized_text.dart';
+import 'intro_builder.dart';
 import 'package:intl/intl.dart';
 
-import 'intro_builder.dart';
-
-class DataTables extends StatefulWidget {
+class DataTables extends StackedView<DashboardViewModel> {
   final List<ReportModel>? reportData;
-  const DataTables({
-    super.key,
-    required this.reportData,
-  });
-
-  @override
-  State<DataTables> createState() => _DataTablesState();
-}
-
-class _DataTablesState extends State<DataTables> {
+  DataTables(this.reportData, {Key? key}) : super(key: key);
   final _verticalScrollController = ScrollController();
   final _horizontalScrollController = ScrollController();
-
   @override
-  void dispose() {
+  void onDispose(DashboardViewModel viewModel) {
     _verticalScrollController.dispose();
     _horizontalScrollController.dispose();
-    super.dispose();
+    super.onDispose(viewModel);
   }
 
   @override
-  Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-
+  Widget builder(
+    BuildContext context,
+    DashboardViewModel viewModel,
+    Widget? child,
+  ) {
     return DataTable(
-      horizontalMargin: 0,
+      horizontalMargin: 10,
       showBottomBorder: true,
-      columnSpacing: 20,
-      clipBehavior: Clip.hardEdge,
-      columns: [
+      columnSpacing: 0,
+      checkboxHorizontalMargin: 0,
+      clipBehavior: Clip.none,
+      columns: const [
         DataColumn(
           label: SizedBox(
-            width: screenWidth <= 650
-                ? screenWidth * 0.5
-                : screenWidth * 0.2,
-            child: const Row(
+            width: 100,
+            child: Row(
               children: [
                 CustomText(
                   text: "Customers",
@@ -62,10 +51,8 @@ class _DataTablesState extends State<DataTables> {
         ),
         DataColumn(
           label: SizedBox(
-            width: screenWidth <= 650
-                ? screenWidth * 0.3
-                : screenWidth * 0.1,
-            child: const CustomText(
+            width: 100,
+            child: CustomText(
               text: "Course",
               size: 12,
               fontWeight: FontWeight.bold,
@@ -75,8 +62,8 @@ class _DataTablesState extends State<DataTables> {
         ),
         DataColumn(
           label: SizedBox(
-            width: screenWidth * 0.1,
-            child: const CustomText(
+            width: 100,
+            child: CustomText(
               text: "Enrolled",
               size: 12,
               fontWeight: FontWeight.bold,
@@ -84,8 +71,9 @@ class _DataTablesState extends State<DataTables> {
             ),
           ),
         ),
-        const DataColumn(
+        DataColumn(
           label: SizedBox(
+            width: 100,
             child: CustomText(
               text: "Finished",
               size: 12,
@@ -96,8 +84,8 @@ class _DataTablesState extends State<DataTables> {
         ),
         DataColumn(
           label: SizedBox(
-            width: screenWidth * 0.1,
-            child: const CustomText(
+            width: 100,
+            child: CustomText(
               text: "Progress",
               size: 12,
               fontWeight: FontWeight.bold,
@@ -107,8 +95,8 @@ class _DataTablesState extends State<DataTables> {
         ),
         DataColumn(
           label: SizedBox(
-            width: screenWidth * 0.1,
-            child: const CustomText(
+            width: 100,
+            child: CustomText(
               text: "Rating",
               size: 12,
               fontWeight: FontWeight.bold,
@@ -117,9 +105,9 @@ class _DataTablesState extends State<DataTables> {
           ),
         ),
       ],
-      rows: List<DataRow>.generate(50 ,
+      rows: List<DataRow>.generate(reportData?.length??0 ,
           (index) {
-        ReportModel data = widget.reportData![0];
+        ReportModel data =reportData![0];
         return DataRow(
           cells: [
             DataCell(introBuilder(data.userKey)),
@@ -176,9 +164,9 @@ class _DataTablesState extends State<DataTables> {
             ),
             DataCell(
               SizedBox(
-                width: 200,
+                width: 140,
                 child: LinearPercentIndicator(
-                  width: screenWidth * 0.08,
+                  width: MediaQuery.of(context).size.width * 0.08,
                   animation: true,
                   lineHeight: 5.0,
                   animationDuration: 2500,
@@ -198,7 +186,7 @@ class _DataTablesState extends State<DataTables> {
             ),
             DataCell(
               SizedBox(
-                width: screenWidth * 0.2,
+                width: 100,
                 child: RatingBar.builder(
                   wrapAlignment: WrapAlignment.start,
                   initialRating: data.rating!.toDouble(),
@@ -223,4 +211,10 @@ class _DataTablesState extends State<DataTables> {
       }),
     );
   }
+
+  @override
+  DashboardViewModel viewModelBuilder(
+    BuildContext context,
+  ) =>
+      DashboardViewModel();
 }

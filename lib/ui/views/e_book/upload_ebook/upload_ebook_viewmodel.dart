@@ -29,7 +29,6 @@ class UploadebookViewModel extends BaseViewModel {
     const EbookScreen2(),
     const EbookScreen3(false),
     const EbookDetails(),
-  
   ];
   TextEditingController titleCtrl = TextEditingController();
   String? categoryValue;
@@ -109,7 +108,7 @@ class UploadebookViewModel extends BaseViewModel {
         } else {
           nextPage();
         }
-      }  else {
+      } else {
         nextPage();
       }
     }
@@ -143,11 +142,11 @@ class UploadebookViewModel extends BaseViewModel {
   //       titleCtrl.text, "Pdf", notifyListeners, newSetState);
   // }
   ebookaddVideo(Function newSetState) async {
-  String title = titleCtrl.text;
-  bool notifyListeners = true;
+    String title = titleCtrl.text;
+    bool notifyListeners = true;
 
-  _ebookService.uploadFile(title, "Pdf", notifyListeners, newSetState);
-}
+    _ebookService.uploadFile(title, "Pdf", notifyListeners, newSetState);
+  }
 
   ebookAddLecture(context) {
     ebookAddLectureAlert(
@@ -200,8 +199,6 @@ class UploadebookViewModel extends BaseViewModel {
         titleCtrl.text, "Cover", notifyListeners, null);
   }
 
-
-
   ebookPdfFile(context, _url) async {
     print("======3==========>${_url}");
     return showDialog<String>(
@@ -212,7 +209,7 @@ class UploadebookViewModel extends BaseViewModel {
             SizedBox(
               width: MediaQuery.of(context).size.width - 600,
               height: MediaQuery.of(context).size.height - 100,
-              child: PdfView(path:_url),
+              child: PdfView(path: _url),
             ),
             Positioned(
               right: 0,
@@ -228,7 +225,6 @@ class UploadebookViewModel extends BaseViewModel {
       ),
     );
   }
-
 
   ebookPublish(publish) {
     _ebookService.publishData(publish);

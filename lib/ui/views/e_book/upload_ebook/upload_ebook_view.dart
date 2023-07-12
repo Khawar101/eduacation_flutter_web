@@ -47,12 +47,7 @@ class UploadebookView extends StackedView<UploadebookViewModel> {
                   const SizedBox(height: 30),
                   StepProgressView(
                     curStep: viewModel.screenNo + 1,
-                    titles: const [
-                      "EBooks",
-                      'FAQ',
-                      'pdf Books',                 
-                      'Publish'
-                    ],
+                    titles: const ["EBooks", 'FAQ', 'pdf Books', 'Publish'],
                     width: width * 0.6,
                   ),
                   viewModel.screens[viewModel.screenNo],

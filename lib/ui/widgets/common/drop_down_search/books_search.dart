@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../views/e_book/upload_ebook/upload_ebook_viewmodel.dart';
 
-Widget booksSearch(context,UploadebookViewModel viewModel) {
+Widget booksSearch(context, UploadebookViewModel viewModel) {
   final TextEditingController searchCtrl = TextEditingController();
 
   var width = MediaQuery.of(context).size.width;
@@ -31,7 +31,7 @@ Widget booksSearch(context,UploadebookViewModel viewModel) {
                     ),
                   ))
               .toList(),
-          value:  viewModel.ebookData.category,
+          value: viewModel.ebookData.category,
           onChanged: (value) {
             viewModel.getCategoryValue(value);
           },

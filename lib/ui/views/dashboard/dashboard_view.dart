@@ -6,7 +6,7 @@ import 'package:stacked/stacked.dart';
 import 'dashboard_viewmodel.dart';
 
 class DashboardView extends StackedView<DashboardViewModel> {
-   DashboardView({Key? key}) : super(key: key);
+  DashboardView({Key? key}) : super(key: key);
   final _verticalScrollController = ScrollController();
   final _horizontalScrollController = ScrollController();
   @override
@@ -15,6 +15,7 @@ class DashboardView extends StackedView<DashboardViewModel> {
     _horizontalScrollController.dispose();
     super.onDispose(viewModel);
   }
+
   @override
   Widget builder(
     BuildContext context,
@@ -26,12 +27,11 @@ class DashboardView extends StackedView<DashboardViewModel> {
       height: MediaQuery.of(context).size.height * 0.9,
       color: Colors.white,
       child: Scrollbar(
-          isAlwaysShown: true,
-              controller: _horizontalScrollController,
-
-        child: SingleChildScrollView(
-           scrollDirection: Axis.horizontal,
+        isAlwaysShown: true,
         controller: _horizontalScrollController,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          controller: _horizontalScrollController,
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),

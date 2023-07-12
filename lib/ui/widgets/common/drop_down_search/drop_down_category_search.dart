@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../common/app_const.dart';
 import '../../../views/courses/upload_courses/upload_courses_viewmodel.dart';
 
-Widget dropDownSearch(context,UploadCoursesViewModel viewModel) {
+Widget dropDownSearch(context, UploadCoursesViewModel viewModel) {
   final TextEditingController searchCtrl = TextEditingController();
 
   var width = MediaQuery.of(context).size.width;

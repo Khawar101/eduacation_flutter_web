@@ -30,6 +30,7 @@ class _DashTabBarState extends State<DashTabBar>
       _currentIndex = _tabController.index;
     });
   }
+
   @override
   void dispose() {
     _tabController.dispose();
@@ -66,7 +67,7 @@ class _DashTabBarState extends State<DashTabBar>
             ]),
         const SizedBox(height: 10),
         _tabController.index == 0
-            ?  const ReportBuilder()
+            ? const ReportBuilder()
             : _tabController.index == 1
                 ? const DataTableExample()
                 : _tabController.index == 2
