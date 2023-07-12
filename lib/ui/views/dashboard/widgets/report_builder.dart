@@ -15,20 +15,22 @@ class ReportBuilder extends StackedView<DashboardViewModel> {
     Widget? child,
   ) {
     
-    return StreamBuilder<List<ReportModel>>(
-      stream: viewModel.dashboardService.reportStream(),
-      builder:
-          (BuildContext context, AsyncSnapshot<List<ReportModel>> snapshot) {
-        if (snapshot.hasError) {
-          return Center(child: Text(snapshot.error.toString()));
-        }
-
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Loading(100);
-        }
-
-        return DataTables(reportData: snapshot.data);
-      },
+    return SizedBox(width: MediaQuery.of(context).size.width*1,
+      child: StreamBuilder<List<ReportModel>>(
+        stream: viewModel.dashboardService.reportStream(),
+        builder:
+            (BuildContext context, AsyncSnapshot<List<ReportModel>> snapshot) {
+          if (snapshot.hasError) {
+            return Center(child: Text(snapshot.error.toString()));
+          }
+    
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: Loading(100));
+          }
+    
+          return DataTables(reportData: snapshot.data);
+        },
+      ),
     );
   }
 
