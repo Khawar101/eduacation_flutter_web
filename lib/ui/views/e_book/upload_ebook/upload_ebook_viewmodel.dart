@@ -198,8 +198,8 @@ class UploadebookViewModel extends BaseViewModel {
         titleCtrl.text, "Cover", notifyListeners, null);
   }
 
-  ebookPdfFile( d,_url) async {
-   _navigationService.navigateToPdfViewer(url: _url);
+  ebookPdfFile(PdfFile pdfData) async {
+   _navigationService.navigateToPdfViewer(pdfData: pdfData);
   }
 
   ebookPublish(publish) {

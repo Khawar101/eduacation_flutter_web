@@ -5,6 +5,7 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:education_flutter_web/services/Model/EbookModel.dart' as _i18;
 import 'package:education_flutter_web/ui/views/account/account_view.dart'
     as _i13;
 import 'package:education_flutter_web/ui/views/auth/forgetpassword/forgetpassword_view.dart'
@@ -35,7 +36,7 @@ import 'package:education_flutter_web/ui/widgets/pdf_viewer.dart' as _i16;
 import 'package:flutter/material.dart' as _i17;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i18;
+import 'package:stacked_services/stacked_services.dart' as _i19;
 
 class Routes {
   static const coursesView = '/courses-view';
@@ -239,7 +240,8 @@ class StackedRouter extends _i1.RouterBase {
     _i16.pdfViewer: (data) {
       final args = data.getArgs<pdfViewerArguments>(nullOk: false);
       return _i17.MaterialPageRoute<dynamic>(
-        builder: (context) => _i16.pdfViewer(key: args.key, url: args.url),
+        builder: (context) =>
+            _i16.pdfViewer(key: args.key, pdfData: args.pdfData),
         settings: data,
       );
     },
@@ -254,31 +256,31 @@ class StackedRouter extends _i1.RouterBase {
 class pdfViewerArguments {
   const pdfViewerArguments({
     this.key,
-    required this.url,
+    required this.pdfData,
   });
 
   final _i17.Key? key;
 
-  final String url;
+  final _i18.PdfFile pdfData;
 
   @override
   String toString() {
-    return '{"key": "$key", "url": "$url"}';
+    return '{"key": "$key", "pdfData": "$pdfData"}';
   }
 
   @override
   bool operator ==(covariant pdfViewerArguments other) {
     if (identical(this, other)) return true;
-    return other.key == key && other.url == url;
+    return other.key == key && other.pdfData == pdfData;
   }
 
   @override
   int get hashCode {
-    return key.hashCode ^ url.hashCode;
+    return key.hashCode ^ pdfData.hashCode;
   }
 }
 
-extension NavigatorStateExtension on _i18.NavigationService {
+extension NavigatorStateExtension on _i19.NavigationService {
   Future<dynamic> navigateToCoursesView([
     int? routerId,
     bool preventDuplicates = true,
@@ -477,7 +479,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
 
   Future<dynamic> navigateToPdfViewer({
     _i17.Key? key,
-    required String url,
+    required _i18.PdfFile pdfData,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -485,7 +487,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
         transition,
   }) async {
     return navigateTo<dynamic>(Routes.pdfViewer,
-        arguments: pdfViewerArguments(key: key, url: url),
+        arguments: pdfViewerArguments(key: key, pdfData: pdfData),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -690,7 +692,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
 
   Future<dynamic> replaceWithPdfViewer({
     _i17.Key? key,
-    required String url,
+    required _i18.PdfFile pdfData,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -698,7 +700,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
         transition,
   }) async {
     return replaceWith<dynamic>(Routes.pdfViewer,
-        arguments: pdfViewerArguments(key: key, url: url),
+        arguments: pdfViewerArguments(key: key, pdfData: pdfData),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

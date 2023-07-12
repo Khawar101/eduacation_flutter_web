@@ -2,9 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:pdfx/pdfx.dart';
 import 'package:internet_file/internet_file.dart';
+
+import '../../services/Model/EbookModel.dart';
 class pdfViewer extends StatefulWidget {
-  final String url;
-  const pdfViewer({super.key, required this.url});
+  final PdfFile pdfData;
+  const pdfViewer({super.key, required this.pdfData});
 
   @override
   State<pdfViewer> createState() => _pdfViewerState();
@@ -19,7 +21,7 @@ class _pdfViewerState extends State<pdfViewer> {
     super.initState();
     _pdfController = PdfController(
       document: PdfDocument.openData(
-          InternetFile.get(widget.url)),
+          InternetFile.get(widget.pdfData.pdfUrl??"")),
       initialPage: _initialPage,
     );
   }
@@ -34,7 +36,7 @@ class _pdfViewerState extends State<pdfViewer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter PDF Example'),
+        title:  Text(widget.pdfData.title??""),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.navigate_before),
