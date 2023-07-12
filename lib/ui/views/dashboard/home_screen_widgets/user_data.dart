@@ -220,7 +220,7 @@ class _DataTableExampleState extends State<DataTableExample> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 800,
+    //  width: MediaQuery.of(context).size.width*1,
       child: DataTable(
         columns: const <DataColumn>[
           DataColumn(
