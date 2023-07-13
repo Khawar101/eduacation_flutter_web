@@ -55,7 +55,7 @@ class EbookScreen3 extends StackedView<UploadebookViewModel> {
                 child: index == viewModel.pdfFile.length
                     ? IconButton(
                         onPressed: () {
-                          viewModel.ebookAddLecture(context);
+                          viewModel.ebookAddPdf(context);
                         },
                         icon: const Icon(
                           Icons.add_circle_outline,
@@ -65,8 +65,7 @@ class EbookScreen3 extends StackedView<UploadebookViewModel> {
                     : InkWell(
                         mouseCursor: MaterialStateMouseCursor.clickable,
                         onTap: () {
-                          viewModel.ebookPdfFile(
-                               viewModel.pdfFile[index]);
+                          viewModel.ebookPdfFile(viewModel.pdfFile[index]);
                         },
                         child: ebookCardPage(context, viewModel.pdfFile[index],
                             () {

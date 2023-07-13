@@ -66,7 +66,7 @@ class EbookDetails extends StackedView<UploadebookViewModel> {
               text: viewModel.ebookData.description.toString()),
           verticalSpaceSmall,
           const StarText(
-            text: 'Lectures',
+            text: 'Pdf Books',
           ),
           const EbookScreen3(true),
           verticalSpaceSmall,

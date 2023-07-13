@@ -37,7 +37,7 @@ class HeadButtons extends ViewModelWidget<DashboardViewModel> {
             ),
           ],
         ),
-        SizedBox(width: MediaQuery.of(context).size.width*0.5),
+        SizedBox(width: MediaQuery.of(context).size.width * 0.5),
         const Row(
           children: [
             DownloadReport(),
@@ -50,4 +50,3 @@ class HeadButtons extends ViewModelWidget<DashboardViewModel> {
     );
   }
 }
-

@@ -172,7 +172,7 @@ class CoursesService {
 
   void loadFile({required Function(File file) onSelected}) {
     FileUploadInputElement uploadInput = FileUploadInputElement()
-      ..accept = "pdf/*";
+      ..accept = 'application/pdf';
     uploadInput.click();
 
     uploadInput.onChange.listen((event) {

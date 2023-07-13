@@ -15,7 +15,6 @@ class EbookScreen1 extends StackedView<UploadebookViewModel> {
   void onViewModelReady(UploadebookViewModel viewModel) {
     viewModel.titleCtrl.text = viewModel.ebookData.title ?? "";
     viewModel.priceCtrl.text = viewModel.ebookData.price ?? "";
-
     viewModel.chapterCtrl.text = viewModel.ebookData.chapter ?? "";
     viewModel.getCategoryValue(viewModel.ebookData.category ?? "Adventure");
     viewModel.descriptionCtrl.text = viewModel.ebookData.description ?? "";
@@ -52,7 +51,14 @@ class EbookScreen1 extends StackedView<UploadebookViewModel> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text("Categories",
+                    style: GoogleFonts.ibmPlexSans(
+                        color: kcPrimaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic)),
+                const SizedBox(height: 3),
                 SizedBox(
                     height: 50,
                     width: width / 1.8,
@@ -75,10 +81,21 @@ class EbookScreen1 extends StackedView<UploadebookViewModel> {
                 ),
               ],
             ),
-            ebookCoverBtn(viewModel.ebookService.progressshow,
-                viewModel.ebookService.ebookData.coverPic, () {
-              viewModel.ebookAddCoverPhoto();
-            }, context),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Book Cover",
+                    style: GoogleFonts.ibmPlexSans(
+                        color: kcPrimaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic)),
+                const SizedBox(height: 6),
+                ebookCoverBtn(viewModel.ebookService.progressshow,
+                    viewModel.ebookService.ebookData.coverPic, () {
+                  viewModel.ebookAddCoverPhoto();
+                }, context),
+              ],
+            ),
           ],
         ),
         const SizedBox(height: 30),
