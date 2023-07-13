@@ -17,7 +17,7 @@ import 'uploadebook_widget/ebook_screen_detail.dart';
 class UploadebookViewModel extends BaseViewModel {
   final rateingService = locator<RatingService>();
   final _ebookService = locator<EbookService>();
-    final _navigationService = locator<NavigationService>();
+  final _navigationService = locator<NavigationService>();
   EbookService get ebookService => _ebookService;
   EbookModel get ebookData => _ebookService.ebookData;
   var formKey = GlobalKey<FormState>();
@@ -198,9 +198,8 @@ class UploadebookViewModel extends BaseViewModel {
         titleCtrl.text, "Cover", notifyListeners, null);
   }
 
-
   ebookPdfFile(PdfFile pdfData) async {
-   _navigationService.navigateToPdfViewer(pdfData: pdfData);
+    _navigationService.navigateToPdfViewer(pdfData: pdfData);
   }
 
   ebookPublish(publish) {

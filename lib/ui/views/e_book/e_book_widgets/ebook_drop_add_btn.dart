@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../common/app_assets.dart';
 
 Widget ebookAddBtn(type, progress, url, fun, context) {
@@ -12,7 +11,9 @@ Widget ebookAddBtn(type, progress, url, fun, context) {
           image: url != ""
               ? type != "Thumbnail"
                   ? const DecorationImage(
-                      image: AssetImage(done), fit: BoxFit.contain,)
+                      image: AssetImage(done),
+                      fit: BoxFit.contain,
+                    )
                   : DecorationImage(image: NetworkImage(url), fit: BoxFit.cover)
               : null,
           border: Border.all(

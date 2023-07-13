@@ -65,8 +65,7 @@ class EbookScreen3 extends StackedView<UploadebookViewModel> {
                     : InkWell(
                         mouseCursor: MaterialStateMouseCursor.clickable,
                         onTap: () {
-                          viewModel.ebookPdfFile(
-                               viewModel.pdfFile[index]);
+                          viewModel.ebookPdfFile(viewModel.pdfFile[index]);
                         },
                         child: ebookCardPage(context, viewModel.pdfFile[index],
                             () {

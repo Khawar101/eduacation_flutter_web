@@ -105,9 +105,8 @@ class DataTables extends StackedView<DashboardViewModel> {
           ),
         ),
       ],
-      rows: List<DataRow>.generate(reportData?.length??0 ,
-          (index) {
-        ReportModel data =reportData![0];
+      rows: List<DataRow>.generate(reportData?.length ?? 0, (index) {
+        ReportModel data = reportData![0];
         return DataRow(
           cells: [
             DataCell(introBuilder(data.userKey)),

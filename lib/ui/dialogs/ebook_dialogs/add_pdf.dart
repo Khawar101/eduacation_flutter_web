@@ -52,8 +52,9 @@ ebookAddLectureAlert(
                       addThumbnail(newSetState);
                     }, context),
                     const SizedBox(width: 20),
-                    ebookAddBtn("PDF", _ebookService.pdfProgress,
-                        _ebookService.pdfUrl, () {
+                    ebookAddBtn(
+                        "PDF", _ebookService.pdfProgress, _ebookService.pdfUrl,
+                        () {
                       addVideo(newSetState);
                     }, context),
                     // dropAddBtn(),
