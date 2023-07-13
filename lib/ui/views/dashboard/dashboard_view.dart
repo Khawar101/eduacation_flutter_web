@@ -9,12 +9,12 @@ class DashboardView extends StackedView<DashboardViewModel> {
   DashboardView({Key? key}) : super(key: key);
   final _verticalScrollController = ScrollController();
   final _horizontalScrollController = ScrollController();
-  @override
-  void onDispose(DashboardViewModel viewModel) {
-    _verticalScrollController.dispose();
-    _horizontalScrollController.dispose();
-    super.onDispose(viewModel);
-  }
+  // @override
+  // void onDispose(DashboardViewModel viewModel) {
+  //   _verticalScrollController.dispose();
+  //   _horizontalScrollController.dispose();
+  //   super.onDispose(viewModel);
+  // }
 
   @override
   Widget builder(
