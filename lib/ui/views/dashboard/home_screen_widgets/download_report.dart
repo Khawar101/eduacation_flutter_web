@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:stacked/stacked.dart';
 
-class DownloadReport extends StatelessWidget {
+import '../dashboard_viewmodel.dart';
+
+class DownloadReport extends ViewModelWidget<DashboardViewModel> {
   const DownloadReport({super.key});
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, DashboardViewModel viewModel) {
     return ElevatedButton(
       style: ButtonStyle(
         backgroundColor: const MaterialStatePropertyAll(Colors.white54),

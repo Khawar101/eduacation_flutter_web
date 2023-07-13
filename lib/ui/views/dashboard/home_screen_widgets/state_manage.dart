@@ -1,11 +1,20 @@
+
 import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/stats.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
-Widget stateManage(context) {
-  final screenWidth = MediaQuery.of(context).size.width;
+import '../dashboard_viewmodel.dart';
 
+class StateManage extends ViewModelWidget<DashboardViewModel> {
+  const StateManage({super.key});
+
+  @override
+  Widget build
+  (BuildContext context,
+   DashboardViewModel viewModel) {
+    final screenWidth = MediaQuery.of(context).size.width;
   return screenWidth > 1200
-      ? const Row(
+      ?  const Row(
           children: [
             Stats(
               headingText: 'Total Member',
@@ -71,4 +80,7 @@ Widget stateManage(context) {
                 ]),
               ],
             );
+  }
 }
+
+

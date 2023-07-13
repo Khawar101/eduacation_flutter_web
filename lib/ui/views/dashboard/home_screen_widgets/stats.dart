@@ -1,7 +1,12 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:stacked/stacked.dart';
 
-class Stats extends StatefulWidget {
+import '../dashboard_viewmodel.dart';
+
+class Stats extends ViewModelWidget<DashboardViewModel> {
   final String headingText;
   final String number;
   final String containerText;
@@ -12,12 +17,7 @@ class Stats extends StatefulWidget {
       required this.number});
 
   @override
-  State<Stats> createState() => _StatsState();
-}
-
-class _StatsState extends State<Stats> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, DashboardViewModel viewModel) {
     // final screenWidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.only(right: 15, bottom: 10),
@@ -42,7 +42,7 @@ class _StatsState extends State<Stats> {
                     padding: const EdgeInsets.symmetric(
                         vertical: 15, horizontal: 15),
                     child: Text(
-                      widget.headingText,
+                      headingText,
                       style: GoogleFonts.ibmPlexSans(
                         fontWeight: FontWeight.bold,
                         color: Colors.black45,
@@ -57,7 +57,7 @@ class _StatsState extends State<Stats> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          widget.number,
+                          number,
                           style: GoogleFonts.ibmPlexSans(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -79,7 +79,7 @@ class _StatsState extends State<Stats> {
                                 Icons.arrow_upward,
                                 size: 12,
                               ),
-                              Text(widget.containerText,
+                              Text(containerText,
                                   style: GoogleFonts.ibmPlexSans(
                                       fontWeight: FontWeight.w500)),
                               const Text("%"),

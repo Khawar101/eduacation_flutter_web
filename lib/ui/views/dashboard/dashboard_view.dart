@@ -44,7 +44,7 @@ class DashboardView extends StackedView<DashboardViewModel> {
                   const SizedBox(
                     height: 20,
                   ),
-                  stateManage(context),
+                  const StateManage(),
                   // const SizedBox(
                   //   height: 20,
                   // ),
