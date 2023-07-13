@@ -81,10 +81,21 @@ class EbookScreen1 extends StackedView<UploadebookViewModel> {
                 ),
               ],
             ),
-            ebookCoverBtn(viewModel.ebookService.progressshow,
-                viewModel.ebookService.ebookData.coverPic, () {
-              viewModel.ebookAddCoverPhoto();
-            }, context),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                 Text("Book Cover",
+                    style: GoogleFonts.ibmPlexSans(
+                        color: kcPrimaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic)),
+                const SizedBox(height:6),
+                ebookCoverBtn(viewModel.ebookService.progressshow,
+                    viewModel.ebookService.ebookData.coverPic, () {
+                  viewModel.ebookAddCoverPhoto();
+                }, context),
+              ],
+            ),
           ],
         ),
         const SizedBox(height: 30),

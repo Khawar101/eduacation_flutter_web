@@ -81,10 +81,21 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
                 ),
               ],
             ),
-            coverBtn(viewModel.coursesService.progressshow,
-                viewModel.coursesService.courseData.coverPic, () {
-              viewModel.addCoverPhoto();
-            }, context),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Cover Page",
+                    style: GoogleFonts.ibmPlexSans(
+                        color: kcPrimaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic)),
+                const SizedBox(height:6),
+                coverBtn(viewModel.coursesService.progressshow,
+                    viewModel.coursesService.courseData.coverPic, () {
+                  viewModel.addCoverPhoto();
+                }, context),
+              ],
+            ),
           ],
         ),
         const SizedBox(height: 30),
