@@ -65,7 +65,6 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
                     width: width / 1.8,
                     child: dropDownSearch(context, viewModel)),
                 const SizedBox(height: 30),
-                
                 IconTextField(
                   titleText: "Chapter",
                   controller: viewModel.chapterCtrl,
@@ -89,7 +88,7 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
                         color: kcPrimaryColor,
                         fontWeight: FontWeight.bold,
                         fontStyle: FontStyle.italic)),
-                const SizedBox(height:6),
+                const SizedBox(height: 6),
                 coverBtn(viewModel.coursesService.progressshow,
                     viewModel.coursesService.courseData.coverPic, () {
                   viewModel.addCoverPhoto();
