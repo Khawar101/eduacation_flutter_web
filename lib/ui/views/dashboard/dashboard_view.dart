@@ -4,6 +4,7 @@ import 'package:education_flutter_web/ui/views/dashboard/home_screen_widgets/tab
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'dashboard_viewmodel.dart';
+import 'home_screen_widgets/charts.dart';
 
 class DashboardView extends StackedView<DashboardViewModel> {
   DashboardView({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class DashboardView extends StackedView<DashboardViewModel> {
     DashboardViewModel viewModel,
     Widget? child,
   ) {
-    //   final screenWidth = MediaQuery.of(context).size.width;
+      final width = MediaQuery.of(context).size.width;
     return Container(
       height: MediaQuery.of(context).size.height * 0.9,
       color: Colors.white,
@@ -39,13 +40,24 @@ class DashboardView extends StackedView<DashboardViewModel> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const HeadButtons(),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  stateManage(context),
-                  const SizedBox(
+                
+                    const SizedBox(
                     height: 20,
                   ),
+                  stateManage(context),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
+                   
+                  SizedBox(
+                    width: width < 400
+          ? width * 2.5
+          : width < 600
+              ? width * 2.1
+              : width < 900
+                  ? width * 1.3
+                  : width * 0.85,
+                    child: const LineChartSample2()),
                   const DashTabBar(),
                 ],
               ),
