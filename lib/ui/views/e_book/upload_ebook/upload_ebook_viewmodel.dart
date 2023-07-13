@@ -147,7 +147,7 @@ class UploadebookViewModel extends BaseViewModel {
     _ebookService.uploadFile(title, "Pdf", notifyListeners, newSetState);
   }
 
-  ebookAddLecture(context) {
+  ebookAddPdf(context) {
     ebookAddLectureAlert(
         context,
         videoTitleCtrl,

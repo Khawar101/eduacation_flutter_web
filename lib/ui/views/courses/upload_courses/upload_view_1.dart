@@ -52,18 +52,20 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                    height: 50,
-                    width: width / 1.8,
-                    child: dropDownSearch(context, viewModel)),
-                const SizedBox(height: 30),
                 Text("Categories",
                     style: GoogleFonts.ibmPlexSans(
                         color: kcPrimaryColor,
                         fontWeight: FontWeight.bold,
                         fontStyle: FontStyle.italic)),
                 const SizedBox(height: 3),
+                SizedBox(
+                    height: 50,
+                    width: width / 1.8,
+                    child: dropDownSearch(context, viewModel)),
+                const SizedBox(height: 30),
+                
                 IconTextField(
                   titleText: "Chapter",
                   controller: viewModel.chapterCtrl,
