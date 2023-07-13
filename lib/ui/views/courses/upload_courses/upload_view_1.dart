@@ -58,7 +58,7 @@ class UploadView_1 extends StackedView<UploadCoursesViewModel> {
                     width: width / 1.8,
                     child: dropDownSearch(context, viewModel)),
                 const SizedBox(height: 30),
-                 Text("Categories",
+                Text("Categories",
                     style: GoogleFonts.ibmPlexSans(
                         color: kcPrimaryColor,
                         fontWeight: FontWeight.bold,

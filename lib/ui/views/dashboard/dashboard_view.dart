@@ -23,7 +23,7 @@ class DashboardView extends StackedView<DashboardViewModel> {
     DashboardViewModel viewModel,
     Widget? child,
   ) {
-      final width = MediaQuery.of(context).size.width;
+    final width = MediaQuery.of(context).size.width;
     return Container(
       height: MediaQuery.of(context).size.height * 0.9,
       color: Colors.white,
@@ -40,24 +40,24 @@ class DashboardView extends StackedView<DashboardViewModel> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const HeadButtons(),
-                
-                    const SizedBox(
+
+                  const SizedBox(
                     height: 20,
                   ),
                   stateManage(context),
                   // const SizedBox(
                   //   height: 20,
                   // ),
-                   
+
                   SizedBox(
-                    width: width < 400
-          ? width * 2.5
-          : width < 600
-              ? width * 2.1
-              : width < 900
-                  ? width * 1.3
-                  : width * 0.85,
-                    child: const LineChartSample2()),
+                      width: width < 400
+                          ? width * 2.5
+                          : width < 600
+                              ? width * 2.1
+                              : width < 900
+                                  ? width * 1.3
+                                  : width * 0.85,
+                      child: const LineChartSample2()),
                   const DashTabBar(),
                 ],
               ),
