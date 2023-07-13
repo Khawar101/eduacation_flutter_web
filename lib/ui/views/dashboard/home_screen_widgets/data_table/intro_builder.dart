@@ -1,16 +1,21 @@
-// ignore_for_file: unused_local_variable
 
-import 'package:education_flutter_web/app/app.locator.dart';
-import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.dart';
-import 'package:education_flutter_web/ui/widgets/networkImage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:stacked/stacked.dart';
+import '../../../../../app/app.locator.dart';
 import '../../../../../services/Model/userData.dart';
 import '../../../../../services/dashboard_service.dart';
 import '../../../../../utils/loading.dart';
+import '../../../../widgets/common/sized_text/sized_text.dart';
+import '../../../../widgets/networkImage.dart';
+import '../../dashboard_viewmodel.dart';
 
-Widget introBuilder(uID) {
-  final _dashboardService = locator<DashboardService>();
+class IntroBuilder extends ViewModelWidget<DashboardViewModel> {
+  final String uID;
+   const IntroBuilder( {super.key,required this.uID});
+  @override
+  Widget build(BuildContext context, DashboardViewModel viewModel) {
+   final _dashboardService = locator<DashboardService>();
 
   return StreamBuilder(
     stream: _dashboardService.publisherStream(uID),
@@ -63,5 +68,5 @@ Widget introBuilder(uID) {
         ),
       );
     },
-  );
+  );}
 }
