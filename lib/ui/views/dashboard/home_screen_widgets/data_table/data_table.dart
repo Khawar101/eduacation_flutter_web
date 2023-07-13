@@ -109,7 +109,7 @@ class DataTables extends StackedView<DashboardViewModel> {
         ReportModel data = reportData![0];
         return DataRow(
           cells: [
-            DataCell(IntroBuilder(uID:data.userKey??"")),
+            DataCell(IntroBuilder(uID: data.userKey ?? "")),
             DataCell(
               SizedBox(
                 width: 100,
