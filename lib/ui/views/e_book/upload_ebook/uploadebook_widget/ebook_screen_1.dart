@@ -52,7 +52,14 @@ class EbookScreen1 extends StackedView<UploadebookViewModel> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text("Categories",
+            style: GoogleFonts.ibmPlexSans(
+                color: kcPrimaryColor,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic)),
+        const SizedBox(height: 3),
                 SizedBox(
                     height: 50,
                     width: width / 1.8,

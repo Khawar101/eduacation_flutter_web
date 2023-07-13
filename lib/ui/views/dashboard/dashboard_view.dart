@@ -7,7 +7,7 @@ import 'dashboard_viewmodel.dart';
 
 class DashboardView extends StackedView<DashboardViewModel> {
   DashboardView({Key? key}) : super(key: key);
-  final _verticalScrollController = ScrollController();
+  // final _verticalScrollController = ScrollController();
   final _horizontalScrollController = ScrollController();
   // @override
   // void onDispose(DashboardViewModel viewModel) {
