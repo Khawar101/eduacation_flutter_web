@@ -1,11 +1,9 @@
 // ignore_for_file: non_constant_identifier_names, unused_import
-
 import 'package:education_flutter_web/ui/common/app_assets.dart';
 import 'package:education_flutter_web/ui/common/ui_helpers.dart';
 import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../../../services/Model/CoursesModel.dart';
 
 Widget Card_Page(context, lectureData, remove) {
@@ -31,7 +29,6 @@ Widget Card_Page(context, lectureData, remove) {
         horizontalSpaceSmall,
         Expanded(
           flex: 2,
-          //     MediaQuery.of(context).size.width*0.12,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
