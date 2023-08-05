@@ -1,5 +1,4 @@
 // ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import '../../../../widgets/common/sized_text/sized_text.dart';
 
@@ -9,7 +8,6 @@ Widget bottomBtn(context, title, function) {
     onTap: function,
     child: Container(
       height: 50,
-      // width: 100,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
