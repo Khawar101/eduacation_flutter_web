@@ -96,7 +96,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
                         viewModel.updatePage(2);
                       },
                     ),
-                     ListTile(
+                    ListTile(
                       leading: Icon(
                         Icons.chat,
                         color: const Color(0xff4873a6).withOpacity(0.7),
@@ -106,7 +106,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
                           child: const Text('Chats')),
                       minLeadingWidth: 0.009,
                       onTap: () {
-                        viewModel.updatePage(2);
+                        viewModel.updatePage(3);
                       },
                     ),
                     ListTile(
@@ -119,7 +119,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
                           child: const Text('Teachers')),
                       minLeadingWidth: 0.009,
                       onTap: () {
-                        viewModel.updatePage(3);
+                        viewModel.updatePage(4);
                       },
                     ),
                     ListTile(
@@ -132,7 +132,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
                           child: const Text('Courses')),
                       minLeadingWidth: 0.009,
                       onTap: () {
-                        viewModel.updatePage(4);
+                        viewModel.updatePage(5);
                       },
                     ),
                     ListTile(
@@ -145,7 +145,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
                           child: const Text('E-Book')),
                       minLeadingWidth: 0.009,
                       onTap: () {
-                        viewModel.updatePage(5);
+                        viewModel.updatePage(6);
                       },
                     ),
                     ListTile(
@@ -158,7 +158,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
                           child: const Text('E-Learning')),
                       minLeadingWidth: 0.009,
                       onTap: () {
-                        viewModel.updatePage(6);
+                        viewModel.updatePage(7);
                       },
                     ),
                     ListTile(
@@ -171,7 +171,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
                           child: const Text('Settings')),
                       minLeadingWidth: 0.009,
                       onTap: () {
-                        viewModel.updatePage(7);
+                        viewModel.updatePage(8);
                       },
                     ),
                     ListTile(

@@ -24,6 +24,7 @@ import 'package:education_flutter_web/services/ebook_service.dart';
 import 'package:education_flutter_web/ui/views/e_book/upload_ebook/upload_ebook_view.dart';
 
 import '../ui/widgets/pdf_viewer.dart';
+import 'package:education_flutter_web/ui/views/chat_page/chat_page_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -43,6 +44,7 @@ import '../ui/widgets/pdf_viewer.dart';
     MaterialRoute(page: EBookView),
     MaterialRoute(page: UploadebookView),
     MaterialRoute(page: pdfViewer),
+    MaterialRoute(page: ChatPageView),
 // @stacked-route
   ],
   dependencies: [

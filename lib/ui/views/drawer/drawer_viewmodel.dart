@@ -7,6 +7,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../../app/app.locator.dart';
 import '../account/account_view.dart';
+import '../chat_page/chat_page_view.dart';
 import '../courses/courses_view.dart';
 import '../dashboard/dashboard_view.dart';
 import '../e_book/e_book_view.dart';
@@ -18,6 +19,7 @@ class DrawerViewModel extends BaseViewModel {
     DashboardView(),
     const AccountView(),
     const Text("Contacts"),
+    const ChatPageView(),
     const Text("Teachers"),
     const CoursesView(),
     const EBookView(),
