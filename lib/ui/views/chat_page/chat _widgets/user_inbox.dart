@@ -10,7 +10,8 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
     return  Column(
       children: [
 
-        Expanded(
+        Container(
+          height: 400,
           child: ListView.builder(
               itemCount:viewModel.message.length,
               shrinkWrap: true,

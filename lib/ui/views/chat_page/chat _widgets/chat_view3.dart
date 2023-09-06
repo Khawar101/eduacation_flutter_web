@@ -110,6 +110,22 @@ class ChatView3 extends ViewModelWidget<ChatPageViewModel> {
           Expanded(
             child: Column(
               children: [
+                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.circle,
+                      color: Colors.green,
+                      size: 11,
+                    ),
+                    Text(
+                      "  Active now",
+                      style: TextStyle(
+                        fontSize: 11,
+                      ),
+                    ),
+                  ],
+                ),
                 Expanded(
                   child: ListView.builder(
                       itemCount: message.length,
