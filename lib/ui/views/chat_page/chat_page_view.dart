@@ -1,3 +1,4 @@
+import 'package:education_flutter_web/ui/views/chat_page/chat%20_widgets/chat_view3.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -12,11 +13,10 @@ class ChatPageView extends StackedView<ChatPageViewModel> {
     ChatPageViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      body: Container(
-        padding: const EdgeInsets.only(left: 25.0, right: 25.0),
-      ),
+    return  Container(
+        // padding: const EdgeInsets.only(left: 25.0, right: 25.0),
+        child: ChatView3(),
+      
     );
   }
 
