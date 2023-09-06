@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:education_flutter_web/ui/widgets/common/custom_text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -29,28 +30,45 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
               child: CustomTextField(
                 hintText: "Search...",
                 prefix: const Icon(Icons.search),
+                controller: viewModel.searchCTRL,
               )),
           Expanded(
-            child: ListView.builder(
-              itemCount: 15,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return const ListTile(
-                  title: Text("Madonna Oster"),
-                  subtitle: Text(
-                    "Analysis of for iegn exper ienc...",
-                    style: TextStyle(
-                        overflow: TextOverflow.ellipsis, fontSize: 11),
-                  ),
-                  trailing: Text("1:10 PM"),
-                  leading: CircleAvatar(
-                    backgroundColor: Colors.red,
-                    // backgroundImage: AssetImage("assets/images/profile.jpg"),
-                  ),
-                );
-              },
-            ),
-          ),
+              child: StreamBuilder<QuerySnapshot>(
+            stream: viewModel.usersStream,
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasError) {
+                return const Text("Something went wrong");
+              }
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Text("Loading");
+              }
+              return ListView.builder(
+                itemCount: snapshot.data!.docs.length,
+                shrinkWrap: true,
+                
+                itemBuilder: (context, index) {
+                 var data= snapshot.data!.docs[index];
+                  return 
+                   ListTile(
+                    title: Text(data["username"]
+                                                          .toString(),),
+                    subtitle: Text(
+                      "Analysis of for iegn exper ienc...",
+                      style: TextStyle(
+                          overflow: TextOverflow.ellipsis, fontSize: 11),
+                    ),
+                    trailing: Text("1:10 PM"),
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.red,
+                       backgroundImage:NetworkImage(
+                                                  data["profile"].toString()),
+                    ),
+                  );
+                },
+              );
+            },
+          )),
         ],
       ),
     );
