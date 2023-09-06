@@ -11,7 +11,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
       children: [
 
         Container(
-          height: 400,
+          height: MediaQuery.of(context).size.height-160,
           child: ListView.builder(
               itemCount:viewModel.message.length,
               shrinkWrap: true,

@@ -28,8 +28,7 @@ class ChatPageViewModel extends BaseViewModel {
     ChatMessage(messageContent: "Hello? Will", messageType: "send"),
     ChatMessage(messageContent: "How have you been?", messageType: "send"),
     ChatMessage(
-        messageContent: "Hey Kriss, I am doing fine dude, wbu?",
-        messageType: "recieve"),
+        messageContent: "Hey Kriss, I am doing fine dude, wbu?", messageType: "recieve"),
     ChatMessage(messageContent: "ehh doing OK.", messageType: "send"),
     ChatMessage(
         messageContent: "is there anything wrong?", messageType: "recieve"),
