@@ -28,7 +28,7 @@ class DashboardView extends StackedView<DashboardViewModel> {
       height: MediaQuery.of(context).size.height * 0.9,
       color: Colors.white,
       child: Scrollbar(
-        isAlwaysShown: true,
+        thumbVisibility: true,
         controller: _horizontalScrollController,
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
