@@ -2,6 +2,7 @@ import 'package:education_flutter_web/ui/views/chat_page/chat%20_widgets/chat_vi
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import 'chat _widgets/chat_acounts.dart';
 import 'chat_page_viewmodel.dart';
 
 class ChatPageView extends StackedView<ChatPageViewModel> {
@@ -13,9 +14,16 @@ class ChatPageView extends StackedView<ChatPageViewModel> {
     ChatPageViewModel viewModel,
     Widget? child,
   ) {
-    return  Container(
-        // padding: const EdgeInsets.only(left: 25.0, right: 25.0),
-        child: ChatView3(),
+    final height=MediaQuery.of(context).size.height;
+    final width=MediaQuery.of(context).size.width;
+    return  SizedBox(
+      height: height*1-50,
+      width: width*1,
+        child: const Row(
+          children: [
+            ChatUsers()
+          ],
+        )
       
     );
   }

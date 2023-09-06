@@ -1,16 +1,16 @@
 
 import 'package:education_flutter_web/ui/views/chat_page/chat%20_widgets/chat_message.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
-class ChatView3 extends StatefulWidget {
+import '../chat_page_viewmodel.dart';
+class ChatView3 extends ViewModelWidget<ChatPageViewModel> {
   const ChatView3({super.key});
 
   @override
-  State<ChatView3> createState() => _ChatView3State();
-}
+  Widget build(BuildContext context, ChatPageViewModel viewModel) {
 
-class _ChatView3State extends State<ChatView3> {
-  List<ChatMessage> message = [
+     List<ChatMessage> message = [
     ChatMessage(messageContent: "khawr kya hal hy", messageType: "send"),
     ChatMessage(messageContent: "Hello? Will", messageType: "send"),
     ChatMessage(messageContent: "How have you been?", messageType: "send"),
@@ -35,9 +35,6 @@ class _ChatView3State extends State<ChatView3> {
     ChatMessage(messageContent: "messageContent")
   ];
   
-
-  @override
-  Widget build(BuildContext context) {
     return Container(
       child: Row(
         children: [
