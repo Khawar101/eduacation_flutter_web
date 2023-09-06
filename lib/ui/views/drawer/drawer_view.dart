@@ -96,6 +96,19 @@ class DrawerView extends StackedView<DrawerViewModel> {
                         viewModel.updatePage(2);
                       },
                     ),
+                     ListTile(
+                      leading: Icon(
+                        Icons.chat,
+                        color: const Color(0xff4873a6).withOpacity(0.7),
+                      ),
+                      title: Visibility(
+                          visible: screenWidth >= 900,
+                          child: const Text('Chats')),
+                      minLeadingWidth: 0.009,
+                      onTap: () {
+                        viewModel.updatePage(2);
+                      },
+                    ),
                     ListTile(
                       leading: Icon(
                         Icons.groups_2_outlined,
