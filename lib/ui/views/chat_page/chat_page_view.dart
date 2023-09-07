@@ -37,7 +37,7 @@ class ChatPageView extends StackedView<ChatPageViewModel> {
                       children: [
                         Container(
                           // color: Colors.amber,
-                          child: UserInbox(chatId: viewModel.chatId  , otherData: viewModel.otherId),
+                          child: UserInbox(chatId: viewModel.chatId ),
                           // child: UserInbox(),
                         ),
                       ],

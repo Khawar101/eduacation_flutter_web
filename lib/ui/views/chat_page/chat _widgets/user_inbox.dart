@@ -7,55 +7,54 @@ import 'package:stacked/stacked.dart';
 import '../chat_page_viewmodel.dart';
 import 'chat_message.dart';
 
-class UserInbox extends StackedView<ChatPageViewModel> {
+class UserInbox extends ViewModelWidget<ChatPageViewModel> {
   final String chatId;
-  final String otherData;
   const UserInbox({
     Key? key,
     required this.chatId,
-    required this.otherData,
   }) : super(key: key);
 
 
-@override
-  void onViewModelReady(ChatPageViewModel viewModel) {
-    viewModel.initState();
-    super.onViewModelReady(viewModel);
-  }
+// @override
+//   void onViewModelReady(ChatPageViewModel viewModel) {
+//     viewModel.initState();
+//     super.onViewModelReady(viewModel);
+//   }
 
+//   @override
+//   void onDispose(ChatPageViewModel viewModel) {
+//     viewModel.smsController.dispose();
+//     super.onDispose(viewModel);
+//   }
   @override
-  void onDispose(ChatPageViewModel viewModel) {
-    viewModel.smsController.dispose();
-    super.onDispose(viewModel);
-  }
-  @override
-  Widget builder(BuildContext context, ChatPageViewModel viewModel, Widget? child) {
+  Widget build(BuildContext context, ChatPageViewModel viewModel) {
     return Column(
       children: [
-        const SizedBox(
+         SizedBox(
           height: 50,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(width: 20),
-              CircleAvatar(
+              const SizedBox(width: 20),
+               CircleAvatar(
                 backgroundColor: Colors.red,
-                // backgroundImage:
-                //     AssetImage("assets/images/profile.jpg"),
+                backgroundImage:
+                    NetworkImage(
+                      viewModel.profile),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "medona oster",
-                    style: TextStyle(fontSize: 20),
+                   viewModel.name.toString(),
+                    style: const TextStyle(fontSize: 20),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 1,
                   ),
-                  Row(
+                  const Row(
                     children: [
                       Icon(
                         Icons.circle,
@@ -151,9 +150,4 @@ class UserInbox extends StackedView<ChatPageViewModel> {
     );
   }
 
-    @override
-  ChatPageViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
-      ChatPageViewModel();
 }

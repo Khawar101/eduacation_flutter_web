@@ -39,7 +39,7 @@ class MessageBubble extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
           margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 8.0),
           child: Container(
-            constraints: const BoxConstraints(minWidth: 10, maxWidth: 200),
+            constraints: const BoxConstraints(minWidth: 10, maxWidth: 400),
             child: Text(
               message,
               style: TextStyle(

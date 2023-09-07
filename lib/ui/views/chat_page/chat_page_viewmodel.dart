@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -5,7 +7,7 @@ import '../../../app/app.locator.dart';
 import '../../../services/login_service.dart';
 
 class ChatPageViewModel extends BaseViewModel {
-   String otherId="";
+  //  String otherId="";
     String chatId="";
     String name="";
     String profile="";
@@ -20,9 +22,13 @@ class ChatPageViewModel extends BaseViewModel {
   }
   
 
-   setChatId() {
+   setChatId(otherData) {
+    log("sffffffff");
+    name= otherData["username"];
+    profile=otherData["profile"];
     var currentuID = loginService.UserData.uID.toString();
-    List<String> _chatID = [currentuID, otherId]..sort();
+    List<String> _chatID = [currentuID, otherData['UID']]..sort();
+    log("${chatId.toString()} =====2=====${currentuID}=====>${_chatID}======>");
    chatId=  _chatID.join('_');
    notifyListeners();
   }

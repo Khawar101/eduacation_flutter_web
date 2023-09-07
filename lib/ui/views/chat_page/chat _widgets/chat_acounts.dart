@@ -4,8 +4,8 @@ import 'package:stacked/stacked.dart';
 import '../chat_page_viewmodel.dart';
 
 class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
-  final data ;
-  const ChatUsers({super.key,required this.data});
+  final data;
+  const ChatUsers({super.key, required this.data});
 
   @override
   Widget build(BuildContext context, ChatPageViewModel viewModel) {
@@ -33,31 +33,31 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
                 controller: viewModel.searchCTRL,
               )),
           Expanded(
-              child: ListView.builder(
-                itemCount: data.length,
-                shrinkWrap: true,
-                
-                itemBuilder: (context, index) {
-                 var _data= data[index];
-                  return 
-                   ListTile(
-                    onTap: viewModel.setChatId,
-                    title: Text(_data["username"]
-                                                          .toString(),),
-                    subtitle: Text(
-                      "Analysis of for iegn exper ienc...",
-                      style: TextStyle(
-                          overflow: TextOverflow.ellipsis, fontSize: 11),
-                    ),
-                    trailing: Text("1:10 PM"),
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.red,
-                       backgroundImage:NetworkImage(
-                                                  _data["profile"].toString()),
-                    ),
-                  );
-                },
-              ),
+            child: ListView.builder(
+              itemCount: data.length,
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                var _data = data[index];
+                return ListTile(
+                  onTap: () {
+                    viewModel.setChatId(_data);
+                  },
+                  title: Text(
+                    _data["username"].toString(),
+                  ),
+                  subtitle: Text(
+                    "Analysis of for iegn exper ienc...",
+                    style: TextStyle(
+                        overflow: TextOverflow.ellipsis, fontSize: 11),
+                  ),
+                  trailing: Text("1:10 PM"),
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.red,
+                    backgroundImage: NetworkImage(_data["profile"].toString()),
+                  ),
+                );
+              },
+            ),
           ),
         ],
       ),
