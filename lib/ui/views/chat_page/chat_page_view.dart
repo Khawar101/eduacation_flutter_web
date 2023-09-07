@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:education_flutter_web/ui/views/chat_page/chat%20_widgets/user_inbox.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -18,27 +19,33 @@ class ChatPageView extends StackedView<ChatPageViewModel> {
     return SizedBox(
         height: height * 1 - 50,
         width: width * 1,
-        child: Row(
-          children: [
-            ChatUsers(),
-            Expanded(
-              child: Column(
+        child: StreamBuilder<QuerySnapshot>(
+            stream: viewModel.usersStream,
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasError) {
+                return const Text("Something went wrong");
+              }
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Text("Loading");
+              }
+              return Row(
                 children: [
-                 
-                  Container(
-                    
-                    // color: Colors.amber,
-                    child: UserInbox(),
-                    // child: UserInbox(),
-                  ),
-
-
-                  
+                  ChatUsers(data: snapshot.data!.docs,),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Container(
+                          // color: Colors.amber,
+                          child: UserInbox(chatId: viewModel.chatId  , otherData: viewModel.otherId),
+                          // child: UserInbox(),
+                        ),
+                      ],
+                    ),
+                  )
                 ],
-              ),
-            )
-          ],
-        ));
+              );
+            }));
   }
 
   @override

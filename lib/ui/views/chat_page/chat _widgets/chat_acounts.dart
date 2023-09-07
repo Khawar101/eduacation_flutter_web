@@ -1,11 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:education_flutter_web/ui/widgets/common/custom_text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../chat_page_viewmodel.dart';
 
 class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
-  const ChatUsers({super.key});
+  final data ;
+  const ChatUsers({super.key,required this.data});
 
   @override
   Widget build(BuildContext context, ChatPageViewModel viewModel) {
@@ -33,25 +33,16 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
                 controller: viewModel.searchCTRL,
               )),
           Expanded(
-              child: StreamBuilder<QuerySnapshot>(
-            stream: viewModel.usersStream,
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (snapshot.hasError) {
-                return const Text("Something went wrong");
-              }
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Text("Loading");
-              }
-              return ListView.builder(
-                itemCount: snapshot.data!.docs.length,
+              child: ListView.builder(
+                itemCount: data.length,
                 shrinkWrap: true,
                 
                 itemBuilder: (context, index) {
-                 var data= snapshot.data!.docs[index];
+                 var _data= data[index];
                   return 
                    ListTile(
-                    title: Text(data["username"]
+                    onTap: viewModel.setChatId,
+                    title: Text(_data["username"]
                                                           .toString(),),
                     subtitle: Text(
                       "Analysis of for iegn exper ienc...",
@@ -62,13 +53,12 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
                     leading: CircleAvatar(
                       backgroundColor: Colors.red,
                        backgroundImage:NetworkImage(
-                                                  data["profile"].toString()),
+                                                  _data["profile"].toString()),
                     ),
                   );
                 },
-              );
-            },
-          )),
+              ),
+          ),
         ],
       ),
     );

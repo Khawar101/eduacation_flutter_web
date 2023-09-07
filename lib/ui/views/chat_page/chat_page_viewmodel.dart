@@ -1,11 +1,46 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:education_flutter_web/ui/views/chat_page/chat%20_widgets/chat_message.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import '../../../app/app.locator.dart';
+import '../../../services/login_service.dart';
 
 class ChatPageViewModel extends BaseViewModel {
+   String otherId="";
+    String chatId="";
+    String name="";
+    String profile="";
+  final loginService = locator<LoginService>();
     FirebaseFirestore firestore = FirebaseFirestore.instance;
    TextEditingController searchCTRL= TextEditingController();
+     final TextEditingController smsController = TextEditingController();
+  bool isTextEmpty = true;
+  void initState() {
+    smsController.addListener(updateTextStatus);
+    notifyListeners();
+  }
+  
+
+   setChatId() {
+    var currentuID = loginService.UserData.uID.toString();
+    List<String> _chatID = [currentuID, otherId]..sort();
+   chatId=  _chatID.join('_');
+   notifyListeners();
+  }
+
+  void updateTextStatus() {
+    isTextEmpty = smsController.text.isEmpty;
+    notifyListeners();
+  }
+
+   Stream<QuerySnapshot<Map<String, dynamic>>> getMessagesStream() {
+    CollectionReference chatCollection = firestore.collection('chats');
+
+    return chatCollection
+        .where("chatId", isEqualTo: chatId)
+        .orderBy('Date', descending: true)
+        .snapshots() as Stream<QuerySnapshot<Map<String, dynamic>>>;
+  }
+
 
      Stream<QuerySnapshot> getLastMessageStream(String chatId) {
     CollectionReference chatCollection = firestore.collection('chats');
@@ -23,27 +58,5 @@ class ChatPageViewModel extends BaseViewModel {
   final Stream<QuerySnapshot> usersStream =
       FirebaseFirestore.instance.collection('users').snapshots();
 
-     List<ChatMessage> message = [
-    ChatMessage(messageContent: "khawr kya hal hy", messageType: "send"),
-    ChatMessage(messageContent: "Hello? Will", messageType: "send"),
-    ChatMessage(messageContent: "How have you been?", messageType: "send"),
-    ChatMessage(
-        messageContent: "Hey Kriss, I am doing fine dude, wbu?", messageType: "recieve"),
-    ChatMessage(messageContent: "ehh doing OK.", messageType: "send"),
-    ChatMessage(
-        messageContent: "is there anything wrong?", messageType: "recieve"),
-    ChatMessage(messageContent: "no everything is fine ", messageType: "send"),
-    ChatMessage(messageContent: "Ok", messageType: "recieve"),
-    ChatMessage(
-        messageContent:
-            "kfsjglfhdn dfkjg flkgj;oid ifgu gduifg uifdug oih g fodiguoihu",
-        messageType: "recieve"),
-    ChatMessage(messageContent: "ugi igu gfiduh ifduh", messageType: "send"),
-    ChatMessage(messageContent: "Ok", messageType: "recieve"),
-    ChatMessage(messageContent: "Ok jhkf sgdlgj 65 65 65", messageType: "send"),
-    ChatMessage(
-        messageContent: "sdgosu iouh difu hifudh uhdiof uhf",
-        messageType: "recieve"),
-    ChatMessage(messageContent: "messageContent")
-  ];
+
 }
