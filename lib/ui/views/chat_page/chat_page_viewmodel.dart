@@ -6,37 +6,39 @@ import '../../../services/login_service.dart';
 
 class ChatPageViewModel extends BaseViewModel {
   //  String otherId="";
-    String chatId="";
-    String name="";
-    String profile="";
+  
+  int numLines = 0;
+  String chatId = "";
+  String name = "";
+  String profile = "";
   final loginService = locator<LoginService>();
-    FirebaseFirestore firestore = FirebaseFirestore.instance;
-   TextEditingController searchCTRL= TextEditingController();
-     final TextEditingController smsController = TextEditingController();
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  TextEditingController searchCTRL = TextEditingController();
+  final TextEditingController smsController = TextEditingController();
   bool isTextEmpty = true;
   void initState() {
-    smsController.addListener(updateTextStatus);
+    // smsController.addListener(updateTextStatus);
     notifyListeners();
   }
-  
 
-   setChatId(otherData) {
+  setChatId(otherData) {
     // log("sffffffff");
-    name= otherData["username"];
-    profile=otherData["profile"];
+    name = otherData["username"];
+    profile = otherData["profile"];
     var currentuID = loginService.UserData.uID.toString();
     List<String> _chatID = [currentuID, otherData['UID']]..sort();
     // log("${chatId.toString()} =====2=====${currentuID}=====>${_chatID}======>");
-   chatId=  _chatID.join('_');
-   notifyListeners();
+    chatId = _chatID.join('_');
+    notifyListeners();
   }
 
-  void updateTextStatus() {
+  void updateTextStatus(e) {
+    numLines = '\n'.allMatches(e).length + 1;
     isTextEmpty = smsController.text.isEmpty;
     notifyListeners();
   }
 
-   Stream<QuerySnapshot<Map<String, dynamic>>> getMessagesStream() {
+  Stream<QuerySnapshot<Map<String, dynamic>>> getMessagesStream() {
     CollectionReference chatCollection = firestore.collection('chats');
 
     return chatCollection
@@ -45,8 +47,7 @@ class ChatPageViewModel extends BaseViewModel {
         .snapshots() as Stream<QuerySnapshot<Map<String, dynamic>>>;
   }
 
-
-     Stream<QuerySnapshot> getLastMessageStream(String chatId) {
+  Stream<QuerySnapshot> getLastMessageStream(String chatId) {
     CollectionReference chatCollection = firestore.collection('chats');
 
     return chatCollection
@@ -62,7 +63,7 @@ class ChatPageViewModel extends BaseViewModel {
   final Stream<QuerySnapshot> usersStream =
       FirebaseFirestore.instance.collection('users').snapshots();
 
-        void sentSMS(chatId, context) async {
+  void sentSMS(chatId, context) async {
     // String mergeuid = uid_merge(widget.UserData['UID'], widget.UID).toString();
     // print("objectobjectobjectobjectobjectobjectobjectobjectobject");
     String sms = smsController.text;
@@ -93,6 +94,4 @@ class ChatPageViewModel extends BaseViewModel {
       );
     }
   }
-
-
 }

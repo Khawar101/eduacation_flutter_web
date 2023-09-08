@@ -25,8 +25,10 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
 //     viewModel.smsController.dispose();
 //     super.onDispose(viewModel);
 //   }
+
   @override
   Widget build(BuildContext context, ChatPageViewModel viewModel) {
+    double height = MediaQuery.of(context).size.height;
     return Column(
       children: [
         SizedBox(
@@ -73,7 +75,8 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
           ),
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height - 160,
+          height: height -
+              (150 + (15 * (viewModel.numLines <= 5 ? viewModel.numLines : 5))),
           child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
               stream: viewModel.getMessagesStream(),
               builder: (context, snapshot) {
@@ -114,7 +117,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                 child: TextField(
                   controller: viewModel.smsController,
                   onChanged: (text) {
-                    viewModel.updateTextStatus(); // Update the text status
+                    viewModel.updateTextStatus(text); // Update the text status
                   },
                   decoration: const InputDecoration(
                     hintText: 'Type your message...',
