@@ -62,5 +62,37 @@ class ChatPageViewModel extends BaseViewModel {
   final Stream<QuerySnapshot> usersStream =
       FirebaseFirestore.instance.collection('users').snapshots();
 
+        void sentSMS(chatId, context) async {
+    // String mergeuid = uid_merge(widget.UserData['UID'], widget.UID).toString();
+    // print("objectobjectobjectobjectobjectobjectobjectobjectobject");
+    String sms = smsController.text;
+    try {
+      if (sms != "") {
+        smsController.clear();
+        FirebaseFirestore firestore = FirebaseFirestore.instance;
+        await firestore.collection('chats').doc().set({
+          "chatId": chatId,
+          "SMS": sms,
+          "Date": "${DateTime.now().microsecondsSinceEpoch}",
+          "status": "seen",
+          "type": "text",
+          "UID": loginService.UserData.uID,
+        });
+
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   const SnackBar(
+        //     content: Text('Sending....'),
+        //   ),
+        // );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.toString()),
+        ),
+      );
+    }
+  }
+
 
 }

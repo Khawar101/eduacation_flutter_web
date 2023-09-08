@@ -32,32 +32,30 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
                 prefix: const Icon(Icons.search),
                 controller: viewModel.searchCTRL,
               )),
-          Expanded(
-            child: ListView.builder(
-              itemCount: data.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                var _data = data[index];
-                return ListTile(
-                  onTap: () {
-                    viewModel.setChatId(_data);
-                  },
-                  title: Text(
-                    _data["username"].toString(),
-                  ),
-                  subtitle: Text(
-                    "Analysis of for iegn exper ienc...",
-                    style: TextStyle(
-                        overflow: TextOverflow.ellipsis, fontSize: 11),
-                  ),
-                  trailing: Text("1:10 PM"),
-                  leading: CircleAvatar(
-                    backgroundColor: Colors.red,
-                    backgroundImage: NetworkImage(_data["profile"].toString()),
-                  ),
-                );
-              },
-            ),
+          ListView.builder(
+            itemCount: data.length,
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              var _data = data[index];
+              return ListTile(
+                onTap: () {
+                  viewModel.setChatId(_data);
+                },
+                title: Text(
+                  _data["username"].toString(),
+                ),
+                subtitle: Text(
+                  "Analysis of for iegn exper ienc...",
+                  style: TextStyle(
+                      overflow: TextOverflow.ellipsis, fontSize: 11),
+                ),
+                trailing: Text("1:10 PM"),
+                leading: CircleAvatar(
+                  backgroundColor: Colors.red,
+                  backgroundImage: NetworkImage(_data["profile"].toString()),
+                ),
+              );
+            },
           ),
         ],
       ),

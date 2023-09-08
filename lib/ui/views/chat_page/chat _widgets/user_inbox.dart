@@ -14,7 +14,6 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
     required this.chatId,
   }) : super(key: key);
 
-
 // @override
 //   void onViewModelReady(ChatPageViewModel viewModel) {
 //     viewModel.initState();
@@ -30,17 +29,15 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
   Widget build(BuildContext context, ChatPageViewModel viewModel) {
     return Column(
       children: [
-         SizedBox(
+        SizedBox(
           height: 50,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(width: 20),
-               CircleAvatar(
+              CircleAvatar(
                 backgroundColor: Colors.red,
-                backgroundImage:
-                    NetworkImage(
-                      viewModel.profile),
+                backgroundImage: NetworkImage(viewModel.profile),
               ),
               const SizedBox(width: 10),
               Column(
@@ -48,7 +45,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                   viewModel.name.toString(),
+                    viewModel.name.toString(),
                     style: const TextStyle(fontSize: 20),
                   ),
                   const SizedBox(
@@ -77,77 +74,74 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
         ),
         SizedBox(
           height: MediaQuery.of(context).size.height - 160,
-          child: Expanded(
-            child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                stream: viewModel.getMessagesStream(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) {
-                    log(snapshot.error.toString());
-                    return const Text('Error fetching messages');
-                  }
+          child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+              stream: viewModel.getMessagesStream(),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  log(snapshot.error.toString());
+                  return const Text('Error fetching messages');
+                }
 
-                  if (!snapshot.hasData) {
-                    return const Text('No messages yet');
-                  }
-                  return ListView.builder(
-                    itemCount: snapshot.data?.docs
-                        .length, // Replace with your actual message count
-                    reverse: true, // To show the latest messages at the bottom
-                    itemBuilder: (context, index) {
-                      var messageData = snapshot.data!.docs[index].data();
+                if (!snapshot.hasData) {
+                  return const Text('No messages yet');
+                }
+                return ListView.builder(
+                  itemCount: snapshot.data?.docs.length,
+                  // Replace with your actual message count
+                  reverse: true, // To show the latest messages at the bottom
+                  itemBuilder: (context, index) {
+                    var messageData = snapshot.data!.docs[index].data();
 
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: MessageBubble(
-                          isMe: messageData['UID'] ==
-                              viewModel.loginService.UserData.uID,
-                          message: messageData['SMS'],
-                        ),
-                      );
-                    },
-                  );
-                }),
-          ),
-          //  ListView.builder(
-          //     itemCount: viewModel.message.length,
-          //     shrinkWrap: true,
-          //     itemBuilder: (context, index) {
-          //       return Container(
-          //         padding:
-          //             const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-          //         child: Align(
-          //           // alignment: Alignment.bottomRight,
-          //           alignment:
-          //               (viewModel.message[index].messageType == "recieve"
-          //                   ? Alignment.topLeft
-          //                   : Alignment.bottomRight),
-          //           child: Container(
-          //             decoration: BoxDecoration(
-          //               borderRadius: BorderRadius.circular(20),
-          //               // color: Colors.green
-          //               color:
-          //                   (viewModel.message[index].messageType == "recieve"
-          //                       ? const Color(0xFFEBF4FB)
-          //                       : Colors.teal.shade100),
-          //             ),
-          //             padding: const EdgeInsets.symmetric(
-          //                 vertical: 6, horizontal: 16),
-          //             // child: Text("data"),
-          //             child: Text(
-          //               viewModel.message[index].messageContent.toString(),
-          //               style: const TextStyle(fontSize: 15),
-          //             ),
-          //           ),
-          //         ),
-          //       );
-          //     }),
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: MessageBubble(
+                        isMe: messageData['UID'] ==
+                            viewModel.loginService.UserData.uID,
+                        message: messageData['SMS'],
+                      ),
+                    );
+                  },
+                );
+              }),
         ),
-        CustomTextField(
-          prefix: const Icon(Icons.emoji_emotions),
-          suffix: const Icon(Icons.send),
-        )
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          color: Colors.grey[200],
+          // decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+          child: Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: viewModel.smsController,
+                  onChanged: (text) {
+                    viewModel.updateTextStatus(); // Update the text status
+                  },
+                  decoration: const InputDecoration(
+                    hintText: 'Type your message...',
+                    border: InputBorder.none,
+                  ),
+                  maxLines: 5,
+                  minLines: 1,
+                ),
+              ),
+              IconButton(
+                icon: Icon(
+                  Icons.send,
+                  color: viewModel.isTextEmpty
+                      ? Colors.grey
+                      : const Color(0xff4873a6).withOpacity(0.7),
+                ),
+                onPressed: () {
+                  if (!viewModel.isTextEmpty) {
+                    // Perform action when there is text
+                    viewModel.sentSMS(chatId, context);
+                  }
+                },
+              )
+            ],
+          ),
+        ),
       ],
     );
   }
-
 }
