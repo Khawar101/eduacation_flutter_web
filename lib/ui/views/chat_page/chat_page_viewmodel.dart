@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -23,12 +21,12 @@ class ChatPageViewModel extends BaseViewModel {
   
 
    setChatId(otherData) {
-    log("sffffffff");
+    // log("sffffffff");
     name= otherData["username"];
     profile=otherData["profile"];
     var currentuID = loginService.UserData.uID.toString();
     List<String> _chatID = [currentuID, otherData['UID']]..sort();
-    log("${chatId.toString()} =====2=====${currentuID}=====>${_chatID}======>");
+    // log("${chatId.toString()} =====2=====${currentuID}=====>${_chatID}======>");
    chatId=  _chatID.join('_');
    notifyListeners();
   }
