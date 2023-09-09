@@ -1,7 +1,5 @@
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:education_flutter_web/ui/widgets/common/custom_text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../chat_page_viewmodel.dart';
@@ -13,18 +11,6 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
     Key? key,
     required this.chatId,
   }) : super(key: key);
-
-// @override
-//   void onViewModelReady(ChatPageViewModel viewModel) {
-//     viewModel.initState();
-//     super.onViewModelReady(viewModel);
-//   }
-
-//   @override
-//   void onDispose(ChatPageViewModel viewModel) {
-//     viewModel.smsController.dispose();
-//     super.onDispose(viewModel);
-//   }
   @override
   Widget build(BuildContext context, ChatPageViewModel viewModel) {
     return Column(
@@ -73,7 +59,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
           ),
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height - 160,
+          height: MediaQuery.of(context).size.height - 150,
           child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
               stream: viewModel.getMessagesStream(),
               builder: (context, snapshot) {
@@ -106,12 +92,15 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
         ),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          color: Colors.grey[200],
-          // decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all( color:const Color(0xff4873a6).withOpacity(0.7),),
+            color: Colors.grey[200],
+          ),
           child: Row(
             children: [
               Expanded(
-                child: TextField(
+                child: TextFormField(
                   controller: viewModel.smsController,
                   onChanged: (text) {
                     viewModel.updateTextStatus(); // Update the text status
@@ -133,7 +122,6 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                 ),
                 onPressed: () {
                   if (!viewModel.isTextEmpty) {
-                    // Perform action when there is text
                     viewModel.sentSMS(chatId, context);
                   }
                 },
