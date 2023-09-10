@@ -39,7 +39,6 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
                 prefix: const Icon(Icons.search),
                 controller: viewModel.searchCTRL,
               )),
-
           ListView.builder(
             itemCount: data.length,
             shrinkWrap: true,
@@ -55,10 +54,9 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
                           ConnectionState.waiting) {
                     return const SizedBox(); // Handle loading and error states
                   }
+                  if (messageSnapshot.hasData) {
+                    var messages = messageSnapshot.data!.docs;
 
-                  var messages = messageSnapshot.data!.docs;
-                  if (messages.isNotEmpty) {
-                    var lastMessage = messages.last;
                     return ListTile(
                       onTap: () {
                         viewModel.setChatId(_data);
@@ -67,30 +65,27 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
                         _data["username"].toString(),
                       ),
                       subtitle: Text(
-                        lastMessage["SMS"].toString(),
+                        messages.last["SMS"].toString(),
                         style: const TextStyle(
                           overflow: TextOverflow.ellipsis,
                           fontSize: 11,
                         ),
                       ),
-                      trailing: Text(""
-                          // timeago.format(
-                          //   DateTime.fromMicrosecondsSinceEpoch(
-                          //     int.parse(lastMessage["Date"]),
-                          //   ),
-                          // ),
+                      trailing: Text(
+                        timeago.format(
+                          DateTime.fromMicrosecondsSinceEpoch(
+                            int.parse(messages.last["Date"]),
                           ),
+                        ),
+                      ),
                       leading: CircleAvatar(
                         backgroundColor: Colors.red,
                         backgroundImage:
                             NetworkImage(_data["profile"].toString()),
                       ),
                     );
-                  } else {
-                    return const SizedBox(
-                      child: Text("No messages"),
-                    );
-                  }
+                  } 
+                  return Container();
                 },
               );
             },
