@@ -16,10 +16,10 @@ class ChatPageViewModel extends BaseViewModel {
   TextEditingController searchCTRL = TextEditingController();
   final TextEditingController smsController = TextEditingController();
   bool isTextEmpty = true;
-  // void initState() {
-  //   smsController.addListener(updateTextStatus);
-  //   notifyListeners();
-  // }
+  void initState() {
+    smsController.addListener(updateTextStatus);
+    notifyListeners();
+  }
 
   setChatId(otherData) {
     // log("sffffffff");
@@ -38,7 +38,7 @@ class ChatPageViewModel extends BaseViewModel {
   }
 
   void updateTextStatus() {
-    isTextEmpty = smsController.text.isEmpty;
+    // isTextEmpty = smsController.text.isEmpty;
     notifyListeners();
   }
 
@@ -82,6 +82,7 @@ class ChatPageViewModel extends BaseViewModel {
         //   ),
         // );
       }
+      notifyListeners();
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -90,11 +91,11 @@ class ChatPageViewModel extends BaseViewModel {
       );
     }
   }
-
-    Stream<QuerySnapshot> getLastMessageStream(otherId) {
+  
+   Stream<QuerySnapshot<Object?>> getLastMessageStream(otherId) {
     var currentuID = loginService.UserData.uID.toString();
     List<String> _chatID = [currentuID, otherId]..sort();
-    log("${chatId.toString()} =====2=====${currentuID}=====>${_chatID}======>");
+    // log("${chatId.toString()} =====2=====${currentuID}=====>${_chatID}======>");
     String _chatId = _chatID.join('_');
     CollectionReference chatCollection = firestore.collection('chats');
    
@@ -103,58 +104,23 @@ class ChatPageViewModel extends BaseViewModel {
         .where("chatId", isEqualTo: _chatId)
         .orderBy('Date', descending: true)
         .limit(1)
-        .snapshots() as Stream<QuerySnapshot<Map<String, dynamic>>>;
-  }
+        .snapshots();
+    }    
+       
+  
+// Future<QuerySnapshot> getLastMessageStream(otherId) async {
+//   var currentuID = loginService.UserData.uID.toString();
+//   List<String> _chatID = [currentuID, otherId]..sort();
+//   String _chatId = _chatID.join('_');
+//   CollectionReference chatCollection = firestore.collection('chats');
 
-  // Future<String?> getLastMessageForUser(String userId) async {
-  //   try {
-  //     final QuerySnapshot<Map<String, dynamic>> messagesQuery =
-  //         await FirebaseFirestore.instance
-  //             .collection(
-  //                 'messages') // Replace with your Firestore collection name
-  //             .where('userId',
-  //                 isEqualTo: userId) // Replace with your user ID field
-  //             .orderBy('timestamp',
-  //                 descending:
-  //                     true) // Assuming you have a timestamp field for messages
-  //             .limit(1)
-  //             .get();
+//   final querySnapshot = await chatCollection
+//     .where("chatId", isEqualTo: _chatId)
+//     .orderBy('Date', descending: true)
+//     .limit(1)
+//     .get();
 
-  //     if (messagesQuery.docs.isNotEmpty) {
-  //       final lastMessage = messagesQuery.docs.first.data();
-  //       if (lastMessage.containsKey('message')) {
-  //         return lastMessage[
-  //             'message']; // Replace 'message' with your actual message field
-  //       }
-  //     }
-  //   } catch (e) {
-  //     log('Error fetching last message: $e');
-  //   }
-  //   return null; // Return null if no message is found or if 'message' field doesn't exist
-  // }
-
-// Future<DateTime?> getLastMessageTimeForUser(String userId) async {
-//   try {
-//     final QuerySnapshot<Map<String, dynamic>> messagesQuery =
-//         await FirebaseFirestore.instance
-//             .collection('messages') // Replace with your Firestore collection name
-//             .where('userId', isEqualTo: userId) // Replace with your user ID field
-//             .orderBy('timestamp', descending: true) // Assuming you have a timestamp field for messages
-//             .limit(1)
-//             .get();
-
-//     if (messagesQuery.docs.isNotEmpty) {
-//       final lastMessage = messagesQuery.docs.first.data();
-//       if (lastMessage.containsKey('timestamp')) {
-//         final timestamp = lastMessage['timestamp']; // Replace 'timestamp' with your actual timestamp field
-//         if (timestamp is Timestamp) {
-//           return timestamp.toDate(); // Convert Firestore Timestamp to DateTime
-//         }
-//       }
-//     }
-//   } catch (e) {
-//     print('Error fetching last message time: $e');
-//   }
-//   return null; // Return null if no message is found or if 'timestamp' field doesn't exist
+//   return querySnapshot;
 // }
+ 
 }

@@ -104,9 +104,10 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
               Expanded(
                 child: TextFormField(
                   controller: viewModel.smsController,
-                  // onChanged: (text) {
-                  //   viewModel.updateTextStatus(); // Update the text status
-                  // },
+                  onChanged: (text) {
+                  
+                    // viewModel.updateTextStatus(); // Update the text status
+                  },
                   decoration: const InputDecoration(
                     hintText: 'Type your message...',
                     border: InputBorder.none,
@@ -117,9 +118,9 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
               ),
               IconButton(
                 icon: Icon(Icons.send,
-                    color: viewModel.smsController.text != ""
-                        ? const Color(0xff4873a6).withOpacity(0.7)
-                        : Colors.grey),
+                    color: viewModel.smsController.text == ""
+                        ?Colors.grey
+                        : const Color(0xff4873a6).withOpacity(0.7) ),
                 onPressed: () {
                   if (viewModel.smsController.text != "") {
                     viewModel.sentSMS(chatId, context);
