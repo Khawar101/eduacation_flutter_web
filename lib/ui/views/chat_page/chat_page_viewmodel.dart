@@ -140,19 +140,6 @@ class ChatPageViewModel extends BaseViewModel {
     }    
        
   
-// Future<QuerySnapshot> getLastMessageStream(otherId) async {
-//   var currentuID = loginService.UserData.uID.toString();
-//   List<String> _chatID = [currentuID, otherId]..sort();
-//   String _chatId = _chatID.join('_');
-//   CollectionReference chatCollection = firestore.collection('chats');
 
-//   final querySnapshot = await chatCollection
-//     .where("chatId", isEqualTo: _chatId)
-//     .orderBy('Date', descending: true)
-//     .limit(1)
-//     .get();
-
-//   return querySnapshot;
-// }
  
 }
