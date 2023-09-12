@@ -89,14 +89,28 @@ class ChatPageViewModel extends BaseViewModel {
       );
     }
   }
-  
+  final Stream<QuerySnapshot> getLastMessageStream2 =
+      FirebaseFirestore.instance.collection('users').snapshots(
+        
+      );
+
+   var reload=0;
+      
    Stream<QuerySnapshot> getLastMessageStream(otherId) {
     var currentuID = loginService.UserData.uID.toString();
     List<String> _chatID = [currentuID, otherId]..sort();
     // log("${chatId.toString()} =====2=====${currentuID}=====>${_chatID}======>");
     String _chatId = _chatID.join('_');
     CollectionReference chatCollection = firestore.collection('chats');
-   notifyListeners();
+    if(reload<1){
+       reload++;
+       Future.delayed(Duration(seconds: 1), () {
+      
+     notifyListeners();
+});
+    }
+    
+   
 
     return chatCollection
         .where("chatId", isEqualTo: _chatId)
