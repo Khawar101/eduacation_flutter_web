@@ -32,14 +32,14 @@ class ChatPageViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void updateTextStatus(e) {
-    numLines = '\n'.allMatches(e).length + 1;
-    isTextEmpty = smsController.text.isEmpty;
-    notifyListeners();
-  }
+  // void updateTextStatus(e) {
+  //   numLines = '\n'.allMatches(e).length + 1;
+  //   isTextEmpty = smsController.text.isEmpty;
+  //   notifyListeners();
+  // }
 
     notifyListeners();
-  }
+  
 
    
    setNotifyListeners() {
