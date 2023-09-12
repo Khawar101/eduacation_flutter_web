@@ -107,7 +107,7 @@ class ChatPageViewModel extends BaseViewModel {
     // log("${chatId.toString()} =====2=====${currentuID}=====>${_chatID}======>");
     String _chatId = _chatID.join('_');
     CollectionReference chatCollection = firestore.collection('chats');
-    if(reload<2){
+    if(reload<1){
        reload++;
        Future.delayed(const Duration(seconds: 1), () {
       

@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:education_flutter_web/ui/widgets/common/custom_text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 import '../chat_page_viewmodel.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -12,6 +13,7 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
 
   @override
   Widget build(BuildContext context, ChatPageViewModel viewModel) {
+    final width = MediaQuery.of(context).size.width;
     return Container(
       width: MediaQuery.of(context).size.width < 1200
           ? MediaQuery.of(context).size.width < 500
@@ -76,11 +78,14 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            lastMessage["SMS"].toString(),
-                            style: const TextStyle(
-                              overflow: TextOverflow.ellipsis,
-                              fontSize: 11,
+                          SizedBox(
+                            width: width * 0.11,
+                            child: Text(
+                              lastMessage["SMS"].toString(),
+                              style: const TextStyle(
+                                overflow: TextOverflow.ellipsis,
+                                fontSize: 11,
+                              ),
                             ),
                           ),
                           Text(
@@ -89,6 +94,7 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
                                 int.parse(lastMessage["Date"]),
                               ),
                             ),
+                            style: GoogleFonts.ibmPlexSans(fontSize: 12),
                           ),
                         ],
                       );
@@ -98,13 +104,6 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
                     );
                   },
                 ),
-                // trailing: Text(
-                //   timeago.format(
-                //     DateTime.fromMicrosecondsSinceEpoch(
-                //       int.parse(lastMessage["Date"]),
-                //     ),
-                //   ),
-                // ),
                 leading: CircleAvatar(
                   backgroundColor: Colors.red,
                   backgroundImage: NetworkImage(_data["profile"].toString()),

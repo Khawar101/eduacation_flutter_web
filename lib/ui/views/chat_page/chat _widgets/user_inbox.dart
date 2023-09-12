@@ -11,21 +11,9 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
     Key? key,
     required this.chatId,
   }) : super(key: key);
-
-// @override
-//   void onViewModelReady(ChatPageViewModel viewModel) {
-//     viewModel.initState();
-//     super.onViewModelReady(viewModel);
-//   }
-
-//   @override
-//   void onDispose(ChatPageViewModel viewModel) {
-//     viewModel.smsController.dispose();
-//     super.onDispose(viewModel);
-//   }
   @override
   Widget build(BuildContext context, ChatPageViewModel viewModel) {
-    double height = MediaQuery.of(context).size.height;
+    // double height = MediaQuery.of(context).size.height;
     return Column(
       children: [
         SizedBox(
@@ -86,8 +74,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                 }
                 return ListView.builder(
                   itemCount: snapshot.data?.docs.length,
-                  // Replace with your actual message count
-                  reverse: true, // To show the latest messages at the bottom
+                  reverse: true,
                   itemBuilder: (context, index) {
                     var messageData = snapshot.data!.docs[index].data();
 
