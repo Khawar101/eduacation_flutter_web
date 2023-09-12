@@ -6,7 +6,7 @@ import '../../../services/login_service.dart';
 
 class ChatPageViewModel extends BaseViewModel {
   //  String otherId="";
-  
+
   int numLines = 0;
   String chatId = "";
   String name = "";
@@ -59,7 +59,7 @@ class ChatPageViewModel extends BaseViewModel {
 
   Stream collectionStream =
       FirebaseFirestore.instance.collection('users').snapshots();
-
+  
   final Stream<QuerySnapshot> usersStream =
       FirebaseFirestore.instance.collection('users').snapshots();
 

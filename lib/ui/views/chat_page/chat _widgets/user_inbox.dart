@@ -113,8 +113,15 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
           // decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
           child: Row(
             children: [
+              IconButton(onPressed: (){}, icon: Icon(Icons.emoji_emotions,
+              color: viewModel.isTextEmpty
+                          ? Colors.grey
+                          : const Color(0xff4873a6).withOpacity(0.7),)),
+              SizedBox(width: 5,),
               Expanded(
+                
                 child: TextField(
+                
                   controller: viewModel.smsController,
                   onChanged: (text) {
                     viewModel.updateTextStatus(text); // Update the text status
@@ -122,24 +129,37 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                   decoration: const InputDecoration(
                     hintText: 'Type your message...',
                     border: InputBorder.none,
+                    
+                    // prefix: Icon(Icons.email, color: Colors.black,)
                   ),
                   maxLines: 5,
                   minLines: 1,
+                  
                 ),
               ),
-              IconButton(
-                icon: Icon(
-                  Icons.send,
-                  color: viewModel.isTextEmpty
-                      ? Colors.grey
-                      : const Color(0xff4873a6).withOpacity(0.7),
-                ),
-                onPressed: () {
-                  if (!viewModel.isTextEmpty) {
-                    // Perform action when there is text
-                    viewModel.sentSMS(chatId, context);
-                  }
-                },
+              Row(
+                children: [
+                  IconButton(onPressed: (){}, icon: Icon(Icons.image,color: viewModel.isTextEmpty
+                          ? Colors.grey
+                          : const Color(0xff4873a6).withOpacity(0.7),)),
+                  IconButton(onPressed: (){}, icon: Icon(Icons.attach_file, color: viewModel.isTextEmpty
+                          ? Colors.grey
+                          : const Color(0xff4873a6).withOpacity(0.7),)),
+                  IconButton(
+                    icon: Icon(
+                      Icons.send,
+                      color: viewModel.isTextEmpty
+                          ? Colors.grey
+                          : const Color(0xff4873a6).withOpacity(0.7),
+                    ),
+                    onPressed: () {
+                      if (!viewModel.isTextEmpty) {
+                        // Perform action when there is text
+                        viewModel.sentSMS(chatId, context);
+                      }
+                    },
+                  ),
+                ],
               )
             ],
           ),
