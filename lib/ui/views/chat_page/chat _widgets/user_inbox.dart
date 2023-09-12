@@ -11,8 +11,21 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
     Key? key,
     required this.chatId,
   }) : super(key: key);
+
+// @override
+//   void onViewModelReady(ChatPageViewModel viewModel) {
+//     viewModel.initState();
+//     super.onViewModelReady(viewModel);
+//   }
+
+//   @override
+//   void onDispose(ChatPageViewModel viewModel) {
+//     viewModel.smsController.dispose();
+//     super.onDispose(viewModel);
+//   }
   @override
   Widget build(BuildContext context, ChatPageViewModel viewModel) {
+    double height = MediaQuery.of(context).size.height;
     return Column(
       children: [
         SizedBox(
@@ -59,7 +72,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
           ),
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height - 150,
+          height: MediaQuery.of(context).size.height - 160,
           child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
               stream: viewModel.getMessagesStream(),
               builder: (context, snapshot) {
@@ -101,28 +114,38 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
           ),
           child: Row(
             children: [
+              IconButton(onPressed: (){}, icon: Icon(Icons.emoji_emotions,
+              color: viewModel.isTextEmpty
+                          ? Colors.grey
+                          : const Color(0xff4873a6).withOpacity(0.7),)),
+              SizedBox(width: 5,),
               Expanded(
-                child: TextFormField(
+                child: TextField(
                   controller: viewModel.smsController,
                   onChanged: (text) {
-                  
-                    // viewModel.updateTextStatus(); // Update the text status
+                    viewModel.updateTextStatus(); // Update the text status
                   },
                   decoration: const InputDecoration(
                     hintText: 'Type your message...',
                     border: InputBorder.none,
+                    
+                    // prefix: Icon(Icons.email, color: Colors.black,)
                   ),
                   maxLines: 5,
                   minLines: 1,
+                  
                 ),
               ),
               IconButton(
-                icon: Icon(Icons.send,
-                    color: viewModel.smsController.text == ""
-                        ?Colors.grey
-                        : const Color(0xff4873a6).withOpacity(0.7) ),
+                icon: Icon(
+                  Icons.send,
+                  color: viewModel.isTextEmpty
+                      ? Colors.grey
+                      : const Color(0xff4873a6).withOpacity(0.7),
+                ),
                 onPressed: () {
-                  if (viewModel.smsController.text != "") {
+                  if (!viewModel.isTextEmpty) {
+                    // Perform action when there is text
                     viewModel.sentSMS(chatId, context);
                   }
                 },

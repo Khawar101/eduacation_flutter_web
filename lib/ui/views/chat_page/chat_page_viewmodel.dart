@@ -6,6 +6,8 @@ import '../../../services/login_service.dart';
 
 class ChatPageViewModel extends BaseViewModel {
   //  String otherId="";
+
+  int numLines = 0;
   String chatId = "";
   String name = "";
   String profile = "";
@@ -15,7 +17,7 @@ class ChatPageViewModel extends BaseViewModel {
   final TextEditingController smsController = TextEditingController();
   bool isTextEmpty = true;
   void initState() {
-    smsController.addListener(updateTextStatus);
+    // smsController.addListener(updateTextStatus);
     notifyListeners();
   }
 
@@ -29,6 +31,15 @@ class ChatPageViewModel extends BaseViewModel {
     chatId = _chatID.join('_');
     notifyListeners();
   }
+
+  // void updateTextStatus(e) {
+  //   numLines = '\n'.allMatches(e).length + 1;
+  //   isTextEmpty = smsController.text.isEmpty;
+  //   notifyListeners();
+  // }
+
+    notifyListeners();
+  
 
    
    setNotifyListeners() {
@@ -49,11 +60,20 @@ class ChatPageViewModel extends BaseViewModel {
         .snapshots() as Stream<QuerySnapshot<Map<String, dynamic>>>;
   }
 
+  // Stream<QuerySnapshot> getLastMessageStream(String chatId) {
+  //   CollectionReference chatCollection = firestore.collection('chats');
+
+  //   return chatCollection
+  //       .where("chatId", isEqualTo: chatId)
+  //       .orderBy('Date', descending: true)
+  //       .limit(1)
+  //       .snapshots() as Stream<QuerySnapshot<Map<String, dynamic>>>;
+  // }
 
 
   Stream collectionStream =
       FirebaseFirestore.instance.collection('users').snapshots();
-
+  
   final Stream<QuerySnapshot> usersStream =
       FirebaseFirestore.instance.collection('users').snapshots();
 
