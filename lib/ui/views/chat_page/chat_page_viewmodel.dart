@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -92,13 +90,13 @@ class ChatPageViewModel extends BaseViewModel {
     }
   }
   
-   Stream<QuerySnapshot<Object?>> getLastMessageStream(otherId) {
+   Stream<QuerySnapshot> getLastMessageStream(otherId) {
     var currentuID = loginService.UserData.uID.toString();
     List<String> _chatID = [currentuID, otherId]..sort();
     // log("${chatId.toString()} =====2=====${currentuID}=====>${_chatID}======>");
     String _chatId = _chatID.join('_');
     CollectionReference chatCollection = firestore.collection('chats');
-   
+   notifyListeners();
 
     return chatCollection
         .where("chatId", isEqualTo: _chatId)

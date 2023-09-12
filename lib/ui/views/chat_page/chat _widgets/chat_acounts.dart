@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:education_flutter_web/ui/widgets/common/custom_text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +13,7 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
 
   @override
   Widget build(BuildContext context, ChatPageViewModel viewModel) {
-    return Container(
+       return Container(
       width: MediaQuery.of(context).size.width < 1200
           ? MediaQuery.of(context).size.width < 500
               ? 50
@@ -42,7 +44,26 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
             shrinkWrap: true,
             itemBuilder: (context, index) {
               var _data = data[index];
-              
+            return  StreamBuilder<QuerySnapshot>(
+      stream: viewModel.getLastMessageStream(_data["UID"]), // Pass the user's UID
+      
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> messageSnapshot) {
+        if (messageSnapshot.hasError ) {
+           log(messageSnapshot.error.toString());
+          return Text("hass error"); // Handle loading and error states
+        }
+        if (messageSnapshot.connectionState == ConnectionState.waiting) {
+          return const SizedBox(); // Handle loading and error states
+        }
+        if (!messageSnapshot.hasData) {
+          return const SizedBox(); // Handle loading and error states
+        }
+       
+
+        var messages = messageSnapshot.data!.docs;
+        
+        if (messageSnapshot.hasData ) {
+          var lastMessage = messages.last;
           return ListTile(
             onTap: () {
               viewModel.setChatId(_data);
@@ -50,43 +71,34 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
             title: Text(
               _data["username"].toString(),
             ),
-            subtitle:  StreamBuilder<QuerySnapshot>(
-      stream: viewModel.getLastMessageStream(_data["UID"]), // Pass the user's UID
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> messageSnapshot) {
-        if (messageSnapshot.hasError || messageSnapshot.connectionState == ConnectionState.waiting) {
-          return const SizedBox(); // Handle loading and error states
-        }
-
-        var messages = messageSnapshot.data!.docs;
-        if (messages.isNotEmpty&& messageSnapshot.hasData) {
-          var lastMessage = messages.last;
+            subtitle:  
              Text(
               lastMessage["SMS"].toString(),
               style: const TextStyle(
                 overflow: TextOverflow.ellipsis,
                 fontSize: 11,
               ),
-            );
-            // trailing: Text(
-            //   timeago.format(
-            //     DateTime.fromMicrosecondsSinceEpoch(
-            //       int.parse(lastMessage["Date"]),
-            //     ),
-            //   ),
-            // );
-            } else {
-          return const SizedBox(
-            child: Text("No messages"),
-          );
-        } return Container();
-      } ,
-    ),
+            ),
+            trailing: Text(
+              timeago.format(
+                DateTime.fromMicrosecondsSinceEpoch(
+                  int.parse(lastMessage["Date"]),
+                ),
+              ),
+            ),
+          
             leading: CircleAvatar(
               backgroundColor: Colors.red,
               backgroundImage: NetworkImage(_data["profile"].toString()),
             ),
           );
+          } 
+          return const SizedBox(
+            child: Text("No messages"),
+          );
         
+      } ,
+    );
                  
             },
           ),
