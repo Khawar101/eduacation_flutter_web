@@ -113,39 +113,42 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
             color: Colors.grey[200],
           ),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              IconButton(onPressed: (){}, icon: Icon(Icons.emoji_emotions,
-              color: viewModel.isTextEmpty
-                          ? Colors.grey
-                          : const Color(0xff4873a6).withOpacity(0.7),)),
-              SizedBox(width: 5,),
+              IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.emoji_emotions,
+                    color: viewModel.isTextEmpty
+                        ? Colors.grey
+                        : const Color(0xff4873a6).withOpacity(0.7),
+                  )),
+              const SizedBox(
+                width: 5,
+              ),
               Expanded(
                 child: TextField(
                   controller: viewModel.smsController,
-                  onChanged: (text) {
-                    viewModel.updateTextStatus(); // Update the text status
-                  },
+                  // onChanged: (text) {
+                  //   // viewModel.setNotifyListeners(); // Update the text status
+                  // },
                   decoration: const InputDecoration(
                     hintText: 'Type your message...',
                     border: InputBorder.none,
-                    
+
                     // prefix: Icon(Icons.email, color: Colors.black,)
                   ),
                   maxLines: 5,
                   minLines: 1,
-                  
                 ),
               ),
               IconButton(
-                icon: Icon(
-                  Icons.send,
-                  color: viewModel.isTextEmpty
-                      ? Colors.grey
-                      : const Color(0xff4873a6).withOpacity(0.7),
-                ),
+                icon: Icon(Icons.send,
+                    color: viewModel.smsController.text.isNotEmpty
+                        ? const Color(0xff4873a6).withOpacity(0.7)
+                        : Colors.grey),
                 onPressed: () {
-                  if (!viewModel.isTextEmpty) {
-                    // Perform action when there is text
+                  if (viewModel.smsController.text.isNotEmpty) {
                     viewModel.sentSMS(chatId, context);
                   }
                 },

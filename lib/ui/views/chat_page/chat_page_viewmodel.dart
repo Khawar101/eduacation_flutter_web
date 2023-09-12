@@ -17,7 +17,7 @@ class ChatPageViewModel extends BaseViewModel {
   final TextEditingController smsController = TextEditingController();
   bool isTextEmpty = true;
   void initState() {
-    // smsController.addListener(updateTextStatus);
+    smsController.addListener(updateTextStatus);
     notifyListeners();
   }
 
@@ -38,7 +38,6 @@ class ChatPageViewModel extends BaseViewModel {
   //   notifyListeners();
   // }
 
-    notifyListeners();
   
 
    
@@ -59,17 +58,6 @@ class ChatPageViewModel extends BaseViewModel {
         .orderBy('Date', descending: true)
         .snapshots() as Stream<QuerySnapshot<Map<String, dynamic>>>;
   }
-
-  // Stream<QuerySnapshot> getLastMessageStream(String chatId) {
-  //   CollectionReference chatCollection = firestore.collection('chats');
-
-  //   return chatCollection
-  //       .where("chatId", isEqualTo: chatId)
-  //       .orderBy('Date', descending: true)
-  //       .limit(1)
-  //       .snapshots() as Stream<QuerySnapshot<Map<String, dynamic>>>;
-  // }
-
 
   Stream collectionStream =
       FirebaseFirestore.instance.collection('users').snapshots();
@@ -109,10 +97,7 @@ class ChatPageViewModel extends BaseViewModel {
       );
     }
   }
-  final Stream<QuerySnapshot> getLastMessageStream2 =
-      FirebaseFirestore.instance.collection('users').snapshots(
-        
-      );
+
 
    var reload=0;
       
