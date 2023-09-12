@@ -32,14 +32,10 @@ class ChatPageView extends StackedView<ChatPageViewModel> {
               return Row(
                 children: [
                   ChatUsers(data: snapshot.data!.docs,),
-                  Expanded(
+                  SizedBox(width: MediaQuery.of(context).size.width*0.57,
                     child: Column(
                       children: [
-                        Container(
-                          // color: Colors.amber,
-                          child: UserInbox(chatId: viewModel.chatId ),
-                          // child: UserInbox(),
-                        ),
+                        UserInbox(chatId: viewModel.chatId ),
                       ],
                     ),
                   )

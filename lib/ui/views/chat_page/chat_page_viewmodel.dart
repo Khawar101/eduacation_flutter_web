@@ -38,6 +38,19 @@ class ChatPageViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+    notifyListeners();
+  }
+
+   
+   setNotifyListeners() {
+    notifyListeners();
+  }
+
+  void updateTextStatus() {
+    // isTextEmpty = smsController.text.isEmpty;
+    notifyListeners();
+  }
+
   Stream<QuerySnapshot<Map<String, dynamic>>> getMessagesStream() {
     CollectionReference chatCollection = firestore.collection('chats');
 
@@ -47,15 +60,16 @@ class ChatPageViewModel extends BaseViewModel {
         .snapshots() as Stream<QuerySnapshot<Map<String, dynamic>>>;
   }
 
-  Stream<QuerySnapshot> getLastMessageStream(String chatId) {
-    CollectionReference chatCollection = firestore.collection('chats');
+  // Stream<QuerySnapshot> getLastMessageStream(String chatId) {
+  //   CollectionReference chatCollection = firestore.collection('chats');
 
-    return chatCollection
-        .where("chatId", isEqualTo: chatId)
-        .orderBy('Date', descending: true)
-        .limit(1)
-        .snapshots() as Stream<QuerySnapshot<Map<String, dynamic>>>;
-  }
+  //   return chatCollection
+  //       .where("chatId", isEqualTo: chatId)
+  //       .orderBy('Date', descending: true)
+  //       .limit(1)
+  //       .snapshots() as Stream<QuerySnapshot<Map<String, dynamic>>>;
+  // }
+
 
   Stream collectionStream =
       FirebaseFirestore.instance.collection('users').snapshots();
@@ -86,6 +100,7 @@ class ChatPageViewModel extends BaseViewModel {
         //   ),
         // );
       }
+      notifyListeners();
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -94,4 +109,36 @@ class ChatPageViewModel extends BaseViewModel {
       );
     }
   }
+  
+   Stream<QuerySnapshot> getLastMessageStream(otherId) {
+    var currentuID = loginService.UserData.uID.toString();
+    List<String> _chatID = [currentuID, otherId]..sort();
+    // log("${chatId.toString()} =====2=====${currentuID}=====>${_chatID}======>");
+    String _chatId = _chatID.join('_');
+    CollectionReference chatCollection = firestore.collection('chats');
+   notifyListeners();
+
+    return chatCollection
+        .where("chatId", isEqualTo: _chatId)
+        .orderBy('Date', descending: true)
+        .limit(1)
+        .snapshots();
+    }    
+       
+  
+// Future<QuerySnapshot> getLastMessageStream(otherId) async {
+//   var currentuID = loginService.UserData.uID.toString();
+//   List<String> _chatID = [currentuID, otherId]..sort();
+//   String _chatId = _chatID.join('_');
+//   CollectionReference chatCollection = firestore.collection('chats');
+
+//   final querySnapshot = await chatCollection
+//     .where("chatId", isEqualTo: _chatId)
+//     .orderBy('Date', descending: true)
+//     .limit(1)
+//     .get();
+
+//   return querySnapshot;
+// }
+ 
 }

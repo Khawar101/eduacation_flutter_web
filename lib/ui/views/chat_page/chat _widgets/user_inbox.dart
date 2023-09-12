@@ -1,7 +1,5 @@
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:education_flutter_web/ui/widgets/common/custom_text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../chat_page_viewmodel.dart';
@@ -25,7 +23,6 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
 //     viewModel.smsController.dispose();
 //     super.onDispose(viewModel);
 //   }
-
   @override
   Widget build(BuildContext context, ChatPageViewModel viewModel) {
     double height = MediaQuery.of(context).size.height;
@@ -75,8 +72,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
           ),
         ),
         SizedBox(
-          height: height -
-              (150 + (15 * (viewModel.numLines <= 5 ? viewModel.numLines : 5))),
+          height: MediaQuery.of(context).size.height - 160,
           child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
               stream: viewModel.getMessagesStream(),
               builder: (context, snapshot) {
@@ -109,8 +105,13 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
         ),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          color: Colors.grey[200],
-          // decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              color: const Color(0xff4873a6).withOpacity(0.7),
+            ),
+            color: Colors.grey[200],
+          ),
           child: Row(
             children: [
               IconButton(onPressed: (){}, icon: Icon(Icons.emoji_emotions,
@@ -119,12 +120,10 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                           : const Color(0xff4873a6).withOpacity(0.7),)),
               SizedBox(width: 5,),
               Expanded(
-                
                 child: TextField(
-                
                   controller: viewModel.smsController,
                   onChanged: (text) {
-                    viewModel.updateTextStatus(text); // Update the text status
+                    viewModel.updateTextStatus(); // Update the text status
                   },
                   decoration: const InputDecoration(
                     hintText: 'Type your message...',
@@ -137,29 +136,19 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                   
                 ),
               ),
-              Row(
-                children: [
-                  IconButton(onPressed: (){}, icon: Icon(Icons.image,color: viewModel.isTextEmpty
-                          ? Colors.grey
-                          : const Color(0xff4873a6).withOpacity(0.7),)),
-                  IconButton(onPressed: (){}, icon: Icon(Icons.attach_file, color: viewModel.isTextEmpty
-                          ? Colors.grey
-                          : const Color(0xff4873a6).withOpacity(0.7),)),
-                  IconButton(
-                    icon: Icon(
-                      Icons.send,
-                      color: viewModel.isTextEmpty
-                          ? Colors.grey
-                          : const Color(0xff4873a6).withOpacity(0.7),
-                    ),
-                    onPressed: () {
-                      if (!viewModel.isTextEmpty) {
-                        // Perform action when there is text
-                        viewModel.sentSMS(chatId, context);
-                      }
-                    },
-                  ),
-                ],
+              IconButton(
+                icon: Icon(
+                  Icons.send,
+                  color: viewModel.isTextEmpty
+                      ? Colors.grey
+                      : const Color(0xff4873a6).withOpacity(0.7),
+                ),
+                onPressed: () {
+                  if (!viewModel.isTextEmpty) {
+                    // Perform action when there is text
+                    viewModel.sentSMS(chatId, context);
+                  }
+                },
               )
             ],
           ),
