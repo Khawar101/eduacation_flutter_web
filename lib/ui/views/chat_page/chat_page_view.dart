@@ -7,8 +7,14 @@ import 'chat_page_viewmodel.dart';
 
 class ChatPageView extends StackedView<ChatPageViewModel> {
   const ChatPageView({Key? key}) : super(key: key);
-
+ @override 
+void onViewModelReady(ChatPageViewModel viewModel) {
+    // TODO: implement onViewModelReady
+    super.onViewModelReady(viewModel);
+    viewModel.setOnlineStatus("online");
+  }
   @override
+  
   Widget builder(
     BuildContext context,
     ChatPageViewModel viewModel,

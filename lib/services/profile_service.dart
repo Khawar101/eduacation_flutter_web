@@ -128,4 +128,35 @@ class ProfileService {
       message = "Filed all TextField";
     }
   }
+
+//////////////online offline chat user function////////////////
+  //   Future<bool> getUserOnlineStatus() async {
+  //   final userDoc =
+  //       firestore.collection('users').doc(loginService.UserData.uID).update({
+  //           "date": DateTime,
+  //       });
+
+  //   final userSnapshot = await userDoc.get();
+  //   if (userSnapshot.exists) {
+  //     final userData = userSnapshot.data() as Map<String, dynamic>;
+
+  //     // Get the 'isOnline' status from the user's data
+  //     final isOnline =
+  //         userData['isOnline'] ?? false; // Default to false if not available
+
+  //     return isOnline;
+  //   }
+
+  //   // Default to offline if no data is available
+  //   return false;
+  // }
+
+
+  Future<void> updateLastChatOpenTime() async {
+  final userDocRef = FirebaseFirestore.instance.collection('users').doc(loginService.UserData.uID);
+
+  await userDocRef.update({
+    "lastChatOpenTime": FieldValue.serverTimestamp(), // Use FieldValue.serverTimestamp() to get the server's timestamp.
+  });
+}
 }

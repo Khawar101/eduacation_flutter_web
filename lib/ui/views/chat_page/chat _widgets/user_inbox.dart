@@ -38,22 +38,28 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                   const SizedBox(
                     height: 1,
                   ),
-                  const Row(
-                    children: [
-                      Icon(
-                        Icons.circle,
-                        color: Colors.green,
-                        size: 11,
-                      ),
-                      SizedBox(
-                        width: 8,
-                      ),
-                      Text(
-                        "Active now",
-                        style: TextStyle(fontSize: 10),
-                      )
-                    ],
-                  ),
+                  Row(
+      children: [
+        Icon(
+          Icons.circle,
+          color: viewModel.isOnline
+              ? Colors.green
+              : Colors.grey,
+          size: 11,
+        ),
+        const SizedBox(
+          width: 8,
+        ),
+        Text(
+          viewModel.isOnline
+              ? "Active now"
+              : "Offline",
+          style: const TextStyle(fontSize: 10),
+        )
+      ],
+    ),
+ 
+
                 ],
               ),
             ],
@@ -103,7 +109,9 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // log(viewModel.checkOnlineStatus.toString());
+                  },
                   icon: Icon(
                     Icons.emoji_emotions,
                     color: viewModel.isTextEmpty
@@ -136,7 +144,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                         : Colors.grey),
                 onPressed: () {
                   if (viewModel.smsController.text.isNotEmpty) {
-                    viewModel.sentSMS(chatId, context);
+                    viewModel.sentSMS(chatId, context,"");
                   }
                 },
               )
