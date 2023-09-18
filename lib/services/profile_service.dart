@@ -1,7 +1,6 @@
 // ignore_for_file: unrelated_type_equality_checks, body_might_complete_normally_catch_error, non_constant_identifier_names, avoid_web_libraries_in_flutter
 import 'dart:developer';
 import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../app/app.locator.dart';
@@ -130,26 +129,27 @@ class ProfileService {
   }
 
 //////////////online offline chat user function////////////////
-  //   Future<bool> getUserOnlineStatus() async {
-  //   final userDoc =
-  //       firestore.collection('users').doc(loginService.UserData.uID).update({
-  //           "date": DateTime,
-  //       });
+    Future<bool> getUserOnlineStatus() async {
+  
+        firestore.collection('users').doc(loginService.UserData.uID).update({
+            "date": DateTime,
+          
+        });  log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
 
-  //   final userSnapshot = await userDoc.get();
-  //   if (userSnapshot.exists) {
-  //     final userData = userSnapshot.data() as Map<String, dynamic>;
+    final userSnapshot = await firestore.collection('users').doc(loginService.UserData.uID).get();
+    if (userSnapshot.exists) {
+      final userData = userSnapshot.data() as Map<String, dynamic>;
+log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+      // Get the 'isOnline' status from the user's data
+      final isOnline =
+          userData['isOnline'] ?? false; // Default to false if not available
+log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+      return isOnline;
+    }log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
 
-  //     // Get the 'isOnline' status from the user's data
-  //     final isOnline =
-  //         userData['isOnline'] ?? false; // Default to false if not available
-
-  //     return isOnline;
-  //   }
-
-  //   // Default to offline if no data is available
-  //   return false;
-  // }
+    // Default to offline if no data is available
+    return false;
+  }
 
 
   Future<void> updateLastChatOpenTime() async {

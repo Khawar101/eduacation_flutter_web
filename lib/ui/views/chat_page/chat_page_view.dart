@@ -1,3 +1,7 @@
+
+
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:education_flutter_web/ui/views/chat_page/chat%20_widgets/user_inbox.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +15,12 @@ class ChatPageView extends StackedView<ChatPageViewModel> {
 void onViewModelReady(ChatPageViewModel viewModel) {
     super.onViewModelReady(viewModel);
     viewModel.initState();
+  }
+  @override
+  void onDispose(ChatPageViewModel viewModel) {
+    viewModel.dispose();
+    super.onDispose(viewModel);
+    log("========${onDispose}=======");
   }
   @override
   
