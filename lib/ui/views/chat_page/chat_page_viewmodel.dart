@@ -1,4 +1,3 @@
-// ignore_for_file: avoid_web_libraries_in_flutter
 import 'dart:developer';
 import 'dart:html';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,6 +13,7 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
   int numLines = 0;
   String chatId = "";
   String name = "";
+  
   String profile = "";
   final loginService = locator<LoginService>();
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -23,8 +23,12 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
 
   void initState() {
     smsController.addListener(updateTextStatus);
+    // WidgetsBinding.instance.addObserver(this);
+    //  setOnlineStatus(true);
+    // log("--==online1");
     if (kIsWeb) {
       window.addEventListener('focus', online);
+      window.addEventListener('blur', offline);
       window.addEventListener('beforeunload', offline);
       window.addEventListener('offline', offline);
       window.addEventListener('online', online);
@@ -39,6 +43,7 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
   void dispose() {
     if (kIsWeb) {
       window.removeEventListener('focus', online);
+       window.removeEventListener('blur', offline);
       window.removeEventListener('beforeunload', offline);
       window.removeEventListener('offline', offline);
       window.removeEventListener('online', online);
@@ -52,7 +57,7 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
 
   void online(Event e) async{
     log("============>online");
-      await  firestore.collection('users').doc(loginService.UserData.uID).update({
+    await  firestore.collection('users').doc(loginService.UserData.uID).update({
   "status":true
   });
   }
@@ -68,8 +73,10 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     // log("sffffffff");
     name = otherData["username"];
     profile = otherData["profile"];
+    isOnline = otherData["status"];
     var currentuID = loginService.UserData.uID.toString();
     List<String> _chatID = [currentuID, otherData['UID']]..sort();
+    // log("${chatId.toString()} =====2=====${currentuID}=====>${_chatID}======>");
     chatId = _chatID.join('_');
     notifyListeners();
   }
@@ -157,3 +164,42 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
         .snapshots();
   }
 }
+
+// void setOnlineStatus(String status)async{
+//   // final userDoc = firestore.collection('chats').doc(loginService.UserData.uID);
+//   await  firestore.collection('users').doc(loginService.UserData.uID).update({
+//   "status":status
+//   }
+// );notifyListeners();}
+
+//   @override
+//   Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
+//     switch (state) {
+//       case AppLifecycleState.resumed:
+//         log('On Resume');
+//         setOnlineStatus("online");
+//         break;
+//       case AppLifecycleState.inactive:
+//         log('On inactive');
+//          setOnlineStatus("offline");
+//         break;
+//       case AppLifecycleState.paused:
+//         log('On paused');
+//            setOnlineStatus("offline");
+//         break;
+//       case AppLifecycleState.detached:
+//         log('On detached');
+//            setOnlineStatus("offline");
+//         break;
+//       case AppLifecycleState.hidden:
+//         log('On hidden');   setOnlineStatus("offline");
+//         break;
+//     }
+//   }
+
+//   @override
+//   void dispose() {
+//     WidgetsBinding.instance.removeObserver(this);
+//     super.dispose();
+//   }
+// }
