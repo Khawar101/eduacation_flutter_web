@@ -44,9 +44,9 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
     if (snapshot.hasError) {
       return const Text("Something went wrong");
     }
-  if (snapshot.hasData) {
-                  return const Text('No messages yet');
-                }
+  // if (snapshot.hasData) {
+  //                 return const Text('No messages yet');
+  //               }
     
     return Row(
       children: [
