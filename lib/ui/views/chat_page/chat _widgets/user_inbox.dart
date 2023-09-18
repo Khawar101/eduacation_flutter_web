@@ -38,28 +38,35 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                   const SizedBox(
                     height: 1,
                   ),
-                  Row(
-      children: [
-        Icon(
-          Icons.circle,
-          color: viewModel.isOnline
-              ? Colors.green
-              : Colors.grey,
-          size: 11,
-        ),
-        const SizedBox(
-          width: 8,
-        ),
-        Text(
-          viewModel.isOnline
-              ? "Active now"
-              : "Offline",
-          style: const TextStyle(fontSize: 10),
-        )
-      ],
-    ),
- 
-
+                  StreamBuilder<QuerySnapshot>(
+                      stream: viewModel.usersStream,
+                      builder: (BuildContext context,
+                          AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (snapshot.hasError) {
+                          return const Text("Something went wrong");
+                        }
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Text("Loading");
+                        } String status = snapshot.data!.docs[0]["status"];
+                        return Row(
+                          children: [
+                            Icon(
+                              Icons.circle,
+                                      color: status == "online" ? Colors.green : Colors.grey, 
+                              size: 11,
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Text(
+                           status == "online" ? "Active now" : "Offline",
+                              // viewModel.isOnline ? "Active now" : "Offline",
+                              style: const TextStyle(fontSize: 10),
+                            )
+                          ],
+                        );
+                      })
                 ],
               ),
             ],
@@ -144,7 +151,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                         : Colors.grey),
                 onPressed: () {
                   if (viewModel.smsController.text.isNotEmpty) {
-                    viewModel.sentSMS(chatId, context,"");
+                    viewModel.sentSMS(chatId, context, "");
                   }
                 },
               )
