@@ -9,9 +9,8 @@ class ChatPageView extends StackedView<ChatPageViewModel> {
   const ChatPageView({Key? key}) : super(key: key);
  @override 
 void onViewModelReady(ChatPageViewModel viewModel) {
-    // TODO: implement onViewModelReady
     super.onViewModelReady(viewModel);
-    viewModel.setOnlineStatus("online");
+    viewModel.initState();
   }
   @override
   
@@ -41,6 +40,7 @@ void onViewModelReady(ChatPageViewModel viewModel) {
                   SizedBox(width: MediaQuery.of(context).size.width*0.57,
                     child: Column(
                       children: [
+                        // ChatRoom(chatId: viewModel.chatId )
                         UserInbox(chatId: viewModel.chatId ),
                       ],
                     ),
