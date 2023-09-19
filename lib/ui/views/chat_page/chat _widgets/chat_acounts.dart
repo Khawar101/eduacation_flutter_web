@@ -111,12 +111,7 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
               );
             },
           ),
-          // InkWell
-          // (onTap: () {
-          //      viewModel.setOnlineStatus("online");
-          // },
-            
-          //   child: Container(height: 70,width:50,color: Colors.black,))
+          
         ],
       ),
     );
