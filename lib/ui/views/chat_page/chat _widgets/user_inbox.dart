@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:education_flutter_web/ui/widgets/common/custom_text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../services/Model/userData.dart';
@@ -109,6 +110,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
               }),
         ),
         Container(
+          width: MediaQuery.of(context).size.width,
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
@@ -134,7 +136,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                 width: 5,
               ),
               Expanded(
-                child: TextField(
+                child: TextFormField(
                   controller: viewModel.smsController,
                   // onChanged: (text) {
                   //   // viewModel.setNotifyListeners(); // Update the text status
@@ -163,6 +165,12 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
             ],
           ),
         ),
+        // CustomTextField(
+        //   hintText: "Type your message",
+        //   controller: viewModel.smsController,
+        // prefix: Icon(Icons.emoji_emotions,color: Colors.black,),
+
+        // )
       ],
     );
   }

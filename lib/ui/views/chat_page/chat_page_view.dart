@@ -1,9 +1,5 @@
-
-
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:education_flutter_web/services/Model/userData.dart';
 import 'package:education_flutter_web/ui/views/chat_page/chat%20_widgets/user_inbox.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -21,7 +17,6 @@ void onViewModelReady(ChatPageViewModel viewModel) {
   void onDispose(ChatPageViewModel viewModel) {
     viewModel.dispose();
     super.onDispose(viewModel);
-    log("========${onDispose}=======");
   }
   @override
   
@@ -47,7 +42,9 @@ void onViewModelReady(ChatPageViewModel viewModel) {
               }
               return Row(
                 children: [
-                  ChatUsers(data: snapshot.data!.docs,),
+                  SizedBox(
+                    // width: MediaQuery.of(context).size.width*0.23,
+                    child: ChatUsers(data: snapshot.data!.docs,)),
                   SizedBox(width: MediaQuery.of(context).size.width*0.57,
                     child: Column(
                       children: [
