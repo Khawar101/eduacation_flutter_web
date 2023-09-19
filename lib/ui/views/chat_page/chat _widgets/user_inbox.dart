@@ -1,15 +1,18 @@
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:education_flutter_web/utils/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import '../../../../services/Model/userData.dart';
 import '../chat_page_viewmodel.dart';
 import 'chat_message.dart';
 
 class UserInbox extends ViewModelWidget<ChatPageViewModel> {
   final String chatId;
+  final String uID;
   const UserInbox({
     Key? key,
-    required this.chatId,
+    required this.chatId,required this.uID
   }) : super(key: key);
   @override
   Widget build(BuildContext context, ChatPageViewModel viewModel) {
@@ -39,42 +42,39 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                     height: 1,
                   ),
 
-                  StreamBuilder<QuerySnapshot>(
-                    stream: viewModel.usersStream,
-                    builder: (BuildContext context,
-                        AsyncSnapshot<QuerySnapshot> snapshot) {
-                      if (snapshot.hasError) {
-                        return const Text("Something went wrong");
-                      }
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Text("Loading");
-                      }
-                      if (!snapshot.hasData) {
-                  return const Text('No messages yet');
-                }
-                      return Row(
-                        children: [
-                          Icon(
-                            Icons.circle,
-                            color: snapshot.data!.docs[0][
-                          "status"] == "online"
-                                ? Colors.green
-                                : Colors
-                                    .grey, // Adjust this based on your data structure
-                            size: 11,
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          Text(
-                            snapshot.data!.docs[0][
-                          "status"] == "online" ? "Active now" : "Offline",
-                            style: const TextStyle(fontSize: 10),
-                          )
-                        ],
-                      );
-                    },
-                  )
+                 StreamBuilder(
+      stream: viewModel. publisherStream(uID),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.hasError) {
+          return const Text('Something went wrong');
+        }
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Loading(20);
+        }
+        userData _userData = userData.fromJson(snapshot.data.data());
+        return             Row(
+                    children: [
+                      Icon(
+                        Icons.circle,
+                        color:_userData.status??false
+                            ? Colors.green
+                            : Colors.grey,
+                        size: 11,
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                       _userData.status??false
+                            ? "Active now"
+                            : "Offline",
+                        style: const TextStyle(fontSize: 10),
+                      )
+                    ],
+                  );
+      },
+    )
 
                   //               Row(
                   //   children: [

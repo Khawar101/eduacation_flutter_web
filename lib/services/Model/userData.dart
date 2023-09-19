@@ -14,6 +14,7 @@
 //     "city": "",
 //     "postalCode": "",
 //     "bio": "",
+//      "status": true,
 //     "clas": "",
 //     "educationSector": "",
 //     "socialLinks": {
@@ -39,6 +40,7 @@ class userData {
   String? city;
   String? postalCode;
   String? bio;
+  bool? status;
   String? clas;
   String? educationSector;
   SocialLinks? socialLinks;
@@ -59,6 +61,7 @@ class userData {
       this.city,
       this.postalCode,
       this.bio,
+      this.status,
       this.clas,
       this.educationSector,
       this.socialLinks});
@@ -79,6 +82,7 @@ class userData {
     city = json['city'];
     postalCode = json['postalCode'];
     bio = json['bio'];
+    status = json['status'];
     clas = json['clas'];
     educationSector = json['educationSector'];
     socialLinks = json['socialLinks'] != null
@@ -103,6 +107,7 @@ class userData {
     data['city'] = this.city;
     data['postalCode'] = this.postalCode;
     data['bio'] = this.bio;
+    data['status'] = this.status;
     data['clas'] = this.clas;
     data['educationSector'] = this.educationSector;
     if (this.socialLinks != null) {

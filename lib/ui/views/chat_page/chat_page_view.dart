@@ -3,6 +3,7 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:education_flutter_web/services/Model/userData.dart';
 import 'package:education_flutter_web/ui/views/chat_page/chat%20_widgets/user_inbox.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -50,8 +51,7 @@ void onViewModelReady(ChatPageViewModel viewModel) {
                   SizedBox(width: MediaQuery.of(context).size.width*0.57,
                     child: Column(
                       children: [
-                        // ChatRoom(chatId: viewModel.chatId )
-                        UserInbox(chatId: viewModel.chatId ),
+                        UserInbox(chatId: viewModel.chatId, uID: viewModel. otherUID, ),
                       ],
                     ),
                   )

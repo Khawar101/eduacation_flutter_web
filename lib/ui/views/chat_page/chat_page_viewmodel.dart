@@ -12,6 +12,7 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
   bool isOnline = false;
   int numLines = 0;
   String chatId = "";
+  String otherUID = "";
   String name = "";
   
   String profile = "";
@@ -74,6 +75,7 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     name = otherData["username"];
     profile = otherData["profile"];
     isOnline = otherData["status"];
+    otherUID = otherData["UID"];
     var currentuID = loginService.UserData.uID.toString();
     List<String> _chatID = [currentuID, otherData['UID']]..sort();
     // log("${chatId.toString()} =====2=====${currentuID}=====>${_chatID}======>");
@@ -109,6 +111,10 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
 
   final Stream<QuerySnapshot> usersStream =
       FirebaseFirestore.instance.collection('users').snapshots();
+
+      Stream publisherStream(uID) {
+    return FirebaseFirestore.instance.collection("users").doc(uID).snapshots();
+  }
 
   void sentSMS(chatId, context, String status) async {
     // String mergeuid = uid_merge(widget.UserData['UID'], widget.UID).toString();
