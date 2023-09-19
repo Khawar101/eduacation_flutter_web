@@ -45,12 +45,15 @@ void onViewModelReady(ChatPageViewModel viewModel) {
                   SizedBox(
                     // width: MediaQuery.of(context).size.width*0.23,
                     child: ChatUsers(data: snapshot.data!.docs,)),
-                  SizedBox(width: MediaQuery.of(context).size.width*0.57,
-                    child: Column(
-                      children: [
-                        UserInbox(chatId: viewModel.chatId, uID: viewModel. otherUID, ),
-                      ],
-                    ),
+                  SizedBox(
+                     width: width<500? width*0.25 : width< 700? width*0.35 :width<900? width*0.42: width<1200? width*0.52: width*0.56 ,
+              // width: MediaQuery.of(context).size.width < 1200
+              //     ? MediaQuery.of(context).size.width < 500
+              //         ? width*0.35
+              //         : width*0.45
+              //     : width*0.55,
+                    // width: MediaQuery.of(context).size.width*0.57,
+                    child: UserInbox(chatId: viewModel.chatId, uID: viewModel. otherUID, ),
                   )
                 ],
               );

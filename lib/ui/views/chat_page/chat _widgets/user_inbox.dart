@@ -17,12 +17,13 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
     return  uID==""?Container():
      Column(
       children: [
+        
         SizedBox(
           height: 50,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(width: 20),
+               SizedBox(width: 20,),
               CircleAvatar(
                 backgroundColor: Colors.red,
                 backgroundImage: NetworkImage(viewModel.profile),
@@ -91,12 +92,13 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                 if (!snapshot.hasData) {
                   return const Text('No messages yet');
                 }
+              
                 return ListView.builder(
                   itemCount: snapshot.data?.docs.length,
                   reverse: true,
                   itemBuilder: (context, index) {
                     var messageData = snapshot.data!.docs[index].data();
-
+                
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: MessageBubble(
@@ -110,6 +112,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
               }),
         ),
         Container(
+          
           width: MediaQuery.of(context).size.width,
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           decoration: BoxDecoration(
@@ -135,21 +138,36 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
               const SizedBox(
                 width: 5,
               ),
-              Expanded(
-                child: TextFormField(
-                  controller: viewModel.smsController,
-                  // onChanged: (text) {
-                  //   // viewModel.setNotifyListeners(); // Update the text status
-                  // },
-                  decoration: const InputDecoration(
-                    hintText: 'Type your message...',
-                    border: InputBorder.none,
-
-                    // prefix: Icon(Icons.email, color: Colors.black,)
+            
+              
+                Expanded(
+                  child: TextFormField(
+                    controller: viewModel.smsController,
+                    // onChanged: (text) {
+                    //   // viewModel.setNotifyListeners(); // Update the text status
+                    // },
+                    decoration: const InputDecoration(
+                      hintText: 'Type your message...',
+                      border: InputBorder.none,
+                
+                      //  suffixIcon: Icon(Icons.email, color: Colors.black,)
+                    ),
+                    maxLines: 5,
+                    minLines: 1,
                   ),
-                  maxLines: 5,
-                  minLines: 1,
                 ),
+              
+              
+            IconButton(
+                icon: Icon(Icons.attachment,
+                    color: viewModel.smsController.text.isNotEmpty
+                        ? const Color(0xff4873a6).withOpacity(0.7)
+                        : Colors.grey),
+                onPressed: () {
+                  // if (viewModel.smsController.text.isNotEmpty) {
+                  //   viewModel.sentSMS(chatId, context, "");
+                  // }
+                },
               ),
               IconButton(
                 icon: Icon(Icons.send,

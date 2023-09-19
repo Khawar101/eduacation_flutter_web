@@ -15,11 +15,12 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
   Widget build(BuildContext context, ChatPageViewModel viewModel) {
     final width = MediaQuery.of(context).size.width;
     return Container(
+      // width: 200,
       width: MediaQuery.of(context).size.width < 1200
           ? MediaQuery.of(context).size.width < 500
               ? 50
               : 280
-          : 350,
+          : 320,
       alignment: Alignment.topCenter,
       decoration: BoxDecoration(
         color: Colors.grey[200],
