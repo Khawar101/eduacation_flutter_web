@@ -24,9 +24,6 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
 
   void initState() {
     smsController.addListener(updateTextStatus);
-    // WidgetsBinding.instance.addObserver(this);
-    //  setOnlineStatus(true);
-    // log("--==online1");
     if (kIsWeb) {
       window.addEventListener('focus', online);
       window.addEventListener('blur', offline);
@@ -52,7 +49,6 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     } else {
       WidgetsBinding.instance.removeObserver(this);
     }
-    log("------------------------222-${window.name}");
     super.dispose();
   }
 
@@ -71,7 +67,6 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
   }
 
   setChatId(otherData) {
-    // log("sffffffff");
     name = otherData["username"];
     profile = otherData["profile"];
     isOnline = otherData["status"];
@@ -171,41 +166,4 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
   }
 }
 
-// void setOnlineStatus(String status)async{
-//   // final userDoc = firestore.collection('chats').doc(loginService.UserData.uID);
-//   await  firestore.collection('users').doc(loginService.UserData.uID).update({
-//   "status":status
-//   }
-// );notifyListeners();}
 
-//   @override
-//   Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
-//     switch (state) {
-//       case AppLifecycleState.resumed:
-//         log('On Resume');
-//         setOnlineStatus("online");
-//         break;
-//       case AppLifecycleState.inactive:
-//         log('On inactive');
-//          setOnlineStatus("offline");
-//         break;
-//       case AppLifecycleState.paused:
-//         log('On paused');
-//            setOnlineStatus("offline");
-//         break;
-//       case AppLifecycleState.detached:
-//         log('On detached');
-//            setOnlineStatus("offline");
-//         break;
-//       case AppLifecycleState.hidden:
-//         log('On hidden');   setOnlineStatus("offline");
-//         break;
-//     }
-//   }
-
-//   @override
-//   void dispose() {
-//     WidgetsBinding.instance.removeObserver(this);
-//     super.dispose();
-//   }
-// }

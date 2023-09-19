@@ -45,7 +45,7 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
             shrinkWrap: true,
             itemBuilder: (context, index) {
               var _data = data[index];
-              log(data[index].toString());
+              // log(data[index].toString());
               return ListTile(
                 onTap: () {
                   viewModel.setChatId(_data);
@@ -73,7 +73,6 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
                     }
                     var messages = messageSnapshot.data!.docs;
                     if (messages.isNotEmpty) {
-                      log(messages.last.toString());
                       var lastMessage = messages.last;
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
