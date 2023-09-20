@@ -156,19 +156,35 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                     minLines: 1,
                   ),
                 ),
+              IconButton(
+  icon: Icon(Icons.attachment),
+  onPressed: () {
+    viewModel.uploadImage(
+      onSelected: (file) {
+        // Call the uploadToStorage function with the selected file
+        viewModel.uploadToStorage(file).then((imageUrl) {
+          if (imageUrl != null) {
+            // Handle the image URL after it's uploaded successfully.
+            print("Image uploaded successfully. URL: $imageUrl");
+          } else {
+            // Handle the case where there was an error during upload.
+            print("Error uploading image.");
+          }
+        });
+      },
+    );
+  },
+),
               
-              
-            IconButton(
-                icon: Icon(Icons.attachment,
-                    color: viewModel.smsController.text.isNotEmpty
-                        ? const Color(0xff4873a6).withOpacity(0.7)
-                        : Colors.grey),
-                onPressed: () {
-                  // if (viewModel.smsController.text.isNotEmpty) {
-                  //   viewModel.sentSMS(chatId, context, "");
-                  // }
-                },
-              ),
+            // IconButton(
+            //     icon: Icon(Icons.attachment),
+            //         // color: viewModel.smsController.text.isNotEmpty
+            //         //     ? const Color(0xff4873a6).withOpacity(0.7)
+            //         //     : Colors.grey),
+            //     onPressed: () {
+            //     viewModel.uploadToStorage();
+            //     },
+            //   ),
               IconButton(
                 icon: Icon(Icons.send,
                     color: viewModel.smsController.text.isNotEmpty
@@ -183,12 +199,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
             ],
           ),
         ),
-        // CustomTextField(
-        //   hintText: "Type your message",
-        //   controller: viewModel.smsController,
-        // prefix: Icon(Icons.emoji_emotions,color: Colors.black,),
-
-        // )
+      
       ],
     );
   }
