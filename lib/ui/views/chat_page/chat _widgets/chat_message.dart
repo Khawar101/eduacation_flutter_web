@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 class MessageBubble extends StatelessWidget {
   final bool isMe;
   final String message;
-
-  const MessageBubble({super.key, required this.isMe, required this.message});
+  final Map messageData;
+  const MessageBubble(
+      {super.key,
+      required this.isMe,
+      required this.message,
+      required this.messageData});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +17,9 @@ class MessageBubble extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: isMe ? const Color(0xff4873a6).withOpacity(0.7): Colors.grey[300],
+            color: isMe
+                ? const Color(0xff4873a6).withOpacity(0.7)
+                : Colors.grey[300],
             borderRadius: BorderRadius.only(
               topLeft: const Radius.circular(10.0),
               topRight: const Radius.circular(10.0),
@@ -27,20 +33,40 @@ class MessageBubble extends StatelessWidget {
           ),
           padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
           margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 8.0),
-          child: Container(
-            constraints: const BoxConstraints(minWidth: 10, maxWidth: 400),
-            child: Text(
-              message,
-              style: TextStyle(
-                height: 1.5,
-                color: isMe ? Colors.white : Colors.black,
-              ),
-              softWrap: true,
-            ),
+          child: Column(
+            children: [
+              messageData['type'] == "text"
+                  ? Container(
+                      constraints:
+                          const BoxConstraints(minWidth: 10, maxWidth: 400),
+                      child: Text(
+                        message,
+                        style: TextStyle(
+                          height: 1.5,
+                          color: isMe ? Colors.white : Colors.black,
+                        ),
+                        softWrap: true,
+                      ),
+                    )
+                  : Container(),
+              messageData['type'] == "image"
+                  ? Image.network(message, width: 200, fit: BoxFit.cover)
+                  : Container(),
+              messageData['type'] == "pdf"
+                  ? InkWell(
+                    onTap:() {
+                      Navigator.pushNamed(context,'/viewPdf',arguments:{'url':message}).then((value) => null);
+                    },
+                    child: Image.asset(
+                        "assets/icons/addPDF.png",
+                        width: 100,
+                      ),
+                  )
+                  : Container(),
+            ],
           ),
         ),
       ],
     );
   }
 }
-

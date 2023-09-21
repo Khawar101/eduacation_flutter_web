@@ -169,138 +169,71 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
         .snapshots();
   }
 
-  ///////image upload in message
-      
-  //    void uploadImage({required Function(File file) onSelected}) {
-  //   FileUploadInputElement uploadInput = FileUploadInputElement()
-  //     ..accept = "image/*";
-  //   uploadInput.click();
-
-  //   uploadInput.onChange.listen((event) {
-  //     final file = uploadInput.files!.first;
-  //     final reader = FileReader();
-  //     reader.readAsDataUrl(file);
-  //     reader.onLoadEnd.listen((event) {
-  //       onSelected(file);
-  //     });
-  //   });
-  // }
-
-  
-  // Future uploadToStorage() async {
-  //   // final dateTime = DateTime.now();
-  //   uploadImage(
-  //     onSelected: (file) {
-  //       // final path = '${dateTime}${file.name}}';
-  //       Reference ref = storage
-  //           .ref()
-  //           .child("image/${DateTime.now().microsecondsSinceEpoch}");
-  //       UploadTask uploadTask = ref.putBlob(file);
-  //       uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
-  //         double progress =
-  //             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-  //         imageLoading = true;
-  //         progressshow = progress.round();
-  //         notifyListeners();
-  //       });
-  //       uploadTask.whenComplete(() async {
-        
-  //       var imageUrl = await ref.getDownloadURL();
-            
-  //           progressshow = 0;
-          
-  //         notifyListeners();
-  //         // print("=====>$url=====>${file.type.split("/")[0]}");
-  //         // postType = "${file.type.split("/")[0]}";
-  //         // _videoPlayerController = VideoPlayerController.network(url);
-  //         // _isVideoPlaying = true;
-  //         imageLoading = false;
-  //         return imageUrl;
-  //         // _videoPlayerController.play();
-  //       }).catchError((onError) {
-  //         log(onError);
-  //         // snackBar2(context, onError.toString());
-  //       });
-  //     },
-  //   );
-    
-  // }
+ ///////////////////////
 
   void uploadImage({required Function(File file) onSelected}) {
   FileUploadInputElement uploadInput = FileUploadInputElement()
-    ..accept = "image/*";
+    // ..accept = "image/*";
+   ..accept = "image/*, video/*, application/pdf";
   uploadInput.click();
 
   uploadInput.onChange.listen((event) {
     final file = uploadInput.files!.first;
-    onSelected(file); // Pass the selected file to the callback function.
+      final reader = FileReader();
+      reader.readAsDataUrl(file);
+     reader.onLoadEnd.listen((event) {
+        onSelected(file);
+      });// Pass the selected file to the callback function.
   });
 }
 
- void uploadVideo({required Function(File file) onSelected}) {
-    FileUploadInputElement uploadInput = FileUploadInputElement()
-      ..accept = "video/*";
-    uploadInput.click();
+//  
 
-    uploadInput.onChange.listen((event) {
-      final file = uploadInput.files!.first;
-      final reader = FileReader();
-      reader.readAsDataUrl(file);
-      reader.onLoadEnd.listen((event) {
-        onSelected(file);
-      });
-    });
-  }
 
-    void loadFile({required Function(File file) onSelected}) {
-    FileUploadInputElement uploadInput = FileUploadInputElement()
-      ..accept = 'application/pdf';
-    uploadInput.click();
 
-    uploadInput.onChange.listen((event) {
-      final file = uploadInput.files!.first;
-      final reader = FileReader();
-      reader.readAsDataUrl(file);
-      reader.onLoadEnd.listen((event) {
-        onSelected(file);
-      });
-    });
-  }
-
-Future<String?> uploadToStorage(File file) async {
-  try {
-    Reference ref = storage
-        .ref()
-        .child("image/${DateTime.now().microsecondsSinceEpoch}");
-
-    final UploadTask uploadTask = ref.putBlob(file);
-    uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
-      double progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      imageLoading = true;
-      progressshow = progress.round();
-      notifyListeners();
-    });
-
-    await uploadTask.whenComplete(() async {
-      var imageUrl = await ref.getDownloadURL();
+ Future uploadToStorage() async {
+    // final dateTime = DateTime.now();
+    uploadImage(
+      onSelected: (File file) {
+        Reference ref = storage
+            .ref()
+            .child("chatImage/${DateTime.now().microsecondsSinceEpoch}");
+        UploadTask uploadTask = ref.putBlob(file);
+        uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
+          double progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          imageLoading = true;
+          progressshow = progress.round();
+          notifyListeners();
+        });
+        uploadTask.whenComplete(() async {
+          var imageUrl = await ref.getDownloadURL();
       log("======${imageUrl}");
-      progressshow = 0;
-      imageLoading = false;
-      notifyListeners();
-      return imageUrl; // Return the download URL of the uploaded image.
-    });
-
-    return null; // Return null if there was no error during the upload.
-  } catch (error) {
-    print(error.toString());
-    // Handle the error appropriately, e.g., show a snackbar or log the error.
-    return error.toString(); // Return the error message if there was an error.
+       FirebaseFirestore firestore = FirebaseFirestore.instance;
+        await firestore.collection('chats').doc().set({
+          "chatId": chatId,
+          "SMS": imageUrl,
+          "Date": "${DateTime.now().microsecondsSinceEpoch}",
+          "type": file.name.split(".").last,
+          "UID": loginService.UserData.uID,
+        });
+          notifyListeners();
+          // print("=====>$url=====>${file.type.split("/")[0]}");
+          // postType = "${file.type.split("/")[0]}";
+          // _videoPlayerController = VideoPlayerController.network(url);
+          // _isVideoPlaying = true;
+          imageLoading = false;
+          // _videoPlayerController.play();
+        }).catchError((onError) {
+          log(onError);
+          // snackBar2(context, onError.toString());
+        });
+      },
+    );
+    return null;
   }
-}
+  
+  }
 
-
-
-}
 
 
