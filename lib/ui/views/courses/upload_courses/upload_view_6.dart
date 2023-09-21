@@ -50,6 +50,7 @@ class CourseDetails extends StackedView<UploadCoursesViewModel> {
           ),
           verticalSpaceSmall,
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,6 +71,7 @@ class CourseDetails extends StackedView<UploadCoursesViewModel> {
                       color: Colors.black),
                 ],
               ),
+            
             ],
           ),
           verticalSpaceSmall,

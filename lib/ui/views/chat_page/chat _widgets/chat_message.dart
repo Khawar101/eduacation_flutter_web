@@ -1,4 +1,10 @@
+import 'package:education_flutter_web/app/app.locator.dart';
+import 'package:education_flutter_web/app/app.router.dart';
+import 'package:education_flutter_web/services/Model/EbookModel.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked_services/stacked_services.dart';
+
+final _navigationService = locator<NavigationService>();
 
 class MessageBubble extends StatelessWidget {
   final bool isMe;
@@ -54,14 +60,15 @@ class MessageBubble extends StatelessWidget {
                   : Container(),
               messageData['type'] == "pdf"
                   ? InkWell(
-                    onTap:() {
-                      Navigator.pushNamed(context,'/viewPdf',arguments:{'url':message}).then((value) => null);
-                    },
-                    child: Image.asset(
+                      onTap: () {
+                        _navigationService.navigateToPdfViewer(
+                            pdfData: PdfFile(pdfUrl: message));
+                      },
+                      child: Image.asset(
                         "assets/icons/addPDF.png",
                         width: 100,
                       ),
-                  )
+                    )
                   : Container(),
             ],
           ),

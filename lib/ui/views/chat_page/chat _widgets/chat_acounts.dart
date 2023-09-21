@@ -51,64 +51,67 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
                 onTap: () {
                   viewModel.setChatId(_data);
                 },
-                title: Text(
-                  _data["username"].toString(),
+                title: Text('YUIO',
                 ),
-                subtitle: StreamBuilder<QuerySnapshot>(
-                  stream: viewModel.getLastMessageStream(
-                      _data["UID"]), // Pass the user's UID
+                // subtitle: StreamBuilder<DocumentSnapshot>(
+                  
+                //   stream: viewModel.getLastMessageStream(
+                //       _data["UID"]), // Pass the user's UID
 
-                  builder: (BuildContext context,
-                      AsyncSnapshot<QuerySnapshot> messageSnapshot) {
-                    if (messageSnapshot.hasError) {
-                      log(messageSnapshot.error.toString());
-                      return Text(messageSnapshot.error
-                          .toString()); // Handle loading and error states
-                    }
-                    if (messageSnapshot.connectionState ==
-                        ConnectionState.waiting) {
-                      return const SizedBox(); // Handle loading and error states
-                    }
-                    if (!messageSnapshot.hasData) {
-                      return const SizedBox(); // Handle loading and error states
-                    }
-                    var messages = messageSnapshot.data!.docs;
-                    if (messages.isNotEmpty) {
-                      var lastMessage = messages.last;
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: width * 0.11,
-                            child: Text(
-                              lastMessage["SMS"].toString(),
-                              style: const TextStyle(
-                                overflow: TextOverflow.ellipsis,
-                                fontSize: 11,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            timeago.format(
-                              DateTime.fromMicrosecondsSinceEpoch(
-                                int.parse(lastMessage["Date"]),
-                              ),
-                            ),
-                            style: GoogleFonts.ibmPlexSans(fontSize: 12),
-                          ),
-                        ],
-                      );
-                    }
-                    return const SizedBox(
-                      child: Text("No messages"),
-                    );
-                  },
-                ),
+                //   builder: (BuildContext context,
+                //       AsyncSnapshot<DocumentSnapshot> messageSnapshot) {
+                //     if (messageSnapshot.hasError) {
+                //       log(messageSnapshot.error.toString());
+                //       return Text(messageSnapshot.error
+                //           .toString()); // Handle loading and error states
+                //     }
+                //     if (messageSnapshot.connectionState ==
+                //         ConnectionState.waiting) {
+                //       return const SizedBox(); // Handle loading and error states
+                //     }
+                //     if (!messageSnapshot.hasData) {
+                //       return const SizedBox(); // Handle loading and error states
+                //     }
+                //     var lastMessage = messageSnapshot.data!['lastMessage'];
+
+                //     if (messageSnapshot.hasData) {
+                //       // var lastMessage = messages.last;
+                //       return Row(
+                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //         children: [
+                //           SizedBox(
+                //             width: width * 0.11,
+                //             child: Text(
+                //               lastMessage!["SMS"]??"No Message yet",
+                //               style: const TextStyle(
+                //                 overflow: TextOverflow.ellipsis,
+                //                 fontSize: 11,
+                //               ),
+                //             ),
+                //           ),
+                //           Text(
+                //             timeago.format(
+                //               DateTime.fromMicrosecondsSinceEpoch(
+                //                 int.parse(lastMessage["Date"]??""),
+                //               ),
+                //             ),
+                //             style: GoogleFonts.ibmPlexSans(fontSize: 12),
+                //           ),
+                //         ],
+                //       );
+                //     }
+                //     return const SizedBox(
+                //       child: Text("No messages"),
+                //     );
+                //   },
+                // ),
+              
                 leading: CircleAvatar(
                   backgroundColor: Colors.red,
                   backgroundImage: NetworkImage(_data["profile"].toString()),
                 ),
               );
+           
             },
           ),
           

@@ -53,7 +53,7 @@ void onViewModelReady(ChatPageViewModel viewModel) {
               //         : width*0.45
               //     : width*0.55,
                     // width: MediaQuery.of(context).size.width*0.57,
-                    child: UserInbox(chatId: viewModel.chatId, uID: viewModel. otherUID, ),
+                    // child: UserInbox(chatId: viewModel.chatId, uID: viewModel. otherUID, ),
                   )
                 ],
               );

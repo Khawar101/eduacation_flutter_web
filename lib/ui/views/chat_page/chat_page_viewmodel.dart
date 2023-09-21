@@ -15,12 +15,12 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
   String chatId = "";
   String otherUID = "";
   String name = "";
-   var progressshow = 0;
+  var progressshow = 0;
   var imageLoading = false;
   String profile = "";
   final loginService = locator<LoginService>();
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-    FirebaseStorage storage = FirebaseStorage.instance;
+  FirebaseStorage storage = FirebaseStorage.instance;
 
   TextEditingController searchCTRL = TextEditingController();
   final TextEditingController smsController = TextEditingController();
@@ -45,7 +45,7 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
   void dispose() {
     if (kIsWeb) {
       window.removeEventListener('focus', online);
-       window.removeEventListener('blur', offline);
+      window.removeEventListener('blur', offline);
       window.removeEventListener('beforeunload', offline);
       window.removeEventListener('offline', offline);
       window.removeEventListener('online', online);
@@ -56,18 +56,20 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     super.dispose();
   }
 
-  void online(Event e) async{
+  void online(Event e) async {
     log("============>online");
-    await  firestore.collection('users').doc(loginService.UserData.uID).update({
-  "status":true
-  });
+    await firestore
+        .collection('users')
+        .doc(loginService.UserData.uID)
+        .update({"status": true});
   }
 
-  void offline(Event e) async{
+  void offline(Event e) async {
     log("============>offline");
-    await  firestore.collection('users').doc(loginService.UserData.uID).update({
-  "status":false
-  });
+    await firestore
+        .collection('users')
+        .doc(loginService.UserData.uID)
+        .update({"status": false});
   }
 
   setChatId(otherData) {
@@ -105,11 +107,9 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
         .snapshots() as Stream<QuerySnapshot<Map<String, dynamic>>>;
   }
 
-  Stream collectionStream =
-      FirebaseFirestore.instance.collection('users').snapshots();
 
   final Stream<QuerySnapshot> usersStream =
-      FirebaseFirestore.instance.collection('users').snapshots();
+      FirebaseFirestore.instance.collection('chatRoom').snapshots();
 
       Stream publisherStream(uID) {
     return FirebaseFirestore.instance.collection("users").doc(uID).snapshots();
@@ -121,15 +121,27 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     String sms = smsController.text;
     try {
       if (sms != "") {
-        smsController.clear();
-        FirebaseFirestore firestore = FirebaseFirestore.instance;
-        await firestore.collection('chats').doc().set({
-          "chatId": chatId,
+        Map<String, dynamic> messageData = {
+          // "chatId": chatId,
           "SMS": sms,
           "Date": "${DateTime.now().microsecondsSinceEpoch}",
           "type": "text",
           "UID": loginService.UserData.uID,
+        };
+        smsController.clear();
+        FirebaseFirestore firestore = FirebaseFirestore.instance;
+        await firestore.collection("chatRoom").doc(chatId).set({
+          // "Date": "${DateTime.now().microsecondsSinceEpoch}",
+          "UID": [loginService.UserData.uID, otherUID],
+          "lastMessage": messageData
         });
+
+        await firestore
+            .collection("chatRoom")
+            .doc(chatId)
+            .collection('chats')
+            .doc()
+            .set(messageData);
 
         // ScaffoldMessenger.of(context).showSnackBar(
         //   const SnackBar(
@@ -149,49 +161,48 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
 
   var reload = 0;
 
-  Stream<QuerySnapshot> getLastMessageStream(otherId) {
+  Stream<DocumentSnapshot> getLastMessageStream(otherId) {
     var currentuID = loginService.UserData.uID.toString();
     List<String> _chatID = [currentuID, otherId]..sort();
     // log("${chatId.toString()} =====2=====${currentuID}=====>${_chatID}======>");
     String _chatId = _chatID.join('_');
-    CollectionReference chatCollection = firestore.collection('chats');
-    if (reload < 1) {
-      reload++;
-      Future.delayed(const Duration(seconds: 1), () {
-        notifyListeners();
-      });
-    }
+    return firestore.collection('chatRoom').doc(_chatId).snapshots();
+    // CollectionReference chatCollection = firestore.collection('chatRoom').doc(_chatId).snapshots();
+    // if (reload < 1) {
+    //   reload++;
+    //   Future.delayed(const Duration(seconds: 1), () {
+    //     notifyListeners();
+    //   });
+    // }
 
-    return chatCollection
-        .where("chatId", isEqualTo: _chatId)
-        .orderBy('Date', descending: true)
-        .limit(1)
-        .snapshots();
+    // return chatCollection
+    //     .where("chatId", isEqualTo: _chatId)
+    //     .orderBy('Date', descending: true)
+    //     .limit(1)
+    //     .snapshots();
   }
 
- ///////////////////////
+  ///////////////////////
 
   void uploadImage({required Function(File file) onSelected}) {
-  FileUploadInputElement uploadInput = FileUploadInputElement()
-    // ..accept = "image/*";
-   ..accept = "image/*, video/*, application/pdf";
-  uploadInput.click();
+    FileUploadInputElement uploadInput = FileUploadInputElement()
+      // ..accept = "image/*";
+      ..accept = "image/*, video/*, application/pdf";
+    uploadInput.click();
 
-  uploadInput.onChange.listen((event) {
-    final file = uploadInput.files!.first;
+    uploadInput.onChange.listen((event) {
+      final file = uploadInput.files!.first;
       final reader = FileReader();
       reader.readAsDataUrl(file);
-     reader.onLoadEnd.listen((event) {
+      reader.onLoadEnd.listen((event) {
         onSelected(file);
-      });// Pass the selected file to the callback function.
-  });
-}
+      }); // Pass the selected file to the callback function.
+    });
+  }
 
-//  
+//
 
-
-
- Future uploadToStorage() async {
+  Future uploadToStorage() async {
     // final dateTime = DateTime.now();
     uploadImage(
       onSelected: (File file) {
@@ -208,15 +219,15 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
         });
         uploadTask.whenComplete(() async {
           var imageUrl = await ref.getDownloadURL();
-      log("======${imageUrl}");
-       FirebaseFirestore firestore = FirebaseFirestore.instance;
-        await firestore.collection('chats').doc().set({
-          "chatId": chatId,
-          "SMS": imageUrl,
-          "Date": "${DateTime.now().microsecondsSinceEpoch}",
-          "type": file.name.split(".").last,
-          "UID": loginService.UserData.uID,
-        });
+          log("======${imageUrl}");
+          FirebaseFirestore firestore = FirebaseFirestore.instance;
+          await firestore.collection('chats').doc().set({
+            "chatId": chatId,
+            "SMS": imageUrl,
+            "Date": "${DateTime.now().microsecondsSinceEpoch}",
+            "type": file.name.split(".").last,
+            "UID": loginService.UserData.uID,
+          });
           notifyListeners();
           // print("=====>$url=====>${file.type.split("/")[0]}");
           // postType = "${file.type.split("/")[0]}";
@@ -232,8 +243,4 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     );
     return null;
   }
-  
-  }
-
-
-
+}

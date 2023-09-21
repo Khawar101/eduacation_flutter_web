@@ -232,9 +232,19 @@ class CoursesService {
           .collection("courses")
           .doc(key.toString())
           .set(courseData.toJson());
+          // for creating group chat
+           await firestore
+          .collection("chats")
+          .doc(key.toString())
+          .set({
+            "chatId":key.toString() 
+            
+              });
+
       coursesPage = 0;
       coursesNotifyListeners();
       // message = "Login Successfully";
+
       log("upload successfully");
     } catch (e) {
       // message = e.toString();
