@@ -54,16 +54,16 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
                   log("==================>");
                   viewModel.setChatId(chatMember);
                 },
-                title: Text(lastMessage!.sMS ?? ""),
+                title: Text(
+                  viewModel.cruntUserName(chatMember) ?? "",
+                ),
                 subtitle: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
                       width: width * 0.11,
                       child: Text(
-                        viewModel.loginService.UserData.uID == lastMessage.uID
-                            ? 'Me: ${lastMessage.sMS ?? ""}'
-                            : "You: ${lastMessage.sMS ?? ""}",
+                        lastMessage!.sMS ?? "",
                         style: const TextStyle(
                           overflow: TextOverflow.ellipsis,
                           fontSize: 11,
@@ -132,10 +132,12 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
                 //   },
                 // ),
 
-                // leading: CircleAvatar(
-                //   backgroundColor: Colors.red,
-                //   backgroundImage: NetworkImage(_data["profile"].toString()),
-                // ),
+                leading: CircleAvatar(
+                  backgroundColor: Colors.red,
+                  backgroundImage: NetworkImage(
+                    viewModel.cruntUserProfile(chatMember) ?? "",
+                  ),
+                ),
               );
             },
           ),

@@ -101,6 +101,40 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     notifyListeners();
   }
 
+  cruntUserData(ChatMember chatMember) {
+    Member _member = Member();
+    // log("================>${otherData["UID"]}");
+    // isOnline = otherData["status"];
+    String currentuID = loginService.UserData.uID.toString();
+    if (chatMember.group == null) {
+      if (chatMember.member![0].uID != currentuID) {
+        _member.uID = chatMember.member![0].uID!.toString();
+        // name = otherData["username"]??"";
+        // profile = otherData["profile"]??"";
+      } else {
+        _member.uID = chatMember.member![1].uID!.toString();
+        // name = otherData["username"]??"";
+        // profile = otherData["profile"]??"";
+      }
+    } else {
+      _member.uID = chatMember.group!.key ?? "";
+      // chatId = chatMember.group!.key ?? "";
+      _member.name = chatMember.group!.name ?? "";
+      _member.profile = chatMember.group!.profile ?? "";
+    }
+    notifyListeners();
+    return _member;
+  }
+
+  cruntUserName(chatMember) {
+    Member _member = cruntUserData(chatMember);
+    return _member.name;
+  }
+
+  cruntUserProfile(chatMember) {
+    Member _member = cruntUserData(chatMember);
+    return _member.name;
+  }
   // void updateTextStatus(e) {
   //   numLines = '\n'.allMatches(e).length + 1;
   //   isTextEmpty = smsController.text.isEmpty;
@@ -120,6 +154,7 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
         .collection("chatRoom")
         .doc(chatId)
         .collection('chats')
+        .orderBy("Date", descending: true)
         .snapshots();
     return stream.map((event) => event.docs.map((doc) {
           return Chat.fromJson(doc.data());
@@ -144,42 +179,23 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     try {
       if (sms != "") {
         Map<String, dynamic> messageData = {
-          // "chatId": chatId,
           "SMS": sms,
           "Date": "${DateTime.now().microsecondsSinceEpoch}",
           "type": "text",
           "UID": loginService.UserData.uID,
         };
         smsController.clear();
-        if (loginService.UserData.uID == otherUID) {
-          Map chatMembers = {"name": name, "profile": profile, "key": otherUID};
-        }
         FirebaseFirestore firestore = FirebaseFirestore.instance;
-        await firestore.collection("chatRoom").doc(chatId).set({
-          // "Date": "${DateTime.now().microsecondsSinceEpoch}",
-          "member": [
-            {
-              "name": loginService.UserData.username,
-              "profile": loginService.UserData.profile,
-              "UID": loginService.UserData.uID
-            },
-            {"name": name, "profile": profile, "UID": otherUID}
-          ],
-          "lastMessage": messageData
-        });
-
+        await firestore
+            .collection("chatRoom")
+            .doc(chatId)
+            .update({"lastMessage": messageData});
         await firestore
             .collection("chatRoom")
             .doc(chatId)
             .collection('chats')
             .doc()
             .set(messageData);
-
-        // ScaffoldMessenger.of(context).showSnackBar(
-        //   const SnackBar(
-        //     content: Text('Sending....'),
-        //   ),
-        // );
       }
       notifyListeners();
     } catch (e) {
