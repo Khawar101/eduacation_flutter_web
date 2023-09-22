@@ -268,7 +268,7 @@ class CoursesService {
     Map<String, dynamic> messageData = {
       "SMS": "Hey",
       "Date": "${DateTime.now().microsecondsSinceEpoch}",
-      "type": "text",
+      "type": "notification",
       "UID": _loginService.UserData.uID,
     };
 

@@ -71,7 +71,18 @@ class CourseDetails extends StackedView<UploadCoursesViewModel> {
                       color: Colors.black),
                 ],
               ),
-            
+              horizontalSpaceLarge,
+              InkWell(
+                onTap: viewModel.joinGroup,
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ButtonText(text: "Join Group", color: Colors.black),
+                    verticalSpaceTiny,
+                    Icon(Icons.chat_outlined, size: 14)
+                  ],
+                ),
+              ),
             ],
           ),
           verticalSpaceSmall,
