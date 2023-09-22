@@ -15,7 +15,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
   @override
   Widget build(BuildContext context, ChatPageViewModel viewModel) {
     return uID == ""
-        ? Center(child: Text("No Message"))
+        ? const Center(child: Text("No Message"))
         : Column(
             children: [
               SizedBox(
@@ -23,9 +23,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const SizedBox(
-                      width: 20,
-                    ),
+                    const SizedBox(width: 20),
                     CircleAvatar(
                       backgroundColor: Colors.red,
                       backgroundImage: NetworkImage(viewModel.profile),
@@ -37,10 +35,25 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                       children: [
                         Text(
                           viewModel.name.toString(),
-                          style: const TextStyle(fontSize: 20),
+                          style: const TextStyle(fontSize: 18),
                         ),
-                        const SizedBox(
-                          height: 1,
+                        const SizedBox(height: 1),
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: viewModel.memberList.length,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (ctx, index) {
+                              return InkWell(
+                                onTap: () {
+                                  viewModel
+                                      .openNewChat(viewModel.memberList[index]);
+                                },
+                                child: Text(
+                                    "${viewModel.memberList[index].name}, "),
+                              );
+                            },
+                          ),
                         ),
                         // StreamBuilder(
                         //   stream: viewModel.publisherStream(uID),
@@ -90,7 +103,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                         AsyncSnapshot<List<Chat>> snapshot) {
                       if (snapshot.hasError) {
                         log(snapshot.error.toString());
-                        return const Text('Error fetching messages');
+                        return Text(snapshot.error.toString());
                       }
 
                       if (!snapshot.hasData) {
@@ -169,7 +182,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                               : Colors.grey),
                       onPressed: () {
                         if (viewModel.smsController.text.isNotEmpty) {
-                          viewModel.sentSMS(chatId, context, "");
+                          viewModel.sentSMS(chatId, context,);
                         }
                       },
                     )

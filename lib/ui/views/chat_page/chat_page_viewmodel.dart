@@ -17,6 +17,7 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
   String chatId = "";
   String otherUID = "";
   String name = "";
+  List<Member> memberList = [];
   var progressshow = 0;
   var imageLoading = false;
   String profile = "";
@@ -74,29 +75,32 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
         .update({"status": false});
   }
 
+  openNewChat(Member member) {
+    otherUID = member.uID!.toString();
+    name = member.name ?? "";
+    profile = member.profile ?? "";
+    String currentuID = loginService.UserData.uID.toString();
+    List<String> _chatID = [currentuID, otherUID]..sort();
+    chatId = _chatID.join('_');
+    memberList = [];
+    notifyListeners();
+  }
+
   setChatId(ChatMember chatMember) {
-    // log("================>${otherData["UID"]}");
     // isOnline = otherData["status"];
     String currentuID = loginService.UserData.uID.toString();
     if (chatMember.group == null) {
       if (chatMember.member![0].uID != currentuID) {
-        otherUID = chatMember.member![0].uID!.toString();
-        // name = otherData["username"]??"";
-        // profile = otherData["profile"]??"";
+        openNewChat(chatMember.member![0]);
       } else {
-        otherUID = chatMember.member![1].uID!.toString();
-        // name = otherData["username"]??"";
-        // profile = otherData["profile"]??"";
+        openNewChat(chatMember.member![1]);
       }
-      List<String> _chatID = [currentuID, otherUID]..sort();
-      // log("${chatId.toString()} =====2=====${currentuID}=====>${_chatID}======>");
-      chatId = _chatID.join('_');
-      notifyListeners();
     } else {
       otherUID = chatMember.group!.key ?? "";
       chatId = chatMember.group!.key ?? "";
       name = chatMember.group!.name ?? "";
       profile = chatMember.group!.profile ?? "";
+      memberList = chatMember.member!;
     }
     notifyListeners();
   }
@@ -109,12 +113,12 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     if (chatMember.group == null) {
       if (chatMember.member![0].uID != currentuID) {
         _member.uID = chatMember.member![0].uID!.toString();
-        // name = otherData["username"]??"";
-        // profile = otherData["profile"]??"";
+        _member.name = chatMember.member![0].name!.toString();
+        _member.profile = chatMember.member![0].profile!.toString();
       } else {
         _member.uID = chatMember.member![1].uID!.toString();
-        // name = otherData["username"]??"";
-        // profile = otherData["profile"]??"";
+        _member.name = chatMember.member![1].name!.toString();
+        _member.profile = chatMember.member![1].profile!.toString();
       }
     } else {
       _member.uID = chatMember.group!.key ?? "";
@@ -172,7 +176,7 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     return FirebaseFirestore.instance.collection("users").doc(uID).snapshots();
   }
 
-  void sentSMS(chatId, context, String status) async {
+  void sentSMS(chatId, context) async {
     // String mergeuid = uid_merge(widget.UserData['UID'], widget.UID).toString();
     // print("objectobjectobjectobjectobjectobjectobjectobjectobject");
     String sms = smsController.text;
@@ -186,10 +190,32 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
         };
         smsController.clear();
         FirebaseFirestore firestore = FirebaseFirestore.instance;
-        await firestore
-            .collection("chatRoom")
-            .doc(chatId)
-            .update({"lastMessage": messageData});
+        var docRef = firestore.collection("chatRoom").doc(chatId);
+        docRef.get().then((doc) => {
+              if (doc.exists)
+                {
+                  docRef.update({"lastMessage": messageData})
+                }
+              else
+                {
+                  docRef.set({
+                    "Date": "${DateTime.now().microsecondsSinceEpoch}",
+                    "member": [
+                      {
+                        "name": loginService.UserData.username,
+                        "profile": loginService.UserData.profile,
+                        "UID": loginService.UserData.uID
+                      },
+                      {"name": name, "profile": profile, "UID": otherUID},
+                    ],
+                    "lastMessage": messageData
+                  })
+                }
+            });
+        // var data = await firestore
+        //     .collection("chatRoom")
+        //     .doc(chatId)
+        //     .update({"lastMessage": messageData});
         await firestore
             .collection("chatRoom")
             .doc(chatId)
@@ -199,6 +225,7 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
       }
       notifyListeners();
     } catch (e) {
+      log(e.toString());
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(e.toString()),

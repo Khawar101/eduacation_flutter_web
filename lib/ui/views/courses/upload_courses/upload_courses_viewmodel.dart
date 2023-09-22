@@ -255,8 +255,6 @@ class UploadCoursesViewModel extends BaseViewModel {
           ChatMember.fromJson(snapshot.data() as Map<String, dynamic>);
       var contain = _chatMember.member!
           .where((element) => element.uID == _loginService.UserData.uID);
-      log("===========${_chatMember.member!.length}========>");
-
       if (contain.isEmpty) {
         Member cruntUser = Member(
             name: _loginService.UserData.username,
