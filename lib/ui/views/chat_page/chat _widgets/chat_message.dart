@@ -1,5 +1,6 @@
 import 'package:education_flutter_web/app/app.locator.dart';
 import 'package:education_flutter_web/app/app.router.dart';
+import 'package:education_flutter_web/services/Model/Chat.dart';
 import 'package:education_flutter_web/services/Model/EbookModel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -8,13 +9,9 @@ final _navigationService = locator<NavigationService>();
 
 class MessageBubble extends StatelessWidget {
   final bool isMe;
-  final String message;
-  final Map messageData;
+  final Chat messageData;
   const MessageBubble(
-      {super.key,
-      required this.isMe,
-      required this.message,
-      required this.messageData});
+      {super.key, required this.isMe, required this.messageData});
 
   @override
   Widget build(BuildContext context) {
@@ -41,12 +38,12 @@ class MessageBubble extends StatelessWidget {
           margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 8.0),
           child: Column(
             children: [
-              messageData['type'] == "text"
+              messageData.type == "text"
                   ? Container(
                       constraints:
                           const BoxConstraints(minWidth: 10, maxWidth: 400),
                       child: Text(
-                        message,
+                        messageData.sMS ?? "",
                         style: TextStyle(
                           height: 1.5,
                           color: isMe ? Colors.white : Colors.black,
@@ -55,14 +52,15 @@ class MessageBubble extends StatelessWidget {
                       ),
                     )
                   : Container(),
-              messageData['type'] == "image"
-                  ? Image.network(message, width: 200, fit: BoxFit.cover)
+              messageData.type == "image"
+                  ? Image.network(messageData.sMS ?? "",
+                      width: 200, fit: BoxFit.cover)
                   : Container(),
-              messageData['type'] == "pdf"
+              messageData.type == "pdf"
                   ? InkWell(
                       onTap: () {
                         _navigationService.navigateToPdfViewer(
-                            pdfData: PdfFile(pdfUrl: message));
+                            pdfData: PdfFile(pdfUrl: messageData.sMS ?? ""));
                       },
                       child: Image.asset(
                         "assets/icons/addPDF.png",

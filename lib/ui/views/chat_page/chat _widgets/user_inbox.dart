@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:education_flutter_web/services/Model/Chat.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../services/Model/userData.dart';
@@ -14,7 +15,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
   @override
   Widget build(BuildContext context, ChatPageViewModel viewModel) {
     return uID == ""
-        ? Container()
+        ? Center(child: Text("No Message"))
         : Column(
             children: [
               SizedBox(
@@ -41,42 +42,41 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                         const SizedBox(
                           height: 1,
                         ),
-                        StreamBuilder(
-                          stream: viewModel.publisherStream(uID),
-                          builder:
-                              (BuildContext context, AsyncSnapshot snapshot) {
-                            if (snapshot.hasError) {
-                              return const Text('Something went wrong');
-                            }
-
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return Container();
-                            }
-                            userData _userData =
-                                userData.fromJson(snapshot.data.data());
-                            return Row(
-                              children: [
-                                Icon(
-                                  Icons.circle,
-                                  color: _userData.status ?? false
-                                      ? Colors.green
-                                      : Colors.grey,
-                                  size: 11,
-                                ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                Text(
-                                  _userData.status ?? false
-                                      ? "Active now"
-                                      : "Offline",
-                                  style: const TextStyle(fontSize: 10),
-                                )
-                              ],
-                            );
-                          },
-                        )
+                        // StreamBuilder(
+                        //   stream: viewModel.publisherStream(uID),
+                        //   builder:
+                        //       (BuildContext context, AsyncSnapshot snapshot) {
+                        //     if (snapshot.hasError) {
+                        //       return const Text('Something went wrong');
+                        //     }
+                        //     if (snapshot.connectionState ==
+                        //         ConnectionState.waiting) {
+                        //       return Container();
+                        //     }
+                        //     userData _userData =
+                        //         userData.fromJson(snapshot.data.data());
+                        //     return Row(
+                        //       children: [
+                        //         Icon(
+                        //           Icons.circle,
+                        //           color: _userData.status ?? false
+                        //               ? Colors.green
+                        //               : Colors.grey,
+                        //           size: 11,
+                        //         ),
+                        //         const SizedBox(
+                        //           width: 8,
+                        //         ),
+                        //         Text(
+                        //           _userData.status ?? false
+                        //               ? "Active now"
+                        //               : "Offline",
+                        //           style: const TextStyle(fontSize: 10),
+                        //         )
+                        //       ],
+                        //     );
+                        //   },
+                        // )
                       ],
                     ),
                   ],
@@ -84,9 +84,10 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height - 160,
-                child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                    stream: viewModel.getMessagesStream(),
-                    builder: (context, snapshot) {
+                child: StreamBuilder<List<Chat>>(
+                    stream: viewModel.chatStream(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<List<Chat>> snapshot) {
                       if (snapshot.hasError) {
                         log(snapshot.error.toString());
                         return const Text('Error fetching messages');
@@ -97,18 +98,17 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                       }
 
                       return ListView.builder(
-                        itemCount: snapshot.data?.docs.length,
+                        itemCount: snapshot.data?.length,
                         reverse: true,
                         itemBuilder: (context, index) {
-                          var messageData = snapshot.data!.docs[index].data();
+                          final Chat messageData = snapshot.data![index];
 
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: MessageBubble(
-                              isMe: messageData['UID'] ==
-                                  viewModel.loginService.UserData.uID,
-                              message: messageData['SMS'],messageData:messageData
-                            ),
+                                isMe: messageData.uID ==
+                                    viewModel.loginService.UserData.uID,
+                                messageData: messageData),
                           );
                         },
                       );
@@ -159,8 +159,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                     IconButton(
                       icon: const Icon(Icons.attachment, color: Colors.grey),
                       onPressed: () {
-                         viewModel.uploadToStorage();
-                     
+                        viewModel.uploadToStorage();
                       },
                     ),
                     IconButton(

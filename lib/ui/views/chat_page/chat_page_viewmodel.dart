@@ -1,6 +1,8 @@
 import 'dart:developer';
 import 'dart:html';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:education_flutter_web/services/Model/Chat.dart';
+import 'package:education_flutter_web/services/Model/ChatMember.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -72,15 +74,30 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
         .update({"status": false});
   }
 
-  setChatId(otherData) {
-    name = otherData["username"];
-    profile = otherData["profile"];
-    isOnline = otherData["status"];
-    otherUID = otherData["UID"];
-    var currentuID = loginService.UserData.uID.toString();
-    List<String> _chatID = [currentuID, otherData['UID']]..sort();
-    // log("${chatId.toString()} =====2=====${currentuID}=====>${_chatID}======>");
-    chatId = _chatID.join('_');
+  setChatId(ChatMember chatMember) {
+    // log("================>${otherData["UID"]}");
+    // isOnline = otherData["status"];
+    String currentuID = loginService.UserData.uID.toString();
+    if (chatMember.group == null) {
+      if (chatMember.member![0].uID != currentuID) {
+        otherUID = chatMember.member![0].uID!.toString();
+        // name = otherData["username"]??"";
+        // profile = otherData["profile"]??"";
+      } else {
+        otherUID = chatMember.member![1].uID!.toString();
+        // name = otherData["username"]??"";
+        // profile = otherData["profile"]??"";
+      }
+      List<String> _chatID = [currentuID, otherUID]..sort();
+      // log("${chatId.toString()} =====2=====${currentuID}=====>${_chatID}======>");
+      chatId = _chatID.join('_');
+      notifyListeners();
+    } else {
+      otherUID = chatMember.group!.key ?? "";
+      chatId = chatMember.group!.key ?? "";
+      name = chatMember.group!.name ?? "";
+      profile = chatMember.group!.profile ?? "";
+    }
     notifyListeners();
   }
 
@@ -98,20 +115,25 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     isTextEmpty = smsController.text.isEmpty;
   }
 
-  Stream<QuerySnapshot<Map<String, dynamic>>> getMessagesStream() {
-    CollectionReference chatCollection = firestore.collection('chats');
-
-    return chatCollection
-        .where("chatId", isEqualTo: chatId)
-        .orderBy('Date', descending: true)
-        .snapshots() as Stream<QuerySnapshot<Map<String, dynamic>>>;
+  Stream<List<Chat>> chatStream() {
+    final stream = firestore
+        .collection("chatRoom")
+        .doc(chatId)
+        .collection('chats')
+        .snapshots();
+    return stream.map((event) => event.docs.map((doc) {
+          return Chat.fromJson(doc.data());
+        }).toList());
   }
 
+  Stream<List<ChatMember>> chatRoomStream() {
+    final stream = firestore.collection("chatRoom").snapshots();
+    return stream.map((event) => event.docs.map((doc) {
+          return ChatMember.fromJson(doc.data());
+        }).toList());
+  }
 
-  final Stream<QuerySnapshot> usersStream =
-      FirebaseFirestore.instance.collection('chatRoom').snapshots();
-
-      Stream publisherStream(uID) {
+  Stream publisherStream(uID) {
     return FirebaseFirestore.instance.collection("users").doc(uID).snapshots();
   }
 
@@ -129,10 +151,20 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
           "UID": loginService.UserData.uID,
         };
         smsController.clear();
+        if (loginService.UserData.uID == otherUID) {
+          Map chatMembers = {"name": name, "profile": profile, "key": otherUID};
+        }
         FirebaseFirestore firestore = FirebaseFirestore.instance;
         await firestore.collection("chatRoom").doc(chatId).set({
           // "Date": "${DateTime.now().microsecondsSinceEpoch}",
-          "UID": [loginService.UserData.uID, otherUID],
+          "member": [
+            {
+              "name": loginService.UserData.username,
+              "profile": loginService.UserData.profile,
+              "UID": loginService.UserData.uID
+            },
+            {"name": name, "profile": profile, "UID": otherUID}
+          ],
           "lastMessage": messageData
         });
 

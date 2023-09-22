@@ -1,5 +1,6 @@
 import 'dart:developer';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'package:education_flutter_web/services/Model/ChatMember.dart';
 import 'package:education_flutter_web/ui/widgets/common/custom_text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,7 +9,7 @@ import '../chat_page_viewmodel.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
-  final data;
+  final List<ChatMember> data;
   const ChatUsers({super.key, required this.data});
 
   @override
@@ -45,16 +46,41 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
             itemCount: data.length,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              var _data = data[index];
+              ChatMember chatMember = data[index];
+              LastMessage? lastMessage = chatMember.lastMessage;
               // log(data[index].toString());
               return ListTile(
                 onTap: () {
-                  viewModel.setChatId(_data);
+                  log("==================>");
+                  viewModel.setChatId(chatMember);
                 },
-                title: Text('YUIO',
+                title: Text(lastMessage!.sMS ?? ""),
+                subtitle: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: width * 0.11,
+                      child: Text(
+                        viewModel.loginService.UserData.uID == lastMessage.uID
+                            ? 'Me: ${lastMessage.sMS ?? ""}'
+                            : "You: ${lastMessage.sMS ?? ""}",
+                        style: const TextStyle(
+                          overflow: TextOverflow.ellipsis,
+                          fontSize: 11,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      timeago.format(
+                        DateTime.fromMicrosecondsSinceEpoch(
+                          int.parse(lastMessage.date ?? ""),
+                        ),
+                      ),
+                      style: GoogleFonts.ibmPlexSans(fontSize: 12),
+                    ),
+                  ],
                 ),
                 // subtitle: StreamBuilder<DocumentSnapshot>(
-                  
                 //   stream: viewModel.getLastMessageStream(
                 //       _data["UID"]), // Pass the user's UID
 
@@ -105,16 +131,14 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
                 //     );
                 //   },
                 // ),
-              
-                leading: CircleAvatar(
-                  backgroundColor: Colors.red,
-                  backgroundImage: NetworkImage(_data["profile"].toString()),
-                ),
+
+                // leading: CircleAvatar(
+                //   backgroundColor: Colors.red,
+                //   backgroundImage: NetworkImage(_data["profile"].toString()),
+                // ),
               );
-           
             },
           ),
-          
         ],
       ),
     );

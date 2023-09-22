@@ -232,19 +232,11 @@ class CoursesService {
           .collection("courses")
           .doc(key.toString())
           .set(courseData.toJson());
-          // for creating group chat
-           await firestore
-          .collection("chats")
-          .doc(key.toString())
-          .set({
-            "chatId":key.toString() 
-            
-              });
-
+      // for creating group chat
+      firstSMS(key.toString());
       coursesPage = 0;
       coursesNotifyListeners();
       // message = "Login Successfully";
-
       log("upload successfully");
     } catch (e) {
       // message = e.toString();
@@ -270,5 +262,39 @@ class CoursesService {
 
   draftCourseService(key) {
     firestore.collection("courses").doc(key).update({"publish": false});
+  }
+
+  void firstSMS(key) async {
+    Map<String, dynamic> messageData = {
+      "SMS": "Hey",
+      "Date": "${DateTime.now().microsecondsSinceEpoch}",
+      "type": "text",
+      "UID": _loginService.UserData.uID,
+    };
+
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    await firestore.collection("chatRoom").doc(key).set({
+      "Date": "${DateTime.now().microsecondsSinceEpoch}",
+      "member": [
+        {
+          "name": _loginService.UserData.username,
+          "profile": _loginService.UserData.profile,
+          "UID": _loginService.UserData.uID
+        },
+      ],
+      "group": {
+        "name": courseData.title,
+        "profile": courseData.price,
+        "key": courseData.publishDate
+      },
+      "lastMessage": messageData
+    });
+
+    await firestore
+        .collection("chatRoom")
+        .doc(key)
+        .collection('chats')
+        .doc()
+        .set(messageData);
   }
 }
