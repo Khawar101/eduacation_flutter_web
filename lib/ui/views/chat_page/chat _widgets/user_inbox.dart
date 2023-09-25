@@ -14,6 +14,8 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
       : super(key: key);
   @override
   Widget build(BuildContext context, ChatPageViewModel viewModel) {
+ final width = MediaQuery.of(context).size.width;
+ final height =MediaQuery.of(context).size.height;int maxLines=1;
     return uID == ""
         ? const Center(child: Text("No Message"))
         : Column(
@@ -96,7 +98,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height - 160,
+                height: viewModel.calculateHeight (maxLines,context),
                 child: StreamBuilder<List<Chat>>(
                     stream: viewModel.chatStream(),
                     builder: (BuildContext context,
@@ -128,7 +130,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                     }),
               ),
               Container(
-                width: MediaQuery.of(context).size.width,
+              width:width,
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -166,7 +168,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                           //  suffixIcon: Icon(Icons.email, color: Colors.black,)
                         ),
                         maxLines: 5,
-                        minLines: 1,
+                        minLines:1
                       ),
                     ),
                     IconButton(

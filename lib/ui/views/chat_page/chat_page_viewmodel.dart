@@ -139,15 +139,25 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     Member _member = cruntUserData(chatMember);
     return _member.name;
   }
-  // void updateTextStatus(e) {
-  //   numLines = '\n'.allMatches(e).length + 1;
-  //   isTextEmpty = smsController.text.isEmpty;
-  //   notifyListeners();
-  // }
+  
 
   setNotifyListeners() {
     notifyListeners();
   }
+
+     calculateHeight(int maxLines,context) {
+  const lineHeight = 500.0; // Adjust this value based on your text style and layout
+  var minHeight =maxLines==1? MediaQuery.of(context).size.height-150:maxLines==2? MediaQuery.of(context).size.height-180:maxLines==1? MediaQuery.of(context).size.height-150:maxLines==4? MediaQuery.of(context).size.height-280:50; // Adjust this value as needed
+
+  var calculatedHeight = minHeight;
+  var calculatedHeight2 = lineHeight;
+  
+  if (maxLines > 1) {
+    calculatedHeight -= (maxLines + 1) * lineHeight;
+  }
+
+  return calculatedHeight;
+}
 
   void updateTextStatus() {
     isTextEmpty = smsController.text.isEmpty;

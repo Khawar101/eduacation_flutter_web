@@ -27,8 +27,8 @@ class DrawerView extends StackedView<DrawerViewModel> {
         height: MediaQuery.of(context).size.height,
         child: Row(
           children: <Widget>[
-            Expanded(
-              flex: 1,
+            SizedBox(
+              width: screenWidth*0.18,
               child: Drawer(
                 child: ListView(
                   padding: EdgeInsets.zero,
@@ -188,8 +188,8 @@ class DrawerView extends StackedView<DrawerViewModel> {
                 ),
               ),
             ),
-            Expanded(
-                flex: 5,
+            SizedBox(
+                width: screenWidth*0.82,
                 child: Column(
                   children: [
                     Padding(
