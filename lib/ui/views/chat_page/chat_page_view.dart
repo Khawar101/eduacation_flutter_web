@@ -1,5 +1,3 @@
-import 'dart:developer';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:education_flutter_web/services/Model/ChatMember.dart';
 import 'package:education_flutter_web/ui/views/chat_page/chat%20_widgets/user_inbox.dart';
 import 'package:flutter/material.dart';
@@ -31,32 +29,20 @@ class ChatPageView extends StackedView<ChatPageViewModel> {
     final width = MediaQuery.of(context).size.width;
     return SizedBox(
         height: height * 1 - 50,
-        
-        child: StreamBuilder<List<ChatMember>>(
-            stream: viewModel.chatRoomStream(),
-            builder: (BuildContext context,
-                AsyncSnapshot<List<ChatMember>> snapshot) {
-              if (snapshot.hasError) {
-                return const Text("Something went wrong");
-              }
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Text("Loading");
-              }
-              var data = snapshot.data!;
-              return Row(
-              
+        child: viewModel.isBusy
+            ? const Center(child: CircularProgressIndicator())
+            : Row(
                 children: [
-                  ChatUsers(data: data),
+                  ChatUsers(data: viewModel.chatMembers),
                   SizedBox(
-                    width: width*0.61,
+                    width: width * 0.61,
                     child: UserInbox(
                       chatId: viewModel.chatId,
                       uID: viewModel.otherUID,
                     ),
                   )
                 ],
-              );
-            }));
+              ));
   }
 
   @override

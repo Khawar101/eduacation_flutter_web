@@ -22,14 +22,16 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
   var imageLoading = false;
   String profile = "";
   final loginService = locator<LoginService>();
+  String get uID => loginService.UserData.uID.toString();
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseStorage storage = FirebaseStorage.instance;
-
+  List<ChatMember> chatMembers = [];
   TextEditingController searchCTRL = TextEditingController();
   final TextEditingController smsController = TextEditingController();
   bool isTextEmpty = true;
 
   void initState() {
+    _startChatRoomsStream();
     smsController.addListener(updateTextStatus);
     if (kIsWeb) {
       window.addEventListener('focus', online);
@@ -87,54 +89,55 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
   }
 
   void setChatId(ChatMember chatMember) {
-  String currentuID = loginService.UserData.uID.toString();
-  
-  if (chatMember.group == null) {
-    if (chatMember.member![0].uID != currentuID) {
-      openNewChat(chatMember.member![0]);
+    String currentuID = loginService.UserData.uID.toString();
+
+    if (chatMember.group == null) {
+      if (chatMember.member![0].uID != currentuID) {
+        openNewChat(chatMember.member![0]);
+      } else {
+        openNewChat(chatMember.member![1]);
+      }
     } else {
-      openNewChat(chatMember.member![1]);
+      otherUID = chatMember.group!.key ?? "";
+      chatId = chatMember.group!.key ?? "";
+      name = chatMember.group!.name ?? "";
+      profile = chatMember.group!.profile ?? "";
+      memberList = chatMember.member!
+          .where((member) => member.uID != currentuID)
+          .toList();
     }
-  } else {
-    otherUID = chatMember.group!.key ?? "";
-    chatId = chatMember.group!.key ?? "";
-    name = chatMember.group!.name ?? "";
-    profile = chatMember.group!.profile ?? "";
-    // Filter out the logged-in user from the memberList
-    memberList = chatMember.member!.where((member) => member.uID != currentuID).toList();
+    notifyListeners();
   }
-  notifyListeners();
-}
 
 // This method returns current user data, excluding the logged-in user.
-Member cruntUserData(ChatMember chatMember) {
-  Member _member = Member();
-  String currentuID = loginService.UserData.uID.toString();
-  
-  if (chatMember.group == null) {
-    if (chatMember.member![0].uID != currentuID) {
-      _member.uID = chatMember.member![0].uID!.toString();
-      _member.name = chatMember.member![0].name!.toString();
-      _member.profile = chatMember.member![0].profile!.toString();
+  Member cruntUserData(ChatMember chatMember) {
+    Member _member = Member();
+    String currentuID = loginService.UserData.uID.toString();
+
+    if (chatMember.group == null) {
+      if (chatMember.member![0].uID != currentuID) {
+        _member.uID = chatMember.member![0].uID!.toString();
+        _member.name = chatMember.member![0].name!.toString();
+        _member.profile = chatMember.member![0].profile!.toString();
+      } else {
+        _member.uID = chatMember.member![1].uID!.toString();
+        _member.name = chatMember.member![1].name!.toString();
+        _member.profile = chatMember.member![1].profile!.toString();
+      }
     } else {
-      _member.uID = chatMember.member![1].uID!.toString();
-      _member.name = chatMember.member![1].name!.toString();
-      _member.profile = chatMember.member![1].profile!.toString();
+      _member.uID = chatMember.group!.key ?? "";
+      _member.name = chatMember.group!.name ?? "";
+      _member.profile = chatMember.group!.profile ?? "";
     }
-  } else {
-    _member.uID = chatMember.group!.key ?? "";
-    _member.name = chatMember.group!.name ?? "";
-    _member.profile = chatMember.group!.profile ?? "";
+
+    // // If the logged-in user is in memberList, remove them
+    // if (memberList.any((member) => member.uID == currentuID)) {
+    //   memberList.removeWhere((member) => member.uID == currentuID);
+    // }
+
+    notifyListeners();
+    return _member;
   }
-  
-  // If the logged-in user is in memberList, remove them
-  if (memberList.any((member) => member.uID == currentuID)) {
-    memberList.removeWhere((member) => member.uID == currentuID);
-  }
-  
-  notifyListeners();
-  return _member;
-}
 
   cruntUserName(chatMember) {
     Member _member = cruntUserData(chatMember);
@@ -145,25 +148,33 @@ Member cruntUserData(ChatMember chatMember) {
     Member _member = cruntUserData(chatMember);
     return _member.name;
   }
-  
 
   setNotifyListeners() {
     notifyListeners();
   }
 
-     calculateHeight(int maxLines,context) {
-  const lineHeight = 500.0; // Adjust this value based on your text style and layout
-  var minHeight =maxLines==1? MediaQuery.of(context).size.height-150:maxLines==2? MediaQuery.of(context).size.height-180:maxLines==1? MediaQuery.of(context).size.height-150:maxLines==4? MediaQuery.of(context).size.height-280:50; // Adjust this value as needed
+  calculateHeight(int maxLines, context) {
+    const lineHeight =
+        500.0; // Adjust this value based on your text style and layout
+    var minHeight = maxLines == 1
+        ? MediaQuery.of(context).size.height - 150
+        : maxLines == 2
+            ? MediaQuery.of(context).size.height - 180
+            : maxLines == 1
+                ? MediaQuery.of(context).size.height - 150
+                : maxLines == 4
+                    ? MediaQuery.of(context).size.height - 280
+                    : 50; // Adjust this value as needed
 
-  var calculatedHeight = minHeight;
-  var calculatedHeight2 = lineHeight;
-  
-  if (maxLines > 1) {
-    calculatedHeight -= (maxLines + 1) * lineHeight;
+    var calculatedHeight = minHeight;
+    var calculatedHeight2 = lineHeight;
+
+    if (maxLines > 1) {
+      calculatedHeight -= (maxLines + 1) * lineHeight;
+    }
+
+    return calculatedHeight;
   }
-
-  return calculatedHeight;
-}
 
   void updateTextStatus() {
     isTextEmpty = smsController.text.isEmpty;
@@ -181,16 +192,45 @@ Member cruntUserData(ChatMember chatMember) {
         }).toList());
   }
 
-  Stream<List<ChatMember>> chatRoomStream() {
-    final stream = firestore.collection("chatRoom").snapshots();
-    return stream.map((event) => event.docs.map((doc) {
-          return ChatMember.fromJson(doc.data());
-        }).toList());
+  // Stream<List<ChatMember>> chatRoomStream() {
+  //   final stream = firestore
+  //       .collection("chatRoom")
+  //       // .where('membersUid', arrayContains: uID)
+  //       .orderBy('lastMessage.Date', descending: true)
+  //       .snapshots();
+  //   return stream.map((event) => event.docs.map((doc) {
+  //         return ChatMember.fromJson(doc.data());
+  //       }).toList());
+  // }
+
+  Stream<List<ChatMember>> getChatRoomsStream() async* {
+    setBusy(true);
+    final result = firestore
+        .collection('chatRoom')
+        .where('membersUid', arrayContains: uID)
+        // .orderBy('lastMessage.createdOn', descending: true)
+        .snapshots();
+    await for (final event in result) {
+      final List<ChatMember> chatRooms = List.empty(growable: true);
+      for (final doc in event.docs) {
+        final data = doc.data();
+        chatRooms.add(ChatMember.fromJson(data));
+      }
+      yield chatRooms;
+    }
   }
 
-  Stream publisherStream(uID) {
-    return FirebaseFirestore.instance.collection("users").doc(uID).snapshots();
+  void _startChatRoomsStream() {
+    getChatRoomsStream().listen((List<ChatMember> event) {
+      chatMembers = event;
+      setBusy(false);
+    });
+    notifyListeners();
   }
+
+  // Stream publisherStream(uID) {
+  //   return FirebaseFirestore.instance.collection("users").doc(uID).snapshots();
+  // }
 
   void sentSMS(chatId, context) async {
     // String mergeuid = uid_merge(widget.UserData['UID'], widget.UID).toString();
@@ -252,26 +292,26 @@ Member cruntUserData(ChatMember chatMember) {
 
   var reload = 0;
 
-  Stream<DocumentSnapshot> getLastMessageStream(otherId) {
-    var currentuID = loginService.UserData.uID.toString();
-    List<String> _chatID = [currentuID, otherId]..sort();
-    // log("${chatId.toString()} =====2=====${currentuID}=====>${_chatID}======>");
-    String _chatId = _chatID.join('_');
-    if (reload < 1) {
-      reload++;
-      Future.delayed(const Duration(seconds: 1), () {
-        notifyListeners();
-      });
-    }
-    return firestore.collection('chatRoom').doc(_chatId).snapshots();
-    // CollectionReference chatCollection = firestore.collection('chatRoom').doc(_chatId).snapshots();
+  // Stream<DocumentSnapshot> getLastMessageStream(otherId) {
+  //   var currentuID = loginService.UserData.uID.toString();
+  //   List<String> _chatID = [currentuID, otherId]..sort();
+  //   // log("${chatId.toString()} =====2=====${currentuID}=====>${_chatID}======>");
+  //   String _chatId = _chatID.join('_');
+  //   if (reload < 1) {
+  //     reload++;
+  //     Future.delayed(const Duration(seconds: 1), () {
+  //       notifyListeners();
+  //     });
+  //   }
+  //   return firestore.collection('chatRoom').doc(_chatId).snapshots();
+  //   // CollectionReference chatCollection = firestore.collection('chatRoom').doc(_chatId).snapshots();
 
-    // return chatCollection
-    //     .where("chatId", isEqualTo: _chatId)
-    //     .orderBy('Date', descending: true)
-    //     .limit(1)
-    //     .snapshots();
-  }
+  //   // return chatCollection
+  //   //     .where("chatId", isEqualTo: _chatId)
+  //   //     .orderBy('Date', descending: true)
+  //   //     .limit(1)
+  //   //     .snapshots();
+  // }
 
   ///////////////////////
 

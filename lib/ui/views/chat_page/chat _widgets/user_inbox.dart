@@ -1,9 +1,7 @@
 import 'dart:developer';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:education_flutter_web/services/Model/Chat.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import '../../../../services/Model/userData.dart';
 import '../chat_page_viewmodel.dart';
 import 'chat_message.dart';
 
@@ -14,8 +12,8 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
       : super(key: key);
   @override
   Widget build(BuildContext context, ChatPageViewModel viewModel) {
- final width = MediaQuery.of(context).size.width;
- final height =MediaQuery.of(context).size.height;int maxLines=1;
+    final width = MediaQuery.of(context).size.width;
+    int maxLines = 1;
     return uID == ""
         ? const Center(child: Text("No Message"))
         : Column(
@@ -98,7 +96,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                 ),
               ),
               SizedBox(
-                height: viewModel.calculateHeight (maxLines,context),
+                height: viewModel.calculateHeight(maxLines, context),
                 child: StreamBuilder<List<Chat>>(
                     stream: viewModel.chatStream(),
                     builder: (BuildContext context,
@@ -130,7 +128,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                     }),
               ),
               Container(
-              width:width,
+                width: width,
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -157,19 +155,18 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                     ),
                     Expanded(
                       child: TextFormField(
-                        controller: viewModel.smsController,
-                        // onChanged: (text) {
-                        //   // viewModel.setNotifyListeners(); // Update the text status
-                        // },
-                        decoration: const InputDecoration(
-                          hintText: 'Type your message...',
-                          border: InputBorder.none,
+                          controller: viewModel.smsController,
+                          // onChanged: (text) {
+                          //   // viewModel.setNotifyListeners(); // Update the text status
+                          // },
+                          decoration: const InputDecoration(
+                            hintText: 'Type your message...',
+                            border: InputBorder.none,
 
-                          //  suffixIcon: Icon(Icons.email, color: Colors.black,)
-                        ),
-                        maxLines: 5,
-                        minLines:1
-                      ),
+                            //  suffixIcon: Icon(Icons.email, color: Colors.black,)
+                          ),
+                          maxLines: 5,
+                          minLines: 1),
                     ),
                     IconButton(
                       icon: const Icon(Icons.attachment, color: Colors.grey),
@@ -184,7 +181,10 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                               : Colors.grey),
                       onPressed: () {
                         if (viewModel.smsController.text.isNotEmpty) {
-                          viewModel.sentSMS(chatId, context,);
+                          viewModel.sentSMS(
+                            chatId,
+                            context,
+                          );
                         }
                       },
                     )
