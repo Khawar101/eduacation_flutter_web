@@ -12,7 +12,6 @@ import '../../../services/login_service.dart';
 
 class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
   //  String otherId="";
-  bool status=false;
   bool isOnline = false;
   int numLines = 0;
   String chatId = "";
@@ -124,7 +123,6 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
         _member.uID = chatMember.member![1].uID!.toString();
         _member.name = chatMember.member![1].name!.toString();
         _member.profile = chatMember.member![1].profile!.toString();
-        status =false;
       }
     } else {
       _member.uID = chatMember.group!.key ?? "";
