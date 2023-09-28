@@ -266,7 +266,7 @@ class CoursesService {
 
   void firstSMS(key) async {
     Map<String, dynamic> messageData = {
-      "SMS": "Hey",
+      "SMS": "${_loginService.UserData.username} create group",
       "Date": "${DateTime.now().microsecondsSinceEpoch}",
       "type": "notification",
       "UID": _loginService.UserData.uID,
@@ -282,6 +282,7 @@ class CoursesService {
           "UID": _loginService.UserData.uID
         },
       ],
+      "membersUid": [_loginService.UserData.uID],
       "group": {
         "name": courseData.title,
         "profile": courseData.price,

@@ -264,6 +264,7 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
                       },
                       {"name": name, "profile": profile, "UID": otherUID},
                     ],
+                    "membersUid": [loginService.UserData.uID, otherUID],
                     "lastMessage": messageData
                   })
                 }

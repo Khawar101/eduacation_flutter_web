@@ -267,6 +267,7 @@ class UploadCoursesViewModel extends BaseViewModel {
           "type": "notification",
           "UID": _loginService.UserData.uID,
         };
+        _chatMember.membersUid?.add(_loginService.UserData.uID.toString());
 
         FirebaseFirestore firestore = FirebaseFirestore.instance;
         await firestore
@@ -274,6 +275,7 @@ class UploadCoursesViewModel extends BaseViewModel {
             .doc(courseData.publishDate)
             .update({
           "member": _chatMember.member!.map((e) => e.toJson()),
+          "membersUid": _chatMember.membersUid,
           "lastMessage": messageData
         });
 
