@@ -86,49 +86,55 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     notifyListeners();
   }
 
-  setChatId(ChatMember chatMember) {
-    // isOnline = otherData["status"];
-    String currentuID = loginService.UserData.uID.toString();
-    if (chatMember.group == null) {
-      if (chatMember.member![0].uID != currentuID) {
-        openNewChat(chatMember.member![0]);
-      } else {
-        openNewChat(chatMember.member![1]);
-      }
+  void setChatId(ChatMember chatMember) {
+  String currentuID = loginService.UserData.uID.toString();
+  
+  if (chatMember.group == null) {
+    if (chatMember.member![0].uID != currentuID) {
+      openNewChat(chatMember.member![0]);
     } else {
-      otherUID = chatMember.group!.key ?? "";
-      chatId = chatMember.group!.key ?? "";
-      name = chatMember.group!.name ?? "";
-      profile = chatMember.group!.profile ?? "";
-      memberList = chatMember.member!;
+      openNewChat(chatMember.member![1]);
     }
-    notifyListeners();
+  } else {
+    otherUID = chatMember.group!.key ?? "";
+    chatId = chatMember.group!.key ?? "";
+    name = chatMember.group!.name ?? "";
+    profile = chatMember.group!.profile ?? "";
+    // Filter out the logged-in user from the memberList
+    memberList = chatMember.member!.where((member) => member.uID != currentuID).toList();
   }
+  notifyListeners();
+}
 
-  cruntUserData(ChatMember chatMember) {
-    Member _member = Member();
-    // log("================>${otherData["UID"]}");
-    // isOnline = otherData["status"];
-    String currentuID = loginService.UserData.uID.toString();
-    if (chatMember.group == null) {
-      if (chatMember.member![0].uID != currentuID) {
-        _member.uID = chatMember.member![0].uID!.toString();
-        _member.name = chatMember.member![0].name!.toString();
-        _member.profile = chatMember.member![0].profile!.toString();
-      } else {
-        _member.uID = chatMember.member![1].uID!.toString();
-        _member.name = chatMember.member![1].name!.toString();
-        _member.profile = chatMember.member![1].profile!.toString();
-      }
+// This method returns current user data, excluding the logged-in user.
+Member cruntUserData(ChatMember chatMember) {
+  Member _member = Member();
+  String currentuID = loginService.UserData.uID.toString();
+  
+  if (chatMember.group == null) {
+    if (chatMember.member![0].uID != currentuID) {
+      _member.uID = chatMember.member![0].uID!.toString();
+      _member.name = chatMember.member![0].name!.toString();
+      _member.profile = chatMember.member![0].profile!.toString();
     } else {
-      _member.uID = chatMember.group!.key ?? "";
-      // chatId = chatMember.group!.key ?? "";
-      _member.name = chatMember.group!.name ?? "";
-      _member.profile = chatMember.group!.profile ?? "";
+      _member.uID = chatMember.member![1].uID!.toString();
+      _member.name = chatMember.member![1].name!.toString();
+      _member.profile = chatMember.member![1].profile!.toString();
     }
-    notifyListeners();
-    return _member;
+  } else {
+    _member.uID = chatMember.group!.key ?? "";
+    _member.name = chatMember.group!.name ?? "";
+    _member.profile = chatMember.group!.profile ?? "";
   }
+  
+  // If the logged-in user is in memberList, remove them
+  if (memberList.any((member) => member.uID == currentuID)) {
+    memberList.removeWhere((member) => member.uID == currentuID);
+  }
+  
+  notifyListeners();
+  return _member;
+}
 
   cruntUserName(chatMember) {
     Member _member = cruntUserData(chatMember);
@@ -251,14 +257,14 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     List<String> _chatID = [currentuID, otherId]..sort();
     // log("${chatId.toString()} =====2=====${currentuID}=====>${_chatID}======>");
     String _chatId = _chatID.join('_');
+    if (reload < 1) {
+      reload++;
+      Future.delayed(const Duration(seconds: 1), () {
+        notifyListeners();
+      });
+    }
     return firestore.collection('chatRoom').doc(_chatId).snapshots();
     // CollectionReference chatCollection = firestore.collection('chatRoom').doc(_chatId).snapshots();
-    // if (reload < 1) {
-    //   reload++;
-    //   Future.delayed(const Duration(seconds: 1), () {
-    //     notifyListeners();
-    //   });
-    // }
 
     // return chatCollection
     //     .where("chatId", isEqualTo: _chatId)
@@ -306,7 +312,7 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
           var imageUrl = await ref.getDownloadURL();
           log("======${imageUrl}");
           FirebaseFirestore firestore = FirebaseFirestore.instance;
-          await firestore.collection('chats').doc().set({
+          await firestore.collection('chatRoom').doc().set({
             "chatId": chatId,
             "SMS": imageUrl,
             "Date": "${DateTime.now().microsecondsSinceEpoch}",
