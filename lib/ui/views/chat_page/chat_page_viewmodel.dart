@@ -146,7 +146,7 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
 
   cruntUserProfile(chatMember) {
     Member _member = cruntUserData(chatMember);
-    return _member.name;
+    return _member.profile;
   }
 
   setNotifyListeners() {

@@ -52,7 +52,8 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
                                   radius: 20,
                                   backgroundColor: Colors.red,
                                   backgroundImage: NetworkImage(
-                                    viewModel.cruntUserProfile(chatMember) ??
+                                    viewModel.cruntUserProfile(chatMember) 
+                                    ??
                                         "",
                                   ),
                                 ),
