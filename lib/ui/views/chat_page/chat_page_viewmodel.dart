@@ -210,7 +210,7 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     final result = firestore
         .collection('chatRoom')
         .where('membersUid', arrayContains: uID)
-        // .orderBy('lastMessage.createdOn', descending: true)
+        // .orderBy('lastMessage.Date', descending: true)
         .snapshots();
     await for (final event in result) {
       final List<ChatMember> chatRooms = List.empty(growable: true);
@@ -226,8 +226,8 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     getChatRoomsStream().listen((List<ChatMember> event) {
       chatMembers = event;
       setBusy(false);
+      notifyListeners();
     });
-    notifyListeners();
   }
 
   Stream publisherStream(uID) {
@@ -353,20 +353,48 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
         });
         uploadTask.whenComplete(() async {
           var imageUrl = await ref.getDownloadURL();
-          log("======${imageUrl}");
-          FirebaseFirestore firestore = FirebaseFirestore.instance;
-          await firestore.collection('chatRoom').doc().set({
-            "chatId": chatId,
+          Map<String, dynamic> messageData = {
             "SMS": imageUrl,
             "Date": "${DateTime.now().microsecondsSinceEpoch}",
             "type": file.name.split(".").last,
             "UID": loginService.UserData.uID,
-          });
-          notifyListeners();
-          // print("=====>$url=====>${file.type.split("/")[0]}");
-          // postType = "${file.type.split("/")[0]}";
-          // _videoPlayerController = VideoPlayerController.network(url);
-          // _isVideoPlaying = true;
+          };
+          smsController.clear();
+          FirebaseFirestore firestore = FirebaseFirestore.instance;
+          var docRef = firestore.collection("chatRoom").doc(chatId);
+          docRef.get().then((doc) => {
+                if (doc.exists)
+                  {
+                    docRef.update({"lastMessage": messageData})
+                  }
+                else
+                  {
+                    docRef.set({
+                      "Date": "${DateTime.now().microsecondsSinceEpoch}",
+                      "member": [
+                        {
+                          "name": loginService.UserData.username,
+                          "profile": loginService.UserData.profile,
+                          "UID": loginService.UserData.uID
+                        },
+                        {"name": name, "profile": profile, "UID": otherUID},
+                      ],
+                      "membersUid": [loginService.UserData.uID, otherUID],
+                      "lastMessage": messageData
+                    })
+                  }
+              });
+          // var data = await firestore
+          //     .collection("chatRoom")
+          //     .doc(chatId)
+          //     .update({"lastMessage": messageData});
+          await firestore
+              .collection("chatRoom")
+              .doc(chatId)
+              .collection('chats')
+              .doc()
+              .set(messageData);
+
           imageLoading = false;
           // _videoPlayerController.play();
         }).catchError((onError) {
