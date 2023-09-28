@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:education_flutter_web/services/Model/Chat.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import '../../../../services/Model/userData.dart';
 import '../chat_page_viewmodel.dart';
 import 'chat_message.dart';
 
@@ -38,7 +39,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                           style: const TextStyle(fontSize: 18),
                         ),
                         const SizedBox(height: 1),
-                        Expanded(
+                     viewModel.status==true ?   Expanded(
                           child: ListView.builder(
                             itemCount: viewModel.memberList.length,
                             shrinkWrap: true,
@@ -54,42 +55,42 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                               );
                             },
                           ),
+                        ):StreamBuilder(
+                          stream: viewModel.publisherStream(uID),
+                          builder:
+                              (BuildContext context, AsyncSnapshot snapshot) {
+                            if (snapshot.hasError) {
+                              return const Text('Something went wrong');
+                            }
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return Container();
+                            }
+                            userData _userData =
+                                userData.fromJson(snapshot.data.data());
+                            return Row(
+                              children: [
+                                Icon(
+                                  Icons.circle,
+                                  color: _userData.status ?? false
+                                      ? Colors.green
+                                      : Colors.grey,
+                                  size: 11,
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Text(
+                                  _userData.status ?? false
+                                      ? "Active now"
+                                      : "Offline",
+                                  style: const TextStyle(fontSize: 10),
+                                )
+                              ],
+                            );
+                          },
                         ),
-                        // StreamBuilder(
-                        //   stream: viewModel.publisherStream(uID),
-                        //   builder:
-                        //       (BuildContext context, AsyncSnapshot snapshot) {
-                        //     if (snapshot.hasError) {
-                        //       return const Text('Something went wrong');
-                        //     }
-                        //     if (snapshot.connectionState ==
-                        //         ConnectionState.waiting) {
-                        //       return Container();
-                        //     }
-                        //     userData _userData =
-                        //         userData.fromJson(snapshot.data.data());
-                        //     return Row(
-                        //       children: [
-                        //         Icon(
-                        //           Icons.circle,
-                        //           color: _userData.status ?? false
-                        //               ? Colors.green
-                        //               : Colors.grey,
-                        //           size: 11,
-                        //         ),
-                        //         const SizedBox(
-                        //           width: 8,
-                        //         ),
-                        //         Text(
-                        //           _userData.status ?? false
-                        //               ? "Active now"
-                        //               : "Offline",
-                        //           style: const TextStyle(fontSize: 10),
-                        //         )
-                        //       ],
-                        //     );
-                        //   },
-                        // )
+                        
                       ],
                     ),
                   ],

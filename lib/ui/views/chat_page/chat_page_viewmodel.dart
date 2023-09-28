@@ -12,6 +12,7 @@ import '../../../services/login_service.dart';
 
 class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
   //  String otherId="";
+  bool status=false;
   bool isOnline = false;
   int numLines = 0;
   String chatId = "";
@@ -123,6 +124,7 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
         _member.uID = chatMember.member![1].uID!.toString();
         _member.name = chatMember.member![1].name!.toString();
         _member.profile = chatMember.member![1].profile!.toString();
+        status =false;
       }
     } else {
       _member.uID = chatMember.group!.key ?? "";
@@ -228,9 +230,9 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     notifyListeners();
   }
 
-  // Stream publisherStream(uID) {
-  //   return FirebaseFirestore.instance.collection("users").doc(uID).snapshots();
-  // }
+  Stream publisherStream(uID) {
+    return FirebaseFirestore.instance.collection("users").doc(uID).snapshots();
+  }
 
   void sentSMS(chatId, context) async {
     // String mergeuid = uid_merge(widget.UserData['UID'], widget.UID).toString();
