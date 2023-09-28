@@ -21,7 +21,7 @@ class MessageBubble extends StatelessWidget {
             alignment: Alignment.center,
             child: Card(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4,vertical: 2),
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
                 child: Text(
                   messageData.sMS ?? "",
                   style: GoogleFonts.ibmPlexSans(fontSize: 10),
@@ -68,7 +68,10 @@ class MessageBubble extends StatelessWidget {
                             ),
                           )
                         : Container(),
-                    messageData.type == "image"
+                    messageData.type == "image" ||
+                            messageData.type == "jpeg" ||
+                            messageData.type == "jpg" ||
+                            messageData.type == "png"
                         ? Image.network(messageData.sMS ?? "",
                             width: 200, fit: BoxFit.cover)
                         : Container(),
