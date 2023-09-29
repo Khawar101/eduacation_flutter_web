@@ -13,6 +13,7 @@ import '../../../services/login_service.dart';
 class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
   //  String otherId="";
   bool isOnline = false;
+  bool isGroup = false;
   int numLines = 0;
   String chatId = "";
   String otherUID = "";
@@ -124,7 +125,9 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
         _member.name = chatMember.member![1].name!.toString();
         _member.profile = chatMember.member![1].profile!.toString();
       }
+      isGroup = false;
     } else {
+      isGroup = true;
       _member.uID = chatMember.group!.key ?? "";
       _member.name = chatMember.group!.name ?? "";
       _member.profile = chatMember.group!.profile ?? "";
@@ -403,4 +406,25 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     );
     return null;
   }
+
+  // List<ChatMember> _filteredChatMembers = [];
+
+  // // Getter to access the filtered chat members
+  // List<ChatMember> get filteredChatMembers => _filteredChatMembers;
+
+  // // Method to filter chat members based on search text
+  // void filterChatMembers(String searchText) {
+  //   if (searchText.isEmpty) {
+  //     // If search text is empty, show all chat members
+  //     _filteredChatMembers = data;
+  //   } else {
+  //     // If search text is not empty, filter chat members by name or other criteria
+  //     _filteredChatMembers = data.where((chatMember) {
+  //       // Replace this condition with your filtering criteria
+  //       return chatMember.name.toLowerCase().contains(searchText.toLowerCase());
+  //     }).toList();
+  //   }
+  //   // Notify listeners that the filtered data has changed
+  //   notifyListeners();
+  // }
 }

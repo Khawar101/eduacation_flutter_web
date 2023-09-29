@@ -39,7 +39,8 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                           style: const TextStyle(fontSize: 18),
                         ),
                         const SizedBox(height: 1),
-                     viewModel.memberList.isNotEmpty ?   Expanded(
+                        
+                     viewModel.isGroup ?   Expanded(
                           child: ListView.builder(
                             itemCount: viewModel.memberList.length,
                             shrinkWrap: true,

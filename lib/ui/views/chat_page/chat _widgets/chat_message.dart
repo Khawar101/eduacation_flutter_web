@@ -73,7 +73,7 @@ class MessageBubble extends StatelessWidget {
                             messageData.type == "jpg" ||
                             messageData.type == "png"
                         ? Image.network(messageData.sMS ?? "",
-                            width: 200, fit: BoxFit.cover)
+                            width: 200, fit: BoxFit.fill)
                         : Container(),
                     messageData.type == "pdf"
                         ? InkWell(
