@@ -407,24 +407,32 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     return null;
   }
 
-  // List<ChatMember> _filteredChatMembers = [];
+  List<ChatMember> _filteredChatMembers = [];
 
-  // // Getter to access the filtered chat members
-  // List<ChatMember> get filteredChatMembers => _filteredChatMembers;
+  // Getter to access the filtered chat members
+  List<ChatMember> get filteredChatMembers => _filteredChatMembers;
 
-  // // Method to filter chat members based on search text
-  // void filterChatMembers(String searchText) {
-  //   if (searchText.isEmpty) {
-  //     // If search text is empty, show all chat members
-  //     _filteredChatMembers = data;
-  //   } else {
-  //     // If search text is not empty, filter chat members by name or other criteria
-  //     _filteredChatMembers = data.where((chatMember) {
-  //       // Replace this condition with your filtering criteria
-  //       return chatMember.name.toLowerCase().contains(searchText.toLowerCase());
-  //     }).toList();
-  //   }
-  //   // Notify listeners that the filtered data has changed
-  //   notifyListeners();
-  // }
+  // Method to filter chat members based on search text
+  void filterChatMembers(String searchText) {
+    if (searchText.isEmpty) {
+      // If search text is empty, show all chat members
+      _filteredChatMembers = chatMembers;
+    } else {
+      // If search text is not empty, filter chat members by name or other criteria
+      _filteredChatMembers = chatMembers.where((_chatMember) {
+        // Replace this condition with your filtering criteria
+        if (_chatMember.group == null) {
+          return _chatMember.member![1].name!
+              .toLowerCase()
+              .contains(searchText.toLowerCase());
+        } else {
+          return _chatMember.group!.name!
+              .toLowerCase()
+              .contains(searchText.toLowerCase());
+        }
+      }).toList();
+    }
+    // Notify listeners that the filtered data has changed
+    notifyListeners();
+  }
 }

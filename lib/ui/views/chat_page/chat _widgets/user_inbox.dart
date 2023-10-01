@@ -41,7 +41,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                         const SizedBox(height: 1),
                         
                      viewModel.isGroup||viewModel.memberList.isNotEmpty ?   Expanded(
-                          child: ListView.builder(
+                          child:viewModel.memberList.isNotEmpty? ListView.builder(
                             itemCount: viewModel.memberList.length,
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
@@ -55,7 +55,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                                     "${viewModel.memberList[index].name}, "),
                               );
                             },
-                          ),
+                          ):const Text("No One Member In This Group Right Know"),
                         ):StreamBuilder(
                           stream: viewModel.publisherStream(uID),
                           builder:
