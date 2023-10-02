@@ -32,7 +32,7 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
             },
           ),
           verticalSpaceSmall,
-          Expanded(
+       data.isNotEmpty?   Expanded(
             child: SingleChildScrollView(
                 child: ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
@@ -108,7 +108,7 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
                 );
               },
             )),
-          ),
+          ):const Text("No User Found "),
         ],
       ),
     );

@@ -98,7 +98,9 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
       } else {
         openNewChat(chatMember.member![1]);
       }
+      isGroup = true;
     } else {
+      isGroup = false;
       otherUID = chatMember.group!.key ?? "";
       chatId = chatMember.group!.key ?? "";
       name = chatMember.group!.name ?? "";
@@ -114,7 +116,6 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
   Member cruntUserData(ChatMember chatMember) {
     Member _member = Member();
     String currentuID = loginService.UserData.uID.toString();
-
     if (chatMember.group == null) {
       if (chatMember.member![0].uID != currentuID) {
         _member.uID = chatMember.member![0].uID!.toString();
@@ -125,9 +126,7 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
         _member.name = chatMember.member![1].name!.toString();
         _member.profile = chatMember.member![1].profile!.toString();
       }
-      isGroup = false;
     } else {
-      isGroup = true;
       _member.uID = chatMember.group!.key ?? "";
       _member.name = chatMember.group!.name ?? "";
       _member.profile = chatMember.group!.profile ?? "";

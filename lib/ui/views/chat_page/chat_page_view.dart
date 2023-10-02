@@ -25,7 +25,6 @@ class ChatPageView extends StackedView<ChatPageViewModel> {
     ChatPageViewModel viewModel,
     Widget? child,
   ) {
-      final filteredData = viewModel.filteredChatMembers;
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return SizedBox(
@@ -34,9 +33,9 @@ class ChatPageView extends StackedView<ChatPageViewModel> {
             ? const Center(child: CircularProgressIndicator())
             : Row(
                 children: [
-                  // filteredData.isEmpty?
-                  // ChatUsers(data: viewModel.chatMembers):
-                  ChatUsers(data: viewModel.filteredChatMembers),
+                  viewModel.searchCTRL.text.isEmpty
+                      ? ChatUsers(data: viewModel.chatMembers)
+                      : ChatUsers(data: viewModel.filteredChatMembers),
                   SizedBox(
                     width: width * 0.61,
                     child: UserInbox(
