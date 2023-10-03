@@ -285,7 +285,7 @@ class CoursesService {
       "membersUid": [_loginService.UserData.uID],
       "group": {
         "name": courseData.title,
-        "profile": courseData.price,
+        "profile": courseData.coverPic,
         "key": courseData.publishDate
       },
       "lastMessage": messageData

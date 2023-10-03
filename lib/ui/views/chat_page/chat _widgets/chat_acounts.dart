@@ -15,7 +15,7 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
   @override
   Widget build(BuildContext context, ChatPageViewModel viewModel) {
     final width = MediaQuery.of(context).size.width;
-    final filteredData = viewModel.filteredChatMembers;
+
     return Container(
       width: width * 0.21,
       alignment: Alignment.topCenter,
@@ -54,8 +54,9 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
                       children: [
                         CircleAvatar(
                           radius: 20,
-                          // backgroundColor: Colors.transparent,
-                          backgroundImage: NetworkImage(
+                          backgroundColor: Colors.red,
+                          backgroundImage: 
+                          NetworkImage(
                             viewModel.cruntUserProfile(chatMember) ?? "",
                           ),
                         ),
@@ -108,7 +109,7 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
                 );
               },
             )),
-          ):const Text("No User Found "),
+          ): const Text("No User Found ") 
         ],
       ),
     );

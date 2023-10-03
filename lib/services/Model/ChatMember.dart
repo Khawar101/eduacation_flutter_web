@@ -140,3 +140,24 @@ class Member {
     return data;
   }
 }
+
+
+
+class GropuProfile {
+
+  String? profile;
+
+  GropuProfile({ this.profile});
+
+  GropuProfile.fromJson(Map<String, dynamic> json) {
+
+    profile = json['profile'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+
+    data['profile'] = profile;
+    return data;
+  }
+}

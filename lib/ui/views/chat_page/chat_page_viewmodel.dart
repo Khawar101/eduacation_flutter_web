@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:html';
+import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:education_flutter_web/services/Model/Chat.dart';
 import 'package:education_flutter_web/services/Model/ChatMember.dart';
@@ -30,6 +31,8 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
   TextEditingController searchCTRL = TextEditingController();
   final TextEditingController smsController = TextEditingController();
   bool isTextEmpty = true;
+  
+  Timer? onlineTimer;
 
   void initState() {
     _startChatRoomsStream();
@@ -44,10 +47,11 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     } else {
       WidgetsBinding.instance.addObserver(this);
     }
+    // Start the online timer when the app starts
+    onlineTimer = Timer.periodic(Duration(minutes: 3), (_) => offline(null));
     notifyListeners();
   }
 
-  //////////////////////////////////////////off on line/////////////
   void dispose() {
     if (kIsWeb) {
       window.removeEventListener('focus', online);
@@ -59,6 +63,8 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     } else {
       WidgetsBinding.instance.removeObserver(this);
     }
+    // Cancel the online timer when disposing the view model
+    onlineTimer?.cancel();
     super.dispose();
   }
 
@@ -70,7 +76,7 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
         .update({"status": true});
   }
 
-  void offline(Event e) async {
+  void offline(Event? e) async {
     log("============>offline");
     await firestore
         .collection('users')
@@ -78,6 +84,7 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
         .update({"status": false});
   }
 
+  
   openNewChat(Member member) {
     otherUID = member.uID!.toString();
     name = member.name ?? "";
@@ -320,7 +327,6 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
 
   void uploadImage({required Function(File file) onSelected}) {
     FileUploadInputElement uploadInput = FileUploadInputElement()
-      // ..accept = "image/*";
       ..accept = "image/*, video/*, application/pdf";
     uploadInput.click();
 
@@ -434,4 +440,8 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     // Notify listeners that the filtered data has changed
     notifyListeners();
   }
+
+
+
+
 }

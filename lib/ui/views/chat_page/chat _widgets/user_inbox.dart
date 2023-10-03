@@ -109,7 +109,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                       }
 
                       if (!snapshot.hasData) {
-                        return const Text('No messages yet');
+                        return const Text('No messages yet...');
                       }
 
                       return ListView.builder(
