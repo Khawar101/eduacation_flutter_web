@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:education_flutter_web/services/Model/ChatMember.dart';
 import 'package:education_flutter_web/ui/common/ui_helpers.dart';
 import 'package:education_flutter_web/ui/widgets/common/custom_text_field/custom_text_field.dart';
+import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
@@ -32,84 +33,99 @@ class ChatUsers extends ViewModelWidget<ChatPageViewModel> {
             },
           ),
           verticalSpaceSmall,
-       data.isNotEmpty?   Expanded(
-            child: SingleChildScrollView(
-                child: ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: data.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                ChatMember chatMember = data[index];
-                LastMessage? lastMessage = chatMember.lastMessage;
-                // log(data[index].toString());
-                return InkWell(
-                  onTap: () {
-                    log("==================>");
-                    viewModel.setChatId(chatMember);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 8, left: 4),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CircleAvatar(
-                          radius: 20,
-                          backgroundColor: Colors.red,
-                          backgroundImage: 
-                          NetworkImage(
-                            viewModel.cruntUserProfile(chatMember) ?? "",
-                          ),
-                        ),
-                        horizontalSpaceTiny,
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: width * 0.10,
-                              child: Text(
-                                viewModel.cruntUserName(chatMember) ?? "",
-                                style: GoogleFonts.ibmPlexSans(
-                                    fontSize: 14, fontWeight: FontWeight.w600),
-                                overflow: TextOverflow.ellipsis,
+          data.isNotEmpty
+              ? Expanded(
+                  child: SingleChildScrollView(
+                      child: ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: data.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      ChatMember chatMember = data[index];
+                      LastMessage? lastMessage = chatMember.lastMessage;
+                      // log(data[index].toString());
+                      return InkWell(
+                        onTap: () {
+                          log("==================>");
+                          viewModel.setChatId(chatMember);
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 8, left: 4),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CircleAvatar(
+                                radius: 20,
+                                backgroundColor: Colors.green.withOpacity(0.7),
+                                backgroundImage: NetworkImage(
+                                  viewModel.cruntUserProfile(chatMember) ?? "",
+                                ),
+                                child:
+                                    viewModel.cruntUserProfile(chatMember) == ""
+                                        ? CustomText(
+                                            text: viewModel
+                                                .cruntUserName(chatMember)[0]
+                                                .toUpperCase(),
+                                            size: 18,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.white,
+                                          )
+                                        : Container(),
                               ),
-                            ),
-                            verticalSpaceTiny,
-                            SizedBox(
-                              width: width * 0.10,
-                              child: Text(
-                                lastMessage!.sMS ?? "",
-                                style: const TextStyle(
-                                  overflow: TextOverflow.ellipsis,
-                                  fontSize: 11,
+                              horizontalSpaceTiny,
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width: width * 0.10,
+                                    child: Text(
+                                      viewModel.cruntUserName(chatMember) ?? "",
+                                      style: GoogleFonts.ibmPlexSans(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  verticalSpaceTiny,
+                                  SizedBox(
+                                    width: width * 0.10,
+                                    child: Text(
+                                      lastMessage!.sMS ?? "",
+                                      style: const TextStyle(
+                                        overflow: TextOverflow.ellipsis,
+                                        fontSize: 11,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(width: width * 0.012),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 4),
+                                  child: Text(
+                                    timeago.format(
+                                      DateTime.fromMicrosecondsSinceEpoch(
+                                        int.parse(lastMessage.date ?? ""),
+                                      ),
+                                    ),
+                                    style:
+                                        GoogleFonts.ibmPlexSans(fontSize: 10),
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(width: width * 0.012),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 4),
-                            child: Text(
-                              timeago.format(
-                                DateTime.fromMicrosecondsSinceEpoch(
-                                  int.parse(lastMessage.date ?? ""),
-                                ),
-                              ),
-                              style: GoogleFonts.ibmPlexSans(fontSize: 10),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                            ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            )),
-          ): const Text("No User Found ") 
+                      );
+                    },
+                  )),
+                )
+              : const Text("No User Found ")
         ],
       ),
     );

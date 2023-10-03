@@ -28,7 +28,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
         child: Row(
           children: <Widget>[
             SizedBox(
-              width: screenWidth*0.18,
+              width: screenWidth * 0.18,
               child: Drawer(
                 child: ListView(
                   padding: EdgeInsets.zero,
@@ -189,7 +189,7 @@ class DrawerView extends StackedView<DrawerViewModel> {
               ),
             ),
             SizedBox(
-                width: screenWidth*0.82,
+                width: screenWidth * 0.82,
                 child: Column(
                   children: [
                     Padding(

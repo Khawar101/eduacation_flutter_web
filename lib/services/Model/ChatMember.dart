@@ -141,16 +141,12 @@ class Member {
   }
 }
 
-
-
 class GropuProfile {
-
   String? profile;
 
-  GropuProfile({ this.profile});
+  GropuProfile({this.profile});
 
   GropuProfile.fromJson(Map<String, dynamic> json) {
-
     profile = json['profile'];
   }
 

@@ -129,34 +129,39 @@ class ProfileService {
   }
 
 //////////////online offline chat user function////////////////
-    Future<bool> getUserOnlineStatus() async {
-  
-        firestore.collection('users').doc(loginService.UserData.uID).update({
-            "date": DateTime,
-          
-        });  log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+  Future<bool> getUserOnlineStatus() async {
+    firestore.collection('users').doc(loginService.UserData.uID).update({
+      "date": DateTime,
+    });
+    log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
 
-    final userSnapshot = await firestore.collection('users').doc(loginService.UserData.uID).get();
+    final userSnapshot = await firestore
+        .collection('users')
+        .doc(loginService.UserData.uID)
+        .get();
     if (userSnapshot.exists) {
       final userData = userSnapshot.data() as Map<String, dynamic>;
-log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+      log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
       // Get the 'isOnline' status from the user's data
       final isOnline =
           userData['isOnline'] ?? false; // Default to false if not available
-log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+      log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
       return isOnline;
-    }log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+    }
+    log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
 
     // Default to offline if no data is available
     return false;
   }
 
-
   Future<void> updateLastChatOpenTime() async {
-  final userDocRef = FirebaseFirestore.instance.collection('users').doc(loginService.UserData.uID);
+    final userDocRef = FirebaseFirestore.instance
+        .collection('users')
+        .doc(loginService.UserData.uID);
 
-  await userDocRef.update({
-    "lastChatOpenTime": FieldValue.serverTimestamp(), // Use FieldValue.serverTimestamp() to get the server's timestamp.
-  });
-}
+    await userDocRef.update({
+      "lastChatOpenTime": FieldValue
+          .serverTimestamp(), // Use FieldValue.serverTimestamp() to get the server's timestamp.
+    });
+  }
 }

@@ -1,4 +1,3 @@
-import 'package:education_flutter_web/services/Model/ChatMember.dart';
 import 'package:education_flutter_web/ui/views/chat_page/chat%20_widgets/user_inbox.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';

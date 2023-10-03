@@ -3,6 +3,7 @@ import 'package:education_flutter_web/services/Model/Chat.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../services/Model/userData.dart';
+import '../../../widgets/common/sized_text/sized_text.dart';
 import '../chat_page_viewmodel.dart';
 import 'chat_message.dart';
 
@@ -26,9 +27,24 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                   children: [
                     const SizedBox(width: 20),
                     CircleAvatar(
-                      backgroundColor: Colors.red,
+                      // radius: 20,
+                      backgroundColor: Colors.green.withOpacity(0.7),
                       backgroundImage: NetworkImage(viewModel.profile),
+                      child: viewModel.profile == ""
+                          ? CustomText(
+                              text: viewModel.name.isNotEmpty
+                                  ? viewModel.name[0].toUpperCase()
+                                  : "", // Display the first letter of the name
+                              size: 18,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            )
+                          : Container(),
                     ),
+                    // CircleAvatar(
+                    //   backgroundColor: Colors.red,
+                    //   backgroundImage: NetworkImage(viewModel.profile),
+                    // ),
                     const SizedBox(width: 10),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -39,59 +55,62 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                           style: const TextStyle(fontSize: 18),
                         ),
                         const SizedBox(height: 1),
-                        
-                     !viewModel.isGroup?   Expanded(
-                          child:viewModel.memberList.isNotEmpty? ListView.builder(
-                            itemCount: viewModel.memberList.length,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (ctx, index) {
-                              return InkWell(
-                                onTap: () {
-                                  viewModel
-                                      .openNewChat(viewModel.memberList[index]);
+                        !viewModel.isGroup
+                            ? Expanded(
+                                child: viewModel.memberList.isNotEmpty
+                                    ? ListView.builder(
+                                        itemCount: viewModel.memberList.length,
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.horizontal,
+                                        itemBuilder: (ctx, index) {
+                                          return InkWell(
+                                            onTap: () {
+                                              viewModel.openNewChat(
+                                                  viewModel.memberList[index]);
+                                            },
+                                            child: Text(
+                                                "${viewModel.memberList[index].name}, "),
+                                          );
+                                        },
+                                      )
+                                    : const Text(
+                                        "No One Member In This Group Right Know"),
+                              )
+                            : StreamBuilder(
+                                stream: viewModel.publisherStream(uID),
+                                builder: (BuildContext context,
+                                    AsyncSnapshot snapshot) {
+                                  if (snapshot.hasError) {
+                                    return const Text('Something went wrong');
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return Container();
+                                  }
+                                  userData _userData =
+                                      userData.fromJson(snapshot.data.data());
+                                  return Row(
+                                    children: [
+                                      Icon(
+                                        Icons.circle,
+                                        color: _userData.status ?? false
+                                            ? Colors.green
+                                            : Colors.grey,
+                                        size: 11,
+                                      ),
+                                      const SizedBox(
+                                        width: 8,
+                                      ),
+                                      Text(
+                                        _userData.status ?? false
+                                            ? "Active now"
+                                            : "Offline",
+                                        style: const TextStyle(fontSize: 10),
+                                      )
+                                    ],
+                                  );
                                 },
-                                child: Text(
-                                    "${viewModel.memberList[index].name}, "),
-                              );
-                            },
-                          ):const Text("No One Member In This Group Right Know"),
-                        ):StreamBuilder(
-                          stream: viewModel.publisherStream(uID),
-                          builder:
-                              (BuildContext context, AsyncSnapshot snapshot) {
-                            if (snapshot.hasError) {
-                              return const Text('Something went wrong');
-                            }
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return Container();
-                            }
-                            userData _userData =
-                                userData.fromJson(snapshot.data.data());
-                            return Row(
-                              children: [
-                                Icon(
-                                  Icons.circle,
-                                  color: _userData.status ?? false
-                                      ? Colors.green
-                                      : Colors.grey,
-                                  size: 11,
-                                ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                Text(
-                                  _userData.status ?? false
-                                      ? "Active now"
-                                      : "Offline",
-                                  style: const TextStyle(fontSize: 10),
-                                )
-                              ],
-                            );
-                          },
-                        ),
-                        
+                              ),
                       ],
                     ),
                   ],

@@ -8,6 +8,7 @@ import 'dart:html' as _i17;
 import 'dart:ui' as _i13;
 
 import 'package:cloud_firestore/cloud_firestore.dart' as _i2;
+import 'package:education_flutter_web/services/chat_service.dart' as _i24;
 import 'package:education_flutter_web/services/courses_service.dart' as _i16;
 import 'package:education_flutter_web/services/dashboard_service.dart' as _i21;
 import 'package:education_flutter_web/services/ebook_service.dart' as _i23;
@@ -1247,6 +1248,14 @@ class MockCoursesService extends _i1.Mock implements _i16.CoursesService {
         returnValue: _i12.Stream<List<_i7.CoursesModel>>.empty(),
         returnValueForMissingStub: _i12.Stream<List<_i7.CoursesModel>>.empty(),
       ) as _i12.Stream<List<_i7.CoursesModel>>);
+  @override
+  void firstSMS(dynamic key) => super.noSuchMethod(
+        Invocation.method(
+          #firstSMS,
+          [key],
+        ),
+        returnValueForMissingStub: null,
+      );
 }
 
 /// A class which mocks [RatingService].
@@ -1434,6 +1443,24 @@ class MockProfileService extends _i1.Mock implements _i20.ProfileService {
         returnValue: _i12.Future<dynamic>.value(),
         returnValueForMissingStub: _i12.Future<dynamic>.value(),
       ) as _i12.Future<dynamic>);
+  @override
+  _i12.Future<bool> getUserOnlineStatus() => (super.noSuchMethod(
+        Invocation.method(
+          #getUserOnlineStatus,
+          [],
+        ),
+        returnValue: _i12.Future<bool>.value(false),
+        returnValueForMissingStub: _i12.Future<bool>.value(false),
+      ) as _i12.Future<bool>);
+  @override
+  _i12.Future<void> updateLastChatOpenTime() => (super.noSuchMethod(
+        Invocation.method(
+          #updateLastChatOpenTime,
+          [],
+        ),
+        returnValue: _i12.Future<void>.value(),
+        returnValueForMissingStub: _i12.Future<void>.value(),
+      ) as _i12.Future<void>);
 }
 
 /// A class which mocks [DashboardService].
@@ -1756,3 +1783,8 @@ class MockEbookService extends _i1.Mock implements _i23.EbookService {
         returnValueForMissingStub: _i12.Stream<List<_i9.EbookModel>>.empty(),
       ) as _i12.Stream<List<_i9.EbookModel>>);
 }
+
+/// A class which mocks [ChatService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockChatService extends _i1.Mock implements _i24.ChatService {}

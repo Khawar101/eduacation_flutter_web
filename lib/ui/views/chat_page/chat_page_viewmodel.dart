@@ -1,3 +1,5 @@
+// ignore_for_file: body_might_complete_normally_catch_error
+
 import 'dart:developer';
 import 'dart:html';
 import 'dart:async';
@@ -31,7 +33,6 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
   TextEditingController searchCTRL = TextEditingController();
   final TextEditingController smsController = TextEditingController();
   bool isTextEmpty = true;
-  
   Timer? onlineTimer;
 
   void initState() {
@@ -84,7 +85,6 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
         .update({"status": false});
   }
 
-  
   openNewChat(Member member) {
     otherUID = member.uID!.toString();
     name = member.name ?? "";
@@ -176,7 +176,7 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
                     : 50; // Adjust this value as needed
 
     var calculatedHeight = minHeight;
-    var calculatedHeight2 = lineHeight;
+    // var calculatedHeight2 = lineHeight;
 
     if (maxLines > 1) {
       calculatedHeight -= (maxLines + 1) * lineHeight;
@@ -427,9 +427,15 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
       _filteredChatMembers = chatMembers.where((_chatMember) {
         // Replace this condition with your filtering criteria
         if (_chatMember.group == null) {
-          return _chatMember.member![1].name!
-              .toLowerCase()
-              .contains(searchText.toLowerCase());
+          if (_chatMember.member![0].uID != loginService.UserData.uID) {
+            return _chatMember.member![0].name!
+                .toLowerCase()
+                .contains(searchText.toLowerCase());
+          } else {
+            return _chatMember.member![1].name!
+                .toLowerCase()
+                .contains(searchText.toLowerCase());
+          }
         } else {
           return _chatMember.group!.name!
               .toLowerCase()
@@ -440,8 +446,4 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     // Notify listeners that the filtered data has changed
     notifyListeners();
   }
-
-
-
-
 }

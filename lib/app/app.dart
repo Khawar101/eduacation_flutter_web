@@ -25,6 +25,7 @@ import 'package:education_flutter_web/ui/views/e_book/upload_ebook/upload_ebook_
 
 import '../ui/widgets/pdf_viewer.dart';
 import 'package:education_flutter_web/ui/views/chat_page/chat_page_view.dart';
+import 'package:education_flutter_web/services/chat_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -56,6 +57,7 @@ import 'package:education_flutter_web/ui/views/chat_page/chat_page_view.dart';
     LazySingleton(classType: ProfileService),
     LazySingleton(classType: DashboardService),
     LazySingleton(classType: EbookService),
+    LazySingleton(classType: ChatService),
 // @stacked-service
   ],
 )

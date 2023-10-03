@@ -9,6 +9,7 @@ import 'package:education_flutter_web/services/rating_service.dart';
 import 'package:education_flutter_web/services/profile_service.dart';
 import 'package:education_flutter_web/services/dashboard_service.dart';
 import 'package:education_flutter_web/services/ebook_service.dart';
+import 'package:education_flutter_web/services/chat_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -24,6 +25,7 @@ import 'test_helpers.mocks.dart';
   MockSpec<ProfileService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<DashboardService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<EbookService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<ChatService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -37,6 +39,7 @@ void registerServices() {
   getAndRegisterProfileService();
   getAndRegisterDashboardService();
   getAndRegisterEbookService();
+  getAndRegisterChatService();
 // @stacked-mock-register
 }
 
@@ -139,6 +142,12 @@ MockEbookService getAndRegisterEbookService() {
   return service;
 }
 
+MockChatService getAndRegisterChatService() {
+  _removeRegistrationIfExists<ChatService>();
+  final service = MockChatService();
+  locator.registerSingleton<ChatService>(service);
+  return service;
+}
 // @stacked-mock-create
 
 void _removeRegistrationIfExists<T extends Object>() {
