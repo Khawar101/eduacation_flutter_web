@@ -130,7 +130,10 @@ class SignupView extends StackedView<SignupViewModel> {
                             children: [
                               InkWell(
                                 mouseCursor: MaterialStateMouseCursor.clickable,
-                                onTap: () {},
+                                onTap: () {
+
+                                  
+                                },
                                 child: Container(
                                   height: 50,
                                   width:

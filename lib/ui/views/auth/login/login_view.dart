@@ -1,9 +1,11 @@
+import 'package:education_flutter_web/app/app.router.dart';
 import 'package:education_flutter_web/ui/common/ui_helpers.dart';
 import 'package:education_flutter_web/ui/widgets/common/custom_text_field/custom_text_field.dart';
 import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 import '../forgetpassword/screens/Logo_screen.dart';
 import 'login_viewmodel.dart';
@@ -135,7 +137,12 @@ class LoginView extends StackedView<LoginViewModel> {
                     children: [
                       InkWell(
                         mouseCursor: MaterialStateMouseCursor.clickable,
-                        onTap: () {},
+                        onTap: () {
+                          //////////////////////////////////////////////////////////
+                          viewModel.signInWithGooole();
+                          // NavigationService().navigateToDrawerView();
+                          
+                        },
                         child: Container(
                           height: 50,
                           width: MediaQuery.of(context).size.width * 0.15,

@@ -24,6 +24,10 @@ class LoginViewModel extends BaseViewModel {
     _navigationService.navigateToSignupView();
   }
 
+  signInWithGooole() {
+    _loginService.signInWithGoogle();
+  }
+
   navigateForget() {
     _navigationService.navigateToForgetpasswordView();
   }
