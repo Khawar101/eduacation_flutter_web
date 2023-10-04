@@ -1,6 +1,7 @@
 // ignore_for_file: unused_field, prefer_final_fields, non_constant_identifier_names
 
 import 'package:education_flutter_web/app/app.router.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -24,7 +25,16 @@ class LoginViewModel extends BaseViewModel {
     _navigationService.navigateToSignupView();
   }
 
-  signInWithGooole() {
+/////////////////
+  signInWithGooole() async {
+    User? user = await _loginService.signInWithGoogle();
+    if (User != null) {
+      NavigationService().navigateToDrawerView();
+      print("log in sucefuly with signInGoogle");
+    } else {
+      print("google sign in failed");
+    }
+    
     _loginService.signInWithGoogle();
   }
 

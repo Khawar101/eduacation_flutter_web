@@ -1,7 +1,9 @@
 import 'package:education_flutter_web/app/app.router.dart';
+import 'package:education_flutter_web/services/Model/userData.dart';
 import 'package:education_flutter_web/ui/common/ui_helpers.dart';
 import 'package:education_flutter_web/ui/widgets/common/custom_text_field/custom_text_field.dart';
 import 'package:education_flutter_web/ui/widgets/common/sized_text/sized_text.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
@@ -137,11 +139,23 @@ class LoginView extends StackedView<LoginViewModel> {
                     children: [
                       InkWell(
                         mouseCursor: MaterialStateMouseCursor.clickable,
-                        onTap: () {
-                          //////////////////////////////////////////////////////////
-                          viewModel.signInWithGooole();
-                          // NavigationService().navigateToDrawerView();
-                          
+                        // onTap: () {
+                        //   //////////////////////////////////////////////////////////
+
+                        //   viewModel.signInWithGooole();
+                        // },
+                        onTap: () async {
+                          User? user = await viewModel.signInWithGooole();
+                          // User? user = await _handleGoogleSignIn();
+                          if (user != null) {
+                            NavigationService().navigateToDrawerView;
+                            
+                            print(
+                                "Google Sign-In successful: ${user.displayName}");
+                          } else {
+                            // Handle sign-in failure
+                            print("Google Sign-In failed");
+                          }
                         },
                         child: Container(
                           height: 50,

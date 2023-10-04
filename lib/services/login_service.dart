@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, unused_import, avoid_web_libraries_in_flutter
 
+import 'dart:developer';
 import 'dart:js';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,71 +14,42 @@ class LoginService {
   FirebaseAuth auth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-
-final FirebaseAuth _auth = FirebaseAuth.instance;
-
-  Future<void> signInWithGoogle() async {
+  Future signInWithGoogle() async {
     try {
       final UserCredential userCredential = await _auth.signInWithPopup(
         GoogleAuthProvider(),
       );
       final User user = userCredential.user!;
+      Map<String, dynamic> userdata = {
+        "UID": user.uid,
+        "username": user.displayName,
+        "email": user.email,
+        "profile": user.photoURL,
+        // "firstName": "",
+        // "lastName": "",
+        "userType": "Teacher",
+      };
+      await firestore
+          .collection("users")
+          .doc(user.uid.toString())
+          .set(userdata);
+      log(user.toString());
+
+      message = "Login Successfully";
+      updateUserData(user.uid.toString());
       print("User signed in: ${user.displayName}");
     } catch (e) {
       print("Error signing in with Google: $e");
     }
   }
+////////////////////////
+    // signUpWithGoogle().then((value) => Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+    //       return HomePage();
+    //     }));
 
-//   import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:google_sign_in/google_sign_in.dart';
-
-// final FirebaseAuth _auth = FirebaseAuth.instance;
-// final GoogleSignIn googleSignIn = GoogleSignIn();
-
-// Future<void> signInWithGoogle() async {
-//   try {
-//     final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
-//     final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount!.authentication;
-//     final AuthCredential credential = GoogleAuthProvider.credential(
-//       accessToken: googleSignInAuthentication.accessToken,
-//       idToken: googleSignInAuthentication.idToken,
-//     );
-//     final UserCredential authResult = await _auth.signInWithCredential(credential);
-//     final User? user = authResult.user;
-//     // return user;
-//   } catch (error) {
-//     // print('Error signing in with Google: $error');
-//     return null;
-//   }
-// }
-
-  // signInWithGoogle(BuildContext context) async {
-  //   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  //   final GoogleSignIn googleSignIn = GoogleSignIn();
-  //   final GoogleSignInAccount? googleSignInAccount =
-  //       await googleSignIn.signIn();
-  //   final GoogleSignInAuthentication? googleSignInAuthentication =
-  //       await googleSignInAccount?.authentication;
-  //   final AuthCredential credential = GoogleAuthProvider.credential(
-  //       idToken: googleSignInAuthentication?.idToken,
-  //       accessToken: googleSignInAuthentication?.accessToken);
-  //   UserCredential result = await firebaseAuth.signInWithCredential(credential);
-  //   User? userDetails = result.user;
-  //   if (result != null) {
-  //     Map<String, dynamic> userInfoMap = {
-  //       "email": userDetails!.email,
-  //       "name": userDetails.displayName,
-  //       // "imgUrl": userDetails.photoURL,
-  //       "id": userDetails.uid,
-  //     };
-  //   }
-  // }
-
-
-
-
-
+////////////////////////////////
   logins(emailCTRL, passwordCTRL) async {
     final UserCredential user;
 
