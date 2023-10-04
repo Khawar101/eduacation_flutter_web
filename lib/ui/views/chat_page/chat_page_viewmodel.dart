@@ -1,11 +1,12 @@
-// ignore_for_file: body_might_complete_normally_catch_error
-
+// ignore_for_file: body_might_complete_normally_catch_error, avoid_web_libraries_in_flutter, unused_import, annotate_overrides
 import 'dart:developer';
 import 'dart:html';
 import 'dart:async';
+import 'dart:js';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:education_flutter_web/services/Model/Chat.dart';
 import 'package:education_flutter_web/services/Model/ChatMember.dart';
+import 'package:education_flutter_web/services/chat_service.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -15,16 +16,17 @@ import '../../../services/login_service.dart';
 
 class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
   //  String otherId="";
+  final _chatService = locator<ChatService>();
   bool isOnline = false;
   bool isGroup = false;
   int numLines = 0;
   String chatId = "";
   String otherUID = "";
   String name = "";
+  String profile = "";
   List<Member> memberList = [];
   var progressshow = 0;
   var imageLoading = false;
-  String profile = "";
   final loginService = locator<LoginService>();
   String get uID => loginService.UserData.uID.toString();
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -49,7 +51,7 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
       WidgetsBinding.instance.addObserver(this);
     }
     // Start the online timer when the app starts
-    onlineTimer = Timer.periodic(Duration(minutes: 3), (_) => offline(null));
+    onlineTimer = Timer.periodic(const Duration(minutes: 3), (_) => offline(null));
     notifyListeners();
   }
 
@@ -190,47 +192,13 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
   }
 
   Stream<List<Chat>> chatStream() {
-    final stream = firestore
-        .collection("chatRoom")
-        .doc(chatId)
-        .collection('chats')
-        .orderBy("Date", descending: true)
-        .snapshots();
-    return stream.map((event) => event.docs.map((doc) {
-          return Chat.fromJson(doc.data());
-        }).toList());
-  }
-
-  // Stream<List<ChatMember>> chatRoomStream() {
-  //   final stream = firestore
-  //       .collection("chatRoom")
-  //       // .where('membersUid', arrayContains: uID)
-  //       .orderBy('lastMessage.Date', descending: true)
-  //       .snapshots();
-  //   return stream.map((event) => event.docs.map((doc) {
-  //         return ChatMember.fromJson(doc.data());
-  //       }).toList());
-  // }
-
-  Stream<List<ChatMember>> getChatRoomsStream() async* {
-    setBusy(true);
-    final result = firestore
-        .collection('chatRoom')
-        .where('membersUid', arrayContains: uID)
-        // .orderBy('lastMessage.Date', descending: true)
-        .snapshots();
-    await for (final event in result) {
-      final List<ChatMember> chatRooms = List.empty(growable: true);
-      for (final doc in event.docs) {
-        final data = doc.data();
-        chatRooms.add(ChatMember.fromJson(data));
-      }
-      yield chatRooms;
-    }
+    notifyListeners();
+    return _chatService.chatStream(chatId);
   }
 
   void _startChatRoomsStream() {
-    getChatRoomsStream().listen((List<ChatMember> event) {
+    setBusy(true);
+    _chatService.getChatRoomsStream().listen((List<ChatMember> event) {
       chatMembers = event;
       setBusy(false);
       notifyListeners();
@@ -238,179 +206,24 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
   }
 
   Stream publisherStream(uID) {
-    return FirebaseFirestore.instance.collection("users").doc(uID).snapshots();
+    return _chatService.publisherStream(uID);
   }
 
-  void sentSMS(chatId, context) async {
-    // String mergeuid = uid_merge(widget.UserData['UID'], widget.UID).toString();
-    // print("objectobjectobjectobjectobjectobjectobjectobjectobject");
-    String sms = smsController.text;
-    try {
-      if (sms != "") {
-        Map<String, dynamic> messageData = {
-          "SMS": sms,
-          "Date": "${DateTime.now().microsecondsSinceEpoch}",
-          "type": "text",
-          "UID": loginService.UserData.uID,
-        };
-        smsController.clear();
-        FirebaseFirestore firestore = FirebaseFirestore.instance;
-        var docRef = firestore.collection("chatRoom").doc(chatId);
-        docRef.get().then((doc) => {
-              if (doc.exists)
-                {
-                  docRef.update({"lastMessage": messageData})
-                }
-              else
-                {
-                  docRef.set({
-                    "Date": "${DateTime.now().microsecondsSinceEpoch}",
-                    "member": [
-                      {
-                        "name": loginService.UserData.username,
-                        "profile": loginService.UserData.profile,
-                        "UID": loginService.UserData.uID
-                      },
-                      {"name": name, "profile": profile, "UID": otherUID},
-                    ],
-                    "membersUid": [loginService.UserData.uID, otherUID],
-                    "lastMessage": messageData
-                  })
-                }
-            });
-        // var data = await firestore
-        //     .collection("chatRoom")
-        //     .doc(chatId)
-        //     .update({"lastMessage": messageData});
-        await firestore
-            .collection("chatRoom")
-            .doc(chatId)
-            .collection('chats')
-            .doc()
-            .set(messageData);
-      }
-      notifyListeners();
-    } catch (e) {
-      log(e.toString());
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(e.toString()),
-        ),
-      );
-    }
+  void sendSMS() {
+    _chatService.sendSMS(chatId, name, profile, otherUID, smsController);
+    notifyListeners();
   }
+
+ 
 
   var reload = 0;
 
-  // Stream<DocumentSnapshot> getLastMessageStream(otherId) {
-  //   var currentuID = loginService.UserData.uID.toString();
-  //   List<String> _chatID = [currentuID, otherId]..sort();
-  //   // log("${chatId.toString()} =====2=====${currentuID}=====>${_chatID}======>");
-  //   String _chatId = _chatID.join('_');
-  //   if (reload < 1) {
-  //     reload++;
-  //     Future.delayed(const Duration(seconds: 1), () {
-  //       notifyListeners();
-  //     });
-  //   }
-  //   return firestore.collection('chatRoom').doc(_chatId).snapshots();
-  //   // CollectionReference chatCollection = firestore.collection('chatRoom').doc(_chatId).snapshots();
-
-  //   // return chatCollection
-  //   //     .where("chatId", isEqualTo: _chatId)
-  //   //     .orderBy('Date', descending: true)
-  //   //     .limit(1)
-  //   //     .snapshots();
-  // }
-
-  ///////////////////////
-
-  void uploadImage({required Function(File file) onSelected}) {
-    FileUploadInputElement uploadInput = FileUploadInputElement()
-      ..accept = "image/*, video/*, application/pdf";
-    uploadInput.click();
-
-    uploadInput.onChange.listen((event) {
-      final file = uploadInput.files!.first;
-      final reader = FileReader();
-      reader.readAsDataUrl(file);
-      reader.onLoadEnd.listen((event) {
-        onSelected(file);
-      }); // Pass the selected file to the callback function.
-    });
+  void uploadToStorage() {
+    _chatService.uploadToStorage(smsController,name,profile,otherUID,chatId);
+    notifyListeners();
   }
 
-//
-
-  Future uploadToStorage() async {
-    // final dateTime = DateTime.now();
-    uploadImage(
-      onSelected: (File file) {
-        Reference ref = storage
-            .ref()
-            .child("chatImage/${DateTime.now().microsecondsSinceEpoch}");
-        UploadTask uploadTask = ref.putBlob(file);
-        uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
-          double progress =
-              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          imageLoading = true;
-          progressshow = progress.round();
-          notifyListeners();
-        });
-        uploadTask.whenComplete(() async {
-          var imageUrl = await ref.getDownloadURL();
-          Map<String, dynamic> messageData = {
-            "SMS": imageUrl,
-            "Date": "${DateTime.now().microsecondsSinceEpoch}",
-            "type": file.name.split(".").last,
-            "UID": loginService.UserData.uID,
-          };
-          smsController.clear();
-          FirebaseFirestore firestore = FirebaseFirestore.instance;
-          var docRef = firestore.collection("chatRoom").doc(chatId);
-          docRef.get().then((doc) => {
-                if (doc.exists)
-                  {
-                    docRef.update({"lastMessage": messageData})
-                  }
-                else
-                  {
-                    docRef.set({
-                      "Date": "${DateTime.now().microsecondsSinceEpoch}",
-                      "member": [
-                        {
-                          "name": loginService.UserData.username,
-                          "profile": loginService.UserData.profile,
-                          "UID": loginService.UserData.uID
-                        },
-                        {"name": name, "profile": profile, "UID": otherUID},
-                      ],
-                      "membersUid": [loginService.UserData.uID, otherUID],
-                      "lastMessage": messageData
-                    })
-                  }
-              });
-          // var data = await firestore
-          //     .collection("chatRoom")
-          //     .doc(chatId)
-          //     .update({"lastMessage": messageData});
-          await firestore
-              .collection("chatRoom")
-              .doc(chatId)
-              .collection('chats')
-              .doc()
-              .set(messageData);
-
-          imageLoading = false;
-          // _videoPlayerController.play();
-        }).catchError((onError) {
-          log(onError);
-          // snackBar2(context, onError.toString());
-        });
-      },
-    );
-    return null;
-  }
+ 
 
   List<ChatMember> _filteredChatMembers = [];
 

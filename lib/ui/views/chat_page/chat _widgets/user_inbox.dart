@@ -10,6 +10,7 @@ import 'chat_message.dart';
 class UserInbox extends ViewModelWidget<ChatPageViewModel> {
   final String chatId;
   final String uID;
+
   const UserInbox({Key? key, required this.chatId, required this.uID})
       : super(key: key);
   @override
@@ -202,10 +203,7 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
                               : Colors.grey),
                       onPressed: () {
                         if (viewModel.smsController.text.isNotEmpty) {
-                          viewModel.sentSMS(
-                            chatId,
-                            context,
-                          );
+                          viewModel.sendSMS();
                         }
                       },
                     )
