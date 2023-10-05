@@ -40,7 +40,6 @@ class ChatPageView extends StackedView<ChatPageViewModel> {
                     child: UserInbox(
                       chatId: viewModel.chatId,
                       uID: viewModel.otherUID,
-                     
                     ),
                   )
                 ],

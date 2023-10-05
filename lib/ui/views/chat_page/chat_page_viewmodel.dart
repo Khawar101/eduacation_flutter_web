@@ -51,7 +51,8 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
       WidgetsBinding.instance.addObserver(this);
     }
     // Start the online timer when the app starts
-    onlineTimer = Timer.periodic(const Duration(minutes: 3), (_) => offline(null));
+    onlineTimer =
+        Timer.periodic(const Duration(minutes: 3), (_) => offline(null));
     notifyListeners();
   }
 
@@ -214,16 +215,13 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     notifyListeners();
   }
 
- 
-
   var reload = 0;
 
   void uploadToStorage() {
-    _chatService.uploadToStorage(smsController,name,profile,otherUID,chatId);
+    _chatService.uploadToStorage(
+        smsController, name, profile, otherUID, chatId);
     notifyListeners();
   }
-
- 
 
   List<ChatMember> _filteredChatMembers = [];
 
