@@ -1,5 +1,4 @@
 // ignore_for_file: camel_case_types
-
 import 'package:education_flutter_web/ui/common/app_colors.dart';
 import 'package:education_flutter_web/ui/views/courses/upload_courses/widgets/cover_btn.dart';
 import 'package:flutter/material.dart';
