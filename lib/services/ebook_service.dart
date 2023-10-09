@@ -1,5 +1,4 @@
 // ignore_for_file: avoid_web_libraries_in_flutter, body_might_complete_normally_catch_error, prefer_typing_uninitialized_variables, non_constant_identifier_names
-
 import 'dart:developer';
 import 'dart:html';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -137,9 +136,9 @@ class EbookService {
           newSetState(() {});
           notifyListeners();
           imageLooding = false;
-          print(pdfUrl);
+          log(pdfUrl);
         }).catchError((onError) {
-          print(onError);
+          log(onError);
         });
       },
     );
