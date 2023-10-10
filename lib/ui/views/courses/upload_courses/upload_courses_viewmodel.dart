@@ -285,6 +285,7 @@ class UploadCoursesViewModel extends BaseViewModel {
             .collection('chats')
             .doc()
             .set(messageData);
+        notifyListeners();
       } else {
         log("Already Joined");
       }
