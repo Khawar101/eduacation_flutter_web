@@ -34,7 +34,7 @@ class ChatService {
           .orderBy("Date", descending: true)
           .snapshots();
       return stream.map((event) => event.docs.map((doc) {
-            return Chat.fromJson(doc.data(),docId: doc.id);
+            return Chat.fromJson(doc.data(), docId: doc.id);
           }).toList());
     } catch (e) {
       log("Error fetching chat data: $e");
