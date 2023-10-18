@@ -215,6 +215,11 @@ class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
     notifyListeners();
   }
 
+  void deleteMessage(chatId, id) {
+    _chatService.deleteMessage(chatId, id);
+    notifyListeners();
+  }
+
   var reload = 0;
 
   void uploadToStorage() {

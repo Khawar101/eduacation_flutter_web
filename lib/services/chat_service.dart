@@ -34,7 +34,7 @@ class ChatService {
           .orderBy("Date", descending: true)
           .snapshots();
       return stream.map((event) => event.docs.map((doc) {
-            return Chat.fromJson(doc.data());
+            return Chat.fromJson(doc.data(),docId: doc.id);
           }).toList());
     } catch (e) {
       log("Error fetching chat data: $e");
@@ -117,6 +117,21 @@ class ChatService {
       //     content: Text(e.toString()),
       //   ),
       // );
+    }
+  }
+
+  void deleteMessage(chatId, id) async {
+    try {
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+      await firestore
+          .collection("chatRoom")
+          .doc(chatId)
+          .collection('chats')
+          .doc(id)
+          .delete();
+      log("message will be deleted");
+    } catch (e) {
+      log("Error occurred while deleting message: $e");
     }
   }
 

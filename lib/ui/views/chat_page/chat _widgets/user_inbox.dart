@@ -140,10 +140,16 @@ class UserInbox extends ViewModelWidget<ChatPageViewModel> {
 
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: MessageBubble(
-                                isMe: messageData.uID ==
-                                    viewModel.loginService.UserData.uID,
-                                messageData: messageData),
+                            child: GestureDetector(
+                              onDoubleTap: (){
+                                   viewModel.deleteMessage(chatId, messageData.id);
+                            // log(messageData.id.toString());
+                              },
+                              child: MessageBubble(
+                                  isMe: messageData.uID ==
+                                      viewModel.loginService.UserData.uID,
+                                  messageData: messageData),
+                            ),
                           );
                         },
                       );
