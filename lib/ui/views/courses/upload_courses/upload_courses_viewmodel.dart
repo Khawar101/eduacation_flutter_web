@@ -1,7 +1,5 @@
 // ignore_for_file: iterable_contains_unrelated_type
-
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:education_flutter_web/services/Model/ChatMember.dart';
 import 'package:education_flutter_web/services/Model/CoursesModel.dart';
