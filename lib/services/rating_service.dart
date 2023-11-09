@@ -1,12 +1,10 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '../app/app.locator.dart';
 import 'Model/CoursesModel.dart';
 import 'Model/ratingModel.dart';
 import 'Model/userData.dart';
 import 'login_service.dart';
+import 'dart:developer';
 
 class RatingService {
   final _loginService = locator<LoginService>();

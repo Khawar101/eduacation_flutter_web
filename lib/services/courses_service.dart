@@ -1,13 +1,13 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, body_might_complete_normally_catch_error, avoid_web_libraries_in_flutter, await_only_futures
-import 'dart:developer';
-import 'dart:html';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:education_flutter_web/services/login_service.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
 import '../app/app.locator.dart';
 import 'Model/CoursesModel.dart';
+import 'dart:developer';
+import 'dart:html';
 
 class CoursesService {
   final _loginService = locator<LoginService>();
