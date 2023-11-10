@@ -1,11 +1,9 @@
 // ignore_for_file: camel_case_types, unused_local_variable, unused_import
-
 import 'package:education_flutter_web/ui/views/courses/upload_courses/widgets/card.dart';
-import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:stacked/stacked.dart';
-
+import 'package:flutter/material.dart';
 import 'upload_courses_viewmodel.dart';
+import 'package:stacked/stacked.dart';
 
 class UploadView_4 extends StackedView<UploadCoursesViewModel> {
   final bool review;
@@ -40,7 +38,6 @@ class UploadView_4 extends StackedView<UploadCoursesViewModel> {
                   }
                 }()),
                 mainAxisExtent: 202,
-                //  childAspectRatio: 1/4,
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20),
             itemCount: review

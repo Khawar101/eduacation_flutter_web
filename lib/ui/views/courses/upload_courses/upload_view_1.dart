@@ -1,13 +1,13 @@
 // ignore_for_file: camel_case_types
-import 'package:education_flutter_web/ui/common/app_colors.dart';
 import 'package:education_flutter_web/ui/views/courses/upload_courses/widgets/cover_btn.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:stacked/stacked.dart';
-import '../../../widgets/common/custom_text_field/custom_text_field.dart';
 import '../../../widgets/common/drop_down_search/drop_down_category_search.dart';
+import '../../../widgets/common/custom_text_field/custom_text_field.dart';
 import '../../../widgets/common/icon_text_field/icon_text_field.dart';
+import 'package:education_flutter_web/ui/common/app_colors.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/material.dart';
 import 'upload_courses_viewmodel.dart';
+import 'package:stacked/stacked.dart';
 
 class UploadView_1 extends StackedView<UploadCoursesViewModel> {
   const UploadView_1({Key? key}) : super(key: key);
