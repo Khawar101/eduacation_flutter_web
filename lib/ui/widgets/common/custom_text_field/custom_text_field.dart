@@ -108,10 +108,6 @@ class CustomTextField extends StackedView<CustomTextFieldModel> {
   });
 
   @override
-  // void onViewModelReady(CustomTextFieldModel viewModel) {
-  //      addCommasIndian();
-  //   super.onViewModelReady(viewModel);
-  // }
   Widget builder(
     BuildContext context,
     CustomTextFieldModel viewModel,
