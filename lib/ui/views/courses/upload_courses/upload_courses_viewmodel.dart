@@ -1,25 +1,25 @@
 // ignore_for_file: iterable_contains_unrelated_type
-import 'dart:developer';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:education_flutter_web/services/Model/ChatMember.dart';
+import 'package:education_flutter_web/ui/dialogs/courses_dialogs/addQuestion.dart';
+import 'package:education_flutter_web/ui/dialogs/courses_dialogs/addLecture.dart';
+import 'package:education_flutter_web/ui/widgets/common/video_player.dart';
 import 'package:education_flutter_web/services/Model/CoursesModel.dart';
+import 'package:education_flutter_web/services/Model/ChatMember.dart';
 import 'package:education_flutter_web/services/courses_service.dart';
 import 'package:education_flutter_web/services/login_service.dart';
-import 'package:education_flutter_web/ui/dialogs/courses_dialogs/addLecture.dart';
-import 'package:education_flutter_web/ui/dialogs/courses_dialogs/addQuestion.dart';
-import 'package:education_flutter_web/ui/widgets/common/video_player.dart';
+import '../../../dialogs/courses_dialogs/addAssigment.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../../../services/rating_service.dart';
+import '../../../../app/app.locator.dart';
+import '../../../../utils/snakBar.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import '../../../../app/app.locator.dart';
-import '../../../../services/rating_service.dart';
-import '../../../../utils/snakBar.dart';
-import '../../../dialogs/courses_dialogs/addAssigment.dart';
 import 'upload_view_1.dart';
 import 'upload_view_2.dart';
 import 'upload_view_3.dart';
 import 'upload_view_4.dart';
 import 'upload_view_5.dart';
 import 'upload_view_6.dart';
+import 'dart:developer';
 
 class UploadCoursesViewModel extends BaseViewModel {
   final rateingService = locator<RatingService>();
