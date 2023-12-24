@@ -133,7 +133,7 @@ class ProfileService {
     firestore.collection('users').doc(loginService.UserData.uID).update({
       "date": DateTime,
     });
-    log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+    log("====>getUserOnlineStatus");
 
     final userSnapshot = await firestore
         .collection('users')
@@ -141,14 +141,14 @@ class ProfileService {
         .get();
     if (userSnapshot.exists) {
       final userData = userSnapshot.data() as Map<String, dynamic>;
-      log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+      log("====> userSnapshot.data() as Map<String, dynamic>;");
       // Get the 'isOnline' status from the user's data
       final isOnline =
           userData['isOnline'] ?? false; // Default to false if not available
-      log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+      log("=====> userData['isOnline'] ?? false;");
       return isOnline;
     }
-    log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+    log("==========================");
 
     // Default to offline if no data is available
     return false;
