@@ -10,7 +10,7 @@
 //     "lecture":[""]
 // }
 
-// ignore_for_file: prefer_collection_literals, unnecessary_this
+// ignore_for_file: prefer_collection_literals, unnecessary_this, file_names
 
 class ReportModel {
   String? courseKey;
@@ -47,7 +47,7 @@ class ReportModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['courseKey'] = this.courseKey;
     data['key'] = this.key;
     data['progress'] = this.progress;

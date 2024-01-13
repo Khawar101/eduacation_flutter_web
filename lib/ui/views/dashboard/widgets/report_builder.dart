@@ -28,6 +28,7 @@ class ReportBuilder extends StackedView<DashboardViewModel> {
         builder:
             (BuildContext context, AsyncSnapshot<List<ReportModel>> snapshot) {
           if (snapshot.hasError) {
+            print(snapshot.error.toString());
             return Center(child: Text(snapshot.error.toString()));
           }
 

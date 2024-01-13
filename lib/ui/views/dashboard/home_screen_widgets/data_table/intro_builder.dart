@@ -27,7 +27,8 @@ class IntroBuilder extends ViewModelWidget<DashboardViewModel> {
           return Loading(20);
         }
         userData _userData = userData.fromJson(snapshot.data.data());
-        return SizedBox(
+        return snapshot.data!=0?
+         SizedBox(
           width: 270,
           child: Row(
             children: [
@@ -55,7 +56,7 @@ class IntroBuilder extends ViewModelWidget<DashboardViewModel> {
                         _userData.email.toString(),
                         overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.ibmPlexSans(
-                          fontSize: 14,
+                          fontSize: 12,
                           color: Colors.black38,
                           fontWeight: FontWeight.bold,
                         ),
@@ -66,7 +67,7 @@ class IntroBuilder extends ViewModelWidget<DashboardViewModel> {
               ),
             ],
           ),
-        );
+        ):Container();
       },
     );
   }

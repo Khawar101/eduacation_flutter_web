@@ -84,7 +84,7 @@ class SignupView extends StackedView<SignupViewModel> {
                           InkWell(
                             mouseCursor: MaterialStateMouseCursor.clickable,
                             onTap: () {
-                              viewModel.sendOtp();
+                              viewModel.signUP();
                               if (_formKey.currentState!.validate()) {}
                             },
                             child: Container(

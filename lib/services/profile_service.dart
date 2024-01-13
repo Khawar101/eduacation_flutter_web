@@ -104,9 +104,9 @@ class ProfileService {
           email: email,
           phoneNo: phoneNo,
           bio: bio,
-          address: address,
-          city: city,
           country: country,
+          city: city,
+          address: address,
         );
         await firestore.collection("users").doc(uid).update({
           "firstName": firstName,
@@ -114,9 +114,9 @@ class ProfileService {
           "email": email,
           "phoneNo": phoneNo,
           "bio": bio,
-          "address": address,
-          "city": city,
           "country": country,
+          "city": city,
+          "address": address,
         });
         await loginService.updateUserData(uid);
         message = "update successfully";

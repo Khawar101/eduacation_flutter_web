@@ -29,9 +29,9 @@ class LoginViewModel extends BaseViewModel {
   }
 
   TextEditingController emailCTRL =
-      TextEditingController(text: "khawarjutt101@gmail.com");
+      TextEditingController(text: "m.sbutt169@gmail.com");
 
-  TextEditingController passwordCTRL = TextEditingController(text: "qwerty");
+  TextEditingController passwordCTRL = TextEditingController(text: "qwerty12345");
 
   bool looding = false;
   bool _obscureText = true;

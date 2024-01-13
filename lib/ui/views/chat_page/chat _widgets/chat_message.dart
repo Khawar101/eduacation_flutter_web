@@ -78,9 +78,9 @@ class MessageBubble extends StatelessWidget {
                     messageData.type == "pdf"
                         ? InkWell(
                             onTap: () {
-                              _navigationService.navigateToPdfViewer(
-                                  pdfData:
-                                      PdfFile(pdfUrl: messageData.sMS ?? ""));
+                              // _navigationService.navigateToPdfViewer(
+                              //     pdfData:
+                              //         PdfFile(pdfUrl: messageData.sMS ?? ""));
                             },
                             child: Image.asset(
                               "assets/icons/addPDF.png",

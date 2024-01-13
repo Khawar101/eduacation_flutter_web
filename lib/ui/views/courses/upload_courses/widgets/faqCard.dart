@@ -15,7 +15,7 @@ Widget faqCard(UploadCoursesViewModel viewModel, index, context) {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.35,
+            width: MediaQuery.of(context).size.width * 0.34,
             child: Text(
               "Q:${viewModel.faq[index].question.toString()}",
               style: GoogleFonts.ibmPlexSans(

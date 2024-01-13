@@ -5,7 +5,6 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:education_flutter_web/services/Model/EbookModel.dart' as _i19;
 import 'package:education_flutter_web/ui/views/account/account_view.dart'
     as _i13;
 import 'package:education_flutter_web/ui/views/auth/forgetpassword/forgetpassword_view.dart'
@@ -17,7 +16,7 @@ import 'package:education_flutter_web/ui/views/auth/signup/signup_view.dart'
 import 'package:education_flutter_web/ui/views/auth/verify/verify_view.dart'
     as _i10;
 import 'package:education_flutter_web/ui/views/chat_page/chat_page_view.dart'
-    as _i17;
+    as _i16;
 import 'package:education_flutter_web/ui/views/courses/courses_view.dart'
     as _i2;
 import 'package:education_flutter_web/ui/views/courses/upload_courses/upload_courses_view.dart'
@@ -34,11 +33,10 @@ import 'package:education_flutter_web/ui/views/splash_screen/splash_screen_view.
     as _i12;
 import 'package:education_flutter_web/ui/views/teachers/teachers_view.dart'
     as _i4;
-import 'package:education_flutter_web/ui/widgets/pdf_viewer.dart' as _i16;
-import 'package:flutter/material.dart' as _i18;
+import 'package:flutter/material.dart' as _i17;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i20;
+import 'package:stacked_services/stacked_services.dart' as _i18;
 
 class Routes {
   static const coursesView = '/courses-view';
@@ -69,8 +67,6 @@ class Routes {
 
   static const uploadebookView = '/uploadebook-view';
 
-  static const pdfViewer = '/pdf-viewer';
-
   static const chatPageView = '/chat-page-view';
 
   static const all = <String>{
@@ -88,7 +84,6 @@ class Routes {
     accountView,
     eBookView,
     uploadebookView,
-    pdfViewer,
     chatPageView,
   };
 }
@@ -152,18 +147,14 @@ class StackedRouter extends _i1.RouterBase {
       page: _i15.UploadebookView,
     ),
     _i1.RouteDef(
-      Routes.pdfViewer,
-      page: _i16.pdfViewer,
-    ),
-    _i1.RouteDef(
       Routes.chatPageView,
-      page: _i17.ChatPageView,
+      page: _i16.ChatPageView,
     ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.CoursesView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i17.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.CoursesView(),
         settings: data,
       );
@@ -172,94 +163,86 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<DashboardViewArguments>(
         orElse: () => const DashboardViewArguments(),
       );
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i17.MaterialPageRoute<dynamic>(
         builder: (context) => _i3.DashboardView(key: args.key),
         settings: data,
       );
     },
     _i4.TeachersView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i17.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.TeachersView(),
         settings: data,
       );
     },
     _i5.SettingsView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i17.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.SettingsView(),
         settings: data,
       );
     },
     _i6.UploadCoursesView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i17.MaterialPageRoute<dynamic>(
         builder: (context) => const _i6.UploadCoursesView(),
         settings: data,
       );
     },
     _i7.DrawerView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i17.MaterialPageRoute<dynamic>(
         builder: (context) => const _i7.DrawerView(),
         settings: data,
       );
     },
     _i8.LoginView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i17.MaterialPageRoute<dynamic>(
         builder: (context) => const _i8.LoginView(),
         settings: data,
       );
     },
     _i9.SignupView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i17.MaterialPageRoute<dynamic>(
         builder: (context) => const _i9.SignupView(),
         settings: data,
       );
     },
     _i10.VerifyView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i17.MaterialPageRoute<dynamic>(
         builder: (context) => const _i10.VerifyView(),
         settings: data,
       );
     },
     _i11.ForgetpasswordView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i17.MaterialPageRoute<dynamic>(
         builder: (context) => const _i11.ForgetpasswordView(),
         settings: data,
       );
     },
     _i12.SplashScreenView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i17.MaterialPageRoute<dynamic>(
         builder: (context) => const _i12.SplashScreenView(),
         settings: data,
       );
     },
     _i13.AccountView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i17.MaterialPageRoute<dynamic>(
         builder: (context) => const _i13.AccountView(),
         settings: data,
       );
     },
     _i14.EBookView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i17.MaterialPageRoute<dynamic>(
         builder: (context) => const _i14.EBookView(),
         settings: data,
       );
     },
     _i15.UploadebookView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i17.MaterialPageRoute<dynamic>(
         builder: (context) => const _i15.UploadebookView(),
         settings: data,
       );
     },
-    _i16.pdfViewer: (data) {
-      final args = data.getArgs<pdfViewerArguments>(nullOk: false);
-      return _i18.MaterialPageRoute<dynamic>(
-        builder: (context) =>
-            _i16.pdfViewer(key: args.key, pdfData: args.pdfData),
-        settings: data,
-      );
-    },
-    _i17.ChatPageView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i17.ChatPageView(),
+    _i16.ChatPageView: (data) {
+      return _i17.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i16.ChatPageView(),
         settings: data,
       );
     },
@@ -274,7 +257,7 @@ class StackedRouter extends _i1.RouterBase {
 class DashboardViewArguments {
   const DashboardViewArguments({this.key});
 
-  final _i18.Key? key;
+  final _i17.Key? key;
 
   @override
   String toString() {
@@ -293,34 +276,7 @@ class DashboardViewArguments {
   }
 }
 
-class pdfViewerArguments {
-  const pdfViewerArguments({
-    this.key,
-    required this.pdfData,
-  });
-
-  final _i18.Key? key;
-
-  final _i19.PdfFile pdfData;
-
-  @override
-  String toString() {
-    return '{"key": "$key", "pdfData": "$pdfData"}';
-  }
-
-  @override
-  bool operator ==(covariant pdfViewerArguments other) {
-    if (identical(this, other)) return true;
-    return other.key == key && other.pdfData == pdfData;
-  }
-
-  @override
-  int get hashCode {
-    return key.hashCode ^ pdfData.hashCode;
-  }
-}
-
-extension NavigatorStateExtension on _i20.NavigationService {
+extension NavigatorStateExtension on _i18.NavigationService {
   Future<dynamic> navigateToCoursesView([
     int? routerId,
     bool preventDuplicates = true,
@@ -336,7 +292,7 @@ extension NavigatorStateExtension on _i20.NavigationService {
   }
 
   Future<dynamic> navigateToDashboardView({
-    _i18.Key? key,
+    _i17.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -519,23 +475,6 @@ extension NavigatorStateExtension on _i20.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToPdfViewer({
-    _i18.Key? key,
-    required _i19.PdfFile pdfData,
-    int? routerId,
-    bool preventDuplicates = true,
-    Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
-  }) async {
-    return navigateTo<dynamic>(Routes.pdfViewer,
-        arguments: pdfViewerArguments(key: key, pdfData: pdfData),
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
-  }
-
   Future<dynamic> navigateToChatPageView([
     int? routerId,
     bool preventDuplicates = true,
@@ -565,7 +504,7 @@ extension NavigatorStateExtension on _i20.NavigationService {
   }
 
   Future<dynamic> replaceWithDashboardView({
-    _i18.Key? key,
+    _i17.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -742,23 +681,6 @@ extension NavigatorStateExtension on _i20.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.uploadebookView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
-  }
-
-  Future<dynamic> replaceWithPdfViewer({
-    _i18.Key? key,
-    required _i19.PdfFile pdfData,
-    int? routerId,
-    bool preventDuplicates = true,
-    Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
-  }) async {
-    return replaceWith<dynamic>(Routes.pdfViewer,
-        arguments: pdfViewerArguments(key: key, pdfData: pdfData),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

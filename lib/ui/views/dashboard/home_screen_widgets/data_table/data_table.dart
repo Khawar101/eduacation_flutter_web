@@ -105,8 +105,9 @@ class DataTables extends StackedView<DashboardViewModel> {
           ),
         ),
       ],
-      rows: List<DataRow>.generate(reportData?.length ?? 0, (index) {
-        ReportModel data = reportData![0];
+      // reportData!.length
+      rows: List<DataRow>.generate( reportData!.length, (index) {
+        ReportModel data = reportData![index];
         return DataRow(
           cells: [
             DataCell(IntroBuilder(uID: data.userKey ?? "")),
@@ -114,6 +115,7 @@ class DataTables extends StackedView<DashboardViewModel> {
               SizedBox(
                 width: 100,
                 child: Text(
+                  
                   data.courseName.toString(),
                   style: GoogleFonts.ibmPlexSans(
                     color: Colors.black45,

@@ -1,4 +1,3 @@
-import 'package:education_flutter_web/app/app.router.dart';
 import 'package:education_flutter_web/services/Model/EbookModel.dart';
 import 'package:education_flutter_web/ui/dialogs/ebook_dialogs/add_pdf.dart';
 import 'package:education_flutter_web/ui/views/e_book/upload_ebook/uploadebook_widget/ebook_screen_2.dart';
@@ -199,7 +198,7 @@ class UploadebookViewModel extends BaseViewModel {
   }
 
   ebookPdfFile(PdfFile pdfData) async {
-    _navigationService.navigateToPdfViewer(pdfData: pdfData);
+    // _navigationService.navigateToPdfViewer(pdfData: pdfData);
   }
 
   ebookPublish(publish) {

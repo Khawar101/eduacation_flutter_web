@@ -20,6 +20,7 @@ class CoursesService {
         email: _loginService.UserData.email ?? "xyz@gmail.com",
         profile: _loginService.UserData.profile ??
             "https://firebasestorage.googleapis.com/v0/b/education-app-b5aed.appspot.com/o/profile%2F1686228451064708?alt=media&token=7c093e32-23fd-432b-b7ba-a914cb4b5317",
+             userType: _loginService.UserData.userType ?? "Teacher"
       ));
   var coursesPage = 0;
   var uploadCoursesPage = 0;
@@ -243,7 +244,10 @@ class CoursesService {
   }
 
   Stream<List<CoursesModel>> coursesStream() {
-    final stream = firestore.collection("courses").snapshots();
+    final stream = firestore
+        .collection("courses")
+        .where('UID', isEqualTo: _loginService.UserData.uID)
+        .snapshots();
     return stream.map((event) => event.docs.map((doc) {
           return CoursesModel.fromJson(doc.data());
         }).toList());
