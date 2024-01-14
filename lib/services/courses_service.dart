@@ -16,12 +16,11 @@ class CoursesService {
   late CoursesModel courseData = CoursesModel(
       uID: _loginService.UserData.uID ?? "UaRZTAS3CYOE79s79cYeSNoANPa2",
       publisherData: PublisherData(
-        name: _loginService.UserData.username ?? "Mudassir",
-        email: _loginService.UserData.email ?? "xyz@gmail.com",
-        profile: _loginService.UserData.profile ??
-            "https://firebasestorage.googleapis.com/v0/b/education-app-b5aed.appspot.com/o/profile%2F1686228451064708?alt=media&token=7c093e32-23fd-432b-b7ba-a914cb4b5317",
-             userType: _loginService.UserData.userType ?? "Teacher"
-      ));
+          name: _loginService.UserData.username ?? "Mudassir",
+          email: _loginService.UserData.email ?? "xyz@gmail.com",
+          profile: _loginService.UserData.profile ??
+              "https://firebasestorage.googleapis.com/v0/b/education-app-b5aed.appspot.com/o/profile%2F1686228451064708?alt=media&token=7c093e32-23fd-432b-b7ba-a914cb4b5317",
+          userType: _loginService.UserData.userType ?? "Teacher"));
   var coursesPage = 0;
   var uploadCoursesPage = 0;
   late String thubnailUrl = "";

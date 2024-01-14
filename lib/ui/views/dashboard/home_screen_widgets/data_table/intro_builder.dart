@@ -27,47 +27,48 @@ class IntroBuilder extends ViewModelWidget<DashboardViewModel> {
           return Loading(20);
         }
         userData _userData = userData.fromJson(snapshot.data.data());
-        return snapshot.data!=0?
-         SizedBox(
-          width: 270,
-          child: Row(
-            children: [
-              networkImage(
-                _userData.profile,
-                35,
-                35,
-                true,
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                child: SizedBox(
-                  width: 200,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CustomText(
-                          text: _userData.username.toString(),
-                          size: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black),
-                      Text(
-                        _userData.email.toString(),
-                        overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.ibmPlexSans(
-                          fontSize: 12,
-                          color: Colors.black38,
-                          fontWeight: FontWeight.bold,
+        return snapshot.data != 0
+            ? SizedBox(
+                width: 270,
+                child: Row(
+                  children: [
+                    networkImage(
+                      _userData.profile,
+                      35,
+                      35,
+                      true,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 5, horizontal: 10),
+                      child: SizedBox(
+                        width: 200,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CustomText(
+                                text: _userData.username.toString(),
+                                size: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
+                            Text(
+                              _userData.email.toString(),
+                              overflow: TextOverflow.ellipsis,
+                              style: GoogleFonts.ibmPlexSans(
+                                fontSize: 12,
+                                color: Colors.black38,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          ),
-        ):Container();
+              )
+            : Container();
       },
     );
   }
