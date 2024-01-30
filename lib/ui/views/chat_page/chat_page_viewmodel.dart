@@ -1,18 +1,18 @@
 // ignore_for_file: body_might_complete_normally_catch_error, avoid_web_libraries_in_flutter, unused_import, annotate_overrides
+import 'package:education_flutter_web/services/Model/ChatMember.dart';
+import 'package:education_flutter_web/services/chat_service.dart';
+import 'package:education_flutter_web/services/Model/Chat.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../../services/login_service.dart';
+import 'package:flutter/foundation.dart';
+import '../../../app/app.locator.dart';
+import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 import 'dart:developer';
 import 'dart:html';
 import 'dart:async';
 import 'dart:js';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:education_flutter_web/services/Model/Chat.dart';
-import 'package:education_flutter_web/services/Model/ChatMember.dart';
-import 'package:education_flutter_web/services/chat_service.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:stacked/stacked.dart';
-import '../../../app/app.locator.dart';
-import '../../../services/login_service.dart';
 
 class ChatPageViewModel extends BaseViewModel with WidgetsBindingObserver {
   //  String otherId="";
