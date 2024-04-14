@@ -1,17 +1,17 @@
-import 'package:education_flutter_web/services/Model/EbookModel.dart';
-import 'package:education_flutter_web/ui/dialogs/ebook_dialogs/add_pdf.dart';
 import 'package:education_flutter_web/ui/views/e_book/upload_ebook/uploadebook_widget/ebook_screen_2.dart';
-import 'package:flutter/material.dart';
-import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
-import '../../../../app/app.locator.dart';
-import '../../../../services/ebook_service.dart';
-import '../../../../services/rating_service.dart';
-import '../../../../utils/snakBar.dart';
+import 'package:education_flutter_web/ui/dialogs/ebook_dialogs/add_pdf.dart';
+import 'package:education_flutter_web/services/Model/EbookModel.dart';
 import '../../../dialogs/ebook_dialogs/add_questions.dart';
+import 'package:stacked_services/stacked_services.dart';
+import 'uploadebook_widget/ebook_screen_detail.dart';
+import '../../../../services/rating_service.dart';
+import '../../../../services/ebook_service.dart';
 import 'uploadebook_widget/ebook_screen_1.dart';
 import 'uploadebook_widget/ebook_screen_3.dart';
-import 'uploadebook_widget/ebook_screen_detail.dart';
+import '../../../../app/app.locator.dart';
+import '../../../../utils/snakBar.dart';
+import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
 class UploadebookViewModel extends BaseViewModel {
   final rateingService = locator<RatingService>();
